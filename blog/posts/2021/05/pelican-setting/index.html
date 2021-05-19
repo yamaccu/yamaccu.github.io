@@ -40,8 +40,8 @@
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/05/pelican-setting/"/>
 <meta property="og:type" content="article"/>
-<meta property="article:published_time" content="2021-05-17 00:00:00+09:00"/>
-<meta property="article:modified_time" content="2021-05-18 14:26:40.784244+09:00"/>
+<meta property="article:published_time" content="2021-05-19 20:43:46.247498+09:00"/>
+<meta property="article:modified_time" content="2021-05-19 20:43:46.247498+09:00"/>
 <meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
 <meta property="article:section" content="pelican"/>
 <meta property="og:image" content="/blog/images/profile.png">
@@ -69,19 +69,19 @@
               <li>
                 <a target="_self"
                    href="https://yamaccu.github.io/blog/pages/profile.html">
-                  ﻿著者について
+                  ﻿author
                 </a>
               </li>
               <li>
                 <a target="_self"
                    href="https://yamaccu.github.io/blog/pages/about.html">
-                  ﻿サイトについて
+                  ﻿about blog
                 </a>
               </li>
               <li>
                 <a target="_self"
                    href="https://yamaccu.github.io/blog/pages/policy.html">
-                  ﻿サイトポリシー
+                  ﻿sitepolicy
                 </a>
               </li>
 
@@ -119,7 +119,7 @@
       
     <h1 id="pelican-setting">Pelicanの設定</h1>
     <p>
-      Posted on 2021/05/17 in <a href="https://yamaccu.github.io/blog/category/pelican.html">pelican</a>
+      Posted on 2021/05/19 in <a href="https://yamaccu.github.io/blog/category/pelican.html">pelican</a>
 
     </p>
   </header>
@@ -420,7 +420,7 @@ DISABLE_URL_HASH = True</blockquote>
 </div>
 <blockquote>
 USE_LESS = True</blockquote>
-<p>CSSファイルの代わりにLESSファイルを使用するかどうかの設定。</p>
+<p>CSSファイルの代わりにLESSファイルを使用するかどうかの設定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -428,8 +428,8 @@ USE_LESS = True</blockquote>
 </div>
 <div class="section" id="publish-conf">
 <h2>publish.confの記述</h2>
-<p>&quot;from pelicanconf import *&quot; で、pelicanconf.pyの設定をpublishでも使用できます。</p>
-<p>以下のURL設定系は、手元の環境と本番環境で異なると思うので、publish.conf内で設定する必要があるかと思います。</p>
+<p>publishconf.pyの中に &quot;from pelicanconf import *&quot; と記述することで、pelicanconf.pyの設定をpublishでも使用できます。</p>
+<p>また、以下のURL設定系は手元の環境と本番環境で異なると思うので、publish.conf内で設定する必要があるかと思います。</p>
 <blockquote>
 <div class="line-block">
 <div class="line">SITEURL = '<a class="reference external" href="https://xxxxxx">https://xxxxxx</a>'</div>
@@ -437,7 +437,7 @@ USE_LESS = True</blockquote>
 <div class="line">MENUITEMS = (</div>
 <div class="line-block">
 <div class="line">(&quot;Archives&quot;, &quot;xxxxxx&quot;),</div>
-<div class="line">(&quot;Categories&quot;, &quot;/xxxxxx&quot;),</div>
+<div class="line">(&quot;Categories&quot;, &quot;xxxxxx&quot;),</div>
 </div>
 <div class="line">)</div>
 <div class="line"><br /></div>
@@ -452,8 +452,8 @@ USE_LESS = True</blockquote>
 </div>
 <div class="section" id="url">
 <h2>参考URL</h2>
-<p>pelican公式　<a class="reference external" href="https://docs.getpelican.com/en/stable/settings.html">https://docs.getpelican.com/en/stable/settings.html</a></p>
-<p>Flex公式　<a class="reference external" href="https://github.com/alexandrevicenzi/Flex/wiki/Custom-Settings">https://github.com/alexandrevicenzi/Flex/wiki/Custom-Settings</a></p>
+<p><a class="reference external" href="https://docs.getpelican.com/en/stable/settings.html">pelican公式</a></p>
+<p><a class="reference external" href="https://github.com/alexandrevicenzi/Flex/wiki/Custom-Settings">FLEX公式</a></p>
 </div>
 
   </div>
