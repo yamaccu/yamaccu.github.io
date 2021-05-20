@@ -2,6 +2,7 @@
 ###############################
 
 :title: Pelicanの設定
+:date: 2021-05-19
 :category: pelican
 :tag: pelican
 
