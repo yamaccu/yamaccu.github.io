@@ -15,8 +15,6 @@
 * robots.txtの作成
 * Google Search Consoleの登録 / sitemapの登録
 
-各項目の詳細は、参考URL先を見てください。
-
 | 
 
 Google Analyticsの登録
@@ -37,7 +35,7 @@ pelicanでは、publishconf.pyにトラッキングIDを追加すると自動で
 sitemapの作成
 --------------
 
-Google検索にヒットさせるために必要なファイルで、作成したらGoogle Search Consoleに登録します。
+Google検索にヒットさせ易くするためのファイルで、作成したらGoogle Search Consoleに登録します。
 
 小規模HPには不要のようですが、一応作成します。
 
@@ -55,7 +53,7 @@ pelicanconf.pyに以下の設定を追加すると、出力フォルダに「sit
 
 一般的な静的サイトジェネレータにはsitemap生成のプラグインがあるようですので、他のジェネレータ使用時はそちらを使用します。
 
-また、sitemap生成の無料ページもあるようですので、探してみてください。
+また、sitemap生成の無料ページもあるようです。
 
 | 
 
@@ -68,7 +66,6 @@ rootディレクトリに、「robots.txt」という名前のファイルを作
 
     | User-agent: *
     | Disallow:
-    | Allow:
     | 
     | Sitemap: https://xxxxxxxxx/sitemap.xml
 
@@ -77,9 +74,11 @@ rootディレクトリに、「robots.txt」という名前のファイルを作
 Google Search Consoleの登録 / sitemapの登録
 ---------------------------------------------
 
-アクセス解析ツールその２ Google Search Consoleに登録します。HPへの流入ルート、検索順位などSEO関連情報がわかります。
+Google Search Consoleに登録します。HPへの流入ルート、検索順位などSEO関連情報がわかります。
 
 登録完了したら、サイトマップも登録しておきます。
+
+登録したては「サイトマップを読み込めませんでした」とエラーが出ますが、しばらく放置しておくと読み込んでくれるようです。
 
 `Google Serach Console登録方法 <http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html>`_
 
