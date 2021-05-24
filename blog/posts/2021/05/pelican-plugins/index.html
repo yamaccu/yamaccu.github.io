@@ -40,19 +40,24 @@
 <!-- End Google Analytics -->  
 
 
-    <meta name="author" content="yy" />
-    <meta name="description" content="" />
+<meta name="author" content="yy" />
+<meta name="description" content="Pelicanのプラグインの解説です。 以下のプラグインが便利かと思います。 related_posts share_post neighbors …" />
+<meta name="keywords" content="">
+
+
 <meta property="og:site_name" content="Y.Y.Blog"/>
-<meta property="og:type" content="blog"/>
-<meta property="og:title" content="Y.Y.Blog"/>
-<meta property="og:description" content=""/>
+<meta property="og:title" content="Pelicanのプラグイン"/>
+<meta property="og:description" content="Pelicanのプラグインの解説です。 以下のプラグインが便利かと思います。 related_posts share_post neighbors …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://yamaccu.github.io/blog"/>
+<meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/05/pelican-plugins/"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2021-05-24 00:00:00+09:00"/>
+<meta property="article:modified_time" content="2021-05-24 11:34:44.553443+09:00"/>
+<meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
+<meta property="article:section" content="pelican"/>
 <meta property="og:image" content="/blog/images/profile.png">
 
-
-
-  <title>Y.Y.Blog &ndash; ﻿author</title>
+  <title>Y.Y.Blog &ndash; Pelicanのプラグイン</title>
 
 </head>
 <body class="light-theme">
@@ -125,20 +130,127 @@
 
 <article class="single">
   <header>
-    
-    <h1 id="profile">﻿author</h1>
+      
+    <h1 id="pelican-plugins">Pelicanのプラグイン</h1>
+    <p>
+      Posted on 2021/05/24 in <a href="https://yamaccu.github.io/blog/category/pelican.html">pelican</a>
+
+    </p>
   </header>
+
+
   <div>
+    <div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Pelicanのプラグインの解説です。</p>
+<p>以下のプラグインが便利かと思います。</p>
+<ul class="simple">
+<li>related_posts</li>
+<li>share_post</li>
+<li>neighbors</li>
+<li>sitemap</li>
+<li>tipue_search</li>
+</ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>ハードウェアエンジニアです。</p>
-<p>今まではどっぷりハードウェアの仕事をしておりましたが、</p>
-<p>マイコン等へのハード機能の集積化、Raspberry pi / arduinoといった
-マイコンボードによるハードウェアへの参入障壁の低下に危機感を感じ、</p>
-<p>一新してプログラムの勉強をしています。</p>
-<p>作りたいアプリがあり、まずはそこを目指して進んでいます。</p>
+<div class="section" id="id1">
+<h2>導入方法</h2>
+<ol class="arabic">
+<li><p class="first">pluginsフォルダを作成します。</p>
+</li>
+<li><div class="first line-block">
+<div class="line">githubからコピーしてきます。</div>
+<div class="line"><a class="reference external" href="https://github.com/pelican-plugins">レポジトリ</a></div>
+</div>
+</li>
+<li><p class="first">設定ファイル（pelicanconf.py）で使用するpluginを設定します。</p>
+</li>
+</ol>
+<blockquote>
+<div class="line-block">
+<div class="line">PLUGIN_PATHS = ['plugins']</div>
+<div class="line">PLUGINS = ['related_posts',</div>
+<div class="line-block">
+<div class="line">'share_post',</div>
+<div class="line">'neighbors',</div>
+<div class="line">'sitemap',</div>
+<div class="line">'tipue_search',]</div>
+</div>
+</div>
+</blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="related-posts">
+<h2>related_posts</h2>
+<p>記事の最後に、関連記事をリストアップして表示してくれます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="share-posts">
+<h2>share_posts</h2>
+<p>記事の最後に、SNSのshareボタンを追加してくれます。</p>
+<p>※Flexテーマを使用している場合は、テーマ内のファイル修正が必要です。</p>
+<p><a class="reference external" href="https://www.ainoniwa.net/pelican/2020/0830a.html">こちらのHP</a> が非常にわかりやすいです。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="neighbors">
+<h2>neighbors</h2>
+<p>記事の最後に、次の記事 / 前の記事 へ移動するボタンを追加してくれます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="sitemap">
+<h2>sitemap</h2>
+<p>html出力フォルダに、sitemapu.xmlを自動生成してくれます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="tipue-search">
+<h2>tipue_search</h2>
+<p>ブログ内の検索機能の追加です。</p>
+<p>メニューに検索ボックスを設定してくれます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>参考HP</h2>
+<p><a class="reference external" href="https://docs.getpelican.com/en/latest/plugins.html">公式doc</a></p>
+</div>
+
   </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+<ul class="social social_white">
+  <li class="social_txt">Share on: </li>
+  <li><a href="https://twitter.com/intent/tweet?text=Pelican%E3%81%AE%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3&url=https%3A//yamaccu.github.io/blog/posts/2021/05/pelican-plugins/" class="sc-twitter" target="_blank" title="Share on Twitter">
+    <i class="fab fa-twitter"></i>
+  </a></li>
+  <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//yamaccu.github.io/blog/posts/2021/05/pelican-plugins/" class="sc-facebook" target="_blank" title="Share on Facebook">
+    <i class="fab fa-facebook"></i>
+  </a></li>
+</ul>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://yamaccu.github.io/blog/posts/2021/05/blog-setting/" title="ブログを作ったらやること">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+
 </article>
 
     <footer>
