@@ -52,7 +52,7 @@
 <meta property="og:url" content="https://yamaccu.github.io/blog"/>
 <meta property="og:image" content="/blog/images/profile.png">
 
-  <title>Y.Y.Blog &ndash; Archives</title>
+  <title>Y.Y.BlogSearch - Y.Y.Blog</title>
 
 </head>
 <body class="light-theme">
@@ -125,33 +125,9 @@
 
 <article class="single">
   <header>
-    <h1 id="archives">Archives</h1>
+    <h1 id="categories">Search Results</h1>
   </header>
-  <div>
-    <dl>
-
-          <dt>2021/05/24</dt>
-
-        <dd>
-          <a href="https://yamaccu.github.io/blog/posts/2021/05/pelican-plugins/">Pelicanのプラグイン</a>
-        </dd>
-          <dt>2021/05/20</dt>
-
-        <dd>
-          <a href="https://yamaccu.github.io/blog/posts/2021/05/blog-setting/">ブログを作ったらやること</a>
-        </dd>
-          <dt>2021/05/19</dt>
-
-        <dd>
-          <a href="https://yamaccu.github.io/blog/posts/2021/05/pelican-setting/">Pelicanの設定</a>
-        </dd>
-          <dt>2021/05/14</dt>
-
-        <dd>
-          <a href="https://yamaccu.github.io/blog/posts/2021/05/virtual-env-for-python/">python 仮想環境の作り方</a>
-        </dd>
-    </dl>
-  </div>
+  <div id="tipue_search_content"></div>
 </article>
 
     <footer>
@@ -188,5 +164,18 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
 }
 </script>
 
+<script src="https://yamaccu.github.io/blog/theme/tipuesearch/jquery.min.js"></script>
+<script src="https://yamaccu.github.io/blog/theme/tipuesearch/tipuesearch.min.js"></script>
+<script src="https://yamaccu.github.io/blog/theme/tipuesearch/tipuesearch_set.min.js"></script>
+<script src="https://yamaccu.github.io/blog/tipuesearch_content.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#tipue_search_input").tipuesearch({
+      show: 10,
+      mode: "json",
+      contentLocation: "https://yamaccu.github.io/blog/tipuesearch_content.js",
+    });
+  });
+</script>
 </body>
 </html>

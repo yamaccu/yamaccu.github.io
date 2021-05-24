@@ -26,6 +26,8 @@
 
 
 
+    <link rel="shortcut icon" href="http://127.0.0.1:8000/images/profile.ico" type="image/x-icon">
+    <link rel="icon" href="http://127.0.0.1:8000/images/profile.ico" type="image/x-icon">
 
 <!-- Google Analytics -->
 <script type="text/javascript">
@@ -52,7 +54,7 @@
 <meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/05/pelican-plugins/"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2021-05-24 00:00:00+09:00"/>
-<meta property="article:modified_time" content="2021-05-24 11:34:44.553443+09:00"/>
+<meta property="article:modified_time" content="2021-05-24 13:48:41.644462+09:00"/>
 <meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
 <meta property="article:section" content="pelican"/>
 <meta property="og:image" content="/blog/images/profile.png">
@@ -72,7 +74,7 @@
       </h1>
 
 <p>Y.Y.Blog</p>
-        <form class="navbar-search" action="https://yamaccu.github.io/blog/search.html" role="search">
+        <form class="navbar-search" action="/search.html" role="search">
           <input type="text" name="q" id="tipue_search_input" placeholder="Search...">
         </form>
 
@@ -218,6 +220,9 @@
 <h2>tipue_search</h2>
 <p>ブログ内の検索機能の追加です。</p>
 <p>メニューに検索ボックスを設定してくれます。</p>
+<p>以下の設定を設定ファイル（pelicanconf.py）に追加します。</p>
+<blockquote>
+DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']</blockquote>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>

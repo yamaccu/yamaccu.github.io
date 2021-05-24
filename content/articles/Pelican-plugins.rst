@@ -78,6 +78,10 @@ tipue_search
 
 メニューに検索ボックスを設定してくれます。
 
+以下の設定を設定ファイル（pelicanconf.py）に追加します。
+
+  DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
+
 | 
 
 参考HP

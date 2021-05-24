@@ -308,7 +308,7 @@ publishconf.pyの中に "from pelicanconf import \*" と記述することで、
   | 
   | FAVICON = "/images/favicon.ico"
 
-RL設定系は手元の環境と本番環境で異なると思うので、publish.conf内で設定する必要があるかと思います。
+URL設定系は手元の環境と本番環境で異なると思うので、publish.conf内で設定する必要があるかと思います。
 
 | 
 
