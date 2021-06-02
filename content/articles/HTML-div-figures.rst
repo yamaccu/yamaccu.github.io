@@ -1,16 +1,14 @@
-CSSで図形をつくる
+div要素で図形を表示する
 ###############################
 
-:title: CSSで図形をつくる
+:title: div要素で図形を表示する
 :date: 2021-06-02
 :category: HTML
 :tags: HTML, CSS
 
 | 
 
-HTMLとCSSを使って、図形を表示させる方法です。
-
-Divを使って作ります
+HTMLのdiv要素を使って、図形を表示させる方法です。
 
 | 
 
@@ -124,6 +122,8 @@ CSS
 ------------
 
 `CSSで作図する <https://qiita.com/yaegaki/items/a1e518d16be9b85479b4>`_
+
+`いろんなカタチ <https://morobrand.net/mororeco/web/css/css-shape/>`_
 
 `CSSの疑似要素とは <https://saruwakakun.com/html-css/basic/before-after>`_
 

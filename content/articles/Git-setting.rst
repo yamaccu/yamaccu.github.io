@@ -2,7 +2,7 @@ Github 初pushまでの設定
 ###############################
 
 :title: Github 初pushまでの設定
-:date: 2021-06-02
+:date: 2021-06-03
 :category: github
 :tags: github
 
@@ -10,11 +10,12 @@ Github 初pushまでの設定
 
 githubのレポジトリにプッシュするまでの設定です。
 
-# gitをインストール
-# githubにsign up
-# 端末でSSH公開鍵の設定をしgithubに登録
-# 設定ファイル作成
-# 
+#. gitをインストール
+#. githubにsign up
+#. 端末のSSH公開鍵の設定
+#. ローカル環境の設定
+#. レポジトリをクローン
+#. 変更＆プッシュ
 
 | 
 
@@ -35,11 +36,19 @@ githubにsign up
 端末のSSH公開鍵の設定
 ===============================
 
+SSH公開鍵の生成
+
+::
+
+  ssh-keygen -t rsa
+
+githubのSetting => SSH and GPG keys で生成したSSH鍵を登録
+
 `参考HP <https://qiita.com/shizuma/items/2b2f873a0034839e47ce>`_
 
 | 
 
-設定
+ローカル環境設定
 ===============================
 
 ::
@@ -47,35 +56,42 @@ githubにsign up
   git config --global user.name "ユーザー名"
   git config --global user.email "メールアドレス"
 
-  git remote add origin <URLアドレス>
-  
+ユーザー名、メールアドレスはgithubの登録情報と同じもの。
 
 | 
 
-sitemap
+githubのレポジトリをクローン
 ===============================
 
-html出力フォルダに、sitemapu.xmlを自動生成してくれます。
+githubのページでレポジトリ作成
 
-| 
-
-tipue_search
-===============================
-
-ブログ内の検索機能の追加です。
-
-メニューに検索ボックスを設定してくれます。
-
-以下の設定を設定ファイル（pelicanconf.py）に追加します。
+作成したレポジトリをローカル環境にクローン
 
 ::
 
-  DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
+  git clone <URLアドレス>
+
+※Clone時に設定されるもの
+
+* origin設定
+
 
 | 
 
-参考HP
+変更＆プッシュ
 ===============================
 
-`公式doc <https://docs.getpelican.com/en/latest/plugins.html>`_
+ファイルの追加、修正をしたら
+
+::
+
+  git add <ファイル名>
+  git commit -m "コメント"
+  git push (-f) origin master
+
+※-fは強制プッシュなので取り扱い注意
+
+| 
+
+
 
