@@ -4,7 +4,7 @@
 :title: python 仮想環境の作り方
 :date: 2021-05-14
 :category: python
-:tag: pipenv
+:tags: pipenv
 
 | 
 

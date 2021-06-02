@@ -4,7 +4,7 @@
 :title: ブログを作ったらやること
 :date: 2021-05-20
 :category: blog
-:tag: blog
+:tags: blog
 
 | 
 
@@ -20,15 +20,16 @@
 Google Analyticsの登録
 -----------------------
 
-アクセス解析ツールのGoogle Analyticsに登録します。アクセス状況の確認に必須です。
+`Google Analytics登録方法 <https://blog.siteanatomy.com/register-google-analytics/>`_
 
-登録したらトラッキングIDをHTMLに追記します。
+HPへのアクセス状況が確認できるようになります。
+
+登録が完了したら、トラッキングIDをHTMLに追記する必要があります。
 
 pelicanでは、publishconf.pyにトラッキングIDを追加すると自動でやってくれます。
 
     GOOGLE_ANALYTICS = "xxxxxxxxxxxx"
 
-`Google Analytics登録方法 <https://blog.siteanatomy.com/register-google-analytics/>`_
 
 | 
 
@@ -74,13 +75,14 @@ rootディレクトリに、「robots.txt」という名前のファイルを作
 Google Search Consoleの登録 / sitemapの登録
 ---------------------------------------------
 
-Google Search Consoleに登録します。HPへの流入ルート、検索順位などSEO関連情報がわかります。
+`Google Serach Console登録方法 <http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html>`_
 
-登録完了したら、サイトマップも登録しておきます。
+HPへの流入ルート、検索順位などSEO関連情報が確認できます。
+
+登録完了したら、サイトマップも登録します。
 
 登録したては「サイトマップを読み込めませんでした」とエラーが出ますが、しばらく放置しておくと読み込んでくれるようです。
 
-`Google Serach Console登録方法 <http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html>`_
 
 | 
 

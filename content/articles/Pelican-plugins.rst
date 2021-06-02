@@ -4,7 +4,7 @@
 :title: Pelicanのプラグイン
 :date: 2021-05-24
 :category: pelican
-:tag: pelican
+:tags: pelican
 
 | 
 
@@ -20,7 +20,7 @@ Pelicanのプラグインの解説です。
 
 | 
 
-導入方法
+プラグイン導入方法
 ===============================
 
 1. pluginsフォルダを作成します。
@@ -30,12 +30,14 @@ Pelicanのプラグインの解説です。
 
 3. 設定ファイル（pelicanconf.py）で使用するpluginを設定します。
 
-  | PLUGIN_PATHS = ['plugins']
-  | PLUGINS = ['related_posts',
-  |            'share_post',
-  |            'neighbors',
-  |            'sitemap',
-  |            'tipue_search',]
+::
+
+  PLUGIN_PATHS = ['plugins']
+  PLUGINS = ['related_posts',
+             'share_post',
+             'neighbors',
+             'sitemap',
+             'tipue_search',]
 
 | 
 
@@ -43,6 +45,8 @@ related_posts
 ===============================
 
 記事の最後に、関連記事をリストアップして表示してくれます。
+
+同じタグのついた記事を表示する仕様のようです。
 
 | 
 
@@ -79,6 +83,8 @@ tipue_search
 メニューに検索ボックスを設定してくれます。
 
 以下の設定を設定ファイル（pelicanconf.py）に追加します。
+
+::
 
   DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 
