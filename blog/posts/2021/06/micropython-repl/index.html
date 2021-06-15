@@ -41,17 +41,26 @@
 <!-- End Google Analytics -->  
 
 
-    <meta name="author" content="yy" />
-    <meta name="description" content="" />
+<meta name="author" content="yy" />
+<meta name="description" content="micropythonにreplでアクセスする方法です。 repl：「Read（読み取り）、Eval …" />
+<meta name="keywords" content="micropython, repl">
+
+
 <meta property="og:site_name" content="Y.Y.Blog"/>
-<meta property="og:type" content="blog"/>
-<meta property="og:title" content="Y.Y.Blog"/>
-<meta property="og:description" content=""/>
+<meta property="og:title" content="micropythonにreplでアクセス"/>
+<meta property="og:description" content="micropythonにreplでアクセスする方法です。 repl：「Read（読み取り）、Eval …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://yamaccu.github.io/blog"/>
+<meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/06/micropython-repl/"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2021-06-16 00:00:00+09:00"/>
+<meta property="article:modified_time" content="2021-06-16 07:32:19.080762+09:00"/>
+<meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
+<meta property="article:section" content="micropython"/>
+<meta property="article:tag" content="micropython"/>
+<meta property="article:tag" content="repl"/>
 <meta property="og:image" content="/blog/images/profile.png">
 
-  <title>Y.Y.Blog &ndash; Archives</title>
+  <title>Y.Y.Blog &ndash; micropythonにreplでアクセス</title>
 
 </head>
 <body class="light-theme">
@@ -124,25 +133,120 @@
 
 <article class="single">
   <header>
-    <h1 id="archives">Archives</h1>
+      
+    <h1 id="micropython-repl">micropythonにreplでアクセス</h1>
+    <p>
+      Posted on 2021/06/16 in <a href="https://yamaccu.github.io/blog/category/micropython.html">micropython</a>
+
+    </p>
   </header>
+
+
   <div>
-    <dl>
+    <div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>micropythonにreplでアクセスする方法です。</p>
+<div class="line-block">
+<div class="line">repl：「Read（読み取り）、Eval（評価）、Print（印字）、Loop（ループ）」の頭字語。</div>
+<div class="line">一つずつコマンドを実行できる仕組みで、コマンドプロンプトのようなイメージ。</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="id1">
+<h2>アクセス方法</h2>
+<p>デバイスのシリアルポートに、シリアル通信アプリ（teratermなど）でアクセスします。</p>
+<p>通信速度は115200bps。</p>
+<p>CTR+Cを二回で、mainで実行している処理を中止してreplで操作可能になります。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>コマンド</h2>
+<pre class="literal-block">
+help()
+</pre>
+<p>ヘルプを表示します。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<pre class="literal-block">
+help('modules')
+</pre>
+<p>使用可能なライブラリを表示します。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<pre class="literal-block">
+help(obj)
+</pre>
+<p>調べたいobjectの説明を表示します</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<pre class="literal-block">
+入力途中にTABキー
+</pre>
+<p>入力候補の表示をしてくれます。便利。</p>
+<p>例えば、machine. でTabを押すとmachineの配下のクラスが表示されます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<pre class="literal-block">
+dir()
+</pre>
+<p>インポート済みのファイルの情報を表示します。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<pre class="literal-block">
+sys.path.append('ディレクトリパス')
+</pre>
+<p>import時に探索されるパスを追加します。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<pre class="literal-block">
+os.listdir()
+</pre>
+<p>カレントディレクトリのファイルを表示します。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="url">
+<h2>参考URL</h2>
+<p><a class="reference external" href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html">micropython公式</a></p>
+</div>
 
-           <dt>2021/06/16</dt>
-
-        <dd><a href="https://yamaccu.github.io/blog/posts/2021/06/micropython-repl/">micropythonにreplでアクセス</a></dd>
-           <dt>2021/06/09</dt>
-
-        <dd><a href="https://yamaccu.github.io/blog/posts/2021/06/c-serialport/">C#でシリアル通信</a></dd>
-           <dt>2021/06/03</dt>
-
-        <dd><a href="https://yamaccu.github.io/blog/posts/2021/06/git-setting/">Github 初pushまでの設定</a></dd>
-           <dt>2021/06/02</dt>
-
-        <dd><a href="https://yamaccu.github.io/blog/posts/2021/06/html-div-figures/">div要素で図形を表示する</a></dd>
-    </dl>
   </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://yamaccu.github.io/blog/tag/micropython.html">micropython</a>
+      <a href="https://yamaccu.github.io/blog/tag/repl.html">repl</a>
+    </p>
+  </div>
+<ul class="social social_white">
+  <li class="social_txt">Share on: </li>
+  <li><a href="https://twitter.com/intent/tweet?text=micropython%E3%81%ABrepl%E3%81%A7%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9&url=https%3A//yamaccu.github.io/blog/posts/2021/06/micropython-repl/&hashtags=micropython,repl" class="sc-twitter" target="_blank" title="Share on Twitter">
+    <i class="fab fa-twitter"></i>
+  </a></li>
+  <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//yamaccu.github.io/blog/posts/2021/06/micropython-repl/" class="sc-facebook" target="_blank" title="Share on Facebook">
+    <i class="fab fa-facebook"></i>
+  </a></li>
+</ul>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="https://yamaccu.github.io/blog/posts/2021/06/c-serialport/" title="C#でシリアル通信">
+      <i class="fa fa-angle-left"></i> Previous Post
+    </a>
+  </div>
+
+
+
 </article>
 
     <footer>
