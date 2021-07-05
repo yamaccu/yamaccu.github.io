@@ -253,4 +253,13 @@ byte配列を受信します。
 `参考１ <http://diy.ease-labs.com/?page_id=10049>`_
 
 
+| 
+| 
 
+
+ご指摘等ありましたら、下記twitterにお願いします。
+
+
+.. raw:: html
+
+  <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">勉強用に、WPFでシリアル通信アプリを作りました。<br>組み込み系のプロダクトだと、デバッグ用にシリアル通信まぁまぁ使いますね。<a href="https://twitter.com/hashtag/wpf?src=hash&amp;ref_src=twsrc%5Etfw">#wpf</a> <a href="https://twitter.com/hashtag/Csharp?src=hash&amp;ref_src=twsrc%5Etfw">#Csharp</a><a href="https://t.co/kyVjuQT67q">https://t.co/kyVjuQT67q</a></p>&mdash; やまっく (@YY87750722) <a href="https://twitter.com/YY87750722/status/1412054673071083520?ref_src=twsrc%5Etfw">July 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
