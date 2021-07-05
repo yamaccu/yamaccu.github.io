@@ -42,18 +42,18 @@
 
 
 <meta name="author" content="yy" />
-<meta name="description" content="C#でシリアル通信する方法です。 サンプルとしてWPFで作成します。 使用Class SerialPortクラス …" />
+<meta name="description" content="C#でシリアル通信する方法です。WPFで作成します。 githubにサンプルをあげています。 こちら …" />
 <meta name="keywords" content="C#">
 
 
 <meta property="og:site_name" content="Y.Y.Blog"/>
 <meta property="og:title" content="C#でシリアル通信"/>
-<meta property="og:description" content="C#でシリアル通信する方法です。 サンプルとしてWPFで作成します。 使用Class SerialPortクラス …"/>
+<meta property="og:description" content="C#でシリアル通信する方法です。WPFで作成します。 githubにサンプルをあげています。 こちら …"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/06/c-serialport/"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2021-06-09 00:00:00+09:00"/>
-<meta property="article:modified_time" content="2021-06-16 07:34:27.882250+09:00"/>
+<meta property="article:modified_time" content="2021-07-05 22:57:16.789138+09:00"/>
 <meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
 <meta property="article:section" content="C#"/>
 <meta property="article:tag" content="C#"/>
@@ -145,8 +145,9 @@
     <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>C#でシリアル通信する方法です。
-サンプルとしてWPFで作成します。</p>
+<p>C#でシリアル通信する方法です。WPFで作成します。</p>
+<p>githubにサンプルをあげています。
+<a class="reference external" href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main">こちら</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -156,11 +157,9 @@
 <p>NugetでSystem.IO.Portsをインストールする必要があります。</p>
 <p>複数ポートを同時に使用しない場合は、staticで使うことが多いようです。</p>
 <p>以下、機能の解説です。</p>
-<blockquote>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</blockquote>
 <table border="1" class="docutils">
 <colgroup>
 <col width="43%" />
@@ -199,23 +198,33 @@ ReadExisting()</td>
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="id1">
+<div class="section" id="id2">
 <h2>ポート選択</h2>
-<p>使用可能なポートを取得します。</p>
-<p>リスキャン処理を追加したいときは、このメソッドを再度実施します。</p>
+<p>使用可能なポートを取得して、ComboBoxにBindingします。</p>
+<p>ReactivePropertyを使っています。</p>
+<p>Xaml側:</p>
 <pre class="literal-block">
-private void scanCOMPorts()
+&lt;ComboBox ItemsSource=&quot;{Binding COMPorts}&quot; DropDownOpened=&quot;ComboBox_DropDownOpened_COMPort&quot; /&gt;
+</pre>
+<p>cs側:</p>
+<pre class="literal-block">
+public ReactiveCollection&lt;string&gt; COMPorts { get; set; } = new ReactiveCollection&lt;string&gt;();
+
+public void ScanCOMPorts()
 {
-  ComboBox.Items.Clear();
+  COMPorts.Clear();
   string[] ports = SerialPort.GetPortNames();
   foreach (var port in ports)
   {
-    　ComboBox.Items.Add(p);
+      COMPorts.Add(port);
   }
 }
 </pre>
-<p>調査中：ObservableCollectionを使えばリスキャンいらない？</p>
-<p><a class="reference external" href="https://hyperts.net/csharp-serial-wpf/">参考1</a></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>ComboBoxのDropDownOpenedイベントにポート取得のメソッドを登録しておくと、
+ドロップダウンを開く度に使用可能ポートをロードしてくれて便利です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -223,22 +232,34 @@ private void scanCOMPorts()
 <div class="section" id="id3">
 <h2>シリアルポートオープン</h2>
 <p>シリアルポート接続を開きます。</p>
-<p>下記はボタンのクリックイベントに実装しています。</p>
+<p>Open前に各種設定を行います。</p>
 <pre class="literal-block">
-private void serialOpenBtn_Click(object sender, EventArgs e)
+public static void SerialOpen(string port,int baudrate)
 {
-  serialPort.PortName = ComboBox.SelectedValue.ToString();
-  serialPort.BaudRate = 9600;
+  serialPort.PortName = port;
+  serialPort.BaudRate = baudrate;
   serialPort.DataBits = 8;
   serialPort.Parity = Parity.None;
   serialPort.StopBits = StopBits.One;
   serialPort.WriteTimeout = 1000;
   serialPort.ReadTimeout = 1000;
+  serialPort.Encoding=Encoding.UTF8;
+
+  serialPort.Open();
+}
+</pre>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Openするメソッドを呼び出す側では、Open失敗時にエラーメッセージが出るようにします。</p>
+<pre class="literal-block">
+public void SerialOpen()
+{
   try
   {
-      serialPort.Open();
+      SerialCom.SerialOpen(SelectedPort.Value, SelectedBaudrate.Value);
   }
-  catch (Exception ex)
+  catch(Exception ex)
   {
       MessageBox.Show(ex.Message);
   }
@@ -251,19 +272,8 @@ private void serialOpenBtn_Click(object sender, EventArgs e)
 <div class="section" id="id4">
 <h2>シリアルポートクローズ</h2>
 <p>シリアルポート接続を閉じます。</p>
-<p>下記は、ボタンのクリックイベントに実装しています。</p>
 <pre class="literal-block">
-private void serialCloseBtn_Click(object sender, EventArgs e)
-{
- try
-  {
-      serialPort.Close();
-  }
-  catch (Exception ex)
-  {
-      MessageBox.Show(ex.Message);
-  }
-}
+serialPort.Close();
 </pre>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -310,11 +320,11 @@ private string sendData()
 <pre class="literal-block">
 private byte[] recieveData()
 {
-  return
+  byte[] resByte = new byte[serialPort.BytesToRead];
+  serialPort.Read(resByte, 0, serialPort.BytesToRead);
+  return resByte;
 }
 </pre>
-<p>※Array.Resizeを使えばbyte配列の領域を事前に固定しなくて大丈夫かも。</p>
-<p><a class="reference external" href="http://diy.ease-labs.com/?page_id=10049">参考2</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -328,20 +338,20 @@ private byte[] recieveData()
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>割込みを使った受信。</p>
+<p>割込みを使って受信します。</p>
 <p>データを受信したらすぐにデータを取り込んでくれます。</p>
-<p>割込み設定はOpen()時に一緒に実施すると良いです。</p>
+<p>割込み設定はOpen()時に一緒に実施します。</p>
 <pre class="literal-block">
-private void serialOpenBtn_Click(object sender, EventArgs e)
+public void SerialOpen()
 {
   try
   {
-    serialPort.Open();
-    serialPort.DataReceived += OnReceived;
+      SerialCom.SerialOpen(SelectedPort.Value, SelectedBaudrate.Value);
+      SerialCom.serialPort.DataReceived += OnReceived;
   }
-  catch (Exception ex)
+  catch(Exception ex)
   {
-    MessageBox.Show(ex.Message);
+      MessageBox.Show(ex.Message);
   }
 }
 
@@ -354,18 +364,19 @@ private void OnReceived(object sender, SerialDataReceivedEventArgs e)
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="id8">
+<div class="section" id="id7">
 <h2>バッファクリア</h2>
 <p>バッファにたまっているデータをクリアします。</p>
 <pre class="literal-block">
-private void BuffClear()
-{
-  serialPort.DiscardInBuffer();
-}
+serialPort.DiscardInBuffer();
 </pre>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="url">
 <h2>参考URL</h2>
+<p><a class="reference external" href="http://diy.ease-labs.com/?page_id=10049">参考１</a></p>
 </div>
 
   </div>
