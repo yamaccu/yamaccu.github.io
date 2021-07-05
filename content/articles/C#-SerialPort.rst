@@ -3,13 +3,16 @@ C#でシリアル通信
 
 :title: C#でシリアル通信
 :date: 2021-06-09
+:modify: 2021-07-05
 :category: C#
 :tags: C#
 
 | 
 
-C#でシリアル通信する方法です。
-サンプルとしてWPFで作成します。
+C#でシリアル通信する方法です。WPFで作成します。
+
+githubにサンプルをあげています。
+`こちら <https://github.com/yamaccu/WPF-SerialCommunication/tree/main>`_
 
 | 
 
@@ -24,7 +27,7 @@ NugetでSystem.IO.Portsをインストールする必要があります。
 
 以下、機能の解説です。
 
- |
+|
 
 +------------------------+--------------------------------+
 | 機能                   | メソッド                       |
@@ -50,25 +53,36 @@ NugetでSystem.IO.Portsをインストールする必要があります。
 ポート選択
 ------------------------------------------------
 
-使用可能なポートを取得します。
+使用可能なポートを取得して、ComboBoxにBindingします。
 
-リスキャン処理を追加したいときは、このメソッドを再度実施します。
+ReactivePropertyを使っています。
 
-::
+Xaml側::
 
-  private void scanCOMPorts()
+  <ComboBox ItemsSource="{Binding COMPorts}" DropDownOpened="ComboBox_DropDownOpened_COMPort" />
+
+cs側::
+
+  public ReactiveCollection<string> COMPorts { get; set; } = new ReactiveCollection<string>();
+
+  public void ScanCOMPorts()
   {
-    ComboBox.Items.Clear();
+    COMPorts.Clear();
     string[] ports = SerialPort.GetPortNames();
     foreach (var port in ports)
     {
-      　ComboBox.Items.Add(p);
+        COMPorts.Add(port);
     }
   }
 
-調査中：ObservableCollectionを使えばリスキャンいらない？
+| 
 
-`参考1 <https://hyperts.net/csharp-serial-wpf/>`_
+ComboBoxのDropDownOpenedイベントにポート取得のメソッドを登録しておくと、
+ドロップダウンを開く度に使用可能ポートをロードしてくれて便利です。
+
+
+
+
 
 | 
 
@@ -78,28 +92,42 @@ NugetでSystem.IO.Portsをインストールする必要があります。
 
 シリアルポート接続を開きます。
 
-下記はボタンのクリックイベントに実装しています。
+Open前に各種設定を行います。
 
 ::
 
-  private void serialOpenBtn_Click(object sender, EventArgs e)
+  public static void SerialOpen(string port,int baudrate)
   {
-    serialPort.PortName = ComboBox.SelectedValue.ToString();
-    serialPort.BaudRate = 9600;
+    serialPort.PortName = port;
+    serialPort.BaudRate = baudrate;
     serialPort.DataBits = 8;
     serialPort.Parity = Parity.None;
     serialPort.StopBits = StopBits.One;
     serialPort.WriteTimeout = 1000;
     serialPort.ReadTimeout = 1000;
+    serialPort.Encoding=Encoding.UTF8;
+
+    serialPort.Open();
+  }
+
+| 
+
+Openするメソッドを呼び出す側では、Open失敗時にエラーメッセージが出るようにします。
+
+::
+
+  public void SerialOpen()
+  {
     try
     {
-        serialPort.Open();
+        SerialCom.SerialOpen(SelectedPort.Value, SelectedBaudrate.Value);
     }
-    catch (Exception ex)
+    catch(Exception ex)
     {
         MessageBox.Show(ex.Message);
     }
   }
+
 
 | 
 
@@ -108,21 +136,10 @@ NugetでSystem.IO.Portsをインストールする必要があります。
 
 シリアルポート接続を閉じます。
 
-下記は、ボタンのクリックイベントに実装しています。
-
 ::
 
-  private void serialCloseBtn_Click(object sender, EventArgs e)
-  {
-   try
-    {
-        serialPort.Close();
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show(ex.Message);
-    }
-  }
+  serialPort.Close();
+
 
 | 
 
@@ -172,12 +189,10 @@ byte配列を受信します。
 
   private byte[] recieveData()
   {
-    return 
+    byte[] resByte = new byte[serialPort.BytesToRead];
+    serialPort.Read(resByte, 0, serialPort.BytesToRead);
+    return resByte; 
   }
-
-※Array.Resizeを使えばbyte配列の領域を事前に固定しなくて大丈夫かも。
-
-`参考2 <http://diy.ease-labs.com/?page_id=10049>`_
 
 | 
 
@@ -193,24 +208,24 @@ byte配列を受信します。
 | 
 
 
-割込みを使った受信。
+割込みを使って受信します。
 
 データを受信したらすぐにデータを取り込んでくれます。
 
-割込み設定はOpen()時に一緒に実施すると良いです。
+割込み設定はOpen()時に一緒に実施します。
 
 ::
 
-  private void serialOpenBtn_Click(object sender, EventArgs e)
+  public void SerialOpen()
   {
     try
     {
-      serialPort.Open();
-      serialPort.DataReceived += OnReceived;
+        SerialCom.SerialOpen(SelectedPort.Value, SelectedBaudrate.Value);
+        SerialCom.serialPort.DataReceived += OnReceived;
     }
-    catch (Exception ex)
+    catch(Exception ex)
     {
-      MessageBox.Show(ex.Message);
+        MessageBox.Show(ex.Message);
     }
   }
 
@@ -228,14 +243,14 @@ byte配列を受信します。
 
 ::
 
-  private void BuffClear()
-  {
-    serialPort.DiscardInBuffer();
-  }
+  serialPort.DiscardInBuffer();
 
-
+| 
 
 参考URL
 ------------
+
+`参考１ <http://diy.ease-labs.com/?page_id=10049>`_
+
 
 
