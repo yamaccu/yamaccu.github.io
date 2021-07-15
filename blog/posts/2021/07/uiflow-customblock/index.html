@@ -42,25 +42,24 @@
 
 
 <meta name="author" content="yy" />
-<meta name="description" content="micropythonにreplでアクセスする方法です。 repl：「Read（読み取り）、Eval …" />
-<meta name="keywords" content="micropython, repl">
+<meta name="description" content="M5Stack等で使用できるビジュアルプログラミング「UIFLOW」でカスタムブロックを作成する方法です。 M5Stackとは、ESP32マイコンを使用し …" />
+<meta name="keywords" content="M5Stack">
 
 
 <meta property="og:site_name" content="Y.Y.Blog"/>
-<meta property="og:title" content="micropythonにreplでアクセス"/>
-<meta property="og:description" content="micropythonにreplでアクセスする方法です。 repl：「Read（読み取り）、Eval …"/>
+<meta property="og:title" content="UIFLOWでカスタムブロックを作る"/>
+<meta property="og:description" content="M5Stack等で使用できるビジュアルプログラミング「UIFLOW」でカスタムブロックを作成する方法です。 M5Stackとは、ESP32マイコンを使用し …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/06/micropython-repl/"/>
+<meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/07/uiflow-customblock/"/>
 <meta property="og:type" content="article"/>
-<meta property="article:published_time" content="2021-06-16 00:00:00+09:00"/>
-<meta property="article:modified_time" content="2021-06-16 07:32:19.080762+09:00"/>
+<meta property="article:published_time" content="2021-07-15 00:00:00+09:00"/>
+<meta property="article:modified_time" content="2021-07-15 14:24:19.804691+09:00"/>
 <meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
-<meta property="article:section" content="micropython"/>
-<meta property="article:tag" content="micropython"/>
-<meta property="article:tag" content="repl"/>
+<meta property="article:section" content="M5Stack"/>
+<meta property="article:tag" content="M5Stack"/>
 <meta property="og:image" content="/blog/images/profile.png">
 
-  <title>Y.Y.Blog &ndash; micropythonにreplでアクセス</title>
+  <title>Y.Y.Blog &ndash; UIFLOWでカスタムブロックを作る</title>
 
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
@@ -141,9 +140,9 @@
 <article class="single">
   <header>
       
-    <h1 id="micropython-repl">micropythonにreplでアクセス</h1>
+    <h1 id="uiflow-customblock">UIFLOWでカスタムブロックを作る</h1>
     <p>
-      Posted on 2021/06/16 in <a href="https://yamaccu.github.io/blog/category/micropython.html">micropython</a>
+      Posted on 2021/07/15 in <a href="https://yamaccu.github.io/blog/category/m5stack.html">M5Stack</a>
 
     </p>
   </header>
@@ -160,105 +159,104 @@
     <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>micropythonにreplでアクセスする方法です。</p>
+<p>M5Stack等で使用できるビジュアルプログラミング「UIFLOW」でカスタムブロックを作成する方法です。</p>
+<p>M5Stackとは、ESP32マイコンを使用し、wifi/LCD/各種センサなどを一体化させたマイコンボードです。</p>
+<p>githubに、WAVファイルを再生するためのカスタムブロックのサンプルをあげています。</p>
+<p>リンク</p>
+<ul class="simple">
+<li><a class="reference external" href="https://m5stack.com/">M5Stack</a></li>
+<li><a class="reference external" href="https://flow.m5stack.com/">UIFLOW</a></li>
+<li><a class="reference external" href="http://block-maker.m5stack.com/">カスタムブロック作成</a></li>
+<li><a class="reference external" href="https://github.com/yamaccu/UIFLOW-wavplayer">githubサンプル</a></li>
+</ul>
 <div class="line-block">
-<div class="line">repl：「Read（読み取り）、Eval（評価）、Print（印字）、Loop（ループ）」の頭字語。</div>
-<div class="line">一つずつコマンドを実行できる仕組みで、コマンドプロンプトのようなイメージ。</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="section" id="id3">
+<h2>手順</h2>
+<ol class="arabic simple">
+<li>Pythonでプログラムを書く</li>
+<li>setup用のブロックを作る</li>
+<li>自作関数を実行するためのブロックを作る</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="python">
+<h2>Pythonでプログラムを書く</h2>
+<p>まずはブロック化したいプログラムを書きます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="setup">
+<h2>setup用のブロックを作る</h2>
+<p>UIFLOWのsetup実行時に、importとかdefとか実施しますので、
+そのためのブロックを作ります。</p>
+<ul class="simple">
+<li>NameはBlockmaker上だけの識別名なので何でも大丈夫です。</li>
+<li>TypeはExecuteにします。</li>
+<li>Parameterは、まずブロック名をLabelで設定します。
+変数があれば、String/Number/Variableで設定します。</li>
+<li>BlockCodeに作ったプログラムをコピペします。</li>
+</ul>
+<p>※Variavle：他のブロックの値を代入する変数、Valueブロックを繋げられるようになります。</p>
+<div class="line-block">
+<div class="line">※BlockCode内の変数は、「${変数}」と書きます。</div>
+<div class="line">ex) playwav(${playwav},${volume})</div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="section" id="id1">
-<h2>アクセス方法</h2>
-<p>デバイスのシリアルポートに、シリアル通信アプリ（teratermなど）でアクセスします。</p>
-<p>通信速度は115200bps。</p>
-<p>CTR+Cを二回で、mainで実行している処理を中止してreplで操作可能になります。</p>
+</div>
+<div class="section" id="id4">
+<h2>自作関数を実行するためのブロックを作る</h2>
+<p>defで定義した自作関数を実行するブロックを作ります。</p>
+<ul class="simple">
+<li>NameはBlockmaker上だけの識別名なので何でも大丈夫です。</li>
+<li>TypeはExecuteにします。</li>
+<li>Parameterは、まずブロック名をLabelで設定します。
+変数があれば、String/Number/Variableで設定します。</li>
+<li>BlockCodeに定義した関数と変数を記述します。</li>
+</ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>コマンド</h2>
-<pre class="literal-block">
-help()
-</pre>
-<p>ヘルプを表示します。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<pre class="literal-block">
-help('modules')
-</pre>
-<p>使用可能なライブラリを表示します。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<pre class="literal-block">
-help(obj)
-</pre>
-<p>調べたいobjectの説明を表示します</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<pre class="literal-block">
-入力途中にTABキー
-</pre>
-<p>入力候補の表示をしてくれます。便利。</p>
-<p>例えば、machine. でTabを押すとmachineの配下のクラスが表示されます。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<pre class="literal-block">
-dir()
-</pre>
-<p>インポート済みのファイルの情報を表示します。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<pre class="literal-block">
-sys.path.append('ディレクトリパス')
-</pre>
-<p>import時に探索されるパスを追加します。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<pre class="literal-block">
-os.listdir()
-</pre>
-<p>カレントディレクトリのファイルを表示します。</p>
+<div class="section" id="id5">
+<h2>完成したら</h2>
+<p>右下のDownloadボタンをおしてDownloadして、UIFLOWのCustomから読み込みます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="url">
 <h2>参考URL</h2>
-<p><a class="reference external" href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html">micropython公式</a></p>
+<p><a class="reference external" href="https://qiita.com/ciniml/items/618899c9065d51d5c54e">qiita 自作モジュール用のUI Flowのカスタムブロックを作る</a></p>
 </div>
 
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://yamaccu.github.io/blog/tag/micropython.html">micropython</a>
-      <a href="https://yamaccu.github.io/blog/tag/repl.html">repl</a>
+      <a href="https://yamaccu.github.io/blog/tag/m5stack.html">M5Stack</a>
     </p>
   </div>
 <ul class="social social_white">
   <li class="social_txt">Share on: </li>
-  <li><a href="https://twitter.com/intent/tweet?text=micropython%E3%81%ABrepl%E3%81%A7%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9&url=https%3A//yamaccu.github.io/blog/posts/2021/06/micropython-repl/&hashtags=micropython,repl" class="sc-twitter" target="_blank" title="Share on Twitter">
+  <li><a href="https://twitter.com/intent/tweet?text=UIFLOW%E3%81%A7%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E3%82%92%E4%BD%9C%E3%82%8B&url=https%3A//yamaccu.github.io/blog/posts/2021/07/uiflow-customblock/&hashtags=m5stack" class="sc-twitter" target="_blank" title="Share on Twitter">
     <i class="fab fa-twitter"></i>
   </a></li>
-  <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//yamaccu.github.io/blog/posts/2021/06/micropython-repl/" class="sc-facebook" target="_blank" title="Share on Facebook">
+  <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//yamaccu.github.io/blog/posts/2021/07/uiflow-customblock/" class="sc-facebook" target="_blank" title="Share on Facebook">
     <i class="fab fa-facebook"></i>
   </a></li>
 </ul>
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="https://yamaccu.github.io/blog/posts/2021/06/c-serialport/" title="C#でシリアル通信">
+    <a class="btn float-left" href="https://yamaccu.github.io/blog/posts/2021/06/micropython-repl/" title="micropythonにreplでアクセス">
       <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://yamaccu.github.io/blog/posts/2021/07/uiflow-customblock/" title="UIFLOWでカスタムブロックを作る">
-      Next Post <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
