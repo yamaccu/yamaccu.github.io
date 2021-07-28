@@ -44,7 +44,7 @@
 
 importやdefなどはこのブロックで実行します。
 
-.. image:: /images/UIFLOW-CustomBlock-1.PNG
+.. image:: {static}/images/UIFLOW-CustomBlock-1.PNG
   :height: 500px
   :width: 669px
   :align: left
@@ -62,7 +62,7 @@ importやdefなどはこのブロックで実行します。
 
 setupブロックで定義した自作関数を実行するブロックを作ります。
 
-.. image:: /images/UIFLOW-CustomBlock-2.PNG
+.. image:: {static}/images/UIFLOW-CustomBlock-2.PNG
   :height: 500px
   :width: 669px
   :align: left

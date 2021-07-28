@@ -15,7 +15,7 @@ C#でシリアル通信する方法です。WPFで作成します。
 
 作成したアプリはこんな感じです。
 
-.. image:: /images/C%23-SerialPort-1.png
+.. image:: {static}/images/C-SerialPort-1.png
   :height: 354px
   :width: 438px
   :align: left
