@@ -20,13 +20,12 @@ Pelicanのプラグインの解説です。
 
 | 
 
-プラグイン導入方法
+**プラグイン導入方法**
 ===============================
 
 1. pluginsフォルダを作成します。
 
-2. | githubからコピーしてきます。
-   | `レポジトリ <https://github.com/pelican-plugins>`_
+2. `githubレポジトリ <https://github.com/pelican-plugins>`_ からコピーしてきます。
 
 3. 設定ファイル（pelicanconf.py）で使用するpluginを設定します。
 
@@ -41,7 +40,7 @@ Pelicanのプラグインの解説です。
 
 | 
 
-related_posts
+**related_posts**
 ===============================
 
 記事の最後に、関連記事をリストアップして表示してくれます。
@@ -50,7 +49,7 @@ related_posts
 
 | 
 
-share_posts
+**share_posts**
 ===============================
 
 記事の最後に、SNSのshareボタンを追加してくれます。
@@ -61,21 +60,21 @@ share_posts
 
 | 
 
-neighbors
+**neighbors**
 ===============================
 
 記事の最後に、次の記事 / 前の記事 へ移動するボタンを追加してくれます。
 
 | 
 
-sitemap
+**sitemap**
 ===============================
 
 html出力フォルダに、sitemapu.xmlを自動生成してくれます。
 
 | 
 
-tipue_search
+**tipue_search**
 ===============================
 
 ブログ内の検索機能の追加です。
@@ -90,7 +89,7 @@ tipue_search
 
 | 
 
-参考HP
+**参考HP**
 ===============================
 
 `公式doc <https://docs.getpelican.com/en/latest/plugins.html>`_

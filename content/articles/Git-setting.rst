@@ -19,21 +19,21 @@ githubのレポジトリにプッシュするまでの設定です。
 
 | 
 
-gitをインストール
+**gitをインストール**
 ===============================
 
 `git公式 <https://gitforwindows.org/>`_
 
 | 
 
-githubにsign up
+**githubにsign up**
 ===============================
 
 `github <https://github.co.jp/>`_
 
 | 
 
-端末のSSH公開鍵の設定
+**端末のSSH公開鍵の設定**
 ===============================
 
 SSH公開鍵の生成
@@ -42,13 +42,13 @@ SSH公開鍵の生成
 
   ssh-keygen -t rsa
 
-githubのSetting => SSH and GPG keys で生成したSSH鍵を登録
+githubのページで、Setting => SSH and GPG keys で生成したSSH鍵を登録
 
 `参考HP <https://qiita.com/shizuma/items/2b2f873a0034839e47ce>`_
 
 | 
 
-ローカル環境設定
+**ローカル環境設定**
 ===============================
 
 ::
@@ -60,25 +60,18 @@ githubのSetting => SSH and GPG keys で生成したSSH鍵を登録
 
 | 
 
-githubのレポジトリをクローン
-===============================
+**githubのレポジトリをクローン**
+===================================
 
-githubのページでレポジトリ作成
-
-作成したレポジトリをローカル環境にクローン
+githubのページでレポジトリ作成して、作成したレポジトリをローカル環境にクローン
 
 ::
 
   git clone <URLアドレス>
 
-※Clone時に設定されるもの
-
-* origin設定
-
-
 | 
 
-変更＆プッシュ
+**変更＆プッシュ**
 ===============================
 
 ファイルの追加、修正をしたら
@@ -87,9 +80,13 @@ githubのページでレポジトリ作成
 
   git add <ファイル名>
   git commit -m "コメント"
-  git push (-f) origin master
+  git push (-f) origin main
 
 ※-fは強制プッシュなので取り扱い注意
+
+※originの設定は、クローン時に自動で設定されます。
+
+※2020/10から、デフォルトブランチがmaster ⇒ main に変わりました。
 
 | 
 

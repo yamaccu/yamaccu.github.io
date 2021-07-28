@@ -53,7 +53,7 @@
 <meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/05/blog-setting/"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2021-05-20 00:00:00+09:00"/>
-<meta property="article:modified_time" content="2021-06-02 20:51:07.121882+09:00"/>
+<meta property="article:modified_time" content="2021-07-26 00:00:00+09:00"/>
 <meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
 <meta property="article:section" content="blog"/>
 <meta property="article:tag" content="blog"/>
@@ -170,65 +170,56 @@
 <div class="line"><br /></div>
 </div>
 <div class="section" id="google-analytics">
-<h2>Google Analyticsの登録</h2>
-<p><a class="reference external" href="https://blog.siteanatomy.com/register-google-analytics/">Google Analytics登録方法</a></p>
+<h2><strong>Google Analyticsの登録</strong></h2>
 <p>HPへのアクセス状況が確認できるようになります。</p>
 <p>登録が完了したら、トラッキングIDをHTMLに追記する必要があります。</p>
 <p>pelicanでは、publishconf.pyにトラッキングIDを追加すると自動でやってくれます。</p>
-<blockquote>
-GOOGLE_ANALYTICS = &quot;xxxxxxxxxxxx&quot;</blockquote>
+<p><a class="reference external" href="https://blog.siteanatomy.com/register-google-analytics/">Google Analytics登録方法</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="sitemap">
-<h2>sitemapの作成</h2>
+<h2><strong>sitemapの作成</strong></h2>
 <p>Google検索にヒットさせ易くするためのファイルで、作成したらGoogle Search Consoleに登録します。</p>
 <p>小規模HPには不要のようですが、一応作成します。</p>
 <p>サイトマップは、pelicanのプラグイン「sitemap」で自動生成できます。</p>
 <p>pelicanconf.pyに以下の設定を追加すると、出力フォルダに「sitemap.xml」が生成されます。</p>
-<blockquote>
-<p>PLUGINS = ['sitemap',]</p>
-<p>SITEMAP = {'format': 'xml'}</p>
-</blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>※pelican以外の場合</p>
-<p>一般的な静的サイトジェネレータにはsitemap生成のプラグインがあるようですので、他のジェネレータ使用時はそちらを使用します。</p>
-<p>また、sitemap生成の無料ページもあるようです。</p>
+<pre class="literal-block">
+PLUGINS = ['sitemap',]
+SITEMAP = {'format': 'xml'}
+</pre>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="robots-txt">
-<h2>robots.txtの作成</h2>
+<h2><strong>robots.txtの作成</strong></h2>
 <p>sitemapへのリンクファイルです。</p>
 <p>rootディレクトリに、「robots.txt」という名前のファイルを作成して、中身を以下のように記述します。</p>
-<blockquote>
-<div class="line-block">
-<div class="line">User-agent: *</div>
-<div class="line">Disallow:</div>
-<div class="line"><br /></div>
-<div class="line">Sitemap: <a class="reference external" href="https://xxxxxxxxx/sitemap.xml">https://xxxxxxxxx/sitemap.xml</a></div>
-</div>
-</blockquote>
+<pre class="literal-block">
+User-agent: *
+Disallow:
+
+Sitemap: https://xxxxxxxxx/sitemap.xml
+</pre>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="google-search-console-sitemap">
-<h2>Google Search Consoleの登録 / sitemapの登録</h2>
-<p><a class="reference external" href="http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html">Google Serach Console登録方法</a></p>
+<h2><strong>Google Search Consoleの登録 / sitemapの登録</strong></h2>
 <p>HPへの流入ルート、検索順位などSEO関連情報が確認できます。</p>
 <p>登録完了したら、サイトマップも登録します。</p>
 <p>登録したては「サイトマップを読み込めませんでした」とエラーが出ますが、しばらく放置しておくと読み込んでくれるようです。</p>
+<p>⇒　3週間後に確認したら、読み込んでいました。</p>
+<p><a class="reference external" href="http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html">Google Serach Console登録方法</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="url">
-<h2>参考URL</h2>
+<h2><strong>参考URL</strong></h2>
 <p><a class="reference external" href="https://wacul-ai.com/blog/access-analysis/google-analytics-method/what-is-google-analytics/">Google Analyticsについて</a></p>
 <p><a class="reference external" href="https://ferret-plus.com/curriculums/3563">sitemapについて</a></p>
 <p><a class="reference external" href="https://ferret-plus.com/6879">robots.txtについて</a></p>
@@ -252,14 +243,6 @@ GOOGLE_ANALYTICS = &quot;xxxxxxxxxxxx&quot;</blockquote>
 </ul>
 
 
-  <div class="neighbors">
-    <a class="btn float-left" href="https://yamaccu.github.io/blog/posts/2021/05/pelican-setting/" title="Pelicanの設定">
-      <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://yamaccu.github.io/blog/posts/2021/05/pelican-plugins/" title="Pelicanのプラグイン">
-      Next Post <i class="fa fa-angle-right"></i>
-    </a>
-  </div>
 
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

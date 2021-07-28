@@ -53,7 +53,7 @@
 <meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/06/git-setting/"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2021-06-03 00:00:00+09:00"/>
-<meta property="article:modified_time" content="2021-06-02 23:16:50.594161+09:00"/>
+<meta property="article:modified_time" content="2021-07-28 21:26:39.032871+09:00"/>
 <meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
 <meta property="article:section" content="github"/>
 <meta property="article:tag" content="github"/>
@@ -172,33 +172,33 @@
 <div class="line"><br /></div>
 </div>
 <div class="section" id="git">
-<h2>gitをインストール</h2>
+<h2><strong>gitをインストール</strong></h2>
 <p><a class="reference external" href="https://gitforwindows.org/">git公式</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="githubsign-up">
-<h2>githubにsign up</h2>
+<h2><strong>githubにsign up</strong></h2>
 <p><a class="reference external" href="https://github.co.jp/">github</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="ssh">
-<h2>端末のSSH公開鍵の設定</h2>
+<h2><strong>端末のSSH公開鍵の設定</strong></h2>
 <p>SSH公開鍵の生成</p>
 <pre class="literal-block">
 ssh-keygen -t rsa
 </pre>
-<p>githubのSetting =&gt; SSH and GPG keys で生成したSSH鍵を登録</p>
+<p>githubのページで、Setting =&gt; SSH and GPG keys で生成したSSH鍵を登録</p>
 <p><a class="reference external" href="https://qiita.com/shizuma/items/2b2f873a0034839e47ce">参考HP</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="id2">
-<h2>ローカル環境設定</h2>
+<h2><strong>ローカル環境設定</strong></h2>
 <pre class="literal-block">
 git config --global user.name &quot;ユーザー名&quot;
 git config --global user.email &quot;メールアドレス&quot;
@@ -209,29 +209,26 @@ git config --global user.email &quot;メールアドレス&quot;
 </div>
 </div>
 <div class="section" id="id3">
-<h2>githubのレポジトリをクローン</h2>
-<p>githubのページでレポジトリ作成</p>
-<p>作成したレポジトリをローカル環境にクローン</p>
+<h2><strong>githubのレポジトリをクローン</strong></h2>
+<p>githubのページでレポジトリ作成して、作成したレポジトリをローカル環境にクローン</p>
 <pre class="literal-block">
 git clone &lt;URLアドレス&gt;
 </pre>
-<p>※Clone時に設定されるもの</p>
-<ul class="simple">
-<li>origin設定</li>
-</ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="id4">
-<h2>変更＆プッシュ</h2>
+<h2><strong>変更＆プッシュ</strong></h2>
 <p>ファイルの追加、修正をしたら</p>
 <pre class="literal-block">
 git add &lt;ファイル名&gt;
 git commit -m &quot;コメント&quot;
-git push (-f) origin master
+git push (-f) origin main
 </pre>
 <p>※-fは強制プッシュなので取り扱い注意</p>
+<p>※originの設定は、クローン時に自動で設定されます。</p>
+<p>※2020/10から、デフォルトブランチがmaster ⇒ main に変わりました。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -254,14 +251,6 @@ git push (-f) origin master
 </ul>
 
 
-  <div class="neighbors">
-    <a class="btn float-left" href="https://yamaccu.github.io/blog/posts/2021/06/html-div-figures/" title="div要素で図形を表示する">
-      <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://yamaccu.github.io/blog/posts/2021/06/c-serialport/" title="C#でシリアル通信">
-      Next Post <i class="fa fa-angle-right"></i>
-    </a>
-  </div>
 
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

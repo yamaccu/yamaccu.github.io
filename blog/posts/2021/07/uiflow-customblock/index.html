@@ -42,18 +42,18 @@
 
 
 <meta name="author" content="yy" />
-<meta name="description" content="M5Stack等で使用できるビジュアルプログラミング「UIFLOW」でカスタムブロックを作成する方法です。 M5Stackとは、ESP32マイコンを使用し …" />
+<meta name="description" content="M5Stack のビジュアルプログラミング「UIFLOW」でカスタムブロックを作成する方法です。 こちらのカスタムブロック作成ページ …" />
 <meta name="keywords" content="M5Stack">
 
 
 <meta property="og:site_name" content="Y.Y.Blog"/>
 <meta property="og:title" content="UIFLOWでカスタムブロックを作る"/>
-<meta property="og:description" content="M5Stack等で使用できるビジュアルプログラミング「UIFLOW」でカスタムブロックを作成する方法です。 M5Stackとは、ESP32マイコンを使用し …"/>
+<meta property="og:description" content="M5Stack のビジュアルプログラミング「UIFLOW」でカスタムブロックを作成する方法です。 こちらのカスタムブロック作成ページ …"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/07/uiflow-customblock/"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2021-07-15 00:00:00+09:00"/>
-<meta property="article:modified_time" content="2021-07-15 14:24:19.804691+09:00"/>
+<meta property="article:modified_time" content="2021-07-28 23:16:09.667091+09:00"/>
 <meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
 <meta property="article:section" content="M5Stack"/>
 <meta property="article:tag" content="M5Stack"/>
@@ -159,82 +159,81 @@
     <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>M5Stack等で使用できるビジュアルプログラミング「UIFLOW」でカスタムブロックを作成する方法です。</p>
-<p>M5Stackとは、ESP32マイコンを使用し、wifi/LCD/各種センサなどを一体化させたマイコンボードです。</p>
-<p>githubに、WAVファイルを再生するためのカスタムブロックのサンプルをあげています。</p>
-<p>リンク</p>
-<ul class="simple">
-<li><a class="reference external" href="https://m5stack.com/">M5Stack</a></li>
-<li><a class="reference external" href="https://flow.m5stack.com/">UIFLOW</a></li>
-<li><a class="reference external" href="http://block-maker.m5stack.com/">カスタムブロック作成</a></li>
-<li><a class="reference external" href="https://github.com/yamaccu/UIFLOW-wavplayer">githubサンプル</a></li>
-</ul>
+<p><a class="reference external" href="https://m5stack.com/">M5Stack</a> のビジュアルプログラミング「<a class="reference external" href="https://flow.m5stack.com/">UIFLOW</a>」でカスタムブロックを作成する方法です。</p>
+<p><a class="reference external" href="http://block-maker.m5stack.com/">こちらのカスタムブロック作成ページ</a> から作成します。</p>
+<p><a class="reference external" href="https://github.com/yamaccu/UIFLOW-wavplayer">github</a> に、WAVファイルを再生するためのカスタムブロックをあげています。</p>
 <div class="line-block">
 <div class="line"><br /></div>
+</div>
+<p>※M5Stack：ESP32マイコンを使用し、wifi/LCD/各種センサなどを一体化させたマイコンボード</p>
+<div class="line-block">
 <div class="line"><br /></div>
 </div>
 <div class="section" id="id3">
-<h2>手順</h2>
+<h2><strong>手順</strong></h2>
 <ol class="arabic simple">
 <li>Pythonでプログラムを書く</li>
-<li>setup用のブロックを作る</li>
-<li>自作関数を実行するためのブロックを作る</li>
+<li>setupブロックを作る</li>
+<li>自作関数を実行するブロックを作る</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="python">
-<h2>Pythonでプログラムを書く</h2>
-<p>まずはブロック化したいプログラムを書きます。</p>
+<h2><strong>Pythonでプログラムを書く</strong></h2>
+<p>まずはブロック化したいpythonのプログラムを書きます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="setup">
-<h2>setup用のブロックを作る</h2>
-<p>UIFLOWのsetup実行時に、importとかdefとか実施しますので、
-そのためのブロックを作ります。</p>
+<h2><strong>setupブロックを作る</strong></h2>
+<p>初期設定用(setup)のブロックを作成します。</p>
+<p>importやdefなどはこのブロックで実行します。</p>
+<img alt="" class="align-left" src="/images/UIFLOW-CustomBlock-1.PNG" style="width: 669px; height: 500px;" />
 <ul class="simple">
-<li>NameはBlockmaker上だけの識別名なので何でも大丈夫です。</li>
-<li>TypeはExecuteにします。</li>
-<li>Parameterは、まずブロック名をLabelで設定します。
-変数があれば、String/Number/Variableで設定します。</li>
-<li>BlockCodeに作ったプログラムをコピペします。</li>
+<li>Name：Blockmaker上だけの識別名なので何でも大丈夫です。</li>
+<li>Type：Executeにします。</li>
+<li>Parameter：まずブロック名をtype:Labelで設定します。
+変数があれば、type:String/Number/Variableで設定します。</li>
+<li>BlockCode：作ったプログラムをコピペします。</li>
 </ul>
-<p>※Variavle：他のブロックの値を代入する変数、Valueブロックを繋げられるようになります。</p>
-<div class="line-block">
-<div class="line">※BlockCode内の変数は、「${変数}」と書きます。</div>
-<div class="line">ex) playwav(${playwav},${volume})</div>
-</div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="id4">
-<h2>自作関数を実行するためのブロックを作る</h2>
-<p>defで定義した自作関数を実行するブロックを作ります。</p>
+<h2><strong>自作関数を実行するブロックを作る</strong></h2>
+<p>setupブロックで定義した自作関数を実行するブロックを作ります。</p>
+<img alt="" class="align-left" src="/images/UIFLOW-CustomBlock-2.PNG" style="width: 669px; height: 500px;" />
 <ul class="simple">
-<li>NameはBlockmaker上だけの識別名なので何でも大丈夫です。</li>
-<li>TypeはExecuteにします。</li>
-<li>Parameterは、まずブロック名をLabelで設定します。
-変数があれば、String/Number/Variableで設定します。</li>
-<li>BlockCodeに定義した関数と変数を記述します。</li>
+<li>基本はsetupブロックと同じです。</li>
+<li>defで定義した関数をBlockCodeへ入力します。</li>
+<li>変数があればparameterで設定します。</li>
 </ul>
+<div class="line-block">
+<div class="line">※parameterで設定した変数をBlockCode内で読み出すには、「${変数}」と書きます。</div>
+<div class="line">ex) playwav(${playwav},${volume})</div>
+<div class="line"><br /></div>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="id5">
-<h2>完成したら</h2>
+<h2><strong>完成したら</strong></h2>
 <p>右下のDownloadボタンをおしてDownloadして、UIFLOWのCustomから読み込みます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="url">
-<h2>参考URL</h2>
+<h2><strong>参考URL</strong></h2>
 <p><a class="reference external" href="https://qiita.com/ciniml/items/618899c9065d51d5c54e">qiita 自作モジュール用のUI Flowのカスタムブロックを作る</a></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 
   </div>
@@ -254,11 +253,6 @@
 </ul>
 
 
-  <div class="neighbors">
-    <a class="btn float-left" href="https://yamaccu.github.io/blog/posts/2021/06/micropython-repl/" title="micropythonにreplでアクセス">
-      <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-  </div>
 
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

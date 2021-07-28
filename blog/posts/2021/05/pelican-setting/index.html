@@ -53,7 +53,7 @@
 <meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/05/pelican-setting/"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2021-05-19 00:00:00+09:00"/>
-<meta property="article:modified_time" content="2021-05-24 16:07:18+09:00"/>
+<meta property="article:modified_time" content="2021-07-28 21:00:38.464518+09:00"/>
 <meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
 <meta property="article:section" content="pelican"/>
 <meta property="article:tag" content="pelican"/>
@@ -172,88 +172,78 @@
 <div class="line"><br /></div>
 </div>
 <div class="section" id="id1">
-<h2>設定項目</h2>
+<h2><strong>設定項目</strong></h2>
 <div class="section" id="basic-setting">
 <h3>Basic Setting</h3>
-<blockquote>
-PATH = 'content'</blockquote>
-<p>pelicanコマンドで実行されるディレクトリを指定します。</p>
-<p>これを設定しておくと、コマンドプロンプトで&quot;pelican&quot;と打つだけで指定ディレクトリのファイルをHTML化を実行してくれます</p>
+<pre class="literal-block">
+PATH = 'content'
+</pre>
+<p>pelicanコマンドの対象ディレクトリを指定します。</p>
+<p>これを設定しておくと、コマンドプロンプトで&quot;pelican&quot;と打つだけで指定ディレクトリのファイルをHTML化してくれます</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-ARTICLE_PATHS = ['articles']</blockquote>
+<pre class="literal-block">
+ARTICLE_PATHS = ['articles']
+</pre>
 <p>書いたブログの記事を格納するディレクトリ名です。</p>
 <p>このディレクトリは上記のPATH直下に作成します。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-SITEURL = '<a class="reference external" href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>'</blockquote>
+<pre class="literal-block">
+SITEURL = 'http://127.0.0.1:8000'
+</pre>
 <p>サイトを公開するURLです。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-SITENAME = 'xxxxxx'</blockquote>
+<pre class="literal-block">
+SITENAME = 'xxxxxx'
+</pre>
 <p>サイト名です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-SUMMARY_MAX_LENGTH = 5</blockquote>
+<pre class="literal-block">
+SUMMARY_MAX_LENGTH = 5
+</pre>
 <div class="line-block">
-<div class="line"><br /></div>
 <div class="line">topページで、各記事のサマリーを表示する文字量の設定です。</div>
 <div class="line">(数字を変えるとサマリー表示量が変わります。数字と表示量の関係は不明、カット&amp;トライで試してみてください。)</div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-<div class="line-block">
-<div class="line">PYGMENTS_RST_OPTIONS = {</div>
-<div class="line-block">
-<div class="line">'linenos': 'table',</div>
-</div>
-<div class="line">}</div>
-</div>
-</blockquote>
-<p>コードブロックでデフォルトで使う強調構文を指定します。</p>
+<pre class="literal-block">
+PYGMENTS_RST_OPTIONS = {
+  'linenos': 'table',
+}
+</pre>
+<p><a class="reference external" href="https://planset-study-sphinx.readthedocs.io/ja/latest/04.html#id10">コードブロック</a> でデフォルトで使う強調構文を指定します。</p>
 <p>'linenos': 'table'は行番号を表示するオプションです。</p>
-<p>これらはコードブロックごとに設定も可能です。</p>
-<p>例）</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;print 1&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;print 2&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;print 3&quot;</span><span class="p">)</span>
-</pre></div>
-</td></tr></table><div class="line-block">
+<div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-PLUGIN_PATHS = ['plugins']</blockquote>
+<pre class="literal-block">
+PLUGIN_PATHS = ['plugins']
+</pre>
 <p>プラグインを保存するディレクトリ名です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-<div class="line-block">
-<div class="line">PLUGINS = ['related_posts',</div>
-<div class="line-block">
-<div class="line">'share_post',</div>
-<div class="line">'neighbors']</div>
-</div>
-</div>
-</blockquote>
+<pre class="literal-block">
+PLUGINS = ['related_posts',
+           'share_post',
+           'neighbors']
+</pre>
 <p>使用するプラグインの指定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-RELATED_POSTS_MAX = 5</blockquote>
+<pre class="literal-block">
+RELATED_POSTS_MAX = 5
+</pre>
 <p>プラグイン「related_posts」の設定で、関連記事の表示数です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -261,24 +251,23 @@ RELATED_POSTS_MAX = 5</blockquote>
 </div>
 <div class="section" id="url-settings">
 <h3>URL Settings</h3>
-<blockquote>
-<div class="line-block">
-<div class="line">ARTICLE_URL = 'posts/{date:%Y}/{date:%m}/{slug}/'</div>
-<div class="line">ARTICLE_SAVE_AS = 'posts/{date:%Y}/{date:%m}/{slug}/index.html'</div>
-<div class="line">YEAR_ARCHIVE_URL = 'posts/{date:%Y}/'</div>
-<div class="line">YEAR_ARCHIVE_SAVE_AS =  'posts/{date:%Y}/index.html'</div>
-<div class="line">MONTH_ARCHIVE_URL = 'posts/{date:%Y}/{date:%m}/'</div>
-<div class="line">MONTH_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/{date:%m}/index.html'</div>
-</div>
-</blockquote>
+<pre class="literal-block">
+ARTICLE_URL = 'posts/{date:%Y}/{date:%m}/{slug}/'
+ARTICLE_SAVE_AS = 'posts/{date:%Y}/{date:%m}/{slug}/index.html'
+YEAR_ARCHIVE_URL = 'posts/{date:%Y}/'
+YEAR_ARCHIVE_SAVE_AS =  'posts/{date:%Y}/index.html'
+MONTH_ARCHIVE_URL = 'posts/{date:%Y}/{date:%m}/'
+MONTH_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/{date:%m}/index.html'
+</pre>
 <p>URLの指定です。</p>
 <p>上記のように、URLにメタデータを含めることができます。</p>
 <p>page、Categoryなどの固定ページも設定すればデフォルトURLから変更ができます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-SLUGIFY_SOURCE = 'basename'</blockquote>
+<pre class="literal-block">
+SLUGIFY_SOURCE = 'basename'
+</pre>
 <p>メタファイル{slug}の値の引用先を設定します。</p>
 <p>title：ファイルのタイトル、basename：ファイル内のslugタグ</p>
 <p>ファイルタイトルから引用した場合、漢字をタイトルとしていると中国語読みがslugに設定されます。</p>
@@ -288,22 +277,25 @@ SLUGIFY_SOURCE = 'basename'</blockquote>
 </div>
 <div class="section" id="time-and-date">
 <h3>Time and Date</h3>
-<blockquote>
-TIMEZONE = 'Asia/Tokyo'</blockquote>
+<pre class="literal-block">
+TIMEZONE = 'Asia/Tokyo'
+</pre>
 <p>タイムゾーンの設定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-DEFAULT_DATE='fs'</blockquote>
+<pre class="literal-block">
+DEFAULT_DATE='fs'
+</pre>
 <p>デフォルト時間の設定です。</p>
 <p>記事のファイル内でメタデータ{Date}を指定しなかった場合、ここの設定が反映されます。</p>
 <p>'fs'とするとファイルシステムのタイムスタンプを使用します。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-DEFAULT_DATE_FORMAT = '%Y/%m/%d'</blockquote>
+<pre class="literal-block">
+DEFAULT_DATE_FORMAT = '%Y/%m/%d'
+</pre>
 <p>投稿した記事の日付フォーマットの設定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -311,8 +303,9 @@ DEFAULT_DATE_FORMAT = '%Y/%m/%d'</blockquote>
 </div>
 <div class="section" id="meta-data">
 <h3>META DATA</h3>
-<blockquote>
-AUTHOR = 'xxxx'</blockquote>
+<pre class="literal-block">
+AUTHOR = 'xxxx'
+</pre>
 <p>記事の著者の設定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -320,15 +313,13 @@ AUTHOR = 'xxxx'</blockquote>
 </div>
 <div class="section" id="feed-settings">
 <h3>Feed Settings</h3>
-<blockquote>
-<div class="line-block">
-<div class="line">FEED_ALL_ATOM = None</div>
-<div class="line">CATEGORY_FEED_ATOM = None</div>
-<div class="line">TRANSLATION_FEED_ATOM = None</div>
-<div class="line">AUTHOR_FEED_ATOM = None</div>
-<div class="line">AUTHOR_FEED_RSS = None</div>
-</div>
-</blockquote>
+<pre class="literal-block">
+FEED_ALL_ATOM = None
+CATEGORY_FEED_ATOM = None
+TRANSLATION_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
+</pre>
 <p>Feedを使うときの設定です。</p>
 <p>使わなければすべてNoneとします。</p>
 <div class="line-block">
@@ -337,8 +328,9 @@ AUTHOR = 'xxxx'</blockquote>
 </div>
 <div class="section" id="translations">
 <h3>Translations</h3>
-<blockquote>
-DEFAULT_LANG = 'Japanese'</blockquote>
+<pre class="literal-block">
+DEFAULT_LANG = 'Japanese'
+</pre>
 <p>ページの言語設定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -346,44 +338,38 @@ DEFAULT_LANG = 'Japanese'</blockquote>
 </div>
 <div class="section" id="theme">
 <h3>Theme</h3>
-<blockquote>
-THEME = 'themes/Flex'</blockquote>
+<pre class="literal-block">
+THEME = 'themes/Flex'
+</pre>
 <p>pelicanのテーマを導入する場合、ここでディレクトリを指定します。</p>
 <p>テーマの設定は下記を参考に。</p>
 <p><a class="reference external" href="https://www.sairablog.com/article/python-pelican-blog-theme-howto.html">https://www.sairablog.com/article/python-pelican-blog-theme-howto.html</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-SITESUBTITLE = &quot;xxxxxxx&quot;</blockquote>
+<pre class="literal-block">
+SITESUBTITLE = &quot;xxxxxxx&quot;
+</pre>
 <p>サイトのサブタイトルです。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-<div class="line-block">
-<div class="line">MENUITEMS = (</div>
-<div class="line-block">
-<div class="line">(&quot;Archives&quot;, &quot;/archives.html&quot;),</div>
-<div class="line">(&quot;Categories&quot;, &quot;/categories.html&quot;),</div>
-</div>
-<div class="line">)</div>
-</div>
-</blockquote>
+<pre class="literal-block">
+MENUITEMS = (
+    (&quot;Archives&quot;, &quot;/archives.html&quot;),
+    (&quot;Categories&quot;, &quot;/categories.html&quot;),
+)
+</pre>
 <p>使用するMenuの項目です。</p>
 <p>サイト上部にリンクとして表示されます。</p>
 <p>CategoryやTagをメタデータとして設定しておくと、Menuで一覧をみることができます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-<div class="line-block">
-<div class="line">SOCIAL = (('twitter', '<a class="reference external" href="https://twitter.com/xxxxxxxx">https://twitter.com/xxxxxxxx</a>'),</div>
-<div class="line-block">
-<div class="line">(&quot;github&quot;, &quot;<a class="reference external" href="https://github.com/xxxxxx">https://github.com/xxxxxx</a>&quot;))</div>
-</div>
-</div>
-</blockquote>
+<pre class="literal-block">
+SOCIAL = (('twitter', 'https://twitter.com/xxxxxxxx'),
+        (&quot;github&quot;, &quot;https://github.com/xxxxxx&quot;))
+</pre>
 <p>SNSのリンク設定です。</p>
 <p>アイコンとリンクを自動生成してくれます。</p>
 <div class="line-block">
@@ -392,8 +378,9 @@ SITESUBTITLE = &quot;xxxxxxx&quot;</blockquote>
 </div>
 <div class="section" id="pagination">
 <h3>Pagination</h3>
-<blockquote>
-DEFAULT_PAGINATION = 10</blockquote>
+<pre class="literal-block">
+DEFAULT_PAGINATION = 10
+</pre>
 <p>一度に表示する記事数の設定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -401,55 +388,57 @@ DEFAULT_PAGINATION = 10</blockquote>
 </div>
 <div class="section" id="flex">
 <h3>Flexテーマの設定</h3>
-<blockquote>
-MAIN_MENU = True</blockquote>
+<pre class="literal-block">
+MAIN_MENU = True
+</pre>
 <p>上部のMenuの表示・非表示設定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-SITELOGO = SITEURL+&quot;/images/profile.png&quot;</blockquote>
+<pre class="literal-block">
+SITELOGO = SITEURL+&quot;/images/profile.png&quot;
+</pre>
 <p>サイトに表示するロゴの指定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-FAVICON = &quot;/images/favicon.ico&quot;</blockquote>
+<pre class="literal-block">
+FAVICON = &quot;/images/favicon.ico&quot;
+</pre>
 <p>ブラウザのタブ部に表示するロゴの指定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-PYGMENTS_STYLE = &quot;monokai&quot;</blockquote>
+<pre class="literal-block">
+PYGMENTS_STYLE = &quot;monokai&quot;
+</pre>
 <p>コードブロックのスタイルの指定です。</p>
 <p>参考　<a class="reference external" href="https://help.farbox.com/pygments.html">https://help.farbox.com/pygments.html</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-DISABLE_URL_HASH = True</blockquote>
+<pre class="literal-block">
+DISABLE_URL_HASH = True
+</pre>
 <p>記事内のアンカーの有効・無効設定です。Trueは無効。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-<div class="line-block">
-<div class="line">CC_LICENSE = {</div>
-<div class="line-block">
-<div class="line">&quot;name&quot;: &quot;Creative Commons Attribution-ShareAlike 4.0 International License&quot;,</div>
-<div class="line">&quot;version&quot;: &quot;4.0&quot;,</div>
-<div class="line">&quot;slug&quot;: &quot;by-sa&quot;,</div>
-</div>
-<div class="line">}</div>
-<div class="line">COPYRIGHT_YEAR = datetime.now().year</div>
-</div>
-</blockquote>
+<pre class="literal-block">
+CC_LICENSE = {
+  &quot;name&quot;: &quot;Creative Commons Attribution-ShareAlike 4.0 International License&quot;,
+  &quot;version&quot;: &quot;4.0&quot;,
+  &quot;slug&quot;: &quot;by-sa&quot;,
+}
+COPYRIGHT_YEAR = datetime.now().year
+</pre>
 <p>ページ下部のライセンス表示の設定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-USE_LESS = True</blockquote>
+<pre class="literal-block">
+USE_LESS = True
+</pre>
 <p>CSSファイルの代わりにLESSファイルを使用するかどうかの設定です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -457,41 +446,55 @@ USE_LESS = True</blockquote>
 </div>
 </div>
 <div class="section" id="publish-conf">
-<h2>publish.confの記述</h2>
+<h2><strong>publish.confの記述</strong></h2>
 <p>publishconf.pyの中に &quot;from pelicanconf import *&quot; と記述することで、pelicanconf.pyの設定をpublishでも使用できます。
 以下は、追加で設定した方が良いであろうものです。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-<div class="line-block">
-<div class="line">SITEURL = '<a class="reference external" href="https://xxxxxx">https://xxxxxx</a>'</div>
-<div class="line"><br /></div>
-<div class="line">MENUITEMS = (</div>
-<div class="line-block">
-<div class="line">(&quot;Archives&quot;, &quot;xxxxxx&quot;),</div>
-<div class="line">(&quot;Categories&quot;, &quot;xxxxxx&quot;),</div>
-</div>
-<div class="line">)</div>
-<div class="line"><br /></div>
-<div class="line">SITELOGO = &quot;/blog/images/profile.png&quot;</div>
-<div class="line"><br /></div>
-<div class="line">FAVICON = &quot;/images/favicon.ico&quot;</div>
-</div>
-</blockquote>
+<pre class="literal-block">
+SITEURL = 'https://xxxxxx'
+
+MENUITEMS = (
+    (&quot;Archives&quot;, &quot;xxxxxx&quot;),
+    (&quot;Categories&quot;, &quot;xxxxxx&quot;),
+)
+
+SITELOGO = &quot;/blog/images/profile.png&quot;
+
+FAVICON = &quot;/images/favicon.ico&quot;
+</pre>
 <p>URL設定系は手元の環境と本番環境で異なると思うので、publish.conf内で設定する必要があるかと思います。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<blockquote>
-GOOGLE_ANALYTICS = &quot;xxxxxxxx&quot;</blockquote>
+<pre class="literal-block">
+GOOGLE_ANALYTICS = &quot;xxxxxxxx&quot;
+</pre>
 <p>Google Analyticsのトラッキングコードの設定ができます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<pre class="literal-block">
+GOOGLE_ADSENSE = {
+'ca_id': 'ca-pub-xxxxxxxx',    # Your AdSense ID
+'page_level_ads': True,          # Allow Page Level Ads (mobile)
+'ads': {
+  'aside': 'xxx',          # Side bar banner (all pages)
+  'main_menu': 'xxx',      # Banner before main menu (all pages)
+  'index_top': 'xxx',      # Banner after main menu (index only)
+  'index_bottom': 'xxx',   # Banner before footer (index only)
+  'article_top': 'xxx',    # Banner after article title (article only)
+  'article_bottom': 'xxx', # Banner after article content (article only)
+}
+</pre>
+<p>google adsensの設定ができます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="url">
-<h2>参考URL</h2>
+<h2><strong>参考URL</strong></h2>
 <p><a class="reference external" href="https://docs.getpelican.com/en/stable/settings.html">pelican公式</a></p>
 <p><a class="reference external" href="https://github.com/alexandrevicenzi/Flex/wiki/Custom-Settings">FLEX公式</a></p>
 </div>
@@ -513,14 +516,6 @@ GOOGLE_ANALYTICS = &quot;xxxxxxxx&quot;</blockquote>
 </ul>
 
 
-  <div class="neighbors">
-    <a class="btn float-left" href="https://yamaccu.github.io/blog/posts/2021/05/virtual-env-for-python/" title="python 仮想環境の作り方">
-      <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://yamaccu.github.io/blog/posts/2021/05/blog-setting/" title="ブログを作ったらやること">
-      Next Post <i class="fa fa-angle-right"></i>
-    </a>
-  </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>

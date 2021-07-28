@@ -5,6 +5,7 @@
 :date: 2021-05-20
 :category: blog
 :tags: blog
+:modified: 2021-07-26
 
 | 
 
@@ -17,10 +18,8 @@
 
 | 
 
-Google Analyticsの登録
------------------------
-
-`Google Analytics登録方法 <https://blog.siteanatomy.com/register-google-analytics/>`_
+**Google Analyticsの登録**
+---------------------------
 
 HPへのアクセス状況が確認できるようになります。
 
@@ -28,13 +27,12 @@ HPへのアクセス状況が確認できるようになります。
 
 pelicanでは、publishconf.pyにトラッキングIDを追加すると自動でやってくれます。
 
-    GOOGLE_ANALYTICS = "xxxxxxxxxxxx"
-
+`Google Analytics登録方法 <https://blog.siteanatomy.com/register-google-analytics/>`_
 
 | 
 
-sitemapの作成
---------------
+**sitemapの作成**
+------------------
 
 Google検索にヒットさせ易くするためのファイルで、作成したらGoogle Search Consoleに登録します。
 
@@ -44,38 +42,31 @@ Google検索にヒットさせ易くするためのファイルで、作成し�
 
 pelicanconf.pyに以下の設定を追加すると、出力フォルダに「sitemap.xml」が生成されます。
 
+::
+
     PLUGINS = ['sitemap',]
-    
     SITEMAP = {'format': 'xml'}
 
 | 
 
-※pelican以外の場合
-
-一般的な静的サイトジェネレータにはsitemap生成のプラグインがあるようですので、他のジェネレータ使用時はそちらを使用します。
-
-また、sitemap生成の無料ページもあるようです。
-
-| 
-
-robots.txtの作成
------------------
+**robots.txtの作成**
+---------------------
 
 sitemapへのリンクファイルです。
 
 rootディレクトリに、「robots.txt」という名前のファイルを作成して、中身を以下のように記述します。
 
-    | User-agent: *
-    | Disallow:
-    | 
-    | Sitemap: https://xxxxxxxxx/sitemap.xml
+::
+
+    User-agent: *
+    Disallow:
+    
+    Sitemap: https://xxxxxxxxx/sitemap.xml
 
 | 
 
-Google Search Consoleの登録 / sitemapの登録
----------------------------------------------
-
-`Google Serach Console登録方法 <http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html>`_
+**Google Search Consoleの登録 / sitemapの登録**
+-------------------------------------------------
 
 HPへの流入ルート、検索順位などSEO関連情報が確認できます。
 
@@ -83,11 +74,14 @@ HPへの流入ルート、検索順位などSEO関連情報が確認できます
 
 登録したては「サイトマップを読み込めませんでした」とエラーが出ますが、しばらく放置しておくと読み込んでくれるようです。
 
+⇒　3週間後に確認したら、読み込んでいました。
+
+`Google Serach Console登録方法 <http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html>`_
 
 | 
 
-参考URL
-------------
+**参考URL**
+--------------
 
 `Google Analyticsについて <https://wacul-ai.com/blog/access-analysis/google-analytics-method/what-is-google-analytics/>`_
 

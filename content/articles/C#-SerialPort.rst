@@ -11,15 +11,21 @@ C#でシリアル通信
 
 C#でシリアル通信する方法です。WPFで作成します。
 
-githubにサンプルをあげています。
-`こちら <https://github.com/yamaccu/WPF-SerialCommunication/tree/main>`_
+`github <https://github.com/yamaccu/WPF-SerialCommunication/tree/main>`_ にサンプルをあげています。
+
+作成したアプリはこんな感じです。
+
+.. image:: /images/C%23-SerialPort-1.png
+  :height: 354px
+  :width: 438px
+  :align: left
 
 | 
 
-使用Class
-----------
+**使用Class**
+--------------
 
-`SerialPortクラス <https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0>`_ を使用します。
+`SerialPort class <https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0>`_ を使用します。
 
 NugetでSystem.IO.Portsをインストールする必要があります。
 
@@ -50,20 +56,17 @@ NugetでSystem.IO.Portsをインストールする必要があります。
 | 
 | 
 
-ポート選択
+**使用ポートの選択**
 ------------------------------------------------
 
-使用可能なポートを取得して、ComboBoxにBindingします。
+使用可能なポートを取得します。
 
-ReactivePropertyを使っています。
+※Binding用にReactivePropertyを使用しています。
 
-Xaml側::
+.. code-block:: C#
 
-  <ComboBox ItemsSource="{Binding COMPorts}" DropDownOpened="ComboBox_DropDownOpened_COMPort" />
-
-cs側::
-
-  public ReactiveCollection<string> COMPorts { get; set; } = new ReactiveCollection<string>();
+  public ReactiveCollection<string> COMPorts { get; set; }
+      = new ReactiveCollection<string>();
 
   public void ScanCOMPorts()
   {
@@ -71,139 +74,107 @@ cs側::
     string[] ports = SerialPort.GetPortNames();
     foreach (var port in ports)
     {
-        COMPorts.Add(port);
+      COMPorts.Add(port);
     }
   }
+
+| 
+
+ComboBoxにBindingします。
+
+XAML:
+
+.. code-block:: C#
+
+  <ComboBox ItemsSource="{Binding COMPorts}" />
 
 | 
 
 ComboBoxのDropDownOpenedイベントにポート取得のメソッドを登録しておくと、
 ドロップダウンを開く度に使用可能ポートをロードしてくれて便利です。
 
-
-
-
-
 | 
 
 
-シリアルポートオープン
+**シリアルポートオープン**
 ----------------------------------
 
 シリアルポート接続を開きます。
 
 Open前に各種設定を行います。
 
-::
+.. code-block:: C#
 
-  public static void SerialOpen(string port,int baudrate)
-  {
-    serialPort.PortName = port;
-    serialPort.BaudRate = baudrate;
-    serialPort.DataBits = 8;
-    serialPort.Parity = Parity.None;
-    serialPort.StopBits = StopBits.One;
-    serialPort.WriteTimeout = 1000;
-    serialPort.ReadTimeout = 1000;
-    serialPort.Encoding=Encoding.UTF8;
+  serialPort.PortName = port;     //選択したport名
+  serialPort.BaudRate = baudrate;    //選択したbaudrate
+  serialPort.DataBits = 8;
+  serialPort.Parity = Parity.None;
+  serialPort.StopBits = StopBits.One;
+  serialPort.WriteTimeout = 1000;
+  serialPort.ReadTimeout = 1000;
+  serialPort.Encoding=Encoding.UTF8;
 
-    serialPort.Open();
-  }
+  serialPort.Open();
 
 | 
 
-Openするメソッドを呼び出す側では、Open失敗時にエラーメッセージが出るようにします。
-
-::
-
-  public void SerialOpen()
-  {
-    try
-    {
-        SerialCom.SerialOpen(SelectedPort.Value, SelectedBaudrate.Value);
-    }
-    catch(Exception ex)
-    {
-        MessageBox.Show(ex.Message);
-    }
-  }
-
-
-| 
-
-シリアルポートクローズ
+**シリアルポートクローズ**
 ----------------------------------
 
 シリアルポート接続を閉じます。
 
-::
+.. code-block:: C#
 
   serialPort.Close();
 
 
 | 
 
-データ送信
+**データ送信**
 ----------------------------------
 
 byte配列を送信します。
 
-::
+.. code-block:: C#
 
-  private byte[] sendData()
+  byte[] sendBytes = { 0,1,2,254,255 };
+  if (serialPort.IsOpen)
   {
-    byte[] sendBytes = { 0,1,2,254,255 };
-    if (serialPort.IsOpen)
-    {
-      serialPort.Write(sendBytes, 0, sendBytes.Length);
-    }
-
-    return sendBytes;
+    serialPort.Write(sendBytes, 0, sendBytes.Length);
   }
 
 | 
 
 文字列を送信します。
 
-::
+.. code-block:: C#
 
-  private string sendData()
+  string sendStr = "01234";
+  if (serialPort.IsOpen)
   {
-    string sendStr = "01234";
-    if (serialPort.IsOpen)
-    {
-      serialPort.Write(sendStr);
-    }
-
-    return sendStr;
+    serialPort.Write(sendStr);
   }
 
 | 
 
-データ受信
+**データ受信**
 ----------------------------------
 
 byte配列を受信します。
 
-::
+.. code-block:: C#
 
-  private byte[] recieveData()
-  {
-    byte[] resByte = new byte[serialPort.BytesToRead];
-    serialPort.Read(resByte, 0, serialPort.BytesToRead);
-    return resByte; 
-  }
+  byte[] resByte = new byte[serialPort.BytesToRead];
+  serialPort.Read(resByte, 0, serialPort.BytesToRead);
 
 | 
 
 文字列を受信します。
 
-::
+.. code-block:: C#
 
-  private byte[] recieveData()
-  {
-    return serialPort.ReadExisting()
-  }
+  string resStr;
+  resStr = serialPort.ReadExisting()
 
 | 
 
@@ -212,49 +183,29 @@ byte配列を受信します。
 
 データを受信したらすぐにデータを取り込んでくれます。
 
-割込み設定はOpen()時に一緒に実施します。
 
-::
+.. code-block:: C#
 
-  public void SerialOpen()
-  {
-    try
-    {
-        SerialCom.SerialOpen(SelectedPort.Value, SelectedBaudrate.Value);
-        SerialCom.serialPort.DataReceived += OnReceived;
-    }
-    catch(Exception ex)
-    {
-        MessageBox.Show(ex.Message);
-    }
-  }
+  SerialCom.serialPort.DataReceived += OnReceived;
 
   private void OnReceived(object sender, SerialDataReceivedEventArgs e)
   {
-    RecieveData += serialPort.ReadExisting();
+    resStr += serialPort.ReadExisting();
   }
 
 | 
 
-バッファクリア
+**バッファクリア**
 ----------------------------------
 
 バッファにたまっているデータをクリアします。
 
-::
+.. code-block:: C#
 
   serialPort.DiscardInBuffer();
 
 | 
 
-参考URL
-------------
-
-`参考１ <http://diy.ease-labs.com/?page_id=10049>`_
-
-
-| 
-| 
 
 
 ご指摘等ありましたら、下記twitterにお願いします。

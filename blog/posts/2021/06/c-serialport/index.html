@@ -42,18 +42,18 @@
 
 
 <meta name="author" content="yy" />
-<meta name="description" content="C#でシリアル通信する方法です。WPFで作成します。 githubにサンプルをあげています。 こちら …" />
+<meta name="description" content="C#でシリアル通信する方法です。WPFで作成します。 github にサンプルをあげています …" />
 <meta name="keywords" content="C#">
 
 
 <meta property="og:site_name" content="Y.Y.Blog"/>
 <meta property="og:title" content="C#でシリアル通信"/>
-<meta property="og:description" content="C#でシリアル通信する方法です。WPFで作成します。 githubにサンプルをあげています。 こちら …"/>
+<meta property="og:description" content="C#でシリアル通信する方法です。WPFで作成します。 github にサンプルをあげています …"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/06/c-serialport/"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2021-06-09 00:00:00+09:00"/>
-<meta property="article:modified_time" content="2021-07-05 23:36:08.677085+09:00"/>
+<meta property="article:modified_time" content="2021-07-28 22:42:27.018018+09:00"/>
 <meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
 <meta property="article:section" content="C#"/>
 <meta property="article:tag" content="C#"/>
@@ -160,14 +160,15 @@
 <div class="line"><br /></div>
 </div>
 <p>C#でシリアル通信する方法です。WPFで作成します。</p>
-<p>githubにサンプルをあげています。
-<a class="reference external" href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main">こちら</a></p>
+<p><a class="reference external" href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main">github</a> にサンプルをあげています。</p>
+<p>作成したアプリはこんな感じです。</p>
+<img alt="" class="align-left" src="/images/C%23-SerialPort-1.png" style="width: 438px; height: 354px;" />
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <div class="section" id="class">
-<h2>使用Class</h2>
-<p><a class="reference external" href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0">SerialPortクラス</a> を使用します。</p>
+<h2><strong>使用Class</strong></h2>
+<p><a class="reference external" href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0">SerialPort class</a> を使用します。</p>
 <p>NugetでSystem.IO.Portsをインストールする必要があります。</p>
 <p>複数ポートを同時に使用しない場合は、staticで使うことが多いようです。</p>
 <p>以下、機能の解説です。</p>
@@ -212,29 +213,42 @@ ReadExisting()</td>
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>ポート選択</h2>
-<p>使用可能なポートを取得して、ComboBoxにBindingします。</p>
-<p>ReactivePropertyを使っています。</p>
-<p>Xaml側:</p>
-<pre class="literal-block">
-&lt;ComboBox ItemsSource=&quot;{Binding COMPorts}&quot; DropDownOpened=&quot;ComboBox_DropDownOpened_COMPort&quot; /&gt;
-</pre>
-<p>cs側:</p>
-<pre class="literal-block">
-public ReactiveCollection&lt;string&gt; COMPorts { get; set; } = new ReactiveCollection&lt;string&gt;();
+<div class="section" id="id1">
+<h2><strong>使用ポートの選択</strong></h2>
+<p>使用可能なポートを取得します。</p>
+<p>※Binding用にReactivePropertyを使用しています。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="n">ReactiveCollection</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">COMPorts</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">=</span> <span class="k">new</span> <span class="n">ReactiveCollection</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
 
-public void ScanCOMPorts()
-{
-  COMPorts.Clear();
-  string[] ports = SerialPort.GetPortNames();
-  foreach (var port in ports)
-  {
-      COMPorts.Add(port);
-  }
-}
-</pre>
-<div class="line-block">
+<span class="k">public</span> <span class="k">void</span> <span class="nf">ScanCOMPorts</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">COMPorts</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+  <span class="kt">string</span><span class="p">[]</span> <span class="n">ports</span> <span class="p">=</span> <span class="n">SerialPort</span><span class="p">.</span><span class="n">GetPortNames</span><span class="p">();</span>
+  <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">port</span> <span class="k">in</span> <span class="n">ports</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">COMPorts</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>ComboBoxにBindingします。</p>
+<p>XAML:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="n">ComboBox</span> <span class="n">ItemsSource</span><span class="p">=</span><span class="s">&quot;{Binding COMPorts}&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</td></tr></table><div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>ComboBoxのDropDownOpenedイベントにポート取得のメソッドを登録しておくと、
@@ -243,156 +257,116 @@ public void ScanCOMPorts()
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>シリアルポートオープン</h2>
+<div class="section" id="id2">
+<h2><strong>シリアルポートオープン</strong></h2>
 <p>シリアルポート接続を開きます。</p>
 <p>Open前に各種設定を行います。</p>
-<pre class="literal-block">
-public static void SerialOpen(string port,int baudrate)
-{
-  serialPort.PortName = port;
-  serialPort.BaudRate = baudrate;
-  serialPort.DataBits = 8;
-  serialPort.Parity = Parity.None;
-  serialPort.StopBits = StopBits.One;
-  serialPort.WriteTimeout = 1000;
-  serialPort.ReadTimeout = 1000;
-  serialPort.Encoding=Encoding.UTF8;
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">serialPort</span><span class="p">.</span><span class="n">PortName</span> <span class="p">=</span> <span class="n">port</span><span class="p">;</span>     <span class="c1">//選択したport名</span>
+<span class="n">serialPort</span><span class="p">.</span><span class="n">BaudRate</span> <span class="p">=</span> <span class="n">baudrate</span><span class="p">;</span>    <span class="c1">//選択したbaudrate</span>
+<span class="n">serialPort</span><span class="p">.</span><span class="n">DataBits</span> <span class="p">=</span> <span class="m">8</span><span class="p">;</span>
+<span class="n">serialPort</span><span class="p">.</span><span class="n">Parity</span> <span class="p">=</span> <span class="n">Parity</span><span class="p">.</span><span class="n">None</span><span class="p">;</span>
+<span class="n">serialPort</span><span class="p">.</span><span class="n">StopBits</span> <span class="p">=</span> <span class="n">StopBits</span><span class="p">.</span><span class="n">One</span><span class="p">;</span>
+<span class="n">serialPort</span><span class="p">.</span><span class="n">WriteTimeout</span> <span class="p">=</span> <span class="m">1000</span><span class="p">;</span>
+<span class="n">serialPort</span><span class="p">.</span><span class="n">ReadTimeout</span> <span class="p">=</span> <span class="m">1000</span><span class="p">;</span>
+<span class="n">serialPort</span><span class="p">.</span><span class="n">Encoding</span><span class="p">=</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">;</span>
 
-  serialPort.Open();
-}
-</pre>
-<div class="line-block">
+<span class="n">serialPort</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
+</pre></div>
+</td></tr></table><div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Openするメソッドを呼び出す側では、Open失敗時にエラーメッセージが出るようにします。</p>
-<pre class="literal-block">
-public void SerialOpen()
-{
-  try
-  {
-      SerialCom.SerialOpen(SelectedPort.Value, SelectedBaudrate.Value);
-  }
-  catch(Exception ex)
-  {
-      MessageBox.Show(ex.Message);
-  }
-}
-</pre>
-<div class="line-block">
+</div>
+<div class="section" id="id3">
+<h2><strong>シリアルポートクローズ</strong></h2>
+<p>シリアルポート接続を閉じます。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">serialPort</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+</pre></div>
+</td></tr></table><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="id4">
-<h2>シリアルポートクローズ</h2>
-<p>シリアルポート接続を閉じます。</p>
-<pre class="literal-block">
-serialPort.Close();
-</pre>
-<div class="line-block">
+<h2><strong>データ送信</strong></h2>
+<p>byte配列を送信します。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">byte</span><span class="p">[]</span> <span class="n">sendBytes</span> <span class="p">=</span> <span class="p">{</span> <span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">254</span><span class="p">,</span><span class="m">255</span> <span class="p">};</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">serialPort</span><span class="p">.</span><span class="n">IsOpen</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">serialPort</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">sendBytes</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">sendBytes</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>文字列を送信します。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">string</span> <span class="n">sendStr</span> <span class="p">=</span> <span class="s">&quot;01234&quot;</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">serialPort</span><span class="p">.</span><span class="n">IsOpen</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">serialPort</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">sendStr</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="id5">
-<h2>データ送信</h2>
-<p>byte配列を送信します。</p>
-<pre class="literal-block">
-private byte[] sendData()
-{
-  byte[] sendBytes = { 0,1,2,254,255 };
-  if (serialPort.IsOpen)
-  {
-    serialPort.Write(sendBytes, 0, sendBytes.Length);
-  }
-
-  return sendBytes;
-}
-</pre>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>文字列を送信します。</p>
-<pre class="literal-block">
-private string sendData()
-{
-  string sendStr = &quot;01234&quot;;
-  if (serialPort.IsOpen)
-  {
-    serialPort.Write(sendStr);
-  }
-
-  return sendStr;
-}
-</pre>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</div>
-<div class="section" id="id6">
-<h2>データ受信</h2>
+<h2><strong>データ受信</strong></h2>
 <p>byte配列を受信します。</p>
-<pre class="literal-block">
-private byte[] recieveData()
-{
-  byte[] resByte = new byte[serialPort.BytesToRead];
-  serialPort.Read(resByte, 0, serialPort.BytesToRead);
-  return resByte;
-}
-</pre>
-<div class="line-block">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">byte</span><span class="p">[]</span> <span class="n">resByte</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="p">[</span><span class="n">serialPort</span><span class="p">.</span><span class="n">BytesToRead</span><span class="p">];</span>
+<span class="n">serialPort</span><span class="p">.</span><span class="n">Read</span><span class="p">(</span><span class="n">resByte</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">serialPort</span><span class="p">.</span><span class="n">BytesToRead</span><span class="p">);</span>
+</pre></div>
+</td></tr></table><div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>文字列を受信します。</p>
-<pre class="literal-block">
-private byte[] recieveData()
-{
-  return serialPort.ReadExisting()
-}
-</pre>
-<div class="line-block">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">string</span> <span class="n">resStr</span><span class="p">;</span>
+<span class="n">resStr</span> <span class="p">=</span> <span class="n">serialPort</span><span class="p">.</span><span class="n">ReadExisting</span><span class="p">()</span>
+</pre></div>
+</td></tr></table><div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>割込みを使って受信します。</p>
 <p>データを受信したらすぐにデータを取り込んでくれます。</p>
-<p>割込み設定はOpen()時に一緒に実施します。</p>
-<pre class="literal-block">
-public void SerialOpen()
-{
-  try
-  {
-      SerialCom.SerialOpen(SelectedPort.Value, SelectedBaudrate.Value);
-      SerialCom.serialPort.DataReceived += OnReceived;
-  }
-  catch(Exception ex)
-  {
-      MessageBox.Show(ex.Message);
-  }
-}
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">SerialCom</span><span class="p">.</span><span class="n">serialPort</span><span class="p">.</span><span class="n">DataReceived</span> <span class="p">+=</span> <span class="n">OnReceived</span><span class="p">;</span>
 
-private void OnReceived(object sender, SerialDataReceivedEventArgs e)
-{
-  RecieveData += serialPort.ReadExisting();
-}
-</pre>
-<div class="line-block">
+<span class="k">private</span> <span class="k">void</span> <span class="nf">OnReceived</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">SerialDataReceivedEventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">resStr</span> <span class="p">+=</span> <span class="n">serialPort</span><span class="p">.</span><span class="n">ReadExisting</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="id7">
-<h2>バッファクリア</h2>
+<div class="section" id="id6">
+<h2><strong>バッファクリア</strong></h2>
 <p>バッファにたまっているデータをクリアします。</p>
-<pre class="literal-block">
-serialPort.DiscardInBuffer();
-</pre>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</div>
-<div class="section" id="url">
-<h2>参考URL</h2>
-<p><a class="reference external" href="http://diy.ease-labs.com/?page_id=10049">参考１</a></p>
-<div class="line-block">
-<div class="line"><br /></div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">serialPort</span><span class="p">.</span><span class="n">DiscardInBuffer</span><span class="p">();</span>
+</pre></div>
+</td></tr></table><div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>ご指摘等ありましたら、下記twitterにお願いします。</p>
@@ -415,14 +389,6 @@ serialPort.DiscardInBuffer();
 </ul>
 
 
-  <div class="neighbors">
-    <a class="btn float-left" href="https://yamaccu.github.io/blog/posts/2021/06/git-setting/" title="Github 初pushまでの設定">
-      <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://yamaccu.github.io/blog/posts/2021/06/micropython-repl/" title="micropythonにreplでアクセス">
-      Next Post <i class="fa fa-angle-right"></i>
-    </a>
-  </div>
 
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

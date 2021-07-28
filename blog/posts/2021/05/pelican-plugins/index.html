@@ -53,7 +53,7 @@
 <meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/05/pelican-plugins/"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2021-05-24 00:00:00+09:00"/>
-<meta property="article:modified_time" content="2021-06-02 20:56:20.816387+09:00"/>
+<meta property="article:modified_time" content="2021-07-28 21:16:03.742043+09:00"/>
 <meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
 <meta property="article:section" content="pelican"/>
 <meta property="article:tag" content="pelican"/>
@@ -172,17 +172,11 @@
 <div class="line"><br /></div>
 </div>
 <div class="section" id="id1">
-<h2>プラグイン導入方法</h2>
-<ol class="arabic">
-<li><p class="first">pluginsフォルダを作成します。</p>
-</li>
-<li><div class="first line-block">
-<div class="line">githubからコピーしてきます。</div>
-<div class="line"><a class="reference external" href="https://github.com/pelican-plugins">レポジトリ</a></div>
-</div>
-</li>
-<li><p class="first">設定ファイル（pelicanconf.py）で使用するpluginを設定します。</p>
-</li>
+<h2><strong>プラグイン導入方法</strong></h2>
+<ol class="arabic simple">
+<li>pluginsフォルダを作成します。</li>
+<li><a class="reference external" href="https://github.com/pelican-plugins">githubレポジトリ</a> からコピーしてきます。</li>
+<li>設定ファイル（pelicanconf.py）で使用するpluginを設定します。</li>
 </ol>
 <pre class="literal-block">
 PLUGIN_PATHS = ['plugins']
@@ -197,7 +191,7 @@ PLUGINS = ['related_posts',
 </div>
 </div>
 <div class="section" id="related-posts">
-<h2>related_posts</h2>
+<h2><strong>related_posts</strong></h2>
 <p>記事の最後に、関連記事をリストアップして表示してくれます。</p>
 <p>同じタグのついた記事を表示する仕様のようです。</p>
 <div class="line-block">
@@ -205,7 +199,7 @@ PLUGINS = ['related_posts',
 </div>
 </div>
 <div class="section" id="share-posts">
-<h2>share_posts</h2>
+<h2><strong>share_posts</strong></h2>
 <p>記事の最後に、SNSのshareボタンを追加してくれます。</p>
 <p>※Flexテーマを使用している場合は、テーマ内のファイル修正が必要です。</p>
 <p><a class="reference external" href="https://www.ainoniwa.net/pelican/2020/0830a.html">こちらのHP</a> が非常にわかりやすいです。</p>
@@ -214,21 +208,21 @@ PLUGINS = ['related_posts',
 </div>
 </div>
 <div class="section" id="neighbors">
-<h2>neighbors</h2>
+<h2><strong>neighbors</strong></h2>
 <p>記事の最後に、次の記事 / 前の記事 へ移動するボタンを追加してくれます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="sitemap">
-<h2>sitemap</h2>
+<h2><strong>sitemap</strong></h2>
 <p>html出力フォルダに、sitemapu.xmlを自動生成してくれます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="tipue-search">
-<h2>tipue_search</h2>
+<h2><strong>tipue_search</strong></h2>
 <p>ブログ内の検索機能の追加です。</p>
 <p>メニューに検索ボックスを設定してくれます。</p>
 <p>以下の設定を設定ファイル（pelicanconf.py）に追加します。</p>
@@ -239,8 +233,8 @@ DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'searc
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>参考HP</h2>
+<div class="section" id="id2">
+<h2><strong>参考HP</strong></h2>
 <p><a class="reference external" href="https://docs.getpelican.com/en/latest/plugins.html">公式doc</a></p>
 </div>
 
@@ -261,14 +255,6 @@ DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'searc
 </ul>
 
 
-  <div class="neighbors">
-    <a class="btn float-left" href="https://yamaccu.github.io/blog/posts/2021/05/blog-setting/" title="ブログを作ったらやること">
-      <i class="fa fa-angle-left"></i> Previous Post
-    </a>
-    <a class="btn float-right" href="https://yamaccu.github.io/blog/posts/2021/06/html-div-figures/" title="div要素で図形を表示する">
-      Next Post <i class="fa fa-angle-right"></i>
-    </a>
-  </div>
 
   <div class="related-posts">
     <h4>You might enjoy</h4>
