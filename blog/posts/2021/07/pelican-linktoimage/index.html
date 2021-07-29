@@ -41,17 +41,25 @@
 <!-- End Google Analytics -->  
 
 
-    <meta name="author" content="yy" />
-    <meta name="description" content="" />
+<meta name="author" content="yy" />
+<meta name="description" content="Pelicanで画像を表示する方法です。 公式ドキュメントの該当箇所は こちら です。 手順 …" />
+<meta name="keywords" content="pelican">
+
+
 <meta property="og:site_name" content="Y.Y.Blog"/>
-<meta property="og:type" content="blog"/>
-<meta property="og:title" content="Y.Y.Blog"/>
-<meta property="og:description" content=""/>
+<meta property="og:title" content="Pelicanで画像を表示する"/>
+<meta property="og:description" content="Pelicanで画像を表示する方法です。 公式ドキュメントの該当箇所は こちら です。 手順 …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://yamaccu.github.io/blog"/>
+<meta property="og:url" content="https://yamaccu.github.io/blog/posts/2021/07/pelican-linktoimage/"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2021-07-29 00:00:00+09:00"/>
+<meta property="article:modified_time" content="2021-07-29 09:58:23.025359+09:00"/>
+<meta property="article:author" content="https://yamaccu.github.io/blog/author/yy.html">
+<meta property="article:section" content="pelican"/>
+<meta property="article:tag" content="pelican"/>
 <meta property="og:image" content="/blog/images/profile.png">
 
-  <title>Y.Y.Blog &ndash; Tag repl</title>
+  <title>Y.Y.Blog &ndash; Pelicanで画像を表示する</title>
 
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
@@ -129,37 +137,71 @@
 
     </nav>
 
-
-
-<article>
+<article class="single">
   <header>
-    <h2><a href="https://yamaccu.github.io/blog/posts/2021/06/micropython-repl/">micropythonにreplでアクセス</a></h2>
+      
+    <h1 id="pelican-linktoimage">Pelicanで画像を表示する</h1>
     <p>
-      Posted on 2021/06/16 in <a href="https://yamaccu.github.io/blog/category/micropython.html">micropython</a>
+      Posted on 2021/07/29 in <a href="https://yamaccu.github.io/blog/category/pelican.html">pelican</a>
 
-          &#8226; Tagged with
-              <a href="https://yamaccu.github.io/blog/tag/micropython.html">micropython</a>,              <a href="https://yamaccu.github.io/blog/tag/repl.html">repl</a>
     </p>
   </header>
+
+
   <div>
-      <div class="line-block">
+    <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>micropythonにreplでアクセスする方法です。</p>
+<p>Pelicanで画像を表示する方法です。</p>
+<p>公式ドキュメントの該当箇所は <a class="reference external" href="https://docs.getpelican.com/en/latest/content.html?highlight=filename#linking-to-internal-content">こちら</a> です。</p>
 <div class="line-block">
-<div class="line">repl：「Read（読み取り）、Eval …</div></div>
-        <br>
-        <a class="btn"
-           href="https://yamaccu.github.io/blog/posts/2021/06/micropython-repl/">
-          Continue reading
-        </a>
+<div class="line"><br /></div>
+</div>
+<div class="section" id="id2">
+<h2>手順</h2>
+<ol class="arabic simple">
+<li>cotentフォルダの配下のimagesフォルダに画像を保存します。</li>
+<li>以下のように、rstファイルに記述します。</li>
+</ol>
+<pre class="literal-block">
+.. image:: {static}/images/test.png
+  :height: 200px
+  :width: 200px
+  :align: left
+  :alt: test.png
+</pre>
+<p>これで、以下のようにファイルが表示されます。</p>
+<img alt="test.png" class="align-left" src="https://yamaccu.github.io/blog/images/test.png" style="width: 200px; height: 200px;" />
+</div>
+
   </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://yamaccu.github.io/blog/tag/pelican.html">pelican</a>
+    </p>
+  </div>
+<ul class="social social_white">
+  <li class="social_txt">Share on: </li>
+  <li><a href="https://twitter.com/intent/tweet?text=Pelican%E3%81%A7%E7%94%BB%E5%83%8F%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B&url=https%3A//yamaccu.github.io/blog/posts/2021/07/pelican-linktoimage/&hashtags=pelican" class="sc-twitter" target="_blank" title="Share on Twitter">
+    <i class="fab fa-twitter"></i>
+  </a></li>
+  <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//yamaccu.github.io/blog/posts/2021/07/pelican-linktoimage/" class="sc-facebook" target="_blank" title="Share on Facebook">
+    <i class="fab fa-facebook"></i>
+  </a></li>
+</ul>
+
+
+
+  <div class="related-posts">
+    <h4>You might enjoy</h4>
+    <ul class="related-posts">
+      <li><a href="https://yamaccu.github.io/blog/posts/2021/05/pelican-plugins/">Pelicanのプラグイン</a></li>
+      <li><a href="https://yamaccu.github.io/blog/posts/2021/05/pelican-setting/">Pelicanの設定</a></li>
+    </ul>
+  </div>
+
+
 </article>
-
-  <div class="pagination">
-  </div>
-
-
 
     <footer>
 <p>

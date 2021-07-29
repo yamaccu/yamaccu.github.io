@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://yamaccu.github.io/blog/</loc>
-<lastmod>2021-07-28T23:35:16-00:00</lastmod>
+<lastmod>2021-07-29T09:59:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://yamaccu.github.io/blog/tags.html</loc>
-<lastmod>2021-07-28T23:35:16-00:00</lastmod>
+<lastmod>2021-07-29T09:59:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://yamaccu.github.io/blog/categories.html</loc>
-<lastmod>2021-07-28T23:35:16-00:00</lastmod>
+<lastmod>2021-07-29T09:59:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://yamaccu.github.io/blog/authors.html</loc>
-<lastmod>2021-07-28T23:35:16-00:00</lastmod>
+<lastmod>2021-07-29T09:59:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://yamaccu.github.io/blog/archives.html</loc>
-<lastmod>2021-07-28T23:35:16-00:00</lastmod>
+<lastmod>2021-07-29T09:59:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://yamaccu.github.io/blog/search.html</loc>
-<lastmod>2021-07-28T23:35:16-00:00</lastmod>
+<lastmod>2021-07-29T09:59:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -67,8 +67,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://yamaccu.github.io/blog/posts/2021/07/pelican-linktoimage/</loc>
+<lastmod>2021-07-29T09:58:23+09:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://yamaccu.github.io/blog/posts/2021/07/uiflow-customblock/</loc>
-<lastmod>2021-07-28T23:32:58+09:00</lastmod>
+<lastmod>2021-07-28T23:47:00+09:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -82,7 +89,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://yamaccu.github.io/blog/posts/2021/06/c-serialport/</loc>
-<lastmod>2021-07-28T23:34:29+09:00</lastmod>
+<lastmod>2021-07-28T23:45:26+09:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -138,7 +145,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://yamaccu.github.io/blog/category/c.html</loc>
-<lastmod>2021-07-28T23:34:29+09:19</lastmod>
+<lastmod>2021-07-28T23:45:26+09:19</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -159,7 +166,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://yamaccu.github.io/blog/category/m5stack.html</loc>
-<lastmod>2021-07-28T23:32:58+09:19</lastmod>
+<lastmod>2021-07-28T23:47:00+09:19</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -173,7 +180,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://yamaccu.github.io/blog/category/pelican.html</loc>
-<lastmod>2021-07-28T21:16:03+09:19</lastmod>
+<lastmod>2021-07-29T09:58:23+09:19</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -186,8 +193,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://yamaccu.github.io/blog/tag/pelican.html</loc>
+<lastmod>2021-07-29T09:58:23+09:19</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://yamaccu.github.io/blog/tag/m5stack.html</loc>
-<lastmod>2021-07-28T23:32:58+09:19</lastmod>
+<lastmod>2021-07-28T23:47:00+09:19</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -208,7 +222,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://yamaccu.github.io/blog/tag/c.html</loc>
-<lastmod>2021-07-28T23:34:29+09:19</lastmod>
+<lastmod>2021-07-28T23:45:26+09:19</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -235,13 +249,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://yamaccu.github.io/blog/tag/pelican.html</loc>
-<lastmod>2021-07-28T21:16:03+09:19</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>https://yamaccu.github.io/blog/tag/blog.html</loc>
 <lastmod>2021-07-26T00:00:00+09:19</lastmod>
 <changefreq>daily</changefreq>
@@ -257,7 +264,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://yamaccu.github.io/blog/author/yy.html</loc>
-<lastmod>2021-07-28T23:34:29+09:19</lastmod>
+<lastmod>2021-07-29T09:58:23+09:19</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

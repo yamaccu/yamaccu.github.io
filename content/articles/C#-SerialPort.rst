@@ -19,6 +19,7 @@ C#でシリアル通信する方法です。WPFで作成します。
   :height: 354px
   :width: 438px
   :align: left
+  :alt: C-SerialPort-1.png
 
 | 
 

@@ -48,6 +48,7 @@ importやdefなどはこのブロックで実行します。
   :height: 500px
   :width: 669px
   :align: left
+  :alt: UIFLOW-CustomBlock-1.PNG
 
 * Name：Blockmaker上だけの識別名なので何でも大丈夫です。
 * Type：Executeにします。
@@ -66,6 +67,7 @@ setupブロックで定義した自作関数を実行するブロックを作り
   :height: 500px
   :width: 669px
   :align: left
+  :alt: UIFLOW-CustomBlock-2.PNG
 
 * 基本はsetupブロックと同じです。
 * defで定義した関数をBlockCodeへ入力します。
