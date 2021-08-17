@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>yokuaru tech notes - Tags</title>
+  <title>yokuaru tech notes - Statiq&#x3067;&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x66F8;&#x304F;</title>
 
-  <link rel="canonical" href="/tags">
+  <link rel="canonical" href="/posts/20210817-statiq-getstarted">
 
       <link type="application/rss+xml" rel="alternate" href="/feed.rss" />
       <link type="application/atom+xml" rel="alternate" href="/feed.atom" />
@@ -17,9 +17,9 @@
   <meta name="msapplication-tooltip" content="yokuaru tech notes" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="yokuaru tech notes - Tags" />
+  <meta property="og:title" content="yokuaru tech notes - Statiq&#x3067;&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x66F8;&#x304F;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/tags" />
+  <meta property="og:url" content="/posts/20210817-statiq-getstarted" />
   
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -90,10 +90,19 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="site-heading">
+        <div class="post-heading">
           <h1>
-            Tags
+            Statiq&#x3067;&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x66F8;&#x304F;
           </h1>
+              <div class="meta">
+                Published on 2021&#x5E74;8&#x6708;17&#x65E5;
+                
+                <!--Updatedを追加-->
+
+              </div>
+                <div class="mt-3">
+                      <a href="/tags/statiq" class="badge badge-light"> statiq</a>
+                </div>
         </div>
       </div>
     </div>
@@ -104,10 +113,59 @@
   <div class="container"> 
     <div class="row">
       <div id="content" class="col-md-12">  
-                <a role="button" href="/tags/micropython" class="badge badge-light"> micropython (1)</a>
-        <a role="button" href="/tags/statiq" class="badge badge-light"> statiq (1)</a>
-        <a role="button" href="/tags/markdown" class="badge badge-light"> MarkDown (1)</a>
-        <a role="button" href="/tags/blog" class="badge badge-light"> blog (1)</a>
+        <p>Statiqでブログを書く方法をまとめています。</p>
+<br>
+<br>
+<h2 id="section">概要</h2>
+<p>StatiqはC#で書かれている静的サイトジェネレータで、MarkDownもしくはRazor構文で書かれたファイルをHTMLに変換してくれます。</p>
+<p>下記はStatiqで作成されているサイトのサンプルです（このサイトもStatiq製です。）</p>
+<ul>
+<li><a href="https://www.statiq.dev/">https://www.statiq.dev/</a></li>
+<li><a href="https://dotnetfoundation.org/">https://dotnetfoundation.org/</a></li>
+</ul>
+<p>まずは<a href="https://www.statiq.dev/web/">公式ページのQuick Start</a>を一度やることをお勧めします。</p>
+<br>
+<br>
+<h2 id="section-1">フォーマットのブログ形式への変更</h2>
+<p>初期状態では、ブログのフォーマットにはなっていません。<br />
+Statiqでブログを作成するには、テーマを使用します。<br />
+&quot;theme&quot;フォルダを作成して、中に<a href="https://github.com/statiqdev/CleanBlog">githubのCleanBlogリポジトリ</a>をクローンすると、自動で反映されてブログの形式になります。</p>
+<p>ブログデザインの変更は、theme-&gt;input内の.cshtmlファイルを修正します。</p>
+<br>
+<br>
+<h2 id="section-2">記事の書き方</h2>
+<p>MarkDownで記述します。<br />
+MarkDownの書き方は<a href="/posts/20210816-markdown-tips">こちら</a>にまとめてみました。</p>
+<p>記事を書いたら、&quot;input&quot;フォルダとその配下に&quot;posts&quot;フォルダを作成し、書いたmdファイルを保存します。</p>
+<br>
+<br>
+<h2 id="section-3">固定ページの書き方</h2>
+<p>プライバシーポリシーなどの固定ページを作成するには、inputフォルダ直下にMarkDownファイルを保存します。<br />
+そうすると、ページ上部のタブにリンクが追加されます。</p>
+<br>
+<br>
+<h2 id="html">HTMLへの変換</h2>
+<p>dotnet run を実行すると、outputフォルダにHTMLを出力してくれます。</p>
+<p>dotnet run -- preview を実行するとプレビューが見れます。<br />
+ブラウザでhttp://localhost:5080 にアクセスします。</p>
+<br>
+<p>フォルダ構成<br />
+├─ input ─┬─ () 　　 ←固定ページ　　<br />
+│  　 　　 　└ posts　　←ブログ記事<br />
+├─ theme<br />
+├─ output　　　　　　←HTML出力<br />
+└─ Program.cs</p>
+<br>
+<br>
+<h2 id="sitemap">sitemapの作成</h2>
+<p>dotnet runで、outputフォルダに自動出力されます。<br />
+google serach consoleへの登録をお忘れずに。</p>
+<br>
+<br>
+<h2 id="headscriptgoogle-analytics">HEADへのScript追加（google analyticsなど）</h2>
+<p>theme-&gt;input内の_head.cshtmlファイルで、&lt;HEAD&gt;へのスクリプト追加ができます。<br />
+google analyticsなどのスクリプトを追加したいときは、_head.cshtmlにスクリプトをコピペすると、全ページの&lt;HEAD&gt;に追加されます。</p>
+
 
       </div>
     </div>

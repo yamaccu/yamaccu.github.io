@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>yokuaru tech notes - Tags</title>
+  <title>yokuaru tech notes - &#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x3084;&#x308B;&#x3053;&#x3068;</title>
 
-  <link rel="canonical" href="/tags">
+  <link rel="canonical" href="/posts/20210815-blog-setting">
 
       <link type="application/rss+xml" rel="alternate" href="/feed.rss" />
       <link type="application/atom+xml" rel="alternate" href="/feed.atom" />
@@ -17,9 +17,9 @@
   <meta name="msapplication-tooltip" content="yokuaru tech notes" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="yokuaru tech notes - Tags" />
+  <meta property="og:title" content="yokuaru tech notes - &#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x3084;&#x308B;&#x3053;&#x3068;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/tags" />
+  <meta property="og:url" content="/posts/20210815-blog-setting" />
   
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -90,10 +90,19 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="site-heading">
+        <div class="post-heading">
           <h1>
-            Tags
+            &#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x3084;&#x308B;&#x3053;&#x3068;
           </h1>
+              <div class="meta">
+                Published on 2021&#x5E74;8&#x6708;15&#x65E5;
+                
+                <!--Updatedを追加-->
+
+              </div>
+                <div class="mt-3">
+                      <a href="/tags/blog" class="badge badge-light"> blog</a>
+                </div>
         </div>
       </div>
     </div>
@@ -104,10 +113,40 @@
   <div class="container"> 
     <div class="row">
       <div id="content" class="col-md-12">  
-                <a role="button" href="/tags/micropython" class="badge badge-light"> micropython (1)</a>
-        <a role="button" href="/tags/statiq" class="badge badge-light"> statiq (1)</a>
-        <a role="button" href="/tags/markdown" class="badge badge-light"> MarkDown (1)</a>
-        <a role="button" href="/tags/blog" class="badge badge-light"> blog (1)</a>
+        <p>ブログを作ったら、最初にやることをまとめています。</p>
+<br>
+<br>
+<h2 id="google-analytics">Google Analyticsの登録</h2>
+<p>HPへのアクセス状況が確認できるようになります。<br />
+登録が完了したら、トラッキングIDをHTMLの&lt;HEAD&gt;内に追記する必要があります。</p>
+<p>参考　<a href="https://blog.siteanatomy.com/register-google-analytics/">Google Analytics登録方法</a></p>
+<br>
+<br>
+<h2 id="sitemap">sitemapの作成</h2>
+<p>Google検索にページをヒットさせ易くするためのファイルです。<br />
+作成後、Google Search Consoleに登録します。</p>
+<p>小規模HPには不要のようですが、一応作成しておくとよいです。<br />
+静的サイトジェネレータを使用している場合は、自動で出力してくれるものが多いようです。</p>
+<p>参考　<a href="https://ferret-plus.com/curriculums/3580">サイトマップ作成方法</a></p>
+<br>
+<br>
+<h2 id="robots.txt">robots.txtの作成</h2>
+<p>sitemapへのリンクファイルです。<br />
+rootディレクトリに、「robots.txt」という名前のファイルを作成して、中身を以下のように記述します。</p>
+<pre><code>User-agent: *
+    Disallow:
+    
+    Sitemap: https://xxxxxxxxx/sitemap.xml
+</code></pre>
+<br>
+<br>
+<h2 id="google-search-console-sitemap">Google Search Consoleの登録 / sitemapの登録</h2>
+<p>HPへの流入ルート、検索順位などSEO関連情報が確認できます。</p>
+<p>登録完了したら、サイトマップも登録します。<br />
+登録したては「サイトマップを読み込めませんでした」とエラーが出ますが、しばらく放置しておくと読み込んでくれるようです。</p>
+<p>⇒　3週間後に確認したら、読み込んでいました。</p>
+<p>参考　<a href="http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html">Google Serach Console登録方法</a></p>
+
 
       </div>
     </div>
