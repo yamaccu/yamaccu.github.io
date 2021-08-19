@@ -71,13 +71,13 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/posts">Posts</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/tags">Tags</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
             </li>
 </ul>
     </div>
@@ -144,6 +144,15 @@ MarkDownの書き方は<a href="/posts/20210816-markdown-tips">こちら</a>に�
 そうすると、ページ上部のタブにリンクが追加されます。</p>
 <br>
 <br>
+<h2 id="section-4">設定</h2>
+<p>設定は設定ファイルで変えることができます。<br />
+theme-&gt;settings.ymlが設定ファイルです。</p>
+<p>設定できる項目は、<a href="https://www.statiq.dev/web/configuration/settings">公式HP</a>を参照ください。<br />
+設定例は、<a href="https://github.com/statiqdev/statiqdev.github.io/blob/develop/settings.yml">こちら</a>にあります。</p>
+<p>&quot;Host&quot;と&quot;LinksUseHttps&quot;を設定しないとSitemapが正しく出力されませんので、設定をおすすめします。<br />
+（ここでちょっとはまりました）</p>
+<br>
+<br>
 <h2 id="html">HTMLへの変換</h2>
 <p>dotnet run を実行すると、outputフォルダにHTMLを出力してくれます。</p>
 <p>dotnet run -- preview を実行するとプレビューが見れます。<br />
@@ -154,7 +163,8 @@ MarkDownの書き方は<a href="/posts/20210816-markdown-tips">こちら</a>に�
 │  　 　　 　└ posts　　←ブログ記事<br />
 ├─ theme<br />
 ├─ output　　　　　　←HTML出力<br />
-└─ Program.cs</p>
+├─ Program.cs<br />
+└─ xxxx.csproj</p>
 <br>
 <br>
 <h2 id="sitemap">sitemapの作成</h2>

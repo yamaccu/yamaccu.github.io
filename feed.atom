@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-08-19T02:47:50Z</updated>
+	<updated>2021-08-19T03:22:14Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210818-micropython-repl</id>
 		<title>micropythonにreplでアクセス</title>
@@ -96,6 +96,15 @@ MarkDownの書き方は&lt;a href="https://yamaccu.github.io/posts/20210816-mark
 そうすると、ページ上部のタブにリンクが追加されます。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
+&lt;h2 id="section-4"&gt;設定&lt;/h2&gt;
+&lt;p&gt;設定は設定ファイルで変えることができます。&lt;br&gt;
+theme-&amp;gt;settings.ymlが設定ファイルです。&lt;/p&gt;
+&lt;p&gt;設定できる項目は、&lt;a href="https://www.statiq.dev/web/configuration/settings"&gt;公式HP&lt;/a&gt;を参照ください。&lt;br&gt;
+設定例は、&lt;a href="https://github.com/statiqdev/statiqdev.github.io/blob/develop/settings.yml"&gt;こちら&lt;/a&gt;にあります。&lt;/p&gt;
+&lt;p&gt;"Host"と"LinksUseHttps"を設定しないとSitemapが正しく出力されませんので、設定をおすすめします。&lt;br&gt;
+（ここでちょっとはまりました）&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
 &lt;h2 id="html"&gt;HTMLへの変換&lt;/h2&gt;
 &lt;p&gt;dotnet run を実行すると、outputフォルダにHTMLを出力してくれます。&lt;/p&gt;
 &lt;p&gt;dotnet run -- preview を実行するとプレビューが見れます。&lt;br&gt;
@@ -106,7 +115,8 @@ MarkDownの書き方は&lt;a href="https://yamaccu.github.io/posts/20210816-mark
 │  　 　　 　└ posts　　←ブログ記事&lt;br&gt;
 ├─ theme&lt;br&gt;
 ├─ output　　　　　　←HTML出力&lt;br&gt;
-└─ Program.cs&lt;/p&gt;
+├─ Program.cs&lt;br&gt;
+└─ xxxx.csproj&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="sitemap"&gt;sitemapの作成&lt;/h2&gt;
