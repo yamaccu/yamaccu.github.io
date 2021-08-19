@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-08-19T05:02:25Z</updated>
+	<updated>2021-08-19T06:20:49Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210818-micropython-repl</id>
 		<title>micropythonにreplでアクセス</title>
@@ -146,7 +146,7 @@ google analyticsなどのスクリプトを追加したいときは、_head.csht
 		<link href="https://yamaccu.github.io/posts/20210816-markdown-tips" />
 		<updated>2021-08-17T00:00:00Z</updated>
 		<content>&lt;p&gt;MarkDown記法のメモです。&lt;br /&gt;
-書きかけなのですが、調べたものをどんどん追記していきます。&lt;/p&gt;
+（書きかけです、調べたものを追記していきます。）&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="section"&gt;エディタ&lt;/h2&gt;
 &lt;p&gt;VSCodeがお勧めです。
@@ -186,7 +186,7 @@ codeblock
 &lt;h2 id="section-7"&gt;画像貼り付け&lt;/h2&gt;
 </content>
 		<summary>&lt;p&gt;MarkDown記法のメモです。&lt;br&gt;
-書きかけなのですが、調べたものをどんどん追記していきます。&lt;/p&gt;</summary>
+（書きかけです、調べたものを追記していきます。）&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210815-blog-setting</id>

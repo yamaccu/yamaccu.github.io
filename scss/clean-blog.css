@@ -51,7 +51,7 @@ header.masthead { margin-bottom: 50px; background: no-repeat center center; back
 
 header.masthead .overlay { position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-color: green; /*$gray-900;*/ /*opacity: 0.5;*/ }
 
-header.masthead .page-heading, header.masthead .post-heading, header.masthead .site-heading { padding: 50px 0 150px; /*200px 0 150px;*/ color: white; }
+header.masthead .page-heading, header.masthead .post-heading, header.masthead .site-heading { padding: 50px 0 50px; /*200px 0 150px;*/ color: white; }
 
 @media only screen and (min-width: 768px) { header.masthead .page-heading, header.masthead .post-heading, header.masthead .site-heading { padding: 50px 0; /*200px 0;*/ } }
 
@@ -193,11 +193,6 @@ p { margin: 0 0 1rem 0; }
 
 .col-xs-height { display: table-cell; float: none; }
 
-/* カスタマイズ */
-.col-md-6 { flex: 0 0 80%; max-width: 80%; }
-
-h2 { background-color: whitesmoke; padding: 10px; }
-
 @media (min-width: 768px) { .container-sm-height { display: table; padding-left: 0px; padding-right: 0px; }
   .row-sm-height { display: table-row; }
   .col-sm-height { display: table-cell; float: none; } }
@@ -209,3 +204,14 @@ h2 { background-color: whitesmoke; padding: 10px; }
 @media (min-width: 1200px) { .container-lg-height { display: table; padding-left: 0px; padding-right: 0px; }
   .row-lg-height { display: table-row; }
   .col-lg-height { display: table-cell; float: none; } }
+
+/* カスタマイズ */
+.col-md-6 { flex: 0 0 auto; max-width: 100%; }
+
+h2 { background-color: whitesmoke; padding: 10px; }
+
+table th, table td { border-collapse: separate; border: solid 1px gainsboro; padding: 4px; }
+
+table th { color: white; background-color: darkseagreen; }
+
+table tr:nth-child(odd) td { background: snow; }

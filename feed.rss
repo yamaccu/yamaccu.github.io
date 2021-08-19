@@ -5,8 +5,8 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Thu, 19 Aug 2021 05:02:25 GMT</pubDate>
-		<lastBuildDate>Thu, 19 Aug 2021 05:02:25 GMT</lastBuildDate>
+		<pubDate>Thu, 19 Aug 2021 06:20:49 GMT</pubDate>
+		<lastBuildDate>Thu, 19 Aug 2021 06:20:49 GMT</lastBuildDate>
 		<item>
 			<title>micropythonにreplでアクセス</title>
 			<link>https://yamaccu.github.io/posts/20210818-micropython-repl</link>
@@ -148,11 +148,11 @@ google analyticsなどのスクリプトを追加したいときは、_head.csht
 			<title>MarkDownの書き方</title>
 			<link>https://yamaccu.github.io/posts/20210816-markdown-tips</link>
 			<description>&lt;p&gt;MarkDown記法のメモです。&lt;br&gt;
-書きかけなのですが、調べたものをどんどん追記していきます。&lt;/p&gt;</description>
+（書きかけです、調べたものを追記していきます。）&lt;/p&gt;</description>
 			<guid>https://yamaccu.github.io/posts/20210816-markdown-tips</guid>
 			<pubDate>Tue, 17 Aug 2021 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;MarkDown記法のメモです。&lt;br /&gt;
-書きかけなのですが、調べたものをどんどん追記していきます。&lt;/p&gt;
+（書きかけです、調べたものを追記していきます。）&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="section"&gt;エディタ&lt;/h2&gt;
 &lt;p&gt;VSCodeがお勧めです。
