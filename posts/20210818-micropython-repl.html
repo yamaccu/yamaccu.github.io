@@ -116,46 +116,56 @@
         <p>micropythonにreplでアクセスする方法をまとめています。</p>
 <br>
 <h2 id="repl">replについて</h2>
-<p>repl：「Read（読み取り）、Eval（評価）、Print（印字）、Loop（ループ）」の頭字語。<br />
-一つずつコマンドを実行できる仕組みで、コマンドプロンプトのようなイメージです。<br />
+<p>repl：「Read（読み取り）、Eval（評価）、Print（印字）、Loop（ループ）」の頭字語です。</p>
+<p>micropython上でコマンドを実行できる仕組みで、コマンドプロンプトのようなイメージです。<br />
 コードをテストするときに、コマンドを一つずつ実行できるので便利です。</p>
 <br>
 <br>
 <h2 id="section">アクセス方法</h2>
 <p>デバイスのシリアルポートに、シリアル通信アプリ（teratermなど）で接続します。<br />
-通信速度は115200bps。<br />
+通信速度は115200bpsです。<br />
 CTR+Cを二回で、mainで実行している処理を中止してreplで操作可能になります。</p>
 <br>
 <br> 
 <h2 id="section-1">コマンド</h2>
-<pre><code class="language-python">help()
-</code></pre>
-<p>ヘルプを表示します。</p>
-<br>
-<pre><code class="language-python">help('modules')
-</code></pre>
-<p>使用可能なライブラリを表示します。</p>
-<br> 
-<pre><code class="language-python">help(obj)
-</code></pre>
-<p>調べたいobjectの説明を表示します</p>
-<br>
-<pre><code class="language-python">入力途中にTABキー
-</code></pre>
-<p>入力候補の表示をしてくれます。<br />
-例えば、machine. でTabを押すとmachineの配下のクラスが表示されます。</p>
-<br>
-<pre><code class="language-python">dir()
-</code></pre>
-<p>インポート済みのファイルの情報を表示します。</p>
-<br>
-<pre><code class="language-python">sys.path.append('ディレクトリパス')
-</code></pre>
-<p>import時に探索されるパスを追加します。</p>
-<br>
-<pre><code class="language-python">os.listdir()
-</code></pre>
-<p>カレントディレクトリのファイルを表示します。</p>
+<table>
+<thead>
+<tr>
+<th>コマンド</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>help()</td>
+<td>ヘルプを表示</td>
+</tr>
+<tr>
+<td>help('modules')</td>
+<td>使用可能なライブラリを表示</td>
+</tr>
+<tr>
+<td>help(obj)</td>
+<td>調べたいobjectの説明を表示</td>
+</tr>
+<tr>
+<td>dir()</td>
+<td>import済みのファイル情報の表示</td>
+</tr>
+<tr>
+<td>sys.path.append('パス')</td>
+<td>import時に探索されるパスを追加</td>
+</tr>
+<tr>
+<td>os.listdir()</td>
+<td>カレントディレクトリのファイルを表示</td>
+</tr>
+<tr>
+<td>tabキー</td>
+<td>入力候補の表示</td>
+</tr>
+</tbody>
+</table>
 <br>
 <br>
 <h2 id="url">参考URL</h2>
