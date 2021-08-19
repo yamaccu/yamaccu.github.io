@@ -5,8 +5,8 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Thu, 19 Aug 2021 06:20:49 GMT</pubDate>
-		<lastBuildDate>Thu, 19 Aug 2021 06:20:49 GMT</lastBuildDate>
+		<pubDate>Thu, 19 Aug 2021 06:39:58 GMT</pubDate>
+		<lastBuildDate>Thu, 19 Aug 2021 06:39:58 GMT</lastBuildDate>
 		<item>
 			<title>micropythonにreplでアクセス</title>
 			<link>https://yamaccu.github.io/posts/20210818-micropython-repl</link>
@@ -147,12 +147,10 @@ google analyticsなどのスクリプトを追加したいときは、_head.csht
 		<item>
 			<title>MarkDownの書き方</title>
 			<link>https://yamaccu.github.io/posts/20210816-markdown-tips</link>
-			<description>&lt;p&gt;MarkDown記法のメモです。&lt;br&gt;
-（書きかけです、調べたものを追記していきます。）&lt;/p&gt;</description>
+			<description>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;</description>
 			<guid>https://yamaccu.github.io/posts/20210816-markdown-tips</guid>
 			<pubDate>Tue, 17 Aug 2021 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;MarkDown記法のメモです。&lt;br /&gt;
-（書きかけです、調べたものを追記していきます。）&lt;/p&gt;
+			<content:encoded>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="section"&gt;エディタ&lt;/h2&gt;
 &lt;p&gt;VSCodeがお勧めです。
@@ -189,6 +187,7 @@ codeblock
 |  TD  |  TD  |
 |  TD  |  TD  |
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以下書きかけ&lt;/p&gt;
 &lt;h2 id="section-7"&gt;画像貼り付け&lt;/h2&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
