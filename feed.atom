@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<id>/</id>
+	<id>https://yamaccu.github.io/</id>
 	<title />
-	<link rel="self" href="/" />
+	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-08-18T15:04:11Z</updated>
+	<updated>2021-08-19T02:47:50Z</updated>
 	<entry>
-		<id>/posts/20210818-micropython-repl</id>
+		<id>https://yamaccu.github.io/posts/20210818-micropython-repl</id>
 		<title>micropythonにreplでアクセス</title>
-		<link href="/posts/20210818-micropython-repl" />
+		<link href="https://yamaccu.github.io/posts/20210818-micropython-repl" />
 		<updated>2021-08-18T00:00:00Z</updated>
 		<content>&lt;p&gt;micropythonにreplでアクセスする方法をまとめています。&lt;/p&gt;
 &lt;br&gt;
@@ -61,9 +61,9 @@ CTR+Cを二回で、mainで実行している処理を中止してreplで操作�
 		<summary>&lt;p&gt;micropythonにreplでアクセスする方法をまとめています。&lt;/p&gt;</summary>
 	</entry>
 	<entry>
-		<id>/posts/20210817-statiq-getstarted</id>
+		<id>https://yamaccu.github.io/posts/20210817-statiq-getstarted</id>
 		<title>Statiqでブログを書く</title>
-		<link href="/posts/20210817-statiq-getstarted" />
+		<link href="https://yamaccu.github.io/posts/20210817-statiq-getstarted" />
 		<updated>2021-08-17T00:00:00Z</updated>
 		<content>&lt;p&gt;Statiqでブログを書く方法をまとめています。&lt;/p&gt;
 &lt;br&gt;
@@ -87,7 +87,7 @@ Statiqでブログを作成するには、テーマを使用します。&lt;br&g
 &lt;br&gt;
 &lt;h2 id="section-2"&gt;記事の書き方&lt;/h2&gt;
 &lt;p&gt;MarkDownで記述します。&lt;br&gt;
-MarkDownの書き方は&lt;a href="/posts/20210816-markdown-tips"&gt;こちら&lt;/a&gt;にまとめてみました。&lt;/p&gt;
+MarkDownの書き方は&lt;a href="https://yamaccu.github.io/posts/20210816-markdown-tips"&gt;こちら&lt;/a&gt;にまとめてみました。&lt;/p&gt;
 &lt;p&gt;記事を書いたら、"input"フォルダとその配下に"posts"フォルダを作成し、書いたmdファイルを保存します。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
@@ -121,9 +121,9 @@ google analyticsなどのスクリプトを追加したいときは、_head.csht
 		<summary>&lt;p&gt;Statiqでブログを書く方法をまとめています。&lt;/p&gt;</summary>
 	</entry>
 	<entry>
-		<id>/posts/20210816-markdown-tips</id>
+		<id>https://yamaccu.github.io/posts/20210816-markdown-tips</id>
 		<title>MarkDownの書き方</title>
-		<link href="/posts/20210816-markdown-tips" />
+		<link href="https://yamaccu.github.io/posts/20210816-markdown-tips" />
 		<updated>2021-08-17T00:00:00Z</updated>
 		<content>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;
 &lt;br&gt;
@@ -161,9 +161,9 @@ codeblock
 		<summary>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;</summary>
 	</entry>
 	<entry>
-		<id>/posts/20210815-blog-setting</id>
+		<id>https://yamaccu.github.io/posts/20210815-blog-setting</id>
 		<title>ブログを作ったらやること</title>
-		<link href="/posts/20210815-blog-setting" />
+		<link href="https://yamaccu.github.io/posts/20210815-blog-setting" />
 		<updated>2021-08-15T00:00:00Z</updated>
 		<content>&lt;p&gt;ブログを作ったら、最初にやることをまとめています。&lt;/p&gt;
 &lt;br&gt;

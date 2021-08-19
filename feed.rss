@@ -2,16 +2,16 @@
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
 	<channel>
 		<title />
-		<link>/</link>
+		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Wed, 18 Aug 2021 15:04:11 GMT</pubDate>
-		<lastBuildDate>Wed, 18 Aug 2021 15:04:11 GMT</lastBuildDate>
+		<pubDate>Thu, 19 Aug 2021 02:47:50 GMT</pubDate>
+		<lastBuildDate>Thu, 19 Aug 2021 02:47:50 GMT</lastBuildDate>
 		<item>
 			<title>micropythonにreplでアクセス</title>
-			<link>/posts/20210818-micropython-repl</link>
+			<link>https://yamaccu.github.io/posts/20210818-micropython-repl</link>
 			<description>&lt;p&gt;micropythonにreplでアクセスする方法をまとめています。&lt;/p&gt;</description>
-			<guid isPermaLink="false">/posts/20210818-micropython-repl</guid>
+			<guid>https://yamaccu.github.io/posts/20210818-micropython-repl</guid>
 			<pubDate>Wed, 18 Aug 2021 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;micropythonにreplでアクセスする方法をまとめています。&lt;/p&gt;
 &lt;br&gt;
@@ -65,9 +65,9 @@ CTR+Cを二回で、mainで実行している処理を中止してreplで操作�
 		</item>
 		<item>
 			<title>Statiqでブログを書く</title>
-			<link>/posts/20210817-statiq-getstarted</link>
+			<link>https://yamaccu.github.io/posts/20210817-statiq-getstarted</link>
 			<description>&lt;p&gt;Statiqでブログを書く方法をまとめています。&lt;/p&gt;</description>
-			<guid isPermaLink="false">/posts/20210817-statiq-getstarted</guid>
+			<guid>https://yamaccu.github.io/posts/20210817-statiq-getstarted</guid>
 			<pubDate>Tue, 17 Aug 2021 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;Statiqでブログを書く方法をまとめています。&lt;/p&gt;
 &lt;br&gt;
@@ -91,7 +91,7 @@ Statiqでブログを作成するには、テーマを使用します。&lt;br&g
 &lt;br&gt;
 &lt;h2 id="section-2"&gt;記事の書き方&lt;/h2&gt;
 &lt;p&gt;MarkDownで記述します。&lt;br&gt;
-MarkDownの書き方は&lt;a href="/posts/20210816-markdown-tips"&gt;こちら&lt;/a&gt;にまとめてみました。&lt;/p&gt;
+MarkDownの書き方は&lt;a href="https://yamaccu.github.io/posts/20210816-markdown-tips"&gt;こちら&lt;/a&gt;にまとめてみました。&lt;/p&gt;
 &lt;p&gt;記事を書いたら、"input"フォルダとその配下に"posts"フォルダを作成し、書いたmdファイルを保存します。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
@@ -126,9 +126,9 @@ google analyticsなどのスクリプトを追加したいときは、_head.csht
 		</item>
 		<item>
 			<title>MarkDownの書き方</title>
-			<link>/posts/20210816-markdown-tips</link>
+			<link>https://yamaccu.github.io/posts/20210816-markdown-tips</link>
 			<description>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;</description>
-			<guid isPermaLink="false">/posts/20210816-markdown-tips</guid>
+			<guid>https://yamaccu.github.io/posts/20210816-markdown-tips</guid>
 			<pubDate>Tue, 17 Aug 2021 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;
 &lt;br&gt;
@@ -167,9 +167,9 @@ codeblock
 		</item>
 		<item>
 			<title>ブログを作ったらやること</title>
-			<link>/posts/20210815-blog-setting</link>
+			<link>https://yamaccu.github.io/posts/20210815-blog-setting</link>
 			<description>&lt;p&gt;ブログを作ったら、最初にやることをまとめています。&lt;/p&gt;</description>
-			<guid isPermaLink="false">/posts/20210815-blog-setting</guid>
+			<guid>https://yamaccu.github.io/posts/20210815-blog-setting</guid>
 			<pubDate>Sun, 15 Aug 2021 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;ブログを作ったら、最初にやることをまとめています。&lt;/p&gt;
 &lt;br&gt;
