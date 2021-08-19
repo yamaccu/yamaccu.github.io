@@ -5,8 +5,69 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Thu, 19 Aug 2021 06:39:58 GMT</pubDate>
-		<lastBuildDate>Thu, 19 Aug 2021 06:39:58 GMT</lastBuildDate>
+		<pubDate>Thu, 19 Aug 2021 13:55:08 GMT</pubDate>
+		<lastBuildDate>Thu, 19 Aug 2021 13:55:08 GMT</lastBuildDate>
+		<item>
+			<title>Github pushまでの設定</title>
+			<link>https://yamaccu.github.io/posts/20210819-git-push</link>
+			<description>&lt;p&gt;githubのレポジトリにpushするまでの設定をまとめています。&lt;/p&gt;</description>
+			<guid>https://yamaccu.github.io/posts/20210819-git-push</guid>
+			<pubDate>Thu, 19 Aug 2021 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;githubのレポジトリにpushするまでの設定をまとめています。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;認証&lt;/h2&gt;
+&lt;p&gt;githubの認証には、&amp;quot;HTTP&amp;quot;と&amp;quot;SSH&amp;quot;の2種類あります。
+ここでは、SSHの方法を記載します。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-1"&gt;準備&lt;/h2&gt;
+&lt;p&gt;以下が済んでいる必要があります。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;gitのインストール&lt;/li&gt;
+&lt;li&gt;githubへのサインアップ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="ssh"&gt;端末のSSH公開鍵の設定&lt;/h2&gt;
+&lt;p&gt;git bushでSSH公開鍵を生成します。
+下記のコマンドで生成できます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh-keygen -t rsa
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;githubのページにサインインし、Setting =&amp;gt; SSH and GPG keys で生成したSSH鍵を登録します。&lt;/p&gt;
+&lt;img src="../img/20210819-Git-push-1.png" width="450px"&gt;
+&lt;br&gt;
+&lt;br&gt;
+ 
+&lt;h2 id="section-2"&gt;ローカル環境設定&lt;/h2&gt;
+&lt;p&gt;git bushで下記のコマンドを実行して、ローカル環境設定を行います。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git config --global user.name &amp;quot;ユーザー名&amp;quot;
+git config --global user.email &amp;quot;メールアドレス&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ユーザー名、メールアドレスはgithubの登録情報と同じものです。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="github"&gt;githubのレポジトリをクローン&lt;/h2&gt;
+&lt;p&gt;githubのページでレポジトリ作成して、作成したレポジトリをローカル環境にクローンします。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone &amp;lt;アドレス&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;このとき、アドレスはSSHのものにします。&lt;/p&gt;
+&lt;img src="../img/20210819-Git-push-2.png" width="450px"&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="commitpush"&gt;commit＆push&lt;/h2&gt;
+&lt;p&gt;ファイルの追加、修正をしたら、以下のコマンドでcommit＆pushします。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git add &amp;lt;ファイル名&amp;gt;
+git commit -m &amp;quot;コメント&amp;quot;
+git push (-f) origin main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;※-fは強制プッシュなので取り扱い注意です&lt;/p&gt;
+&lt;p&gt;※originの設定は、クローン時に自動で設定されます。&lt;/p&gt;
+&lt;p&gt;※2020/10から、デフォルトブランチがmaster ⇒ main に変わりました。&lt;/p&gt;
+</content:encoded>
+			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
+		</item>
 		<item>
 			<title>micropythonにreplでアクセス</title>
 			<link>https://yamaccu.github.io/posts/20210818-micropython-repl</link>
@@ -96,7 +157,7 @@ CTR+Cを二回で、mainで実行している処理を中止してreplで操作�
 &lt;p&gt;初期状態では、ブログのフォーマットにはなっていません。&lt;br&gt;
 Statiqでブログを作成するには、テーマを使用します。&lt;br&gt;
 "theme"フォルダを作成して、中に&lt;a href="https://github.com/statiqdev/CleanBlog"&gt;githubのCleanBlogリポジトリ&lt;/a&gt;をクローンすると、自動で反映されてブログの形式になります。&lt;/p&gt;
-&lt;p&gt;ブログデザインの変更は、theme-&amp;gt;input内の.cshtmlファイルを修正します。&lt;/p&gt;
+&lt;p&gt;ブログデザインの変更は、theme→input内の.cshtmlファイルを修正します。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-2"&gt;記事の書き方&lt;/h2&gt;
@@ -112,7 +173,7 @@ MarkDownの書き方は&lt;a href="https://yamaccu.github.io/posts/20210816-mark
 &lt;br&gt;
 &lt;h2 id="section-4"&gt;設定&lt;/h2&gt;
 &lt;p&gt;設定は設定ファイルで変えることができます。&lt;br&gt;
-theme-&amp;gt;settings.ymlが設定ファイルです。&lt;/p&gt;
+theme→settings.ymlが設定ファイルです。&lt;/p&gt;
 &lt;p&gt;設定できる項目は、&lt;a href="https://www.statiq.dev/web/configuration/settings"&gt;公式HP&lt;/a&gt;を参照ください。&lt;br&gt;
 設定例は、&lt;a href="https://github.com/statiqdev/statiqdev.github.io/blob/develop/settings.yml"&gt;こちら&lt;/a&gt;にあります。&lt;/p&gt;
 &lt;p&gt;"Host"と"LinksUseHttps"を設定しないとSitemapが正しく出力されませんので、設定をおすすめします。&lt;br&gt;
@@ -139,7 +200,7 @@ google serach consoleへの登録をお忘れずに。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="headscriptgoogle-analytics"&gt;HEADへのScript追加（google analyticsなど）&lt;/h2&gt;
-&lt;p&gt;theme-&amp;gt;input内の_head.cshtmlファイルで、&amp;lt;HEAD&amp;gt;へのスクリプト追加ができます。&lt;br&gt;
+&lt;p&gt;theme→input内の_head.cshtmlファイルで、&amp;lt;HEAD&amp;gt;へのスクリプト追加ができます。&lt;br&gt;
 google analyticsなどのスクリプトを追加したいときは、_head.cshtmlにスクリプトをコピペすると、全ページの&amp;lt;HEAD&amp;gt;に追加されます。&lt;/p&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
@@ -187,8 +248,9 @@ codeblock
 |  TD  |  TD  |
 |  TD  |  TD  |
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;以下書きかけ&lt;/p&gt;
 &lt;h2 id="section-7"&gt;画像貼り付け&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;xxxxx/xxxxx.png&amp;quot; width=&amp;quot;xxxpx&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
 		</item>
