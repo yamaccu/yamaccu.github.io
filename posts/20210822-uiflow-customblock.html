@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>yokuaru tech notes - statiq</title>
+  <title>yokuaru tech notes - M5Stack UIFLOW&#x3067;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x4F5C;&#x308B;</title>
 
-  <link rel="canonical" href="https://yamaccu.github.io/tags/statiq">
+  <link rel="canonical" href="https://yamaccu.github.io/posts/20210822-uiflow-customblock">
 
       <link type="application/rss+xml" rel="alternate" href="/feed.rss" />
       <link type="application/atom+xml" rel="alternate" href="/feed.atom" />
@@ -17,9 +17,9 @@
   <meta name="msapplication-tooltip" content="yokuaru tech notes" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="yokuaru tech notes - statiq" />
+  <meta property="og:title" content="yokuaru tech notes - M5Stack UIFLOW&#x3067;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x4F5C;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tags/statiq" />
+  <meta property="og:url" content="https://yamaccu.github.io/posts/20210822-uiflow-customblock" />
   
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -92,7 +92,7 @@
       <div class="col-md-12">
         <div class="site-heading">
           <h1>
-            statiq
+            M5Stack UIFLOW&#x3067;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x4F5C;&#x308B;
           </h1>
         </div>
       </div>
@@ -104,31 +104,82 @@
   <div class="container"> 
     <div class="row">
       <div id="content" class="col-md-12">  
-            <div class="container-sm-height">
-        <div class="row row-sm-height">
-            <div class="col-md-6 right-border col-sm-height">
-                
-
-
-<div class="post-preview">
-    <h2 class="post-title"><a href="/posts/20210817-statiq-getstarted">Statiq&#x3067;&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x66F8;&#x304F;</a></h2>
-    <p class="post-meta">Published on 2021&#x5E74;8&#x6708;17&#x65E5;</p>                
-<p>Statiqでブログを書く方法をまとめています。</p>        <p class="small"><a href="/posts/20210817-statiq-getstarted">Read more...</a></p>
-    <br>
-</div>
-
-            </div>
-            <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
-                    <a href="/tags/htmlcss" class="badge badge-light"> HTML/CSS (1)</a>
-                    <a href="/tags/python" class="badge badge-light"> python (1)</a>
-                    <a href="/tags/github" class="badge badge-light"> github (1)</a>
-                    <a href="/tags/micropython" class="badge badge-light"> micropython (1)</a>
-                    <a href="/tags/statiq" class="badge badge-dark"> statiq (1)</a>
-                    <a href="/tags/markdown" class="badge badge-light"> MarkDown (1)</a>
-                    <a href="/tags/blog" class="badge badge-light"> blog (1)</a>
-            </div>
-        </div>
-    </div>
+        <p>M5Stack向けのVisual Programming「UIFLOW」で、カスタムブロックを作成する方法をまとめました。</p>
+<br>
+<h2 id="section">概要</h2>
+<img src="../img/20210822-UIFLOW-CustomBlock-1.png" width="60px">
+← M5Stackはこんなやつ。
+<br>
+<br>
+<p>M5Stackとは、ESP32を使用しwifi/LCD/各種センサなどを一体化させた、使いやすいマイコンボードです。<br />
+LCDが標準装備なのが一番の特徴かと思います。<br />
+センシングした値を表示させたり、顔をつけてみたりと、いろいろ遊べます。</p>
+<p>参考　<a href="https://m5stack.com/">公式HP</a></p>
+<br>
+<p>UIFLOWとは、M5Stackのプログラミング環境の一つで、スクラッチのようにビジュアルプログラミングでM5Stackのコードが書ける優れものです。<br />
+更にwebベースなので、お手軽にプログラミングができます。<br />
+大本はmicropythonで動いています。<br />
+使い方、プログラミングの仕方などは下記のHPを参照ください。</p>
+<p>参考1　<a href="https://m5stack.github.io/UIFlow_doc/ja/">公式HP</a><br />
+参考2　<a href="https://flow.m5stack.com/">プログラミングページ</a></p>
+<br>
+<p>UIFLOWでは、事前に用意されたブロックを組み合わせてプログラミングしますので、ブロックに用意されていない機能は、自分でカスタムブロックを作る必要があります。</p>
+<p>以降、UIFLOWでカスタムブロックを作成する方法を記載しています。</p>
+<br>
+<br>
+<h2 id="section-1">カスタムブロックのサンプル</h2>
+<p><a href="https://github.com/yamaccu/UIFLOW-wavplayer">github</a>にWAVファイルを再生するためのカスタムブロックをあげていますので、よろしければ参考にしてください。</p>
+<br>
+<br>
+<h2 id="section-2">カスタムブロックの作成手順</h2>
+<p><a href="http://block-maker.m5stack.com/">こちらのカスタムブロック作成ページ</a>から作成します。</p>
+<p>作成手順は</p>
+<ol>
+<li>Pythonでプログラムを書く</li>
+<li>初期設定用のブロックを作る</li>
+<li>関数を実行するブロックを作る</li>
+</ol>
+<br>
+<br>
+<h2 id="python">Pythonでプログラムを書く</h2>
+<p>まずはブロック化したい機能のプログラムをpythonで書きます。<br />
+処理は関数にして呼び出しできるようにしておきます。</p>
+<br>
+<br>
+<h2 id="section-3">初期設定用のブロックを作る</h2>
+<p>import、defを行うブロックを作成します。<br />
+このブロックは最初のsetupで実行するものです。</p>
+<br>
+<img src="../img/20210822-UIFLOW-CustomBlock-2.png" Style="width:100%;max-width:500px;">  
+<br>
+<br>
+<ol>
+<li>NameSpace：Blockmaker上だけの識別名なので何でもOK</li>
+<li>BlockColor：ブロックの色を設定</li>
+<li>Add Block/Remove Block：ブロックの追加・削除</li>
+<li>Type：Executeにする</li>
+<li>Parameter：まずブロック名をtype:Labelで設定する<br />
+変数があれば、type:String/Number/Variableで設定する</li>
+<li>BlockCode：作ったプログラムをコピペ</li>
+</ol>
+<br>
+<br>
+<h2 id="section-4">関数を実行するブロックを作る</h2>
+<p>defで定義した関数を実行するブロックを作ります。</p>
+<ul>
+<li>基本はsetupブロックと同じです。</li>
+<li>defで定義した関数をBlockCodeへ入力します。</li>
+<li>変数があればparameterで設定します。</li>
+</ul>
+<p>| ※parameterで設定した変数をBlockCode内で読み出すには、「${変数}」と書きます。
+| ex) playwav(<span class="math" volume="">\({playwav},\)</span>)
+|</p>
+<p>|</p>
+<h2 id="section-5">完成したら</h2>
+<p>右下のDownloadボタンをおしてDownloadして、UIFLOWのCustomから読み込みます。</p>
+<p>|</p>
+<h2 id="url">参考URL</h2>
+<p><a href="https://qiita.com/ciniml/items/618899c9065d51d5c54e">qiita 自作モジュール用のUI Flowのカスタムブロックを作る</a></p>
 
       </div>
     </div>

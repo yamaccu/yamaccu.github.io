@@ -5,8 +5,232 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Thu, 19 Aug 2021 13:55:08 GMT</pubDate>
-		<lastBuildDate>Thu, 19 Aug 2021 13:55:08 GMT</lastBuildDate>
+		<pubDate>Fri, 20 Aug 2021 23:49:55 GMT</pubDate>
+		<lastBuildDate>Fri, 20 Aug 2021 23:49:55 GMT</lastBuildDate>
+		<item>
+			<title>HTML div要素で図形を表示する</title>
+			<link>https://yamaccu.github.io/posts/20210821-html-figure</link>
+			<description>&lt;p&gt;HTMLのdiv要素を使って、ブラウザに図形を表示させる方法です。&lt;/p&gt;</description>
+			<guid>https://yamaccu.github.io/posts/20210821-html-figure</guid>
+			<pubDate>Sat, 21 Aug 2021 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;HTMLのdiv要素を使って、ブラウザに図形を表示させる方法です。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;図形の作成方法&lt;/h2&gt;
+&lt;p&gt;div要素のサイズを指定して、色を付けてあげれば図形になります。&lt;br /&gt;
+試しに丸と四角を作ってみます。&lt;/p&gt;
+&lt;br&gt;
+&lt;p class="codepen" data-height="300" data-default-tab="css,result" data-slug-hash="KKWyajK" data-user="yy87750722" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"&gt;
+  &lt;span&gt;See the Pen &lt;a href="https://codepen.io/yy87750722/pen/KKWyajK"&gt;
+  &lt;/a&gt; by やまっく (&lt;a href="https://codepen.io/yy87750722"&gt;&amp;#64;yy87750722&lt;/a&gt;)
+  on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
+&lt;/p&gt;
+&lt;script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"&gt;&lt;/script&gt;
+&lt;br&gt;
+&lt;p&gt;HTML&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-HTML"&gt;&amp;lt;div class=&amp;quot;square&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;circle&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;CSS&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-CSS"&gt;.square {
+  width: 50px;
+  height: 50px;
+  background: black;
+}
+.circle {
+  width: 50px;
+  height: 50px;
+  background: black;
+  border-radius: 50px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-1"&gt;複雑な形の図形&lt;/h2&gt;
+&lt;p&gt;疑似要素（before / after）を使います。&lt;br /&gt;
+疑似要素とは、HTMLの要素に対して、CSSで要素を追記できる方法です。&lt;br /&gt;
+これを使えば、作った図形に2つまで図形の追加ができます。&lt;br /&gt;
+（合計3つの図形を一つのDiv内に作れる）&lt;/p&gt;
+&lt;p&gt;以下のようなマークを作ってみます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;時計マーク&lt;/li&gt;
+&lt;li&gt;位置マーク&lt;/li&gt;
+&lt;li&gt;虫眼鏡マーク&lt;/li&gt;
+&lt;li&gt;スイッチマーク&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;p class="codepen" data-height="300" data-default-tab="css,result" data-slug-hash="Vwboydb" data-user="yy87750722" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"&gt;
+  &lt;span&gt;See the Pen &lt;a href="https://codepen.io/yy87750722/pen/Vwboydb"&gt;
+  &lt;/a&gt; by やまっく (&lt;a href="https://codepen.io/yy87750722"&gt;&amp;#64;yy87750722&lt;/a&gt;)
+  on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
+&lt;/p&gt;
+&lt;script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"&gt;&lt;/script&gt;
+&lt;br&gt;
+&lt;p&gt;■時計マーク&lt;/p&gt;
+&lt;p&gt;HTML&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-HTML"&gt;&amp;lt;div class=&amp;quot;clock&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;CSS&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-CSS"&gt;.clock {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 2px solid dimgray;
+  border-radius: 20px;
+}
+.clock:before {
+  content: &amp;quot;&amp;quot;;
+  position: absolute;
+  width: 7px;
+  height: 9px;
+  border-left: 2px solid dimgray;
+  border-bottom: 2px solid dimgray;
+  top: 2px;
+  left: 6px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;■位置マーク&lt;/p&gt;
+&lt;p&gt;HTML&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-HTML"&gt;&amp;lt;div class=&amp;quot;location&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;CSS&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-CSS"&gt;.location {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 2px solid dimgray;
+  border-radius: 30px 30px 30px 0;
+  transform: rotate(-45deg);
+}
+.location:before {
+  content: &amp;quot;&amp;quot;;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color:dimgray;
+  border: 2px solid dimgray;
+  border-radius: 7px;
+  top:4px;
+  left:4px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;■虫眼鏡マーク&lt;/p&gt;
+&lt;p&gt;HTML&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-HTML"&gt;&amp;lt;div class=&amp;quot;glass&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;CSS&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-CSS"&gt;.glass {
+  display: inline-block;
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border: 3px solid dimgray;
+  border-radius: 20px;
+}
+glass:before {
+  content: &amp;quot;&amp;quot;;
+  position: absolute;
+  width: 4px;
+  height: 14px;
+  background-color: dimgray;
+  border-radius: 5px;
+  top: 14px;
+  left: 14px;
+  transform: rotate(-35deg);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;■スイッチ&lt;/p&gt;
+&lt;p&gt;HTML&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-HTML"&gt;&amp;lt;div class=&amp;quot;Switch&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;CSS&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-CSS"&gt;.Switch {
+  position: relative;
+  width: 20px;
+  height: 42px;
+  background: #ccc;
+}
+.Switch:before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 32px;
+  left: 4px;
+  top: 4px;
+  background: #fff;
+}
+.Switch:after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 4px;
+  top: 4px;
+  background: #596;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="url"&gt;参考URL&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://qiita.com/yaegaki/items/a1e518d16be9b85479b4"&gt;qiita CSSで作図する&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://morobrand.net/mororeco/web/css/css-shape/"&gt;CSSでいろんなカタチを表現してみる&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://saruwakakun.com/html-css/basic/before-after"&gt;CSSの疑似要素とは？beforeとafterの使い方まとめ&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
+		</item>
+		<item>
+			<title>python 仮想環境の作り方</title>
+			<link>https://yamaccu.github.io/posts/20210820-python-pipenv</link>
+			<description>&lt;p&gt;pythonでプログラミングする際の、仮想環境の構築についてまとめています。&lt;/p&gt;</description>
+			<guid>https://yamaccu.github.io/posts/20210820-python-pipenv</guid>
+			<pubDate>Fri, 20 Aug 2021 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;pythonでプログラミングする際の、仮想環境の構築についてまとめています。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;仮想環境について&lt;/h2&gt;
+&lt;p&gt;Pythonでプログラミングを行う際には、作るプログラムごとに仮想環境を構築します。&lt;/p&gt;
+&lt;p&gt;理由は、&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;仮想環境ごとに必要なパッケージのバージョンをインストールできます。&lt;/li&gt;
+&lt;li&gt;パッケージが複数のプログラムへ影響を与えるなどの、各プログラム間の干渉を回避できます。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;仮想環境の作成にはいくつか方法がありますが、ここではpipenvを使用します。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt; 
+&lt;h2 id="section-1"&gt;仮想環境の作成手順&lt;/h2&gt;
+&lt;p&gt;コマンドプロンプトを使います。&lt;/p&gt;
+&lt;p&gt;① pipenvをインストールします。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pip install pipenv
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;②作業ディレクトリを作成します。&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;③作業ディレクトリに移動して、必要なパッケージをpipenvコマンドでインストールします。&lt;br /&gt;
+（pipfileという設定ファイルが作成され、ここに仮想環境の情報が入ります。）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pipenv install xxxxxx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;④仮想環境を実行します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pipenv shell
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;⑤仮想環境を終了します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;exit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;※仮想環境に入らずにコマンド実行もできます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pipenv run xxxxxx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="hp"&gt;参考HP&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://pipenv.pypa.io/en/latest/"&gt;pipenv公式&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
+		</item>
 		<item>
 			<title>Github pushまでの設定</title>
 			<link>https://yamaccu.github.io/posts/20210819-git-push</link>
@@ -34,7 +258,7 @@
 &lt;pre&gt;&lt;code&gt;ssh-keygen -t rsa
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;githubのページにサインインし、Setting =&amp;gt; SSH and GPG keys で生成したSSH鍵を登録します。&lt;/p&gt;
-&lt;img src="../img/20210819-Git-push-1.png" width="450px"&gt;
+&lt;img src="../img/20210819-Git-push-1.png" width="85%"&gt;
 &lt;br&gt;
 &lt;br&gt;
  
@@ -52,7 +276,7 @@ git config --global user.email &amp;quot;メールアドレス&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;このとき、アドレスはSSHのものにします。&lt;/p&gt;
-&lt;img src="../img/20210819-Git-push-2.png" width="450px"&gt;
+&lt;img src="../img/20210819-Git-push-2.png" width="85%"&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;br&gt;
@@ -249,7 +473,7 @@ codeblock
 |  TD  |  TD  |
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="section-7"&gt;画像貼り付け&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;xxxxx/xxxxx.png&amp;quot; width=&amp;quot;xxxpx&amp;quot;&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;xxxx/xxxx.png&amp;quot; Style=&amp;quot;width:100%;max-width:500px;&amp;quot;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
