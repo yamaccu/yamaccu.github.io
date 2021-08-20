@@ -5,8 +5,8 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Fri, 20 Aug 2021 23:49:55 GMT</pubDate>
-		<lastBuildDate>Fri, 20 Aug 2021 23:49:55 GMT</lastBuildDate>
+		<pubDate>Fri, 20 Aug 2021 23:52:09 GMT</pubDate>
+		<lastBuildDate>Fri, 20 Aug 2021 23:52:09 GMT</lastBuildDate>
 		<item>
 			<title>HTML div要素で図形を表示する</title>
 			<link>https://yamaccu.github.io/posts/20210821-html-figure</link>
@@ -19,7 +19,7 @@
 &lt;p&gt;div要素のサイズを指定して、色を付けてあげれば図形になります。&lt;br /&gt;
 試しに丸と四角を作ってみます。&lt;/p&gt;
 &lt;br&gt;
-&lt;p class="codepen" data-height="300" data-default-tab="css,result" data-slug-hash="KKWyajK" data-user="yy87750722" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"&gt;
+&lt;p class="codepen" data-height="300" data-default-tab="result" data-slug-hash="KKWyajK" data-user="yy87750722" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"&gt;
   &lt;span&gt;See the Pen &lt;a href="https://codepen.io/yy87750722/pen/KKWyajK"&gt;
   &lt;/a&gt; by やまっく (&lt;a href="https://codepen.io/yy87750722"&gt;&amp;#64;yy87750722&lt;/a&gt;)
   on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
@@ -58,7 +58,7 @@
 &lt;li&gt;スイッチマーク&lt;/li&gt;
 &lt;/ul&gt;
 &lt;br&gt;
-&lt;p class="codepen" data-height="300" data-default-tab="css,result" data-slug-hash="Vwboydb" data-user="yy87750722" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"&gt;
+&lt;p class="codepen" data-height="300" data-default-tab="result" data-slug-hash="Vwboydb" data-user="yy87750722" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"&gt;
   &lt;span&gt;See the Pen &lt;a href="https://codepen.io/yy87750722/pen/Vwboydb"&gt;
   &lt;/a&gt; by やまっく (&lt;a href="https://codepen.io/yy87750722"&gt;&amp;#64;yy87750722&lt;/a&gt;)
   on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
