@@ -90,10 +90,19 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="site-heading">
+        <div class="post-heading">
           <h1>
             M5Stack UIFLOW&#x3067;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x4F5C;&#x308B;
           </h1>
+              <div class="meta">
+                Published on 2021&#x5E74;8&#x6708;23&#x65E5;
+                
+                <!--Updatedを追加-->
+
+              </div>
+                <div class="mt-3">
+                      <a href="/tags/m5stack" class="badge badge-light"> M5Stack</a>
+                </div>
         </div>
       </div>
     </div>
@@ -107,9 +116,8 @@
         <p>M5Stack向けのVisual Programming「UIFLOW」で、カスタムブロックを作成する方法をまとめました。</p>
 <br>
 <h2 id="section">概要</h2>
-<img src="../img/20210822-UIFLOW-CustomBlock-1.png" width="60px">
-← M5Stackはこんなやつ。
-<br>
+<p> <img src="../img/20210822-UIFLOW-CustomBlock-1.png" width="65px">
+← M5Stackはこんなやつ。</p>
 <br>
 <p>M5Stackとは、ESP32を使用しwifi/LCD/各種センサなどを一体化させた、使いやすいマイコンボードです。<br />
 LCDが標準装備なのが一番の特徴かと思います。<br />
@@ -141,18 +149,22 @@ LCDが標準装備なのが一番の特徴かと思います。<br />
 </ol>
 <br>
 <br>
-<h2 id="python">Pythonでプログラムを書く</h2>
+<h2 id="python">1. Pythonでプログラムを書く</h2>
 <p>まずはブロック化したい機能のプログラムをpythonで書きます。<br />
 処理は関数にして呼び出しできるようにしておきます。</p>
 <br>
 <br>
-<h2 id="section-3">初期設定用のブロックを作る</h2>
+<h2 id="section-3">2. 初期設定用のブロックを作る</h2>
 <p>import、defを行うブロックを作成します。<br />
 このブロックは最初のsetupで実行するものです。</p>
 <br>
-<img src="../img/20210822-UIFLOW-CustomBlock-2.png" Style="width:100%;max-width:500px;">  
+<div style="display:flex;flex-wrap:wrap">
+<div>
+<img src="../img/20210822-UIFLOW-CustomBlock-2.png" Style="width:100%;max-width:450px">  
 <br>
 <br>
+</div>
+<div Style="margin-left:10px">
 <ol>
 <li>NameSpace：Blockmaker上だけの識別名なので何でもOK</li>
 <li>BlockColor：ブロックの色を設定</li>
@@ -162,24 +174,50 @@ LCDが標準装備なのが一番の特徴かと思います。<br />
 変数があれば、type:String/Number/Variableで設定する</li>
 <li>BlockCode：作ったプログラムをコピペ</li>
 </ol>
+</div>
+</div>
 <br>
 <br>
-<h2 id="section-4">関数を実行するブロックを作る</h2>
-<p>defで定義した関数を実行するブロックを作ります。</p>
-<ul>
-<li>基本はsetupブロックと同じです。</li>
-<li>defで定義した関数をBlockCodeへ入力します。</li>
-<li>変数があればparameterで設定します。</li>
-</ul>
-<p>| ※parameterで設定した変数をBlockCode内で読み出すには、「${変数}」と書きます。
-| ex) playwav(<span class="math" volume="">\({playwav},\)</span>)
-|</p>
-<p>|</p>
+<h2 id="section-4">3. 関数を実行するブロックを作る</h2>
+<p>defで定義した関数を実行するブロックを作ります。
+Add Blockをクリックするとブロックが増えますので、設定していきます。<br />
+引数がある場合は、parameterで設定します。</p>
+<br>
+<div style="display:flex;flex-wrap:wrap">
+<div>
+<img src="../img/20210822-UIFLOW-CustomBlock-3.png" Style="width:100%;max-width:450px">  
+<br>
+<br>
+</div>
+<div Style="margin-left:10px">
+<ol>
+<li>NameSpace：Blockmaker上だけの識別名なので何でもOK</li>
+<li>BlockColor：ブロックの色を設定</li>
+<li>Add Block/Remove Block：ブロックの追加・削除</li>
+<li>Type：Executeにする</li>
+<li>Parameter：まずブロック名をtype:Labelで設定する<br />
+変数があれば、type:String/Number/Variableで設定する</li>
+<li>BlockCode：自作関数の呼び出しを行う<br />
+引数は上記のParameterで設定して、<br />
+BlockCode内で&quot;$(hoge)&quot;の形で記述する<br />
+<br>
+<pre><code>ex) playwav(${playwav},${volume})
+</code></pre>
+</li>
+</ol>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
 <h2 id="section-5">完成したら</h2>
-<p>右下のDownloadボタンをおしてDownloadして、UIFLOWのCustomから読み込みます。</p>
-<p>|</p>
-<h2 id="url">参考URL</h2>
-<p><a href="https://qiita.com/ciniml/items/618899c9065d51d5c54e">qiita 自作モジュール用のUI Flowのカスタムブロックを作る</a></p>
+<p>ページ右下のDownloadボタンをおして、DownloadファイルをUIFLOWの<a href="https://flow.m5stack.com/">プログラミングページ</a>のCustomから開きます。</p>
+<img src="../img/20210822-UIFLOW-CustomBlock-4.png" Style="width:100%;max-width:150px">
+<br>
+<br>
+<img src="../img/20210822-UIFLOW-CustomBlock-5.png" Style="width:100%;max-width:450px">  
+
 
       </div>
     </div>

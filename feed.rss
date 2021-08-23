@@ -5,8 +5,121 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Fri, 20 Aug 2021 23:52:09 GMT</pubDate>
-		<lastBuildDate>Fri, 20 Aug 2021 23:52:09 GMT</lastBuildDate>
+		<pubDate>Mon, 23 Aug 2021 06:32:10 GMT</pubDate>
+		<lastBuildDate>Mon, 23 Aug 2021 06:32:10 GMT</lastBuildDate>
+		<item>
+			<title>M5Stack UIFLOWでカスタムブロックを作る</title>
+			<link>https://yamaccu.github.io/posts/20210822-uiflow-customblock</link>
+			<description>&lt;p&gt;M5Stack向けのVisual Programming「UIFLOW」で、カスタムブロックを作成する方法をまとめました。&lt;/p&gt;</description>
+			<guid>https://yamaccu.github.io/posts/20210822-uiflow-customblock</guid>
+			<pubDate>Mon, 23 Aug 2021 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;M5Stack向けのVisual Programming「UIFLOW」で、カスタムブロックを作成する方法をまとめました。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;概要&lt;/h2&gt;
+&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210822-UIFLOW-CustomBlock-1.png" width="65px"&gt;
+← M5Stackはこんなやつ。&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;M5Stackとは、ESP32を使用しwifi/LCD/各種センサなどを一体化させた、使いやすいマイコンボードです。&lt;br&gt;
+LCDが標準装備なのが一番の特徴かと思います。&lt;br&gt;
+センシングした値を表示させたり、顔をつけてみたりと、いろいろ遊べます。&lt;/p&gt;
+&lt;p&gt;参考　&lt;a href="https://m5stack.com/"&gt;公式HP&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;UIFLOWとは、M5Stackのプログラミング環境の一つで、スクラッチのようにビジュアルプログラミングでM5Stackのコードが書ける優れものです。&lt;br&gt;
+更にwebベースなので、お手軽にプログラミングができます。&lt;br&gt;
+大本はmicropythonで動いています。&lt;br&gt;
+使い方、プログラミングの仕方などは下記のHPを参照ください。&lt;/p&gt;
+&lt;p&gt;参考1　&lt;a href="https://m5stack.github.io/UIFlow_doc/ja/"&gt;公式HP&lt;/a&gt;&lt;br&gt;
+参考2　&lt;a href="https://flow.m5stack.com/"&gt;プログラミングページ&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;UIFLOWでは、事前に用意されたブロックを組み合わせてプログラミングしますので、ブロックに用意されていない機能は、自分でカスタムブロックを作る必要があります。&lt;/p&gt;
+&lt;p&gt;以降、UIFLOWでカスタムブロックを作成する方法を記載しています。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-1"&gt;カスタムブロックのサンプル&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/yamaccu/UIFLOW-wavplayer"&gt;github&lt;/a&gt;にWAVファイルを再生するためのカスタムブロックをあげていますので、よろしければ参考にしてください。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-2"&gt;カスタムブロックの作成手順&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://block-maker.m5stack.com/"&gt;こちらのカスタムブロック作成ページ&lt;/a&gt;から作成します。&lt;/p&gt;
+&lt;p&gt;作成手順は&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Pythonでプログラムを書く&lt;/li&gt;
+&lt;li&gt;初期設定用のブロックを作る&lt;/li&gt;
+&lt;li&gt;関数を実行するブロックを作る&lt;/li&gt;
+&lt;/ol&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="python"&gt;1. Pythonでプログラムを書く&lt;/h2&gt;
+&lt;p&gt;まずはブロック化したい機能のプログラムをpythonで書きます。&lt;br&gt;
+処理は関数にして呼び出しできるようにしておきます。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-3"&gt;2. 初期設定用のブロックを作る&lt;/h2&gt;
+&lt;p&gt;import、defを行うブロックを作成します。&lt;br&gt;
+このブロックは最初のsetupで実行するものです。&lt;/p&gt;
+&lt;br&gt;
+&lt;div style="display:flex;flex-wrap:wrap"&gt;
+&lt;div&gt;
+&lt;img src="https://yamaccu.github.io/img/20210822-UIFLOW-CustomBlock-2.png" style="width:100%;max-width:450px"&gt;  
+&lt;br&gt;
+&lt;br&gt;
+&lt;/div&gt;
+&lt;div style="margin-left:10px"&gt;
+&lt;ol&gt;
+&lt;li&gt;NameSpace：Blockmaker上だけの識別名なので何でもOK&lt;/li&gt;
+&lt;li&gt;BlockColor：ブロックの色を設定&lt;/li&gt;
+&lt;li&gt;Add Block/Remove Block：ブロックの追加・削除&lt;/li&gt;
+&lt;li&gt;Type：Executeにする&lt;/li&gt;
+&lt;li&gt;Parameter：まずブロック名をtype:Labelで設定する&lt;br&gt;
+変数があれば、type:String/Number/Variableで設定する&lt;/li&gt;
+&lt;li&gt;BlockCode：作ったプログラムをコピペ&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-4"&gt;3. 関数を実行するブロックを作る&lt;/h2&gt;
+&lt;p&gt;defで定義した関数を実行するブロックを作ります。
+Add Blockをクリックするとブロックが増えますので、設定していきます。&lt;br&gt;
+引数がある場合は、parameterで設定します。&lt;/p&gt;
+&lt;br&gt;
+&lt;div style="display:flex;flex-wrap:wrap"&gt;
+&lt;div&gt;
+&lt;img src="https://yamaccu.github.io/img/20210822-UIFLOW-CustomBlock-3.png" style="width:100%;max-width:450px"&gt;  
+&lt;br&gt;
+&lt;br&gt;
+&lt;/div&gt;
+&lt;div style="margin-left:10px"&gt;
+&lt;ol&gt;
+&lt;li&gt;NameSpace：Blockmaker上だけの識別名なので何でもOK&lt;/li&gt;
+&lt;li&gt;BlockColor：ブロックの色を設定&lt;/li&gt;
+&lt;li&gt;Add Block/Remove Block：ブロックの追加・削除&lt;/li&gt;
+&lt;li&gt;Type：Executeにする&lt;/li&gt;
+&lt;li&gt;Parameter：まずブロック名をtype:Labelで設定する&lt;br&gt;
+変数があれば、type:String/Number/Variableで設定する&lt;/li&gt;
+&lt;li&gt;BlockCode：自作関数の呼び出しを行う&lt;br&gt;
+引数は上記のParameterで設定して、&lt;br&gt;
+BlockCode内で"$(hoge)"の形で記述する&lt;br&gt;
+&lt;br&gt;
+&lt;pre&gt;&lt;code&gt;ex) playwav(${playwav},${volume})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-5"&gt;完成したら&lt;/h2&gt;
+&lt;p&gt;ページ右下のDownloadボタンをおして、DownloadファイルをUIFLOWの&lt;a href="https://flow.m5stack.com/"&gt;プログラミングページ&lt;/a&gt;のCustomから開きます。&lt;/p&gt;
+&lt;img src="../img/20210822-UIFLOW-CustomBlock-4.png" style="width:100%;max-width:150px"&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;img src="../img/20210822-UIFLOW-CustomBlock-5.png" style="width:100%;max-width:450px"&gt;  
+</content:encoded>
+			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
+		</item>
 		<item>
 			<title>HTML div要素で図形を表示する</title>
 			<link>https://yamaccu.github.io/posts/20210821-html-figure</link>
@@ -434,7 +547,7 @@ google analyticsなどのスクリプトを追加したいときは、_head.csht
 			<link>https://yamaccu.github.io/posts/20210816-markdown-tips</link>
 			<description>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;</description>
 			<guid>https://yamaccu.github.io/posts/20210816-markdown-tips</guid>
-			<pubDate>Tue, 17 Aug 2021 00:00:00 GMT</pubDate>
+			<pubDate>Mon, 23 Aug 2021 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="section"&gt;エディタ&lt;/h2&gt;
@@ -474,6 +587,9 @@ codeblock
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="section-7"&gt;画像貼り付け&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;xxxx/xxxx.png&amp;quot; Style=&amp;quot;width:100%;max-width:500px;&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="section-8"&gt;半角スペース&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;&amp;amp;nbsp;
 &lt;/code&gt;&lt;/pre&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
