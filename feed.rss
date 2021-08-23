@@ -5,8 +5,8 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Mon, 23 Aug 2021 06:32:10 GMT</pubDate>
-		<lastBuildDate>Mon, 23 Aug 2021 06:32:10 GMT</lastBuildDate>
+		<pubDate>Mon, 23 Aug 2021 06:39:57 GMT</pubDate>
+		<lastBuildDate>Mon, 23 Aug 2021 06:39:57 GMT</lastBuildDate>
 		<item>
 			<title>M5Stack UIFLOWでカスタムブロックを作る</title>
 			<link>https://yamaccu.github.io/posts/20210822-uiflow-customblock</link>
@@ -60,11 +60,11 @@ LCDが標準装備なのが一番の特徴かと思います。&lt;br&gt;
 &lt;br&gt;
 &lt;div style="display:flex;flex-wrap:wrap"&gt;
 &lt;div&gt;
-&lt;img src="https://yamaccu.github.io/img/20210822-UIFLOW-CustomBlock-2.png" style="width:100%;max-width:450px"&gt;  
+&lt;img src="https://yamaccu.github.io/img/20210822-UIFLOW-CustomBlock-2.png" style="width:100%;max-width:450px;margin-right:10px;"&gt;  
 &lt;br&gt;
 &lt;br&gt;
 &lt;/div&gt;
-&lt;div style="margin-left:10px"&gt;
+&lt;div&gt;
 &lt;ol&gt;
 &lt;li&gt;NameSpace：Blockmaker上だけの識別名なので何でもOK&lt;/li&gt;
 &lt;li&gt;BlockColor：ブロックの色を設定&lt;/li&gt;
@@ -85,11 +85,11 @@ Add Blockをクリックするとブロックが増えますので、設定し�
 &lt;br&gt;
 &lt;div style="display:flex;flex-wrap:wrap"&gt;
 &lt;div&gt;
-&lt;img src="https://yamaccu.github.io/img/20210822-UIFLOW-CustomBlock-3.png" style="width:100%;max-width:450px"&gt;  
+&lt;img src="https://yamaccu.github.io/img/20210822-UIFLOW-CustomBlock-3.png" style="width:100%;max-width:450px;margin-right:10px;"&gt;  
 &lt;br&gt;
 &lt;br&gt;
 &lt;/div&gt;
-&lt;div style="margin-left:10px"&gt;
+&lt;div&gt;
 &lt;ol&gt;
 &lt;li&gt;NameSpace：Blockmaker上だけの識別名なので何でもOK&lt;/li&gt;
 &lt;li&gt;BlockColor：ブロックの色を設定&lt;/li&gt;
