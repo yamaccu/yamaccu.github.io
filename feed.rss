@@ -5,8 +5,8 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Wed, 25 Aug 2021 15:08:40 GMT</pubDate>
-		<lastBuildDate>Wed, 25 Aug 2021 15:08:40 GMT</lastBuildDate>
+		<pubDate>Wed, 25 Aug 2021 15:23:28 GMT</pubDate>
+		<lastBuildDate>Wed, 25 Aug 2021 15:23:28 GMT</lastBuildDate>
 		<item>
 			<title>C#でシリアル通信</title>
 			<link>https://yamaccu.github.io/posts/20210825-csharp-serialport</link>
@@ -188,6 +188,10 @@ TxピンとRxピンを導線で繋いで動作確認します。&lt;/p&gt;
 &lt;p&gt;Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
+&lt;br&gt;
+&lt;h3 id="section-8"&gt;コメントなど&lt;/h3&gt;
+&lt;p&gt;下記のTwitterまで返信orDMお願いします。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="ja" dir="ltr"&gt;WPFで簡単なシリアル通信アプリを作りました。（ブログ用）&lt;a href="https://twitter.com/hashtag/Csharp?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#Csharp&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/WPF?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#WPF&lt;/a&gt;&lt;a href="https://t.co/BSPIjahaFD"&gt;https://t.co/BSPIjahaFD&lt;/a&gt;&lt;/p&gt;— やまっく (@YY87750722) &lt;a href="https://twitter.com/YY87750722/status/1430549219320860673?ref_src=twsrc%5Etfw"&gt;August 25, 2021&lt;/a&gt;&lt;/blockquote&gt; &lt;script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
 		</item>
