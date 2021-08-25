@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-08-25T06:41:16Z</updated>
+	<updated>2021-08-25T13:28:23Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210825-csharp-serialport</id>
 		<title>C#でシリアル通信</title>
@@ -245,7 +245,7 @@ LCDが標準装備なのが一番の特徴かと思います。&lt;br&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;/div&gt;
-&lt;div&gt;
+&lt;div style="max-width:450px;"&gt;
 &lt;ol&gt;
 &lt;li&gt;NameSpace：Blockmaker上だけの識別名なので何でもOK&lt;/li&gt;
 &lt;li&gt;BlockColor：ブロックの色を設定&lt;/li&gt;
@@ -270,7 +270,7 @@ Add Blockをクリックするとブロックが増えますので、設定し�
 &lt;br&gt;
 &lt;br&gt;
 &lt;/div&gt;
-&lt;div&gt;
+&lt;div style="max-width:450px;"&gt;
 &lt;ol&gt;
 &lt;li&gt;NameSpace：Blockmaker上だけの識別名なので何でもOK&lt;/li&gt;
 &lt;li&gt;BlockColor：ブロックの色を設定&lt;/li&gt;
@@ -696,7 +696,7 @@ theme→settings.ymlが設定ファイルです。&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="css"&gt;cssの変更・追加&lt;/h2&gt;
 &lt;p&gt;cssを変更・追加したい場合は、input→scss→_overrides.scssにcssを記述します。&lt;br&gt;
-そうすると、ここに書かれたcssがHPに適用されます。&lt;/p&gt;
+記述されたcssがHPに適用されます。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="html"&gt;HTMLへの変換&lt;/h2&gt;

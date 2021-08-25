@@ -71,13 +71,13 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/posts">Posts</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/tags">Tags</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
             </li>
 </ul>
     </div>
@@ -112,8 +112,11 @@
   <!-- Main Content -->
   <div class="container"> 
     <div class="row">
-      <div id="content" class="col-md-12">  
-        <p>micropythonにreplでアクセスする方法をまとめています。</p>
+      <div id="content" class="col-md-12">
+        <div class="container-sm-height">
+          <div class="row row-sm-height">
+            <div class="col-md-6 right-border col-sm-height">
+              <p>micropythonにreplでアクセスする方法をまとめています。</p>
 <br>
 <h2 id="repl">replについて</h2>
 <p>repl：「Read（読み取り）、Eval（評価）、Print（印字）、Loop（ループ）」の頭字語です。</p>
@@ -172,8 +175,39 @@ CTR+Cを二回で、mainで実行している処理を中止してreplで操作�
 <p><a href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html">micropython公式</a></p>
 
 
+            </div>
+            <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
+        <!--
+            <div>
+                <h5>Profile</h5>
+                yamaccu
+                twitter / github 
+            </div>
+        -->
+                <div>
+                  <h5>Tags</h5>
+                     <a href="/tags/cwpf" class="badge badge-light"> C#/WPF (1)</a>
+                     <a href="/tags/m5stack" class="badge badge-light"> M5Stack (1)</a>
+                     <a href="/tags/htmlcss" class="badge badge-light"> HTML/CSS (1)</a>
+                     <a href="/tags/python" class="badge badge-light"> python (1)</a>
+                     <a href="/tags/github" class="badge badge-light"> github (1)</a>
+                     <a href="/tags/micropython" class="badge badge-light"> micropython (1)</a>
+                     <a href="/tags/statiq" class="badge badge-light"> statiq (1)</a>
+                     <a href="/tags/markdown" class="badge badge-light"> MarkDown (1)</a>
+                     <a href="/tags/blog" class="badge badge-light"> blog (1)</a>
+                      <div class="mt-3">
+                        <div class="float-sm-right">
+                          <a class="btn btn-sm btn-primary" href="/tags" role="button">All Tags <i class="fas fa-angle-double-right"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+               </div>
+            
+            </div>
+          </div>
+       </div>
       </div>
-    </div>
+   </div>
   </div>
 
   <hr>
