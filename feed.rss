@@ -5,8 +5,8 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Wed, 25 Aug 2021 13:28:23 GMT</pubDate>
-		<lastBuildDate>Wed, 25 Aug 2021 13:28:23 GMT</lastBuildDate>
+		<pubDate>Wed, 25 Aug 2021 15:08:40 GMT</pubDate>
+		<lastBuildDate>Wed, 25 Aug 2021 15:08:40 GMT</lastBuildDate>
 		<item>
 			<title>C#でシリアル通信</title>
 			<link>https://yamaccu.github.io/posts/20210825-csharp-serialport</link>
@@ -17,8 +17,8 @@
 &lt;br&gt;
 &lt;h2 id="section"&gt;概要&lt;/h2&gt;
 &lt;h3 id="section-1"&gt;シリアル通信について&lt;/h3&gt;
-&lt;p&gt;シリアル通信とは、機器間で通信する方法の一つで、データを1bitづつ送受信する形式のものです。&lt;br&gt;
-RC232Cとも言います。&lt;br&gt;
+&lt;p&gt;シリアル通信とは、機器間で通信する方法の一つで、データを1bitづつ送信する形式のものです。&lt;br&gt;
+代表的な規格はRC-232です。&lt;br&gt;
 PCとマイコンボード（arduinoなど）間で通信するのによく使われています。&lt;/p&gt;
 &lt;p&gt;C#には、シリアル通信を行うクラスがすでに用意されています。&lt;br&gt;
 これを使うと簡単にシリアル通信ができます。&lt;/p&gt;
@@ -101,8 +101,7 @@ public void GetCOMPorts()
 &lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;ComboBox ItemsSource="{Binding COMPorts}" /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。&lt;br&gt;
-下記の例では、イベントはコードビハインドでいったん受けて、viewModel内に作成したGetCOMPoptsメソッドを実行しています。&lt;/p&gt;
+&lt;p&gt;COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。&lt;/p&gt;
 &lt;p&gt;MainWindow.xaml:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;ComboBox DropDownOpened="ComboBoxDropDownOpened_COMPort"/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -181,12 +180,12 @@ private void OnReceived(object sender, SerialDataReceivedEventArgs e)
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-7"&gt;動作確認のためのシリアル通信折り返し方法&lt;/h2&gt;
-&lt;p&gt;シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的ですね。&lt;br&gt;
+&lt;p&gt;シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的です。&lt;br&gt;
 以下のUSB-シリアル変換を使用すれば確認可能です。&lt;br&gt;
-TxピンとRxピンを導線で繋げばOKです。&lt;/p&gt;
+TxピンとRxピンを導線で繋いで動作確認します。&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://akizukidenshi.com/catalog/g/gM-11007/"&gt;秋月電子 FT-232RQ USBシリアル変換モジュール&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
-&lt;p&gt;Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いです。&lt;/p&gt;
+&lt;p&gt;Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 </content:encoded>
@@ -284,12 +283,10 @@ Add Blockをクリックするとブロックが増えますので、設定し�
 変数があれば、type:String/Number/Variableで設定する&lt;/li&gt;
 &lt;li&gt;BlockCode：自作関数の呼び出しを行う&lt;br&gt;
 引数は上記のParameterで設定して、&lt;br&gt;
-BlockCode内で"$(hoge)"の形で記述する&lt;br&gt;
-&lt;br&gt;
+BlockCode内で"$(hoge)"の形で記述する&lt;/li&gt;
+&lt;/ol&gt;
 &lt;pre&gt;&lt;code&gt;ex)playwav(${playwav},${volume})
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;br&gt;

@@ -120,8 +120,8 @@
 <br>
 <h2 id="section">概要</h2>
 <h3 id="section-1">シリアル通信について</h3>
-<p>シリアル通信とは、機器間で通信する方法の一つで、データを1bitづつ送受信する形式のものです。<br />
-RC232Cとも言います。<br />
+<p>シリアル通信とは、機器間で通信する方法の一つで、データを1bitづつ送信する形式のものです。<br />
+代表的な規格はRC-232です。<br />
 PCとマイコンボード（arduinoなど）間で通信するのによく使われています。</p>
 <p>C#には、シリアル通信を行うクラスがすでに用意されています。<br />
 これを使うと簡単にシリアル通信ができます。</p>
@@ -204,8 +204,7 @@ public void GetCOMPorts()
 <pre><code class="language-C#">&lt;ComboBox ItemsSource=&quot;{Binding COMPorts}&quot; /&gt;
 </code></pre>
 <br>
-<p>COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。<br />
-下記の例では、イベントはコードビハインドでいったん受けて、viewModel内に作成したGetCOMPoptsメソッドを実行しています。</p>
+<p>COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。</p>
 <p>MainWindow.xaml:</p>
 <pre><code class="language-C#">&lt;ComboBox DropDownOpened=&quot;ComboBoxDropDownOpened_COMPort&quot;/&gt;
 </code></pre>
@@ -284,12 +283,12 @@ private void OnReceived(object sender, SerialDataReceivedEventArgs e)
 <br>
 <br>
 <h2 id="section-7">動作確認のためのシリアル通信折り返し方法</h2>
-<p>シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的ですね。<br />
+<p>シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的です。<br />
 以下のUSB-シリアル変換を使用すれば確認可能です。<br />
-TxピンとRxピンを導線で繋げばOKです。</p>
+TxピンとRxピンを導線で繋いで動作確認します。</p>
 <p><a href="https://akizukidenshi.com/catalog/g/gM-11007/">秋月電子 FT-232RQ USBシリアル変換モジュール</a></p>
 <br>
-<p>Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いです。</p>
+<p>Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。</p>
 <br>
 <br>
 
