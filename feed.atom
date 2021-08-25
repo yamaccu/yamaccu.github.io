@@ -4,16 +4,200 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-08-23T06:39:57Z</updated>
+	<updated>2021-08-25T06:27:26Z</updated>
 	<entry>
-		<id>https://yamaccu.github.io/posts/20210822-uiflow-customblock</id>
+		<id>https://yamaccu.github.io/posts/c-serialport</id>
+		<title>C#でシリアル通信</title>
+		<link href="https://yamaccu.github.io/posts/c-serialport" />
+		<updated>2021-08-23T00:00:00Z</updated>
+		<content>&lt;p&gt;C#でシリアル通信を行う方法をまとめています。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;概要&lt;/h2&gt;
+&lt;h3 id="section-1"&gt;シリアル通信について&lt;/h3&gt;
+&lt;p&gt;シリアル通信とは、機器間で通信する方法の一つで、データを1bitづつ送受信する形式のものです。&lt;br&gt;
+RC232Cとも言います。&lt;br&gt;
+PCとマイコンボード（arduinoなど）間で通信するのによく使われています。&lt;/p&gt;
+&lt;p&gt;C#には、シリアル通信を行うクラスがすでに用意されています。&lt;br&gt;
+これを使うと簡単にシリアル通信ができます。&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/C-SerialPort-1.png" style="width:100%;max-width:450px;"&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h3 id="wpf"&gt;WPFアプリ作成について&lt;/h3&gt;
+&lt;p&gt;今回、シリアル通信をするアプリをWPFで作ってみました。&lt;br&gt;
+&lt;a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main"&gt;こちら&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/C-SerialPort-2.png" style="width:100%;max-width:400px;"&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;アプリ作成にあたってReactivePropertyというライブラリを使用しています。&lt;br&gt;
+データバインディングを補佐してくれるもので、大量のINotifyPropertyChangedを実施しなくて済むようになるのでお勧めです。&lt;/p&gt;
+&lt;p&gt;また、ReactivePropertyはコマンドバインディングも対応していますが、こちらは今回のアプリでは使用していません。&lt;br&gt;
+正直、規模の小さなアプリではコマンドバインディングするよりコードビハインドにイベント処理を書いてしまった方がシンプルで可読性が良いかと思います。&lt;br&gt;
+（異論はありそうですが。。）&lt;/p&gt;
+&lt;p&gt;参考1　&lt;a href="https://github.com/runceel/ReactiveProperty"&gt;公式&lt;/a&gt;&lt;br&gt;
+参考2　&lt;a href="https://qiita.com/YSRKEN/items/5a36fb8071104a989fb8"&gt;qiita ReactiveProperty全然分からねぇ！って人向けのFAQ集&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;p&gt;以下、作ったアプリの説明になります。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="class"&gt;使用Class&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0"&gt;SerialPort class&lt;/a&gt;を使用します。&lt;br&gt;
+NugetでSystem.IO.Portsをインストールすると使えるようになります。&lt;br&gt;
+複数ポートを同時に使用しない場合は、staticで宣言することが多いようです。&lt;/p&gt;
+&lt;p&gt;使用するメソッドは下記です。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;機能&lt;/th&gt;
+&lt;th&gt;メソッド&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;使用可能ポート取得&lt;/td&gt;
+&lt;td&gt;GetPortNames()&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;シリアルポートオープン&lt;/td&gt;
+&lt;td&gt;Open()&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;シリアルポートクローズ&lt;/td&gt;
+&lt;td&gt;Close()&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;データ送信&lt;/td&gt;
+&lt;td&gt;Write(string)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;データ受信&lt;/td&gt;
+&lt;td&gt;ReadExisting()&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-2"&gt;使用可能なポートの取得&lt;/h2&gt;
+&lt;p&gt;以下は、使用可能なCOMポートを取得し、アプリ画面のComboBoxに取得データをbindingするコードです。&lt;/p&gt;
+&lt;p&gt;ViewModel.cs：&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;//DataBindig用変数
+public ReactiveCollection&amp;lt;string&amp;gt; COMPorts { get; set; }
+      = new ReactiveCollection&amp;lt;string&amp;gt;(); 
+
+public void GetCOMPorts()
+{
+  COMPorts.Clear();
+  string[] ports = SerialPort.GetPortNames();
+  foreach (var port in ports)
+  {
+    COMPorts.Add(port);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;MainWindow.xaml：&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;ComboBox ItemsSource="{Binding COMPorts}" /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。&lt;br&gt;
+下記の例では、イベントはコードビハインドでいったん受けて、viewModel内に作成したGetCOMPoptsメソッドを実行しています。&lt;/p&gt;
+&lt;p&gt;MainWindow.xaml:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;ComboBox DropDownOpened="ComboBoxDropDownOpened_COMPort"/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;MainWindow.xaml.cs:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;private void ComboBoxDropDownOpened_COMPort(object sender, EventArgs e)
+{
+  viewModel.GetCOMPorts();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-3"&gt;シリアルポートのオープン&lt;/h2&gt;
+&lt;p&gt;シリアルポート通信の各種設定をしたのち、接続をOpenします。&lt;br&gt;
+コードは以下です。&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;public void SerialOpen()
+{
+  try
+  {
+    serialPort.PortName = port;        //選択したport名
+    serialPort.BaudRate = baudrate;    //選択したbaudrate
+    serialPort.DataBits = 8;
+    serialPort.Parity = Parity.None;
+    serialPort.StopBits = StopBits.One;
+    serialPort.WriteTimeout = 1000;
+    serialPort.ReadTimeout = 1000;
+    serialPort.Encoding=Encoding.UTF8;
+    serialPort.Open();
+  }
+  catch (Exception ex)
+  {
+    MessageBox.Show(ex.Message);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-4"&gt;シリアルポートのクローズ&lt;/h2&gt;
+&lt;p&gt;シリアルポート接続をCloseします。&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;public void SerialClose()
+{
+  try
+  {
+    serialPort.Close();
+  }
+  catch (Exception ex)
+  {
+    MessageBox.Show(ex.Message);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-5"&gt;データの送信&lt;/h2&gt;
+&lt;p&gt;文字列を送信します。&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;public void Send()
+{
+  if (serialPort.IsOpen)
+  {
+    serialPort.Write(TXData);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-6"&gt;データの受信&lt;/h2&gt;
+&lt;p&gt;文字列を受信します。&lt;br&gt;
+受信データの取り出しは、割込みを使って行います。&lt;br&gt;
+データを受信したらすぐにデータを取り込んでくれます。&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;SerialCom.serialPort.DataReceived += OnReceived;
+
+private void OnReceived(object sender, SerialDataReceivedEventArgs e)
+{
+  RXData += serialPort.ReadExisting();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-7"&gt;動作確認のためのシリアル通信折り返し方法&lt;/h2&gt;
+&lt;p&gt;シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的ですね。&lt;br&gt;
+以下のUSB-シリアル変換を使用すれば確認可能です。&lt;br&gt;
+TxピンとRxピンを導線で繋げばOKです。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://akizukidenshi.com/catalog/g/gM-11007/"&gt;秋月電子 FT-232RQ USBシリアル変換モジュール&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いです。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+</content>
+		<summary>&lt;p&gt;C#でシリアル通信を行う方法をまとめています。&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>https://yamaccu.github.io/posts/20210823-uiflow-customblock</id>
 		<title>M5Stack UIFLOWでカスタムブロックを作る</title>
-		<link href="https://yamaccu.github.io/posts/20210822-uiflow-customblock" />
+		<link href="https://yamaccu.github.io/posts/20210823-uiflow-customblock" />
 		<updated>2021-08-23T00:00:00Z</updated>
 		<content>&lt;p&gt;M5Stack向けのVisual Programming「UIFLOW」で、カスタムブロックを作成する方法をまとめました。&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="section"&gt;概要&lt;/h2&gt;
-&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210822-UIFLOW-CustomBlock-1.png" width="65px"&gt;
+&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210823-UIFLOW-CustomBlock-1.png" width="65px"&gt;
 ← M5Stackはこんなやつ。&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;M5Stackとは、ESP32を使用しwifi/LCD/各種センサなどを一体化させた、使いやすいマイコンボードです。&lt;br&gt;
@@ -22,7 +206,7 @@ LCDが標準装備なのが一番の特徴かと思います。&lt;br&gt;
 &lt;p&gt;参考　&lt;a href="https://m5stack.com/"&gt;公式HP&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;UIFLOWとは、M5Stackのプログラミング環境の一つで、スクラッチのようにビジュアルプログラミングでM5Stackのコードが書ける優れものです。&lt;br&gt;
-更にwebベースなので、お手軽にプログラミングができます。&lt;br&gt;
+更にwebベースでプログラミングできるので、プログラム環境の準備がお手軽です。&lt;br&gt;
 大本はmicropythonで動いています。&lt;br&gt;
 使い方、プログラミングの仕方などは下記のHPを参照ください。&lt;/p&gt;
 &lt;p&gt;参考1　&lt;a href="https://m5stack.github.io/UIFlow_doc/ja/"&gt;公式HP&lt;/a&gt;&lt;br&gt;
@@ -57,7 +241,7 @@ LCDが標準装備なのが一番の特徴かと思います。&lt;br&gt;
 &lt;br&gt;
 &lt;div style="display:flex;flex-wrap:wrap"&gt;
 &lt;div&gt;
-&lt;img src="https://yamaccu.github.io/img/20210822-UIFLOW-CustomBlock-2.png" style="width:100%;max-width:450px;margin-right:10px;"&gt;  
+&lt;img src="https://yamaccu.github.io/img/20210823-UIFLOW-CustomBlock-2.png" style="width:100%;max-width:420px;margin-right:5px;"&gt;  
 &lt;br&gt;
 &lt;br&gt;
 &lt;/div&gt;
@@ -76,13 +260,13 @@ LCDが標準装備なのが一番の特徴かと思います。&lt;br&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-4"&gt;3. 関数を実行するブロックを作る&lt;/h2&gt;
-&lt;p&gt;defで定義した関数を実行するブロックを作ります。
+&lt;p&gt;defで定義した関数を実行するブロックを作ります。&lt;br&gt;
 Add Blockをクリックするとブロックが増えますので、設定していきます。&lt;br&gt;
 引数がある場合は、parameterで設定します。&lt;/p&gt;
 &lt;br&gt;
 &lt;div style="display:flex;flex-wrap:wrap"&gt;
 &lt;div&gt;
-&lt;img src="https://yamaccu.github.io/img/20210822-UIFLOW-CustomBlock-3.png" style="width:100%;max-width:450px;margin-right:10px;"&gt;  
+&lt;img src="https://yamaccu.github.io/img/20210823-UIFLOW-CustomBlock-3.png" style="width:100%;max-width:420px;margin-right:5px;"&gt;  
 &lt;br&gt;
 &lt;br&gt;
 &lt;/div&gt;
@@ -98,7 +282,7 @@ Add Blockをクリックするとブロックが増えますので、設定し�
 引数は上記のParameterで設定して、&lt;br&gt;
 BlockCode内で"$(hoge)"の形で記述する&lt;br&gt;
 &lt;br&gt;
-&lt;pre&gt;&lt;code&gt;ex) playwav(${playwav},${volume})
+&lt;pre&gt;&lt;code&gt;ex)playwav(${playwav},${volume})
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -109,11 +293,12 @@ BlockCode内で"$(hoge)"の形で記述する&lt;br&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-5"&gt;完成したら&lt;/h2&gt;
-&lt;p&gt;ページ右下のDownloadボタンをおして、DownloadファイルをUIFLOWの&lt;a href="https://flow.m5stack.com/"&gt;プログラミングページ&lt;/a&gt;のCustomから開きます。&lt;/p&gt;
-&lt;img src="../img/20210822-UIFLOW-CustomBlock-4.png" style="width:100%;max-width:150px"&gt;
+&lt;p&gt;ページ右下のDownloadボタンをおして、DownloadファイルをUIFLOWの&lt;a href="https://flow.m5stack.com/"&gt;プログラミングページ&lt;/a&gt;のCustomから開きます。&lt;br&gt;
+そうすると、UIFLOWで自作のカスタムブロックが使用できるようになります。&lt;/p&gt;
+&lt;img src="../img/20210823-UIFLOW-CustomBlock-4.png" style="width:100%;max-width:150px"&gt;
 &lt;br&gt;
 &lt;br&gt;
-&lt;img src="../img/20210822-UIFLOW-CustomBlock-5.png" style="width:100%;max-width:450px"&gt;  
+&lt;img src="../img/20210823-UIFLOW-CustomBlock-5.png" style="width:100%;max-width:450px"&gt;  
 </content>
 		<summary>&lt;p&gt;M5Stack向けのVisual Programming「UIFLOW」で、カスタムブロックを作成する方法をまとめました。&lt;/p&gt;</summary>
 	</entry>
@@ -346,7 +531,7 @@ glass:before {
 		<updated>2021-08-19T00:00:00Z</updated>
 		<content>&lt;p&gt;githubのレポジトリにpushするまでの設定をまとめています。&lt;/p&gt;
 &lt;br&gt;
-&lt;h2 id="section"&gt;認証&lt;/h2&gt;
+&lt;h2 id="section"&gt;認証方法&lt;/h2&gt;
 &lt;p&gt;githubの認証には、&amp;quot;HTTP&amp;quot;と&amp;quot;SSH&amp;quot;の2種類あります。
 ここでは、SSHの方法を記載します。&lt;/p&gt;
 &lt;br&gt;
@@ -468,7 +653,7 @@ CTR+Cを二回で、mainで実行している処理を中止してreplで操作�
 		<id>https://yamaccu.github.io/posts/20210817-statiq-getstarted</id>
 		<title>Statiqでブログを書く</title>
 		<link href="https://yamaccu.github.io/posts/20210817-statiq-getstarted" />
-		<updated>2021-08-17T00:00:00Z</updated>
+		<updated>2021-08-25T00:00:00Z</updated>
 		<content>&lt;p&gt;Statiqでブログを書く方法をまとめています。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
@@ -500,13 +685,18 @@ MarkDownの書き方は&lt;a href="https://yamaccu.github.io/posts/20210816-mark
 そうすると、ページ上部のタブにリンクが追加されます。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
-&lt;h2 id="section-4"&gt;設定&lt;/h2&gt;
+&lt;h2 id="statiq"&gt;Statiq設定&lt;/h2&gt;
 &lt;p&gt;設定は設定ファイルで変えることができます。&lt;br&gt;
 theme→settings.ymlが設定ファイルです。&lt;/p&gt;
 &lt;p&gt;設定できる項目は、&lt;a href="https://www.statiq.dev/web/configuration/settings"&gt;公式HP&lt;/a&gt;を参照ください。&lt;br&gt;
 設定例は、&lt;a href="https://github.com/statiqdev/statiqdev.github.io/blob/develop/settings.yml"&gt;こちら&lt;/a&gt;にあります。&lt;/p&gt;
 &lt;p&gt;"Host"と"LinksUseHttps"を設定しないとSitemapが正しく出力されませんので、設定をおすすめします。&lt;br&gt;
 （ここでちょっとはまりました）&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="css"&gt;cssの変更・追加&lt;/h2&gt;
+&lt;p&gt;cssを変更・追加したい場合は、input→scss→_overrides.scssにcssを記述します。&lt;br&gt;
+そうすると、ここに書かれたcssがHPに適用されます。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="html"&gt;HTMLへの変換&lt;/h2&gt;

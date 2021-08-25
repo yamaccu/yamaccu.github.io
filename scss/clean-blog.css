@@ -208,6 +208,8 @@ p { margin: 0 0 1rem 0; }
 /* カスタマイズ */
 .col-md-6 { flex: 0 0 auto; max-width: 100%; }
 
+.col-md-12 { flex: 0 0 90%; max-width: 90%; margin-left: 30px; }
+
 h2 { background-color: whitesmoke; padding: 10px; }
 
 table th, table td { border-collapse: separate; border: solid 1px gainsboro; padding: 4px; }

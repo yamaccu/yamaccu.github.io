@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>yokuaru tech notes - C#&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;</title>
+
+  <link rel="canonical" href="https://yamaccu.github.io/posts/c-serialport">
+
+      <link type="application/rss+xml" rel="alternate" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" href="/feed.atom" />
+  
+  <meta name="application-name" content="yokuaru tech notes" />
+  <meta name="msapplication-tooltip" content="yokuaru tech notes" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="yokuaru tech notes - C#&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yamaccu.github.io/posts/c-serialport" />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/scss/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/vendor/fontawesome-free/css/brands.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css' data-no-mirror>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' data-no-mirror>
+  
+  <!-- Custom styles for this template -->
+  <link href="/scss/clean-blog.css" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <link rel="stylesheet" href="../prism.css">
+
+  <!-- Lunr search -->
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-197465108-1');
+</script>
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">yokuaru tech notes</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/posts">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tags">Tags</a>
+            </li>
+</ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+  <header class="masthead">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="post-heading">
+          <h1>
+            C#&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;
+          </h1>
+              <div class="meta">
+                Published on 2021&#x5E74;8&#x6708;23&#x65E5;
+                
+                <!--Updatedを追加-->
+
+              </div>
+                <div class="mt-3">
+                      <a href="/tags/cwpf" class="badge badge-light"> C#/WPF</a>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- Main Content -->
+  <div class="container"> 
+    <div class="row">
+      <div id="content" class="col-md-12">  
+        <p>C#でシリアル通信を行う方法をまとめています。</p>
+<br>
+<h2 id="section">概要</h2>
+<h3 id="section-1">シリアル通信について</h3>
+<p>シリアル通信とは、機器間で通信する方法の一つで、データを1bitづつ送受信する形式のものです。<br />
+RC232Cとも言います。<br />
+PCとマイコンボード（arduinoなど）間で通信するのによく使われています。</p>
+<p>C#には、シリアル通信を行うクラスがすでに用意されています。<br />
+これを使うと簡単にシリアル通信ができます。</p>
+<br>
+<p> <img src="../img/C-SerialPort-1.png" Style="width:100%;max-width:450px;"></p>
+<br>
+<br>
+<h3 id="wpf">WPFアプリ作成について</h3>
+<p>今回、シリアル通信をするアプリをWPFで作ってみました。<br />
+<a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main">こちら</a></p>
+<p> <img src="../img/C-SerialPort-2.png" Style="width:100%;max-width:400px;"></p>
+<br>
+<p>アプリ作成にあたってReactivePropertyというライブラリを使用しています。<br />
+データバインディングを補佐してくれるもので、大量のINotifyPropertyChangedを実施しなくて済むようになるのでお勧めです。</p>
+<p>また、ReactivePropertyはコマンドバインディングも対応していますが、こちらは今回のアプリでは使用していません。<br />
+正直、規模の小さなアプリではコマンドバインディングするよりコードビハインドにイベント処理を書いてしまった方がシンプルで可読性が良いかと思います。<br />
+（異論はありそうですが。。）</p>
+<p>参考1　<a href="https://github.com/runceel/ReactiveProperty">公式</a><br />
+参考2　<a href="https://qiita.com/YSRKEN/items/5a36fb8071104a989fb8">qiita ReactiveProperty全然分からねぇ！って人向けのFAQ集</a></p>
+<br>
+<br>
+<p>以下、作ったアプリの説明になります。</p>
+<br>
+<br>
+<h2 id="class">使用Class</h2>
+<p><a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0">SerialPort class</a>を使用します。<br />
+NugetでSystem.IO.Portsをインストールすると使えるようになります。<br />
+複数ポートを同時に使用しない場合は、staticで宣言することが多いようです。</p>
+<p>使用するメソッドは下記です。</p>
+<table>
+<thead>
+<tr>
+<th>機能</th>
+<th>メソッド</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用可能ポート取得</td>
+<td>GetPortNames()</td>
+</tr>
+<tr>
+<td>シリアルポートオープン</td>
+<td>Open()</td>
+</tr>
+<tr>
+<td>シリアルポートクローズ</td>
+<td>Close()</td>
+</tr>
+<tr>
+<td>データ送信</td>
+<td>Write(string)</td>
+</tr>
+<tr>
+<td>データ受信</td>
+<td>ReadExisting()</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<h2 id="section-2">使用可能なポートの取得</h2>
+<p>以下は、使用可能なCOMポートを取得し、アプリ画面のComboBoxに取得データをbindingするコードです。</p>
+<p>ViewModel.cs：</p>
+<pre><code class="language-C#">//DataBindig用変数
+public ReactiveCollection&lt;string&gt; COMPorts { get; set; }
+      = new ReactiveCollection&lt;string&gt;(); 
+
+public void GetCOMPorts()
+{
+  COMPorts.Clear();
+  string[] ports = SerialPort.GetPortNames();
+  foreach (var port in ports)
+  {
+    COMPorts.Add(port);
+  }
+}
+</code></pre>
+<p>MainWindow.xaml：</p>
+<pre><code class="language-C#">&lt;ComboBox ItemsSource=&quot;{Binding COMPorts}&quot; /&gt;
+</code></pre>
+<br>
+<p>COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。<br />
+下記の例では、イベントはコードビハインドでいったん受けて、viewModel内に作成したGetCOMPoptsメソッドを実行しています。</p>
+<p>MainWindow.xaml:</p>
+<pre><code class="language-C#">&lt;ComboBox DropDownOpened=&quot;ComboBoxDropDownOpened_COMPort&quot;/&gt;
+</code></pre>
+<p>MainWindow.xaml.cs:</p>
+<pre><code class="language-C#">private void ComboBoxDropDownOpened_COMPort(object sender, EventArgs e)
+{
+  viewModel.GetCOMPorts();
+}
+</code></pre>
+<br>
+<br>
+<h2 id="section-3">シリアルポートのオープン</h2>
+<p>シリアルポート通信の各種設定をしたのち、接続をOpenします。<br />
+コードは以下です。</p>
+<pre><code class="language-C#">public void SerialOpen()
+{
+  try
+  {
+    serialPort.PortName = port;        //選択したport名
+    serialPort.BaudRate = baudrate;    //選択したbaudrate
+    serialPort.DataBits = 8;
+    serialPort.Parity = Parity.None;
+    serialPort.StopBits = StopBits.One;
+    serialPort.WriteTimeout = 1000;
+    serialPort.ReadTimeout = 1000;
+    serialPort.Encoding=Encoding.UTF8;
+    serialPort.Open();
+  }
+  catch (Exception ex)
+  {
+    MessageBox.Show(ex.Message);
+  }
+}
+</code></pre>
+<br>
+<br>
+<h2 id="section-4">シリアルポートのクローズ</h2>
+<p>シリアルポート接続をCloseします。</p>
+<pre><code class="language-C#">public void SerialClose()
+{
+  try
+  {
+    serialPort.Close();
+  }
+  catch (Exception ex)
+  {
+    MessageBox.Show(ex.Message);
+  }
+}
+</code></pre>
+<br>
+<br>
+<h2 id="section-5">データの送信</h2>
+<p>文字列を送信します。</p>
+<pre><code class="language-C#">public void Send()
+{
+  if (serialPort.IsOpen)
+  {
+    serialPort.Write(TXData);
+  }
+}
+</code></pre>
+<br>
+<br>
+<h2 id="section-6">データの受信</h2>
+<p>文字列を受信します。<br />
+受信データの取り出しは、割込みを使って行います。<br />
+データを受信したらすぐにデータを取り込んでくれます。</p>
+<pre><code class="language-C#">SerialCom.serialPort.DataReceived += OnReceived;
+
+private void OnReceived(object sender, SerialDataReceivedEventArgs e)
+{
+  RXData += serialPort.ReadExisting();
+}
+</code></pre>
+<br>
+<br>
+<h2 id="section-7">動作確認のためのシリアル通信折り返し方法</h2>
+<p>シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的ですね。<br />
+以下のUSB-シリアル変換を使用すれば確認可能です。<br />
+TxピンとRxピンを導線で繋げばOKです。</p>
+<p><a href="https://akizukidenshi.com/catalog/g/gM-11007/">秋月電子 FT-232RQ USBシリアル変換モジュール</a></p>
+<br>
+<p>Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いです。</p>
+<br>
+<br>
+
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->  
+  <footer>
+    <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted m-0">Copyright &#xA9; 2021</p>
+                    <br />
+                    <ul class="list-inline text-center small">
+                            <li class="list-inline-item">
+                                <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                            </li>
+                    </ul>
+                    <br />
+                    <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+                </div>
+        </div>
+    </div>
+</footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  
+
+
+  
+
+  <!-- Custom scripts for this template -->
+  <script src="/js/clean-blog.js"></script>
+
+</body>
+
+</html>
