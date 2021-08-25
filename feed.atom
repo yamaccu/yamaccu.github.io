@@ -4,12 +4,12 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-08-25T06:27:26Z</updated>
+	<updated>2021-08-25T06:41:16Z</updated>
 	<entry>
-		<id>https://yamaccu.github.io/posts/c-serialport</id>
+		<id>https://yamaccu.github.io/posts/20210825-csharp-serialport</id>
 		<title>C#でシリアル通信</title>
-		<link href="https://yamaccu.github.io/posts/c-serialport" />
-		<updated>2021-08-23T00:00:00Z</updated>
+		<link href="https://yamaccu.github.io/posts/20210825-csharp-serialport" />
+		<updated>2021-08-25T00:00:00Z</updated>
 		<content>&lt;p&gt;C#でシリアル通信を行う方法をまとめています。&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="section"&gt;概要&lt;/h2&gt;
@@ -20,13 +20,13 @@ PCとマイコンボード（arduinoなど）間で通信するのによく使�
 &lt;p&gt;C#には、シリアル通信を行うクラスがすでに用意されています。&lt;br&gt;
 これを使うと簡単にシリアル通信ができます。&lt;/p&gt;
 &lt;br&gt;
-&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/C-SerialPort-1.png" style="width:100%;max-width:450px;"&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210825-Csharp-SerialPort-1.png" style="width:100%;max-width:450px;"&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="wpf"&gt;WPFアプリ作成について&lt;/h3&gt;
 &lt;p&gt;今回、シリアル通信をするアプリをWPFで作ってみました。&lt;br&gt;
 &lt;a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main"&gt;こちら&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/C-SerialPort-2.png" style="width:100%;max-width:400px;"&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210825-Csharp-SerialPort-2.png" style="width:100%;max-width:400px;"&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;アプリ作成にあたってReactivePropertyというライブラリを使用しています。&lt;br&gt;
 データバインディングを補佐してくれるもので、大量のINotifyPropertyChangedを実施しなくて済むようになるのでお勧めです。&lt;/p&gt;
