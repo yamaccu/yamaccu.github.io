@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-08-27T14:39:32Z</updated>
+	<updated>2021-08-27T14:41:29Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210825-csharp-serialport</id>
 		<title>C#でシリアル通信</title>
