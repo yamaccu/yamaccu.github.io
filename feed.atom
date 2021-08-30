@@ -4,7 +4,134 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-08-27T14:41:29Z</updated>
+	<updated>2021-08-30T06:33:59Z</updated>
+	<entry>
+		<id>https://yamaccu.github.io/posts/20210830-markdown-allinone</id>
+		<title>VSCodeの拡張機能「Markdown All in One」を使う</title>
+		<link href="https://yamaccu.github.io/posts/20210830-markdown-allinone" />
+		<updated>2021-08-30T00:00:00Z</updated>
+		<content>&lt;p&gt;VSCodeの拡張機能である「Markdown All in One」の機能まとめです。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;概要&lt;/h2&gt;
+&lt;p&gt;VSCodeとは、Microsoft社が開発している無料のコードエディターです。&lt;br&gt;
+カスタマイズ性が高く、様々な拡張機能をインストール可能なのが特徴です。&lt;br&gt;
+今、最もよく使われているエディターです。&lt;/p&gt;
+&lt;p&gt;本記事では、MarkDownを書くのに便利な拡張機能「Markdown All in One」の機能をまとめています。&lt;/p&gt;
+&lt;p&gt;Markdownの記法メモは&lt;a href="https://yamaccu.github.io/posts/20210816-markdown-tips"&gt;こちら&lt;/a&gt;にまとめています。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-1"&gt;準備&lt;/h2&gt;
+&lt;p&gt;VSCodeと、拡張機能のMarkdown All in OneをPCにインストールします。&lt;br&gt;
+拡張機能は、VSCodeを開いたら左側の四角形が四つあるアイコンからインストールできます。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210830-MarkDown-AllInOne-1.png" width="40px"&gt;
+← こんなアイコン&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;参考  &lt;a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/"&gt;VSCode公式&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-2"&gt;ショートカット機能&lt;/h2&gt;
+&lt;br&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;キーボード操作&lt;/th&gt;
+&lt;th&gt;機能&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctr+B&lt;/td&gt;
+&lt;td&gt;太字 (**)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctr+I&lt;/td&gt;
+&lt;td&gt;イタリック(*)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctr+Shift+]&lt;/td&gt;
+&lt;td&gt;見出し(#)、実行ごとに#が増える&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctr+Shift+[&lt;/td&gt;
+&lt;td&gt;見出し(#)、実行ごと#が減る&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctr+M&lt;/td&gt;
+&lt;td&gt;数式挿入($)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Alt+C&lt;/td&gt;
+&lt;td&gt;チェックボックスのON（[x]）、もう一度押すと解除&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Alt+S&lt;/td&gt;
+&lt;td&gt;取り消し(~~)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Alt+Shift+F&lt;/td&gt;
+&lt;td&gt;表の表記のフォーマット整形&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;br&gt;
+&lt;p&gt;以下はもともとVSCodeに入っており便利なショートカット&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;キーボード操作&lt;/th&gt;
+&lt;th&gt;機能&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctr+K → v&lt;/td&gt;
+&lt;td&gt;サイドにプレビュー表示&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctr+shift+v&lt;/td&gt;
+&lt;td&gt;タブにプレビュー表示&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-3"&gt;目次の自動作成&lt;/h2&gt;
+&lt;p&gt;見出し(#)の目次を自動で作成してくれます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自動作成：Ctr+Shift+p → Markdown All in One: Create Table of Contents&lt;/li&gt;
+&lt;li&gt;更新　　：Ctr+Shift+p → Markdown All in One: Update Table of Contents&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;↓こんな感じです。&lt;br&gt;
+&lt;img src="https://yamaccu.github.io/img/20210830-MarkDown-AllInOne-2.png" style="width:100%;max-width:450px;"&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;また、見出しに自動で番号を振ってくれます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;番号追加：Ctr+Shift+p → MarkDown All in One: Add/Update section numbers&lt;/li&gt;
+&lt;li&gt;番号削除：Ctr+Shift+p → MarkDown All in One: Remove section numbers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;↓こんな感じです。&lt;br&gt;
+&lt;img src="https://yamaccu.github.io/img/20210830-MarkDown-AllInOne-3.png" style="width:100%;max-width:450px;"&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;目次に入れたくない見出しがある場合は、見出しの前の行に「&amp;lt;!-- omit in toc --&amp;gt;」を追加します。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-4"&gt;リストの入力補佐&lt;/h2&gt;
+&lt;p&gt;- や1. などのリストを作成しているときに、行追加時に自動でリストが追加されます。&lt;br&gt;
+また、tabでインデントされます。&lt;br&gt;
+地味に便利なやつです。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="html"&gt;HTML出力&lt;/h2&gt;
+&lt;p&gt;現在開いているMarkDownファイルをHTMLへ変換できます。&lt;br&gt;
+Ctr+Shift+p → Markdown All in One: Print current document to HTML&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-5"&gt;リンクの作成&lt;/h2&gt;
+&lt;p&gt;HPなどのアドレスをコピーした状態で、テキストを選択してCtr+Vすると、リンクを自動作成してくれます。&lt;/p&gt;
+&lt;img src="../img/20210830-MarkDown-AllInOne-4.png" style="width:100%;max-width:350px;"&gt;  
+</content>
+		<summary>&lt;p&gt;VSCodeの拡張機能である「Markdown All in One」の機能まとめです。&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210825-csharp-serialport</id>
 		<title>C#でシリアル通信</title>
@@ -729,14 +856,14 @@ google analyticsなどのスクリプトを追加したいときは、_head.csht
 		<id>https://yamaccu.github.io/posts/20210816-markdown-tips</id>
 		<title>MarkDownの書き方</title>
 		<link href="https://yamaccu.github.io/posts/20210816-markdown-tips" />
-		<updated>2021-08-23T00:00:00Z</updated>
+		<updated>2021-08-30T00:00:00Z</updated>
 		<content>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="section"&gt;エディタ&lt;/h2&gt;
 &lt;p&gt;VSCodeがお勧めです。
-以下の拡張機能をインストールします。&lt;/p&gt;
+以下の拡張機能をインストールすると、使い勝手が良くなります。&lt;/p&gt;
 &lt;p&gt;Markdown All in One&lt;/p&gt;
-&lt;p&gt;（こちらの機能は、別記事にまとめる予定。）&lt;/p&gt;
+&lt;p&gt;機能は、&lt;a href="https://yamaccu.github.io/posts/20210830-markdown-allinone"&gt;こちら&lt;/a&gt;の記事にまとめています。&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="section-1"&gt;見出し&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;# h1
@@ -768,7 +895,7 @@ codeblock
 |  TD  |  TD  |
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="section-7"&gt;画像貼り付け&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;xxxx/xxxx.png&amp;quot; Style=&amp;quot;width:100%;max-width:500px;&amp;quot;&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;img src="xxxx/xxxx.png" Style="width:100%;max-width:500px;"&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="section-8"&gt;半角スペース&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;&amp;amp;nbsp;
