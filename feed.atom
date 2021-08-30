@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-08-30T06:33:59Z</updated>
+	<updated>2021-08-30T12:49:21Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210830-markdown-allinone</id>
 		<title>VSCodeの拡張機能「Markdown All in One」を使う</title>
@@ -17,11 +17,13 @@
 カスタマイズ性が高く、様々な拡張機能をインストール可能なのが特徴です。&lt;br&gt;
 今、最もよく使われているエディターです。&lt;/p&gt;
 &lt;p&gt;本記事では、MarkDownを書くのに便利な拡張機能「Markdown All in One」の機能をまとめています。&lt;/p&gt;
-&lt;p&gt;Markdownの記法メモは&lt;a href="https://yamaccu.github.io/posts/20210816-markdown-tips"&gt;こちら&lt;/a&gt;にまとめています。&lt;/p&gt;
+&lt;p&gt;Markdownの記法メモはこちらにまとめています。&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt;
+&lt;a href="https://yamaccu.github.io/posts/20210816-markdown-tips"&gt;MarkDown記法のメモ&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-1"&gt;準備&lt;/h2&gt;
-&lt;p&gt;VSCodeと、拡張機能のMarkdown All in OneをPCにインストールします。&lt;br&gt;
+&lt;p&gt;VSCodeと、拡張機能の「Markdown All in One」をPCにインストールします。&lt;br&gt;
 拡張機能は、VSCodeを開いたら左側の四角形が四つあるアイコンからインストールできます。&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210830-MarkDown-AllInOne-1.png" width="40px"&gt;
 ← こんなアイコン&lt;/p&gt;
@@ -129,6 +131,12 @@ Ctr+Shift+p → Markdown All in One: Print current document to HTML&lt;/p&gt;
 &lt;h2 id="section-5"&gt;リンクの作成&lt;/h2&gt;
 &lt;p&gt;HPなどのアドレスをコピーした状態で、テキストを選択してCtr+Vすると、リンクを自動作成してくれます。&lt;/p&gt;
 &lt;img src="../img/20210830-MarkDown-AllInOne-4.png" style="width:100%;max-width:350px;"&gt;  
+&lt;br&gt;
+&lt;br&gt;
+&lt;h3 id="section-6"&gt;コメントなど&lt;/h3&gt;
+&lt;p&gt;以下のtwitterまで、返信orDMをお願いします。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="ja" dir="ltr"&gt;vscodeの拡張機能「Markdown All in One」の機能をまとめてみました。&lt;a href="https://t.co/pAnWX08FtL"&gt;https://t.co/pAnWX08FtL&lt;/a&gt;&lt;/p&gt;— やまっく (@YY87750722) &lt;a href="https://twitter.com/YY87750722/status/1432324033983352839?ref_src=twsrc%5Etfw"&gt;August 30, 2021&lt;/a&gt;&lt;/blockquote&gt; &lt;script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;VSCodeの拡張機能である「Markdown All in One」の機能まとめです。&lt;/p&gt;</summary>
 	</entry>
@@ -316,6 +324,7 @@ TxピンとRxピンを導線で繋いで動作確認します。&lt;/p&gt;
 &lt;h3 id="section-8"&gt;コメントなど&lt;/h3&gt;
 &lt;p&gt;下記のTwitterまで返信orDMお願いします。&lt;/p&gt;
 &lt;blockquote class="twitter-tweet"&gt;&lt;p lang="ja" dir="ltr"&gt;WPFで簡単なシリアル通信アプリを作りました。（ブログ用）&lt;a href="https://twitter.com/hashtag/Csharp?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#Csharp&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/WPF?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#WPF&lt;/a&gt;&lt;a href="https://t.co/BSPIjahaFD"&gt;https://t.co/BSPIjahaFD&lt;/a&gt;&lt;/p&gt;— やまっく (@YY87750722) &lt;a href="https://twitter.com/YY87750722/status/1430549219320860673?ref_src=twsrc%5Etfw"&gt;August 25, 2021&lt;/a&gt;&lt;/blockquote&gt; &lt;script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;C#でシリアル通信を行う方法をまとめています。&lt;/p&gt;</summary>
 	</entry>
@@ -427,6 +436,7 @@ BlockCode内で"$(hoge)"の形で記述する&lt;/li&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;img src="../img/20210823-UIFLOW-CustomBlock-5.png" style="width:100%;max-width:450px"&gt;  
+&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;M5Stack向けのVisual Programming「UIFLOW」で、カスタムブロックを作成する方法をまとめました。&lt;/p&gt;</summary>
 	</entry>
@@ -601,6 +611,7 @@ glass:before {
 &lt;p&gt;&lt;a href="https://qiita.com/yaegaki/items/a1e518d16be9b85479b4"&gt;qiita CSSで作図する&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://morobrand.net/mororeco/web/css/css-shape/"&gt;CSSでいろんなカタチを表現してみる&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://saruwakakun.com/html-css/basic/before-after"&gt;CSSの疑似要素とは？beforeとafterの使い方まとめ&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;HTMLのdiv要素を使って、ブラウザに図形を表示させる方法です。&lt;/p&gt;</summary>
 	</entry>
@@ -649,6 +660,7 @@ glass:before {
 &lt;br&gt;
 &lt;h2 id="hp"&gt;参考HP&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://pipenv.pypa.io/en/latest/"&gt;pipenv公式&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;pythonでプログラミングする際の、仮想環境の構築についてまとめています。&lt;/p&gt;</summary>
 	</entry>
@@ -709,6 +721,7 @@ git push (-f) origin main
 &lt;p&gt;※-fは強制プッシュなので取り扱い注意です&lt;/p&gt;
 &lt;p&gt;※originの設定は、クローン時に自動で設定されます。&lt;/p&gt;
 &lt;p&gt;※2020/10から、デフォルトブランチがmaster ⇒ main に変わりました。&lt;/p&gt;
+&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;githubのレポジトリにpushするまでの設定をまとめています。&lt;/p&gt;</summary>
 	</entry>
@@ -774,6 +787,7 @@ CTR+Cを二回で、mainで実行している処理を中止してreplで操作�
 &lt;br&gt;
 &lt;h2 id="url"&gt;参考URL&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html"&gt;micropython公式&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;micropythonにreplでアクセスする方法をまとめています。&lt;/p&gt;</summary>
 	</entry>
@@ -849,12 +863,13 @@ google serach consoleへの登録をお忘れずに。&lt;/p&gt;
 &lt;h2 id="headscriptgoogle-analytics"&gt;HEADへのScript追加（google analyticsなど）&lt;/h2&gt;
 &lt;p&gt;theme→input内の_head.cshtmlファイルで、&amp;lt;HEAD&amp;gt;へのスクリプト追加ができます。&lt;br&gt;
 google analyticsなどのスクリプトを追加したいときは、_head.cshtmlにスクリプトをコピペすると、全ページの&amp;lt;HEAD&amp;gt;に追加されます。&lt;/p&gt;
+&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;Statiqでブログを書く方法をまとめています。&lt;/p&gt;</summary>
 	</entry>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210816-markdown-tips</id>
-		<title>MarkDownの書き方</title>
+		<title>MarkDown記法のメモ</title>
 		<link href="https://yamaccu.github.io/posts/20210816-markdown-tips" />
 		<updated>2021-08-30T00:00:00Z</updated>
 		<content>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;
@@ -862,8 +877,12 @@ google analyticsなどのスクリプトを追加したいときは、_head.csht
 &lt;h2 id="section"&gt;エディタ&lt;/h2&gt;
 &lt;p&gt;VSCodeがお勧めです。
 以下の拡張機能をインストールすると、使い勝手が良くなります。&lt;/p&gt;
-&lt;p&gt;Markdown All in One&lt;/p&gt;
-&lt;p&gt;機能は、&lt;a href="https://yamaccu.github.io/posts/20210830-markdown-allinone"&gt;こちら&lt;/a&gt;の記事にまとめています。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Markdown All in One&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;機能は、下記の記事にまとめています。&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt;
+&lt;a href="https://yamaccu.github.io/posts/20210830-markdown-allinone"&gt;VSCodeの拡張機能「Markdown All in One」を使う&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="section-1"&gt;見出し&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;# h1
@@ -900,6 +919,10 @@ codeblock
 &lt;h2 id="section-8"&gt;半角スペース&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;&amp;amp;nbsp;
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="section-9"&gt;水平線&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;</summary>
 	</entry>
@@ -941,6 +964,7 @@ rootディレクトリに、「robots.txt」という名前のファイルを作
 登録したては「サイトマップを読み込めませんでした」とエラーが出ますが、しばらく放置しておくと読み込んでくれるようです。&lt;/p&gt;
 &lt;p&gt;⇒　3週間後に確認したら、読み込んでいました。&lt;/p&gt;
 &lt;p&gt;参考　&lt;a href="http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html"&gt;Google Serach Console登録方法&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;ブログを作ったら、最初にやることをまとめています。&lt;/p&gt;</summary>
 	</entry>
