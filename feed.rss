@@ -5,8 +5,101 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Mon, 30 Aug 2021 12:49:21 GMT</pubDate>
-		<lastBuildDate>Mon, 30 Aug 2021 12:49:21 GMT</lastBuildDate>
+		<pubDate>Fri, 03 Sep 2021 13:50:29 GMT</pubDate>
+		<lastBuildDate>Fri, 03 Sep 2021 13:50:29 GMT</lastBuildDate>
+		<item>
+			<title>Resharperのコマンドラインツールを使う</title>
+			<link>https://yamaccu.github.io/posts/20210903-csharp-resharpercommand</link>
+			<description>&lt;p&gt;C#の開発支援ツールであるResharperのコマンドラインツールのまとめです。&lt;/p&gt;</description>
+			<guid>https://yamaccu.github.io/posts/20210903-csharp-resharpercommand</guid>
+			<pubDate>Fri, 03 Sep 2021 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;C#の開発支援ツールであるResharperのコマンドラインツールのまとめです。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;概要&lt;/h2&gt;
+&lt;p&gt;Resharperとは、JetBrains社が販売しているC#開発支援ツールです。&lt;br /&gt;
+Visual Studio向けのアドオンと、コマンドラインで実行できるコマンドラインツールがあります。&lt;/p&gt;
+&lt;p&gt;Visual Studio向けのアドオンは基本有料で、コーディングのヒントや、ネーミング規則に違反した箇所の指摘などをアクティブに実施してくれます。&lt;/p&gt;
+&lt;p&gt;コマンドラインツールは無料で、コードを静的に解析するものです。&lt;br /&gt;
+コードレビュー等に有用です。&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;本記事では、無料のコマンドラインツールについてまとめています。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-1"&gt;準備&lt;/h2&gt;
+&lt;p&gt;Resharper公式から、コマンドラインツールをダウンロードしておきます。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.jetbrains.com/ja-jp/resharper/download/#section=commandline"&gt;ダウンロード先&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-2"&gt;コマンドラインツールの3つの機能&lt;/h2&gt;
+&lt;p&gt;Resharperのコマンドラインツールには3つの機能があります。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CleanupCode：コードの整形&lt;/li&gt;
+&lt;li&gt;dupFinder  ：コードの重複の検出&lt;/li&gt;
+&lt;li&gt;InspectCode：コードの検査&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="cleanupcode"&gt;CleanupCode&lt;/h2&gt;
+&lt;p&gt;インデントの修正、修飾子の修正、不要Usingディレクティブの削除など、コードの可読性を改善してくれます。&lt;/p&gt;
+&lt;p&gt;実行コマンド&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;cleanupcode.exe YourSolution.sln
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;既存のファイルに修正結果が上書きされますので、実行時は注意してください。&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;公式doc日本語訳&lt;br /&gt;
+&lt;a href="https://pleiades.io/help/resharper/CleanupCode.html"&gt;CleanupCodeコマンドラインツール&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="dupfinder"&gt;dupFinder&lt;/h2&gt;
+&lt;p&gt;コードの重複を調べてレポートファイルをxml形式で出力してくれます。&lt;/p&gt;
+&lt;p&gt;実行コマンド&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;dupFinder.exe &amp;lt;source&amp;gt; -o=&amp;lt;PathToOutputFile&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;レポートに重複コードまで含める場合の実行コマンド&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;dupFinder.exe &amp;lt;source&amp;gt; -o=&amp;lt;PathToOutputFile&amp;gt; --show-text
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;レポートファイルは下記のような感じです。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;statics：重複コードの相対サイズがわかります。&lt;/li&gt;
+&lt;li&gt;duplicates：重複箇所を示します。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src="../img/20210903-Csharp-ResharperCommand-1.png" Style="width:100%;max-width:550px;"&gt;  
+&lt;br&gt;
+&lt;br&gt;
+&lt;p&gt;公式doc日本語訳&lt;br /&gt;
+&lt;a href="https://pleiades.io/help/resharper/dupFinder.html"&gt;dupFinderコマンドラインツール&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="inspectcode"&gt;InspectCode&lt;/h2&gt;
+&lt;p&gt;コードを解析して、結果をxml形式で出力してくれます。&lt;/p&gt;
+&lt;p&gt;実行コマンド&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;InspectCode.exe YourSolution.sln -o=&amp;lt;PathToOutputFile&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;レポートファイルは下記のような感じです。&lt;br /&gt;
+(小さくて見えづらいかもしれません)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TypeId：指摘のカテゴリ&lt;/li&gt;
+&lt;li&gt;Message：指摘詳細&lt;/li&gt;
+&lt;li&gt;File/Offset/Line：指摘の場所&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src="../img/20210903-Csharp-ResharperCommand-2.png" Style="width:100%;max-width:750px;"&gt;  
+&lt;br&gt;
+&lt;br&gt;
+&lt;p&gt;例えば、「TypeId：InconsistentNaming」は、ネーミングルール違反を教えてくれています。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;p&gt;公式doc日本語訳&lt;br /&gt;
+&lt;a href="https://pleiades.io/help/resharper/InspectCode.html"&gt;InspectCodeコマンドラインツール &lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://pleiades.io/help/resharper/Reference__Code_Inspections_CSHARP.html"&gt;C# のコードインスペクション&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+</content:encoded>
+			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
+		</item>
 		<item>
 			<title>VSCodeの拡張機能「Markdown All in One」を使う</title>
 			<link>https://yamaccu.github.io/posts/20210830-markdown-allinone</link>
@@ -134,6 +227,7 @@ Ctr+Shift+p → Markdown All in One: Print current document to HTML&lt;/p&gt;
 &lt;h2 id="section-5"&gt;リンクの作成&lt;/h2&gt;
 &lt;p&gt;HPなどのアドレスをコピーした状態で、テキストを選択してCtr+Vすると、リンクを自動作成してくれます。&lt;/p&gt;
 &lt;img src="../img/20210830-MarkDown-AllInOne-4.png" style="width:100%;max-width:350px;"&gt;  
+&lt;br&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="section-6"&gt;コメントなど&lt;/h3&gt;
@@ -613,6 +707,12 @@ glass:before {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;br&gt;
+&lt;h2 id="span"&gt;spanでの図形表示&lt;/h2&gt;
+&lt;p&gt;divを使うと前後に改行が入ります。&lt;br /&gt;
+改行させたくない場合は、&amp;lt;span&amp;gt;を使用します。&lt;/p&gt;
+&lt;p&gt;その場合、cssに&amp;quot;display: inline-block;&amp;quot;を追加すると、divと同じように図形を表示させることができます。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
 &lt;h2 id="url"&gt;参考URL&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://qiita.com/yaegaki/items/a1e518d16be9b85479b4"&gt;qiita CSSで作図する&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://morobrand.net/mororeco/web/css/css-shape/"&gt;CSSでいろんなカタチを表現してみる&lt;/a&gt;&lt;/p&gt;
@@ -933,49 +1033,6 @@ codeblock
 &lt;h2 id="section-9"&gt;水平線&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;---
 &lt;/code&gt;&lt;/pre&gt;
-&lt;br&gt;
-</content:encoded>
-			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
-		</item>
-		<item>
-			<title>ブログを作ったらやること</title>
-			<link>https://yamaccu.github.io/posts/20210815-blog-setting</link>
-			<description>&lt;p&gt;ブログを作ったら、最初にやることをまとめています。&lt;/p&gt;</description>
-			<guid>https://yamaccu.github.io/posts/20210815-blog-setting</guid>
-			<pubDate>Sun, 15 Aug 2021 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;ブログを作ったら、最初にやることをまとめています。&lt;/p&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="google-analytics"&gt;Google Analyticsの登録&lt;/h2&gt;
-&lt;p&gt;HPへのアクセス状況が確認できるようになります。&lt;br /&gt;
-登録が完了したら、トラッキングIDをHTMLの&amp;lt;HEAD&amp;gt;内に追記する必要があります。&lt;/p&gt;
-&lt;p&gt;参考　&lt;a href="https://blog.siteanatomy.com/register-google-analytics/"&gt;Google Analytics登録方法&lt;/a&gt;&lt;/p&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="sitemap"&gt;sitemapの作成&lt;/h2&gt;
-&lt;p&gt;Google検索にページをヒットさせ易くするためのファイルです。&lt;br /&gt;
-作成後、Google Search Consoleに登録します。&lt;/p&gt;
-&lt;p&gt;小規模HPには不要のようですが、一応作成しておくとよいです。&lt;br /&gt;
-静的サイトジェネレータを使用している場合は、自動で出力してくれるものが多いようです。&lt;/p&gt;
-&lt;p&gt;参考　&lt;a href="https://ferret-plus.com/curriculums/3580"&gt;サイトマップ作成方法&lt;/a&gt;&lt;/p&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="robots.txt"&gt;robots.txtの作成&lt;/h2&gt;
-&lt;p&gt;sitemapへのリンクファイルです。&lt;br /&gt;
-rootディレクトリに、「robots.txt」という名前のファイルを作成して、中身を以下のように記述します。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;User-agent: *
-    Disallow:
-    
-    Sitemap: https://xxxxxxxxx/sitemap.xml
-&lt;/code&gt;&lt;/pre&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="google-search-console-sitemap"&gt;Google Search Consoleの登録 / sitemapの登録&lt;/h2&gt;
-&lt;p&gt;HPへの流入ルート、検索順位などSEO関連情報が確認できます。&lt;/p&gt;
-&lt;p&gt;登録完了したら、サイトマップも登録します。&lt;br /&gt;
-登録したては「サイトマップを読み込めませんでした」とエラーが出ますが、しばらく放置しておくと読み込んでくれるようです。&lt;/p&gt;
-&lt;p&gt;⇒　3週間後に確認したら、読み込んでいました。&lt;/p&gt;
-&lt;p&gt;参考　&lt;a href="http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html"&gt;Google Serach Console登録方法&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>

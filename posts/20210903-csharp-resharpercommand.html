@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>yokuaru tech notes - Tags</title>
+  <title>yokuaru tech notes - Resharper&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;</title>
 
-  <link rel="canonical" href="https://yamaccu.github.io/tags">
+  <link rel="canonical" href="https://yamaccu.github.io/posts/20210903-csharp-resharpercommand">
 
       <link type="application/rss+xml" rel="alternate" href="/feed.rss" />
       <link type="application/atom+xml" rel="alternate" href="/feed.atom" />
@@ -17,9 +17,9 @@
   <meta name="msapplication-tooltip" content="yokuaru tech notes" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="yokuaru tech notes - Tags" />
+  <meta property="og:title" content="yokuaru tech notes - Resharper&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tags" />
+  <meta property="og:url" content="https://yamaccu.github.io/posts/20210903-csharp-resharpercommand" />
   
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -90,10 +90,19 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="site-heading">
+        <div class="post-heading">
           <h1>
-            Tags
+            Resharper&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;
           </h1>
+              <div class="meta">
+                Published on 2021&#x5E74;9&#x6708;3&#x65E5;
+                
+                <!--Updatedを追加-->
+
+              </div>
+                <div class="mt-3">
+                      <a href="/tags/c" class="badge badge-light"> C#</a>
+                </div>
         </div>
       </div>
     </div>
@@ -107,19 +116,94 @@
         <div class="container-sm-height">
           <div class="row row-sm-height">
             <div class="col-md-6 right-border col-sm-height">
-                      <a role="button" href="/tags/markdown" class="badge badge-light"> MarkDown (2)</a>
-        <a role="button" href="/tags/c" class="badge badge-light"> C# (1)</a>
-        <a role="button" href="/tags/cwpf" class="badge badge-light"> C#/WPF (1)</a>
-        <a role="button" href="/tags/m5stack" class="badge badge-light"> M5Stack (1)</a>
-        <a role="button" href="/tags/htmlcss" class="badge badge-light"> HTML/CSS (1)</a>
-        <a role="button" href="/tags/python" class="badge badge-light"> python (1)</a>
-        <a role="button" href="/tags/github" class="badge badge-light"> github (1)</a>
-        <a role="button" href="/tags/micropython" class="badge badge-light"> micropython (1)</a>
-        <a role="button" href="/tags/statiq" class="badge badge-light"> statiq (1)</a>
-        <a role="button" href="/tags/blog" class="badge badge-light"> blog (1)</a>
+              <p>C#の開発支援ツールであるResharperのコマンドラインツールのまとめです。</p>
+<br>
+<h2 id="section">概要</h2>
+<p>Resharperとは、JetBrains社が販売しているC#開発支援ツールです。<br />
+Visual Studio向けのアドオンと、コマンドラインで実行できるコマンドラインツールがあります。</p>
+<p>Visual Studio向けのアドオンは基本有料で、コーディングのヒントや、ネーミング規則に違反した箇所の指摘などをアクティブに実施してくれます。</p>
+<p>コマンドラインツールは無料で、コードを静的に解析するものです。<br />
+コードレビュー等に有用です。</p>
+<br>
+<p>本記事では、無料のコマンドラインツールについてまとめています。</p>
+<br>
+<br>
+<h2 id="section-1">準備</h2>
+<p>Resharper公式から、コマンドラインツールをダウンロードしておきます。</p>
+<p><a href="https://www.jetbrains.com/ja-jp/resharper/download/#section=commandline">ダウンロード先</a></p>
+<br>
+<br>
+<h2 id="section-2">コマンドラインツールの3つの機能</h2>
+<p>Resharperのコマンドラインツールには3つの機能があります。</p>
+<ul>
+<li>CleanupCode：コードの整形</li>
+<li>dupFinder  ：コードの重複の検出</li>
+<li>InspectCode：コードの検査</li>
+</ul>
+<br>
+<br>
+<h2 id="cleanupcode">CleanupCode</h2>
+<p>インデントの修正、修飾子の修正、不要Usingディレクティブの削除など、コードの可読性を改善してくれます。</p>
+<p>実行コマンド</p>
+<pre><code class="language-C#">cleanupcode.exe YourSolution.sln
+</code></pre>
+<br>
+<p>既存のファイルに修正結果が上書きされますので、実行時は注意してください。</p>
+<br>
+<p>公式doc日本語訳<br />
+<a href="https://pleiades.io/help/resharper/CleanupCode.html">CleanupCodeコマンドラインツール</a></p>
+<br>
+<br>
+<h2 id="dupfinder">dupFinder</h2>
+<p>コードの重複を調べてレポートファイルをxml形式で出力してくれます。</p>
+<p>実行コマンド</p>
+<pre><code class="language-C#">dupFinder.exe &lt;source&gt; -o=&lt;PathToOutputFile&gt;
+</code></pre>
+<br>
+<p>レポートに重複コードまで含める場合の実行コマンド</p>
+<pre><code class="language-C#">dupFinder.exe &lt;source&gt; -o=&lt;PathToOutputFile&gt; --show-text
+</code></pre>
+<br>
+<p>レポートファイルは下記のような感じです。</p>
+<ul>
+<li>statics：重複コードの相対サイズがわかります。</li>
+<li>duplicates：重複箇所を示します。</li>
+</ul>
+<img src="../img/20210903-Csharp-ResharperCommand-1.png" Style="width:100%;max-width:550px;">  
+<br>
+<br>
+<p>公式doc日本語訳<br />
+<a href="https://pleiades.io/help/resharper/dupFinder.html">dupFinderコマンドラインツール</a></p>
+<br>
+<br>
+<h2 id="inspectcode">InspectCode</h2>
+<p>コードを解析して、結果をxml形式で出力してくれます。</p>
+<p>実行コマンド</p>
+<pre><code class="language-C#">InspectCode.exe YourSolution.sln -o=&lt;PathToOutputFile&gt;
+</code></pre>
+<br>
+<p>レポートファイルは下記のような感じです。<br />
+(小さくて見えづらいかもしれません)</p>
+<ul>
+<li>TypeId：指摘のカテゴリ</li>
+<li>Message：指摘詳細</li>
+<li>File/Offset/Line：指摘の場所</li>
+</ul>
+<img src="../img/20210903-Csharp-ResharperCommand-2.png" Style="width:100%;max-width:750px;">  
+<br>
+<br>
+<p>例えば、「TypeId：InconsistentNaming」は、ネーミングルール違反を教えてくれています。</p>
+<br>
+<br>
+<p>公式doc日本語訳<br />
+<a href="https://pleiades.io/help/resharper/InspectCode.html">InspectCodeコマンドラインツール </a><br />
+<a href="https://pleiades.io/help/resharper/Reference__Code_Inspections_CSHARP.html">C# のコードインスペクション</a></p>
+<br>
+<br>
 
               <br>
               <hr>
+
             </div>
             <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
             <div Style="line-height:0.9em">
