@@ -73,13 +73,13 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/posts">Posts</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/tags">Tags</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
             </li>
 </ul>
     </div>
@@ -133,7 +133,7 @@ PCとマイコンボード（arduinoなど）間で通信するのによく使�
 <br>
 <h3 id="wpf">WPFアプリ作成について</h3>
 <p>今回、シリアル通信をするGUIアプリをWPFで作ってみました。<br />
-<a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main">こちら</a></p>
+<span class="link"></span> <a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main">こちら</a></p>
 <p> <img src="../img/20210825-Csharp-SerialPort-2.png" Style="width:100%;max-width:400px;"></p>
 <br>
 <p>アプリ作成にあたってReactivePropertyというライブラリを使用しています。<br />
@@ -141,15 +141,15 @@ PCとマイコンボード（arduinoなど）間で通信するのによく使�
 <p>また、ReactivePropertyはコマンドバインディングも対応していますが、こちらは今回のアプリでは使用していません。<br />
 正直、規模の小さなアプリではコマンドバインディングするよりコードビハインドにイベント処理を書いてしまった方がシンプルで可読性が良いかと思います。<br />
 （異論はありそうですが。。）</p>
-<p>参考1　<a href="https://github.com/runceel/ReactiveProperty">公式</a><br />
-参考2　<a href="https://qiita.com/YSRKEN/items/5a36fb8071104a989fb8">qiita ReactiveProperty全然分からねぇ！って人向けのFAQ集</a></p>
+<p>参考1<span class="link"></span> <a href="https://github.com/runceel/ReactiveProperty">公式</a><br />
+参考2<span class="link"></span> <a href="https://qiita.com/YSRKEN/items/5a36fb8071104a989fb8">qiita ReactiveProperty全然分からねぇ！って人向けのFAQ集</a></p>
 <br>
 <br>
 <p>以下、作ったアプリの説明になります。</p>
 <br>
 <br>
 <h2 id="class">使用Class</h2>
-<p><a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0">SerialPort class</a>を使用します。<br />
+<p><span class="link"></span> <a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0">SerialPort class</a>を使用します。<br />
 NugetでSystem.IO.Portsをインストールすると使えるようになります。<br />
 複数ポートを同時に使用しない場合は、staticで宣言することが多いようです。</p>
 <p>使用するメソッドは下記です。</p>
@@ -288,10 +288,9 @@ private void OnReceived(object sender, SerialDataReceivedEventArgs e)
 <p>シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的です。<br />
 以下のUSB-シリアル変換を使用すれば確認可能です。<br />
 TxピンとRxピンを導線で繋いで動作確認します。</p>
-<p><a href="https://akizukidenshi.com/catalog/g/gM-11007/">秋月電子 FT-232RQ USBシリアル変換モジュール</a></p>
+<p><span class="link"></span> <a href="https://akizukidenshi.com/catalog/g/gM-11007/">秋月電子 FT-232RQ USBシリアル変換モジュール</a></p>
 <br>
 <p>Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。</p>
-<br>
 <br>
 
               <br>

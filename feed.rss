@@ -5,8 +5,8 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Tue, 07 Sep 2021 15:10:19 GMT</pubDate>
-		<lastBuildDate>Tue, 07 Sep 2021 15:10:19 GMT</lastBuildDate>
+		<pubDate>Tue, 07 Sep 2021 15:42:51 GMT</pubDate>
+		<lastBuildDate>Tue, 07 Sep 2021 15:42:51 GMT</lastBuildDate>
 		<item>
 			<title>Github Pagesにコメント欄を追加する</title>
 			<link>https://yamaccu.github.io/posts/20210907-githubpages-utterances</link>
@@ -73,7 +73,7 @@ Visual Studio向けのアドオンと、コマンドラインで実行できる�
 &lt;br&gt;
 &lt;h2 id="section-1"&gt;準備&lt;/h2&gt;
 &lt;p&gt;Resharper公式から、コマンドラインツールをダウンロードしておきます。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.jetbrains.com/ja-jp/resharper/download/#section=commandline"&gt;ダウンロード先&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://www.jetbrains.com/ja-jp/resharper/download/#section=commandline"&gt;ダウンロード先&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-2"&gt;コマンドラインツールの3つの機能&lt;/h2&gt;
@@ -94,7 +94,7 @@ Visual Studio向けのアドオンと、コマンドラインで実行できる�
 &lt;p&gt;既存のファイルに修正結果が上書きされますので、実行時は注意してください。&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;公式doc日本語訳&lt;br /&gt;
-&lt;a href="https://pleiades.io/help/resharper/CleanupCode.html"&gt;CleanupCodeコマンドラインツール&lt;/a&gt;&lt;/p&gt;
+&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://pleiades.io/help/resharper/CleanupCode.html"&gt;CleanupCodeコマンドラインツール&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="dupfinder"&gt;dupFinder&lt;/h2&gt;
@@ -116,7 +116,7 @@ Visual Studio向けのアドオンと、コマンドラインで実行できる�
 &lt;br&gt;
 &lt;br&gt;
 &lt;p&gt;公式doc日本語訳&lt;br /&gt;
-&lt;a href="https://pleiades.io/help/resharper/dupFinder.html"&gt;dupFinderコマンドラインツール&lt;/a&gt;&lt;/p&gt;
+&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://pleiades.io/help/resharper/dupFinder.html"&gt;dupFinderコマンドラインツール&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="inspectcode"&gt;InspectCode&lt;/h2&gt;
@@ -139,9 +139,8 @@ Visual Studio向けのアドオンと、コマンドラインで実行できる�
 &lt;br&gt;
 &lt;br&gt;
 &lt;p&gt;公式doc日本語訳&lt;br /&gt;
-&lt;a href="https://pleiades.io/help/resharper/InspectCode.html"&gt;InspectCodeコマンドラインツール &lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://pleiades.io/help/resharper/Reference__Code_Inspections_CSHARP.html"&gt;C# のコードインスペクション&lt;/a&gt;&lt;/p&gt;
-&lt;br&gt;
+&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://pleiades.io/help/resharper/InspectCode.html"&gt;InspectCodeコマンドラインツール &lt;/a&gt;&lt;br /&gt;
+&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://pleiades.io/help/resharper/Reference__Code_Inspections_CSHARP.html"&gt;C# のコードインスペクション&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
@@ -170,7 +169,7 @@ Visual Studio向けのアドオンと、コマンドラインで実行できる�
 &lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210830-MarkDown-AllInOne-1.png" width="40px"&gt;
 ← こんなアイコン&lt;/p&gt;
 &lt;br&gt;
-&lt;p&gt;参考  &lt;a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/"&gt;VSCode公式&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考 &lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/"&gt;VSCode公式&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-2"&gt;ショートカット機能&lt;/h2&gt;
@@ -274,7 +273,6 @@ Ctr+Shift+p → Markdown All in One: Print current document to HTML&lt;/p&gt;
 &lt;p&gt;HPなどのアドレスをコピーした状態で、テキストを選択してCtr+Vすると、リンクを自動作成してくれます。&lt;/p&gt;
 &lt;img src="../img/20210830-MarkDown-AllInOne-4.png" style="width:100%;max-width:350px;"&gt;  
 &lt;br&gt;
-&lt;br&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
 		</item>
@@ -299,7 +297,7 @@ PCとマイコンボード（arduinoなど）間で通信するのによく使�
 &lt;br&gt;
 &lt;h3 id="wpf"&gt;WPFアプリ作成について&lt;/h3&gt;
 &lt;p&gt;今回、シリアル通信をするGUIアプリをWPFで作ってみました。&lt;br&gt;
-&lt;a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main"&gt;こちら&lt;/a&gt;&lt;/p&gt;
+&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main"&gt;こちら&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210825-Csharp-SerialPort-2.png" style="width:100%;max-width:400px;"&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;アプリ作成にあたってReactivePropertyというライブラリを使用しています。&lt;br&gt;
@@ -307,15 +305,15 @@ PCとマイコンボード（arduinoなど）間で通信するのによく使�
 &lt;p&gt;また、ReactivePropertyはコマンドバインディングも対応していますが、こちらは今回のアプリでは使用していません。&lt;br&gt;
 正直、規模の小さなアプリではコマンドバインディングするよりコードビハインドにイベント処理を書いてしまった方がシンプルで可読性が良いかと思います。&lt;br&gt;
 （異論はありそうですが。。）&lt;/p&gt;
-&lt;p&gt;参考1　&lt;a href="https://github.com/runceel/ReactiveProperty"&gt;公式&lt;/a&gt;&lt;br&gt;
-参考2　&lt;a href="https://qiita.com/YSRKEN/items/5a36fb8071104a989fb8"&gt;qiita ReactiveProperty全然分からねぇ！って人向けのFAQ集&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考1&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/runceel/ReactiveProperty"&gt;公式&lt;/a&gt;&lt;br&gt;
+参考2&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://qiita.com/YSRKEN/items/5a36fb8071104a989fb8"&gt;qiita ReactiveProperty全然分からねぇ！って人向けのFAQ集&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;p&gt;以下、作ったアプリの説明になります。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="class"&gt;使用Class&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0"&gt;SerialPort class&lt;/a&gt;を使用します。&lt;br&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0"&gt;SerialPort class&lt;/a&gt;を使用します。&lt;br&gt;
 NugetでSystem.IO.Portsをインストールすると使えるようになります。&lt;br&gt;
 複数ポートを同時に使用しない場合は、staticで宣言することが多いようです。&lt;/p&gt;
 &lt;p&gt;使用するメソッドは下記です。&lt;/p&gt;
@@ -454,10 +452,9 @@ private void OnReceived(object sender, SerialDataReceivedEventArgs e)
 &lt;p&gt;シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的です。&lt;br&gt;
 以下のUSB-シリアル変換を使用すれば確認可能です。&lt;br&gt;
 TxピンとRxピンを導線で繋いで動作確認します。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://akizukidenshi.com/catalog/g/gM-11007/"&gt;秋月電子 FT-232RQ USBシリアル変換モジュール&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://akizukidenshi.com/catalog/g/gM-11007/"&gt;秋月電子 FT-232RQ USBシリアル変換モジュール&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。&lt;/p&gt;
-&lt;br&gt;
 &lt;br&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
@@ -477,25 +474,25 @@ TxピンとRxピンを導線で繋いで動作確認します。&lt;/p&gt;
 &lt;p&gt;M5Stackとは、ESP32を使用しwifi/LCD/各種センサなどを一体化させた、使いやすいマイコンボードです。&lt;br&gt;
 LCDが標準装備なのが一番の特徴かと思います。&lt;br&gt;
 センシングした値を表示させたり、顔をつけてみたりと、いろいろ遊べます。&lt;/p&gt;
-&lt;p&gt;参考　&lt;a href="https://m5stack.com/"&gt;公式HP&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://m5stack.com/"&gt;公式HP&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;UIFLOWとは、M5Stackのプログラミング環境の一つで、スクラッチのようにビジュアルプログラミングでM5Stackのコードが書ける優れものです。&lt;br&gt;
 更にwebベースでプログラミングできるので、プログラム環境の準備がお手軽です。&lt;br&gt;
 大本はmicropythonで動いています。&lt;br&gt;
 使い方、プログラミングの仕方などは下記のHPを参照ください。&lt;/p&gt;
-&lt;p&gt;参考1　&lt;a href="https://m5stack.github.io/UIFlow_doc/ja/"&gt;公式HP&lt;/a&gt;&lt;br&gt;
-参考2　&lt;a href="https://flow.m5stack.com/"&gt;プログラミングページ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考1&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://m5stack.github.io/UIFlow_doc/ja/"&gt;公式HP&lt;/a&gt;&lt;br&gt;
+参考2&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://flow.m5stack.com/"&gt;プログラミングページ&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;UIFLOWでは、事前に用意されたブロックを組み合わせてプログラミングしますので、ブロックに用意されていない機能は、自分でカスタムブロックを作る必要があります。&lt;/p&gt;
 &lt;p&gt;以降、UIFLOWでカスタムブロックを作成する方法を記載しています。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-1"&gt;カスタムブロックのサンプル&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://github.com/yamaccu/UIFLOW-wavplayer"&gt;github&lt;/a&gt;にWAVファイルを再生するためのカスタムブロックをあげていますので、よろしければ参考にしてください。&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/yamaccu/UIFLOW-wavplayer"&gt;github&lt;/a&gt;にWAVファイルを再生するためのカスタムブロックをあげていますので、よろしければ参考にしてください。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-2"&gt;カスタムブロックの作成手順&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://block-maker.m5stack.com/"&gt;こちらのカスタムブロック作成ページ&lt;/a&gt;から作成します。&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="http://block-maker.m5stack.com/"&gt;こちらのカスタムブロック作成ページ&lt;/a&gt;から作成します。&lt;/p&gt;
 &lt;p&gt;作成手順は&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Pythonでプログラムを書く&lt;/li&gt;
@@ -565,7 +562,7 @@ BlockCode内で"$(hoge)"の形で記述する&lt;/li&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-5"&gt;完成したら&lt;/h2&gt;
-&lt;p&gt;ページ右下のDownloadボタンをおして、DownloadファイルをUIFLOWの&lt;a href="https://flow.m5stack.com/"&gt;プログラミングページ&lt;/a&gt;のCustomから開きます。&lt;br&gt;
+&lt;p&gt;ページ右下のDownloadボタンをおして、DownloadファイルをUIFLOWの&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://flow.m5stack.com/"&gt;プログラミングページ&lt;/a&gt;のCustomから開きます。&lt;br&gt;
 そうすると、UIFLOWで自作のカスタムブロックが使用できるようになります。&lt;/p&gt;
 &lt;img src="../img/20210823-UIFLOW-CustomBlock-4.png" style="width:100%;max-width:150px"&gt;
 &lt;br&gt;
@@ -750,9 +747,9 @@ glass:before {
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="url"&gt;参考URL&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://qiita.com/yaegaki/items/a1e518d16be9b85479b4"&gt;qiita CSSで作図する&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://morobrand.net/mororeco/web/css/css-shape/"&gt;CSSでいろんなカタチを表現してみる&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://saruwakakun.com/html-css/basic/before-after"&gt;CSSの疑似要素とは？beforeとafterの使い方まとめ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://qiita.com/yaegaki/items/a1e518d16be9b85479b4"&gt;qiita CSSで作図する&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://morobrand.net/mororeco/web/css/css-shape/"&gt;CSSでいろんなカタチを表現してみる&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://saruwakakun.com/html-css/basic/before-after"&gt;CSSの疑似要素とは？beforeとafterの使い方まとめ&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
@@ -802,7 +799,7 @@ glass:before {
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="hp"&gt;参考HP&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://pipenv.pypa.io/en/latest/"&gt;pipenv公式&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://pipenv.pypa.io/en/latest/"&gt;pipenv公式&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
@@ -931,7 +928,7 @@ CTR+Cを二回で、mainで実行している処理を中止してreplで操作�
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="url"&gt;参考URL&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html"&gt;micropython公式&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html"&gt;micropython公式&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
@@ -949,22 +946,22 @@ CTR+Cを二回で、mainで実行している処理を中止してreplで操作�
 &lt;p&gt;StatiqはC#で書かれている静的サイトジェネレータで、MarkDownもしくはRazor構文で書かれたファイルをHTMLに変換してくれます。&lt;/p&gt;
 &lt;p&gt;下記はStatiqで作成されているサイトのサンプルです（このサイトもStatiq製です。）&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.statiq.dev/"&gt;https://www.statiq.dev/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://dotnetfoundation.org/"&gt;https://dotnetfoundation.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://www.statiq.dev/"&gt;https://www.statiq.dev/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://dotnetfoundation.org/"&gt;https://dotnetfoundation.org/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;まずは&lt;a href="https://www.statiq.dev/web/"&gt;公式ページのQuick Start&lt;/a&gt;を一度やることをお勧めします。&lt;/p&gt;
+&lt;p&gt;まずは&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://www.statiq.dev/web/"&gt;公式ページのQuick Start&lt;/a&gt;を一度やることをお勧めします。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-1"&gt;フォーマットのブログ形式への変更&lt;/h2&gt;
 &lt;p&gt;初期状態では、ブログのフォーマットにはなっていません。&lt;br&gt;
 Statiqでブログを作成するには、テーマを使用します。&lt;br&gt;
-"theme"フォルダを作成して、中に&lt;a href="https://github.com/statiqdev/CleanBlog"&gt;githubのCleanBlogリポジトリ&lt;/a&gt;をクローンすると、自動で反映されてブログの形式になります。&lt;/p&gt;
+"theme"フォルダを作成して、中に&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/statiqdev/CleanBlog"&gt;githubのCleanBlogリポジトリ&lt;/a&gt;をクローンすると、自動で反映されてブログの形式になります。&lt;/p&gt;
 &lt;p&gt;ブログデザインの変更は、theme→input内の.cshtmlファイルを修正します。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-2"&gt;記事の書き方&lt;/h2&gt;
 &lt;p&gt;MarkDownで記述します。&lt;br&gt;
-MarkDownの書き方は&lt;a href="https://yamaccu.github.io/posts/20210816-markdown-tips"&gt;こちら&lt;/a&gt;にまとめてみました。&lt;/p&gt;
+MarkDownの書き方は&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://yamaccu.github.io/posts/20210816-markdown-tips"&gt;こちら&lt;/a&gt;にまとめてみました。&lt;/p&gt;
 &lt;p&gt;記事を書いたら、"input"フォルダとその配下に"posts"フォルダを作成し、書いたmdファイルを保存します。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
@@ -976,8 +973,8 @@ MarkDownの書き方は&lt;a href="https://yamaccu.github.io/posts/20210816-mark
 &lt;h2 id="statiq"&gt;Statiq設定&lt;/h2&gt;
 &lt;p&gt;設定は設定ファイルで変えることができます。&lt;br&gt;
 theme→settings.ymlが設定ファイルです。&lt;/p&gt;
-&lt;p&gt;設定できる項目は、&lt;a href="https://www.statiq.dev/web/configuration/settings"&gt;公式HP&lt;/a&gt;を参照ください。&lt;br&gt;
-設定例は、&lt;a href="https://github.com/statiqdev/statiqdev.github.io/blob/develop/settings.yml"&gt;こちら&lt;/a&gt;にあります。&lt;/p&gt;
+&lt;p&gt;設定できる項目は、&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://www.statiq.dev/web/configuration/settings"&gt;公式HP&lt;/a&gt;を参照ください。&lt;br&gt;
+設定例は、&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/statiqdev/statiqdev.github.io/blob/develop/settings.yml"&gt;こちら&lt;/a&gt;にあります。&lt;/p&gt;
 &lt;p&gt;"Host"と"LinksUseHttps"を設定しないとSitemapが正しく出力されませんので、設定をおすすめします。&lt;br&gt;
 （ここでちょっとはまりました）&lt;/p&gt;
 &lt;br&gt;
