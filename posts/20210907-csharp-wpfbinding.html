@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>yokuaru tech notes - C#&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;</title>
+  <title>yokuaru tech notes - WPF&#x3067;Binding&#x3092;&#x4F7F;&#x3046;</title>
 
-  <link rel="canonical" href="https://yamaccu.github.io/posts/20210825-csharp-serialport">
+  <link rel="canonical" href="https://yamaccu.github.io/posts/20210907-csharp-wpfbinding">
 
       <link type="application/rss+xml" rel="alternate" href="/feed.rss" />
       <link type="application/atom+xml" rel="alternate" href="/feed.atom" />
@@ -17,9 +17,9 @@
   <meta name="msapplication-tooltip" content="yokuaru tech notes" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="yokuaru tech notes - C#&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;" />
+  <meta property="og:title" content="yokuaru tech notes - WPF&#x3067;Binding&#x3092;&#x4F7F;&#x3046;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/posts/20210825-csharp-serialport" />
+  <meta property="og:url" content="https://yamaccu.github.io/posts/20210907-csharp-wpfbinding" />
   
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -90,19 +90,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="post-heading">
+        <div class="site-heading">
           <h1>
-            C#&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;
+            WPF&#x3067;Binding&#x3092;&#x4F7F;&#x3046;
           </h1>
-              <div class="meta">
-                Published on 2021&#x5E74;8&#x6708;25&#x65E5;
-                
-                <!--Updatedを追加-->
-
-              </div>
-                <div class="mt-3">
-                      <a href="/tags/cwpf" class="badge badge-light"> C#/WPF</a>
-                </div>
         </div>
       </div>
     </div>
@@ -116,35 +107,52 @@
         <div class="container-sm-height">
           <div class="row row-sm-height">
             <div class="col-md-6 right-border col-sm-height">
-              <p>C#でシリアル通信を行う方法をまとめています。</p>
+              <p>WPFでBindingを使用する方法のまとめです。</p>
 <br>
 <h2 id="section">概要</h2>
-<h3 id="section-1">シリアル通信について</h3>
-<p>シリアル通信とは、機器間で通信する方法の一つで、データを1bitづつ送信する形式のものです。<br />
-代表的な規格はRC-232です。<br />
-PCとマイコンボード（arduinoなど）間で通信するのによく使われています。</p>
-<p>C#には、シリアル通信を行うクラスがすでに用意されています。<br />
-これを使うと簡単にシリアル通信ができます。</p>
-<br>
-<p> <img src="../img/20210825-Csharp-SerialPort-1.png" Style="width:100%;max-width:450px;"></p>
+<p>WPFは、Windows上で動作するGUIアプリケーションを作成できるフレームワークです。<br />
+ToDoリストを管理する、ボタンを押すとTCP/IPでデータを送信する、など様々なGUIアプリが作成可能です。<br />
+画面はxaml、処理部はC#で作成します。</p>
+<p>WPFの特徴の一つとして「Bindingを使用した画面部と処理部の分離」があげられます。<br />
+分離により管理が容易になったり、処理部のテストが容易になったりといったメリットがあります。</p>
+<p>以降、WPFでBindingを使用する方法について記載しています。</p>
 <br>
 <br>
-<h3 id="wpf">WPFアプリ作成について</h3>
-<p>今回、シリアル通信をするGUIアプリをWPFで作ってみました。<br />
-<a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main">こちら</a></p>
-<p> <img src="../img/20210825-Csharp-SerialPort-2.png" Style="width:100%;max-width:400px;"></p>
+<h2 id="section-1">準備</h2>
+<p>開発環境はVisualStudioを使用します。<br />
+VisualStudioのインストールおよびWPFのHello Worldまではこちらを参考にしてください。</p>
+<p><a href="https://docs.microsoft.com/ja-jp/visualstudio/get-started/csharp/tutorial-wpf?view=vs-2019">チュートリアル: C# で単純なアプリケーションを作成する</a></p>
 <br>
-<p>アプリ作成にあたってReactivePropertyというライブラリを使用しています。<br />
-データバインディングを補佐してくれるもので、大量のINotifyPropertyChangedを実施しなくて済むようになるのでお勧めです。</p>
-<p>また、ReactivePropertyはコマンドバインディングも対応していますが、こちらは今回のアプリでは使用していません。<br />
-正直、規模の小さなアプリではコマンドバインディングするよりコードビハインドにイベント処理を書いてしまった方がシンプルで可読性が良いかと思います。<br />
-（異論はありそうですが。。）</p>
-<p>参考1　<a href="https://github.com/runceel/ReactiveProperty">公式</a><br />
-参考2　<a href="https://qiita.com/YSRKEN/items/5a36fb8071104a989fb8">qiita ReactiveProperty全然分からねぇ！って人向けのFAQ集</a></p>
 <br>
+<h2 id="gui">今回作成したGUIアプリ</h2>
+<p>今回、Bindnigの確認用に、以下を実装したアプリを作成しました。</p>
+<ul>
+<li>数字の0が初期値で表示されているテキストボックス</li>
+<li>数字を＋１するボタン</li>
+<li>数字を－１するボタン</li>
+</ul>
+<p>以上です。とてもシンプルです。</p>
+<img src="../img/20210907-Csharp-WPFBinding-1.png" Style="width:100%;max-width:450px;">  
+<br>
+<br>
+<p>このアプリを、5つの実装方法で作成していきます。</p>
+<ol>
+<li>Bindingなし</li>
+<li>DataBindingのみ実装</li>
+<li>DataBindingとCommandBindingを実装</li>
+<li>CommandBindingを少しスマートに実装（Delegate使用）</li>
+<li>ReactivePropertyを使用してDataBindingとCommandBindingを実装</li>
+</ol>
+<p>Githubにソースを上げています。
+<a href="https://github.com/yamaccu/WPF-BindingSample">こちら</a></p>
 <br>
 <p>以下、作ったアプリの説明になります。</p>
 <br>
+<br>
+<h2 id="binding">1. Bindingなし</h2>
+<p>コードビハインドに処理を記述します。<br />
+コードビハインドとは、xaml.csファイルのことです。</p>
+<img src="../img/20210907-Csharp-WPFBinding-2.png" Style="width:100%;max-width:300px;">  
 <br>
 <h2 id="class">使用Class</h2>
 <p><a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0">SerialPort class</a>を使用します。<br />
@@ -291,16 +299,14 @@ TxピンとRxピンを導線で繋いで動作確認します。</p>
 <p>Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。</p>
 <br>
 <br>
+<br>
+<h3 id="section-8">コメントなど</h3>
+<p>下記のTwitterまで返信orDMお願いします。</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">WPFで簡単なシリアル通信アプリを作りました。（ブログ用）<a href="https://twitter.com/hashtag/Csharp?src=hash&amp;ref_src=twsrc%5Etfw">#Csharp</a> <a href="https://twitter.com/hashtag/WPF?src=hash&amp;ref_src=twsrc%5Etfw">#WPF</a><a href="https://t.co/BSPIjahaFD">https://t.co/BSPIjahaFD</a></p>&mdash; やまっく (&#64;YY87750722) <a href="https://twitter.com/YY87750722/status/1430549219320860673?ref_src=twsrc%5Etfw">August 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<br>
 
               <br>
               <hr>
-<script src="https://utteranc.es/client.js"
-        repo="yamaccu/yamaccu.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
             </div>
             <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
             <div Style="line-height:0.9em">

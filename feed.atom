@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-09-03T13:50:29Z</updated>
+	<updated>2021-09-07T07:20:43Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210903-csharp-resharpercommand</id>
 		<title>Resharperのコマンドラインツールを使う</title>
@@ -51,16 +51,16 @@ Visual Studio向けのアドオンと、コマンドラインで実行できる�
 &lt;h2 id="dupfinder"&gt;dupFinder&lt;/h2&gt;
 &lt;p&gt;コードの重複を調べてレポートファイルをxml形式で出力してくれます。&lt;/p&gt;
 &lt;p&gt;実行コマンド&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;dupFinder.exe &amp;lt;source&amp;gt; -o=&amp;lt;PathToOutputFile&amp;gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;dupFinder.exe &amp;lt;source&amp;gt; --output=&amp;lt;FileName&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;レポートに重複コードまで含める場合の実行コマンド&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;dupFinder.exe &amp;lt;source&amp;gt; -o=&amp;lt;PathToOutputFile&amp;gt; --show-text
+&lt;pre&gt;&lt;code class="language-C#"&gt;dupFinder.exe &amp;lt;source&amp;gt; --output=&amp;lt;FileName&amp;gt; --show-text
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;レポートファイルは下記のような感じです。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;statics：重複コードの相対サイズがわかります。&lt;/li&gt;
+&lt;li&gt;statistics：重複コードの相対サイズがわかります。&lt;/li&gt;
 &lt;li&gt;duplicates：重複箇所を示します。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;img src="../img/20210903-Csharp-ResharperCommand-1.png" Style="width:100%;max-width:550px;"&gt;  
@@ -73,7 +73,7 @@ Visual Studio向けのアドオンと、コマンドラインで実行できる�
 &lt;h2 id="inspectcode"&gt;InspectCode&lt;/h2&gt;
 &lt;p&gt;コードを解析して、結果をxml形式で出力してくれます。&lt;/p&gt;
 &lt;p&gt;実行コマンド&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;InspectCode.exe YourSolution.sln -o=&amp;lt;PathToOutputFile&amp;gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;InspectCode.exe YourSolution.sln --output=&amp;lt;FileName&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;レポートファイルは下記のような感じです。&lt;br /&gt;
@@ -225,11 +225,6 @@ Ctr+Shift+p → Markdown All in One: Print current document to HTML&lt;/p&gt;
 &lt;img src="../img/20210830-MarkDown-AllInOne-4.png" style="width:100%;max-width:350px;"&gt;  
 &lt;br&gt;
 &lt;br&gt;
-&lt;br&gt;
-&lt;h3 id="section-6"&gt;コメントなど&lt;/h3&gt;
-&lt;p&gt;以下のtwitterまで、返信orDMをお願いします。&lt;/p&gt;
-&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="ja" dir="ltr"&gt;vscodeの拡張機能「Markdown All in One」の機能をまとめてみました。&lt;a href="https://t.co/pAnWX08FtL"&gt;https://t.co/pAnWX08FtL&lt;/a&gt;&lt;/p&gt;— やまっく (@YY87750722) &lt;a href="https://twitter.com/YY87750722/status/1432324033983352839?ref_src=twsrc%5Etfw"&gt;August 30, 2021&lt;/a&gt;&lt;/blockquote&gt; &lt;script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-&lt;br&gt;
 </content>
 		<summary>&lt;p&gt;VSCodeの拡張機能である「Markdown All in One」の機能まとめです。&lt;/p&gt;</summary>
 	</entry>
@@ -252,7 +247,7 @@ PCとマイコンボード（arduinoなど）間で通信するのによく使�
 &lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="wpf"&gt;WPFアプリ作成について&lt;/h3&gt;
-&lt;p&gt;今回、シリアル通信をするアプリをWPFで作ってみました。&lt;br&gt;
+&lt;p&gt;今回、シリアル通信をするGUIアプリをWPFで作ってみました。&lt;br&gt;
 &lt;a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main"&gt;こちら&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210825-Csharp-SerialPort-2.png" style="width:100%;max-width:400px;"&gt;&lt;/p&gt;
 &lt;br&gt;
@@ -412,11 +407,6 @@ TxピンとRxピンを導線で繋いで動作確認します。&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。&lt;/p&gt;
 &lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h3 id="section-8"&gt;コメントなど&lt;/h3&gt;
-&lt;p&gt;下記のTwitterまで返信orDMお願いします。&lt;/p&gt;
-&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="ja" dir="ltr"&gt;WPFで簡単なシリアル通信アプリを作りました。（ブログ用）&lt;a href="https://twitter.com/hashtag/Csharp?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#Csharp&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/WPF?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#WPF&lt;/a&gt;&lt;a href="https://t.co/BSPIjahaFD"&gt;https://t.co/BSPIjahaFD&lt;/a&gt;&lt;/p&gt;— やまっく (@YY87750722) &lt;a href="https://twitter.com/YY87750722/status/1430549219320860673?ref_src=twsrc%5Etfw"&gt;August 25, 2021&lt;/a&gt;&lt;/blockquote&gt; &lt;script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 &lt;br&gt;
 </content>
 		<summary>&lt;p&gt;C#でシリアル通信を行う方法をまとめています。&lt;/p&gt;</summary>

@@ -71,13 +71,13 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/posts">Posts</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/tags">Tags</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
             </li>
 </ul>
     </div>
@@ -157,16 +157,16 @@ Visual Studio向けのアドオンと、コマンドラインで実行できる�
 <h2 id="dupfinder">dupFinder</h2>
 <p>コードの重複を調べてレポートファイルをxml形式で出力してくれます。</p>
 <p>実行コマンド</p>
-<pre><code class="language-C#">dupFinder.exe &lt;source&gt; -o=&lt;PathToOutputFile&gt;
+<pre><code class="language-C#">dupFinder.exe &lt;source&gt; --output=&lt;FileName&gt;
 </code></pre>
 <br>
 <p>レポートに重複コードまで含める場合の実行コマンド</p>
-<pre><code class="language-C#">dupFinder.exe &lt;source&gt; -o=&lt;PathToOutputFile&gt; --show-text
+<pre><code class="language-C#">dupFinder.exe &lt;source&gt; --output=&lt;FileName&gt; --show-text
 </code></pre>
 <br>
 <p>レポートファイルは下記のような感じです。</p>
 <ul>
-<li>statics：重複コードの相対サイズがわかります。</li>
+<li>statistics：重複コードの相対サイズがわかります。</li>
 <li>duplicates：重複箇所を示します。</li>
 </ul>
 <img src="../img/20210903-Csharp-ResharperCommand-1.png" Style="width:100%;max-width:550px;">  
@@ -179,7 +179,7 @@ Visual Studio向けのアドオンと、コマンドラインで実行できる�
 <h2 id="inspectcode">InspectCode</h2>
 <p>コードを解析して、結果をxml形式で出力してくれます。</p>
 <p>実行コマンド</p>
-<pre><code class="language-C#">InspectCode.exe YourSolution.sln -o=&lt;PathToOutputFile&gt;
+<pre><code class="language-C#">InspectCode.exe YourSolution.sln --output=&lt;FileName&gt;
 </code></pre>
 <br>
 <p>レポートファイルは下記のような感じです。<br />
@@ -203,7 +203,13 @@ Visual Studio向けのアドオンと、コマンドラインで実行できる�
 
               <br>
               <hr>
-
+<script src="https://utteranc.es/client.js"
+        repo="yamaccu/yamaccu.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
             </div>
             <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
             <div Style="line-height:0.9em">
