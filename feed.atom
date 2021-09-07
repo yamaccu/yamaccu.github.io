@@ -4,7 +4,52 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-09-07T07:20:43Z</updated>
+	<updated>2021-09-07T07:56:50Z</updated>
+	<entry>
+		<id>https://yamaccu.github.io/posts/20210907-githubpages-utterances</id>
+		<title>Github Pagesにコメント欄を追加する</title>
+		<link href="https://yamaccu.github.io/posts/20210907-githubpages-utterances" />
+		<updated>2021-09-07T00:00:00Z</updated>
+		<content>&lt;p&gt;Github PagesにGitHub App「utterances」を使ってコメント欄を追加する方法です。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;概要&lt;/h2&gt;
+&lt;p&gt;Githubには、Github Pagesという静的サイトを公開する機能があります。&lt;br /&gt;
+&amp;lt;username&amp;gt;.github.ioというレポジトリを作成して、index.htmlを放り込むと、以下のURLアドレスに公開されます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  https://&amp;lt;username&amp;gt;.github.io/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;詳細は以下のHPを参照ください。&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages"&gt;GitHub Pagesについて&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;静的サイトにコメント欄を追加する場合、動的要素であるコメント欄を静的サイトに実装することができないため、通常は外部サーバーサービスなどを利用します。&lt;br /&gt;
+ただし、Github Pagesにおいては、Issueを利用してコメント欄を追加する「utterances」というオープンソースのツールがあります。&lt;br /&gt;
+コメントするにはgithubにログインする必要がありますが、手軽にコメント欄を追加できるのと、エンジニアはgithub IDをすでに持っていることが多いことから、技術ブログには最適な選択となっています。&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;以下、「utterances」の使用方法について記述しています。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-1"&gt;準備&lt;/h2&gt;
+&lt;p&gt;Github Pagesを公開している必要があります。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="utterances-app"&gt;utterances appのインストール&lt;/h2&gt;
+&lt;p&gt;サイトを公開しているGithubレポジトリにutterances appをインストールします。&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/apps/utterances"&gt;utterances app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;インストールすると、GithubのSetting → Applicationsにutterancesが表示されます。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="script"&gt;scriptの埋め込み&lt;/h2&gt;
+&lt;p&gt;HTMLソースのコメント欄を追加したい箇所に、utterancesのスクリプトを埋め込みます。&lt;br /&gt;
+スクリプトは下記のページで生成できます。&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://utteranc.es/"&gt;utterances&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;そうすると、下記のようなコメント欄が表示されます。&lt;br /&gt;
+これで完成です。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+</content>
+		<summary>&lt;p&gt;Github PagesにGitHub App「utterances」を使ってコメント欄を追加する方法です。&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210903-csharp-resharpercommand</id>
 		<title>Resharperのコマンドラインツールを使う</title>
@@ -955,64 +1000,5 @@ google analyticsなどのスクリプトを追加したいときは、_head.csht
 &lt;br&gt;
 </content>
 		<summary>&lt;p&gt;Statiqでブログを書く方法をまとめています。&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<id>https://yamaccu.github.io/posts/20210816-markdown-tips</id>
-		<title>MarkDown記法のメモ</title>
-		<link href="https://yamaccu.github.io/posts/20210816-markdown-tips" />
-		<updated>2021-08-30T00:00:00Z</updated>
-		<content>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;
-&lt;br&gt;
-&lt;h2 id="section"&gt;エディタ&lt;/h2&gt;
-&lt;p&gt;VSCodeがお勧めです。
-以下の拡張機能をインストールすると、使い勝手が良くなります。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Markdown All in One&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;機能は、下記の記事にまとめています。&lt;/p&gt;
-&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt;
-&lt;a href="https://yamaccu.github.io/posts/20210830-markdown-allinone"&gt;VSCodeの拡張機能「Markdown All in One」を使う&lt;/a&gt;&lt;/p&gt;
-&lt;br&gt;
-&lt;h2 id="section-1"&gt;見出し&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;# h1
-## h2
-### h3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="section-2"&gt;箇条書き&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;- 箇条書き1
-  - 箇条書き2
-    - 箇条書き3
-- 箇条書き1-2
-- 箇条書き1-3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="section-3"&gt;コードブロック&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;```C#
-codeblock
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="section-4"&gt;改行&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;br&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="section-5"&gt;リンク&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;[リンクテキスト](URL)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="section-6"&gt;表&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;|  TH  |  TH  |
-| ---- | ---- |
-|  TD  |  TD  |
-|  TD  |  TD  |
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="section-7"&gt;画像貼り付け&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;img src="xxxx/xxxx.png" Style="width:100%;max-width:500px;"&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="section-8"&gt;半角スペース&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;amp;nbsp;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="section-9"&gt;水平線&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;---
-&lt;/code&gt;&lt;/pre&gt;
-&lt;br&gt;
-</content>
-		<summary>&lt;p&gt;MarkDown記法のメモです。&lt;/p&gt;</summary>
 	</entry>
 </feed>
