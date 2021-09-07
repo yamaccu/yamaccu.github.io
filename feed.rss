@@ -5,8 +5,8 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Tue, 07 Sep 2021 14:50:53 GMT</pubDate>
-		<lastBuildDate>Tue, 07 Sep 2021 14:50:53 GMT</lastBuildDate>
+		<pubDate>Tue, 07 Sep 2021 15:10:19 GMT</pubDate>
+		<lastBuildDate>Tue, 07 Sep 2021 15:10:19 GMT</lastBuildDate>
 		<item>
 			<title>Github Pagesにコメント欄を追加する</title>
 			<link>https://yamaccu.github.io/posts/20210907-githubpages-utterances</link>
@@ -22,7 +22,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;詳細は以下の公式HPを参照ください。&lt;/p&gt;
-&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages"&gt;GitHub Pagesについて&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; &lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages"&gt;GitHub Pagesについて&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;静的サイトにコメント欄を追加する場合、動的要素であるコメント欄を静的サイトに実装することができないため、通常は外部サーバーサービスなどを利用します。&lt;br /&gt;
 ただし、Github Pagesにおいては、Issueを利用してコメント欄を追加する「utterances」というオープンソースのツールがあります。&lt;br /&gt;
