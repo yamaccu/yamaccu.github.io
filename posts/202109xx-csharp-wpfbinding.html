@@ -116,196 +116,175 @@
 ToDoリストを管理する、ボタンを押すとTCP/IPでデータを送信する、など様々なGUIアプリが作成可能です。<br />
 画面はxaml、処理部はC#で作成します。</p>
 <p>WPFの特徴の一つとして「Bindingを使用した画面部と処理部の分離」があげられます。<br />
-分離により管理が容易になったり、処理部のテストが容易になったりといったメリットがあります。</p>
+分離により管理が容易になったり、処理部でのテストが用意になったりといったメリットがあります。</p>
 <p>以降、WPFでBindingを使用する方法について記載しています。</p>
 <br>
 <br>
 <h2 id="section-1">準備</h2>
 <p>開発環境はVisualStudioを使用します。<br />
 VisualStudioのインストールおよびWPFのHello Worldまではこちらを参考にしてください。</p>
-<p><a href="https://docs.microsoft.com/ja-jp/visualstudio/get-started/csharp/tutorial-wpf?view=vs-2019">チュートリアル: C# で単純なアプリケーションを作成する</a></p>
+<p><span Class="link"></span> <a href="https://docs.microsoft.com/ja-jp/visualstudio/get-started/csharp/tutorial-wpf?view=vs-2019">チュートリアル: C# で単純なアプリケーションを作成する</a></p>
 <br>
 <br>
 <h2 id="gui">今回作成したGUIアプリ</h2>
-<p>今回、Bindnigの確認用に、以下を実装したアプリを作成しました。</p>
+<p>今回、Bindnigの確認用に、以下のアプリを作成しました。</p>
 <ul>
 <li>数字の0が初期値で表示されているテキストボックス</li>
 <li>数字を＋１するボタン</li>
 <li>数字を－１するボタン</li>
 </ul>
-<p>以上です。とてもシンプルです。</p>
 <img src="../img/20210907-Csharp-WPFBinding-1.png" Style="width:100%;max-width:450px;">  
 <br>
 <br>
 <p>このアプリを、5つの実装方法で作成していきます。</p>
 <ol>
-<li>Bindingなし</li>
-<li>DataBindingのみ実装</li>
+<li>Bindingなし（コードビハインドにべた書き）</li>
+<li>DataBindingを実装</li>
 <li>DataBindingとCommandBindingを実装</li>
 <li>CommandBindingを少しスマートに実装（Delegate使用）</li>
 <li>ReactivePropertyを使用してDataBindingとCommandBindingを実装</li>
 </ol>
-<p>Githubにソースを上げています。
-<a href="https://github.com/yamaccu/WPF-BindingSample">こちら</a></p>
-<br>
-<p>以下、作ったアプリの説明になります。</p>
+<p>作ったアプリはGithubに上げています。<br />
+<span Class="link"></span> <a href="https://github.com/yamaccu/WPF-BindingSample">github</a></p>
 <br>
 <br>
 <h2 id="binding">1. Bindingなし</h2>
 <p>コードビハインドに処理を記述します。<br />
-コードビハインドとは、xaml.csファイルのことです。</p>
+コードビハインドとは、xaml.csファイルのことです。<br />
+コントロール（ボタン、テキストボックスなど）のプロパティやイベント処理は、Bindingなしだとここに紐づけられます。</p>
 <img src="../img/20210907-Csharp-WPFBinding-2.png" Style="width:100%;max-width:300px;">  
 <br>
-<h2 id="class">使用Class</h2>
-<p><a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0">SerialPort class</a>を使用します。<br />
-NugetでSystem.IO.Portsをインストールすると使えるようになります。<br />
-複数ポートを同時に使用しない場合は、staticで宣言することが多いようです。</p>
-<p>使用するメソッドは下記です。</p>
-<table>
-<thead>
-<tr>
-<th>機能</th>
-<th>メソッド</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>使用可能ポート取得</td>
-<td>GetPortNames()</td>
-</tr>
-<tr>
-<td>シリアルポートオープン</td>
-<td>Open()</td>
-</tr>
-<tr>
-<td>シリアルポートクローズ</td>
-<td>Close()</td>
-</tr>
-<tr>
-<td>データ送信</td>
-<td>Write(string)</td>
-</tr>
-<tr>
-<td>データ受信</td>
-<td>ReadExisting()</td>
-</tr>
-</tbody>
-</table>
 <br>
-<br>
-<h2 id="section-2">使用可能なポートの取得</h2>
-<p>以下は、使用可能なCOMポートを取得し、アプリ画面のComboBoxに取得データをbindingするコードです。</p>
-<p>ViewModel.cs：</p>
-<pre><code class="language-C#">//DataBindig用変数
-public ReactiveCollection&lt;string&gt; COMPorts { get; set; }
-      = new ReactiveCollection&lt;string&gt;(); 
+<p>MainWindow.xaml</p>
+<pre><code class="language-C#">&lt;Button Content=&quot;1 UP&quot; Click=&quot;OneUp_Click&quot;/&gt;
+&lt;Button Content=&quot;1 DOWN&quot; Click=&quot;OneDown_Click&quot;/&gt;
+&lt;TextBox x:Name=&quot;Counter&quot; Text=&quot;0&quot; /&gt;
+</code></pre>
+<p>MainWindow.xaml.cs(コードビハインド)</p>
+<pre><code class="language-C#">private void OneUp_Click(object sender, RoutedEventArgs e)
+{
+  var numValue = Convert.ToString(Convert.ToInt32(Counter.Text) + 1);
+  Counter.Text = numValue;
+}
 
-public void GetCOMPorts()
+private void OneDown_Click(object sender, RoutedEventArgs e)
 {
-  COMPorts.Clear();
-  string[] ports = SerialPort.GetPortNames();
-  foreach (var port in ports)
-  {
-    COMPorts.Add(port);
-  }
-}
-</code></pre>
-<p>MainWindow.xaml：</p>
-<pre><code class="language-C#">&lt;ComboBox ItemsSource=&quot;{Binding COMPorts}&quot; /&gt;
-</code></pre>
-<br>
-<p>COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。</p>
-<p>MainWindow.xaml:</p>
-<pre><code class="language-C#">&lt;ComboBox DropDownOpened=&quot;ComboBoxDropDownOpened_COMPort&quot;/&gt;
-</code></pre>
-<p>MainWindow.xaml.cs:</p>
-<pre><code class="language-C#">private void ComboBoxDropDownOpened_COMPort(object sender, EventArgs e)
-{
-  viewModel.GetCOMPorts();
+  var numValue = Convert.ToString(Convert.ToInt32(Counter.Text) - 1);
+  Counter.Text = numValue;
 }
 </code></pre>
 <br>
-<br>
-<h2 id="section-3">シリアルポートのオープン</h2>
-<p>シリアルポート通信の各種設定をしたのち、接続をOpenします。<br />
-コードは以下です。</p>
-<pre><code class="language-C#">public void SerialOpen()
-{
-  try
-  {
-    serialPort.PortName = port;        //選択したport名
-    serialPort.BaudRate = baudrate;    //選択したbaudrate
-    serialPort.DataBits = 8;
-    serialPort.Parity = Parity.None;
-    serialPort.StopBits = StopBits.One;
-    serialPort.WriteTimeout = 1000;
-    serialPort.ReadTimeout = 1000;
-    serialPort.Encoding=Encoding.UTF8;
-    serialPort.Open();
-  }
-  catch (Exception ex)
-  {
-    MessageBox.Show(ex.Message);
-  }
-}
-</code></pre>
+<p>これで完了です。<br />
+これは直観的でわかりやすいかなと思います。</p>
 <br>
 <br>
-<h2 id="section-4">シリアルポートのクローズ</h2>
-<p>シリアルポート接続をCloseします。</p>
-<pre><code class="language-C#">public void SerialClose()
-{
-  try
-  {
-    serialPort.Close();
-  }
-  catch (Exception ex)
-  {
-    MessageBox.Show(ex.Message);
-  }
-}
-</code></pre>
+<h2 id="databinding">2. DataBindingを実装</h2>
+<p>1から、テキストボックスの数値をBindingに変更します。<br />
+ViewModel.csというファイルを作成し、MainWindow.xamlとViewModel.csの間でBindingします。</p>
 <br>
+<h3 id="datacontext">DataContextの登録</h3>
+<p>まずはViewModel.csというファイルを作成します。<br />
+（作成するファイル名は何でもいいですが、MVVMモデルに沿ってViewModel.csという名前が良く使われます。）<br />
+その後、MainWindow.xamlのデータコンテキストにViewModelを設定します。</p>
 <br>
-<h2 id="section-5">データの送信</h2>
-<p>文字列を送信します。</p>
-<pre><code class="language-C#">public void Send()
-{
-  if (serialPort.IsOpen)
-  {
-    serialPort.Write(TXData);
-  }
-}
-</code></pre>
-<br>
-<br>
-<h2 id="section-6">データの受信</h2>
-<p>文字列を受信します。<br />
-受信データの取り出しは、割込みを使って行います。<br />
-データを受信したらすぐにデータを取り込んでくれます。</p>
-<pre><code class="language-C#">SerialCom.serialPort.DataReceived += OnReceived;
+<p>MainWindow.xaml.cs</p>
+<pre><code class="language-C#">ViewModel viewModel = new ViewModel();
 
-private void OnReceived(object sender, SerialDataReceivedEventArgs e)
+public MainWindow()
 {
-  RXData += serialPort.ReadExisting();
+  InitializeComponent();
+  // データコンテキストの設定
+  DataContext = viewModel;
 }
 </code></pre>
 <br>
+<p>DataContextはFrameworkElementクラスのプロパティで、xaml上に置いたコントロールのBinding値とオブジェクト内（ここではViewModel.cs）の変数を紐づけをしてくれるものです。</p>
 <br>
-<h2 id="section-7">動作確認のためのシリアル通信折り返し方法</h2>
-<p>シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的です。<br />
-以下のUSB-シリアル変換を使用すれば確認可能です。<br />
-TxピンとRxピンを導線で繋いで動作確認します。</p>
-<p><a href="https://akizukidenshi.com/catalog/g/gM-11007/">秋月電子 FT-232RQ USBシリアル変換モジュール</a></p>
+<h3 id="xamldatabinding">xaml側のDataBinding</h3>
+<p>TextBoxのTextに変数をBindigします。<br />
+ここでは、Counterという名前の変数とします。</p>
+<pre><code class="language-C#">&lt;TextBox Text=&quot;{Binding Counter}&quot;/&gt;
+</code></pre>
 <br>
-<p>Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。</p>
+<h3 id="viewmodeldatabindig">ViewModel側のDataBindig</h3>
+<p>Counterという名前の変数を宣言します。</p>
+<p>次に、ViewModelBaseクラスを作成します。<br />
+これは最初は、必ずコピペする定型処理、と覚えてしまって大丈夫です。</p>
+<p>ViewModelクラスにViewModelBaseクラスを継承して、変数のSetterに”RaisePropertyChanged(&quot;Counter&quot;)”を入れます。<br />
+これで、Counterの値が変更になったときに、変更をxaml側に反映できるようになります。</p>
+<p>ViewModel.cs</p>
+<pre><code class="language-C#">class ViewModel : ViewModelBase
+{
+  private string counter = &quot;0&quot;;
+  public string Counter
+  {
+    get { return counter; }
+    set
+    {
+      counter = value;
+      RaisePropertyChanged(&quot;Counter&quot;);
+    }
+  }
+}
+
+public class ViewModelBase : INotifyPropertyChanged
+{
+  public event PropertyChangedEventHandler PropertyChanged;
+  protected virtual void RaisePropertyChanged(string propertyName)
+  {
+    var h = this.PropertyChanged;
+    if (h != null)
+      {
+        h(this, new PropertyChangedEventArgs(propertyName));
+      }
+  }
+}
+</code></pre>
+<br>
+<p>以上で、DataBindingは完了です。<br />
+Counterの値が変わると、画面の数値も変更されるようになりました。</p>
+<br>
+<p>最後に、ボタンのクリックイベントの処理の実態もViewModelの方へ移しておきます。</p>
+<p>MainWindow.xaml.cs</p>
+<pre><code class="language-C#">private void OneUp_Click(object sender, RoutedEventArgs e)
+{
+  viewModel.OneUp();
+}
+
+private void OneDown_Click(object sender, RoutedEventArgs e)
+{
+  viewModel.OneDown();
+}
+</code></pre>
+<br>
+<p>ViewModel.cs</p>
+<pre><code class="language-C#">public void OneUp()
+{
+  var numValue = (Convert.ToString(Convert.ToInt32(Counter) + 1));
+  Counter = numValue;
+}
+
+public void OneDown()
+{
+  var numValue = (Convert.ToString(Convert.ToInt32(Counter) - 1));
+  Counter = numValue;
+ }
+</code></pre>
 <br>
 <br>
+<h2 id="databindingcommandbinding">3. DataBindingとCommandBindingを実装</h2>
+<p>2から、ボタンをクリックしたときのイベント処理もBindingに変更します。</p>
 <br>
-<h3 id="section-8">コメントなど</h3>
-<p>下記のTwitterまで返信orDMお願いします。</p>
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">WPFで簡単なシリアル通信アプリを作りました。（ブログ用）<a href="https://twitter.com/hashtag/Csharp?src=hash&amp;ref_src=twsrc%5Etfw">#Csharp</a> <a href="https://twitter.com/hashtag/WPF?src=hash&amp;ref_src=twsrc%5Etfw">#WPF</a><a href="https://t.co/BSPIjahaFD">https://t.co/BSPIjahaFD</a></p>&mdash; やまっく (&#64;YY87750722) <a href="https://twitter.com/YY87750722/status/1430549219320860673?ref_src=twsrc%5Etfw">August 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<h3 id="xamlcommandbinding">xaml側のCommandBinding</h3>
+<p>Clickイベントは削除して、commandプロパティに変数をBindingします。</p>
+<pre><code class="language-C#">&lt;Button Content=&quot;1 UP&quot; Command=&quot;{Binding OneUpCommand}&quot; /&gt;
+&lt;Button Content=&quot;1 DOWN&quot; Command=&quot;{Binding OneDownCommand}&quot;/&gt;
+</code></pre>
 <br>
+<br>
+<h3 id="viewmodelcommandbinding">ViewModel側のCommandBinding</h3>
+<p>Icommandで変数を宣言します。</p>
+<p>次に、</p>
 
               <br>
               <hr>
