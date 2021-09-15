@@ -1,4 +1,3 @@
 User-agent: *
 Disallow:
-
 Sitemap: https://yamaccu.github.io/sitemap.xml
