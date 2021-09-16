@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-09-16T07:44:49Z</updated>
+	<updated>2021-09-16T13:57:20Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210916-csharp-wpfbinding</id>
 		<title>WPFでBindingを使う</title>
@@ -85,7 +85,7 @@ MainWindow.xaml（画面部）とViewModel.cs（処理部）の間でBindingし�
 &lt;br&gt;
 &lt;h3 id="datacontext"&gt;2-1. DataContextの設定&lt;/h3&gt;
 &lt;p&gt;Bindingするためには、まずDataContextの設定が必要です。&lt;br /&gt;
-DataContextとは、FrameworkElementクラスのプロパティで、画面部のコントロールのBinding値と処理部の変数を紐づけをしてくれるものです。&lt;/p&gt;
+DataContextとは、画面部のコントロールのBinding値と処理部の変数を紐づけをしてくれるプロパティです。&lt;/p&gt;
 &lt;p&gt;設定方法は、まずはViewModel.csというファイルを作成します。&lt;br /&gt;
 （作成するファイル名は何でもいいですが、MVVMモデルに沿ってViewModel.csという名前が良く使われます。）&lt;br /&gt;
 その後、MainWindow.xamlのデータコンテキストにViewModelを設定します。&lt;/p&gt;
@@ -115,7 +115,7 @@ public MainWindow()
 &lt;p&gt;ViewModelクラスにViewModelBaseクラスを継承して、変数&amp;quot;Counter&amp;quot;のSetterに”RaisePropertyChanged(&amp;quot;Counter&amp;quot;)”を入れます。&lt;br /&gt;
 これで、&amp;quot;Counter&amp;quot;の値が変更になったときに、変更をxaml側に反映できるようになります。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;class ViewModel : ViewModelBase
+&lt;pre&gt;&lt;code class="language-C#"&gt;public class ViewModel : ViewModelBase
 {
   private string counter = &amp;quot;0&amp;quot;;
   public string Counter
@@ -146,7 +146,7 @@ public class ViewModelBase : INotifyPropertyChanged
 &lt;p&gt;以上で、DataBindingは完了です。&lt;br /&gt;
 ViewModel.csの&amp;quot;Counter&amp;quot;の値が変わると、画面のTextboxの数値も変更されるようになりました。&lt;/p&gt;
 &lt;br&gt;
-&lt;p&gt;※　変数&amp;quot;Counter&amp;quot;をViewModel.csの方で宣言しているので、
+&lt;p&gt;※ 変数&amp;quot;Counter&amp;quot;をViewModel.csの方で宣言しているので、
 クリックイベントの処理もViewModel.csの方へ移しておきます。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;MainWindow.xml.cs（コードビハインド）&lt;/em&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;private void OneUp_Click(object sender, RoutedEventArgs e)
@@ -179,10 +179,10 @@ public void OneDown()
 &lt;p&gt;2から、ボタンをクリックしたときのイベント処理もBindingに変更します。&lt;br /&gt;
 CommandBindingもDataContextの設定は必須です。&lt;/p&gt;
 &lt;br&gt;
-&lt;h3 id="icommand"&gt;3-1. Icommandについて&lt;/h3&gt;
-&lt;p&gt;CommandBindingにはIcommandインターフェースを使用します。&lt;br /&gt;
+&lt;h3 id="icommand"&gt;3-1. ICommandについて&lt;/h3&gt;
+&lt;p&gt;CommandBindingにはICommandインターフェースを使用します。&lt;br /&gt;
 これでないと画面部と処理部の間をBindingできません。&lt;/p&gt;
-&lt;p&gt;Icommandインターフェースは3つのメンバがいます。&lt;br /&gt;
+&lt;p&gt;ICommandインターフェースは3つのメンバがいます。&lt;br /&gt;
 継承先クラスにはこれらを実装する必要があります。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public interface ICommand
 {
@@ -198,7 +198,7 @@ CommandBindingもDataContextの設定は必須です。&lt;/p&gt;
 &lt;/ul&gt;
 &lt;br&gt;
 &lt;h3 id="xaml-1"&gt;3-2. xaml側のコード実装&lt;/h3&gt;
-&lt;p&gt;Clickイベントは削除して、commandプロパティに変数をBindingします。&lt;/p&gt;
+&lt;p&gt;ボタンのClickイベントは削除して、Commandプロパティに変数をBindingします。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;Button Content=&amp;quot;1 UP&amp;quot; Command=&amp;quot;{Binding OneUpCommand}&amp;quot; /&amp;gt;
 &amp;lt;Button Content=&amp;quot;1 DOWN&amp;quot; Command=&amp;quot;{Binding OneDownCommand}&amp;quot;/&amp;gt;
@@ -206,8 +206,8 @@ CommandBindingもDataContextの設定は必須です。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="viewmodel-1"&gt;3-2. ViewModel側のコード実装&lt;/h3&gt;
-&lt;p&gt;Icommandで変数を宣言します。&lt;br /&gt;
-その後、コンストラクタでIcommand変数に処理を登録します。&lt;/p&gt;
+&lt;p&gt;ICommandで変数を宣言します。&lt;br /&gt;
+その後、コンストラクタでICommand変数に処理を登録します。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public ICommand OneUpCommand { get; set; }
 public ICommand OneDownCommand { get; set; }
 
@@ -218,7 +218,7 @@ public ViewModel()
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;処理の実態のコード（上でいうOneUpCommandImpl）には、Icommandを継承します。&lt;/p&gt;
+&lt;p&gt;処理の実態のコード（上でいうOneUpCommandImpl）には、ICommandを継承します。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public class OneUpCommandImpl : ICommand
 {
   public OneUpCommandImpl(ViewModel viewmodel)
@@ -245,11 +245,10 @@ public ViewModel()
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="commandbindingdelegate"&gt;4. CommandBindingを少しスマートに実装（Delegate使用）&lt;/h2&gt;
-&lt;p&gt;3は、CommandBindingごとにIcommandインターフェースを実装しないといけないので、コード量が増えてくると煩雑になります。&lt;br /&gt;
+&lt;p&gt;3は、CommandBindingごとにICommandインターフェースを実装しないといけないので、コード量が増えてくると煩雑になります。&lt;br /&gt;
 デリゲードを使用することで少しすっきり記述することができます。&lt;/p&gt;
-&lt;p&gt;下記のようなIcommandを継承したCommandクラスを作成します。&lt;br /&gt;
-作ったCommandクラスの中にActionデリゲードがあって、インスタンス化時にActionに処理を登録するようにします。&lt;br /&gt;
-そうすると、コンストラクタでCommandクラスをnewしてCommandBindingに登録すればよくなり、処理ごとにIcommandを作成する必要がなくなります。&lt;/p&gt;
+&lt;p&gt;下記のようなICommandを継承したCommandクラスを作成します。&lt;br /&gt;
+作ったCommandクラスの中にActionデリゲードがあって、インスタンス化時にActionに処理を登録するようにします。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public class Command : ICommand
 {
   private Action execute;
@@ -283,7 +282,7 @@ public ViewModel()
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;Commandクラス内のActionへの登録は、コンストラクタで行います。&lt;/p&gt;
+&lt;p&gt;ViewModelのコンストラクタは以下のようになります。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public ViewModel()
 {
   OneUpCommand = new Command(OneUp);
@@ -311,7 +310,7 @@ nugetからインストール可能です。&lt;br /&gt;
 　　・・・
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;参考&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://aridai.net/articles/15.html"&gt;[WPF】ViewModelがINotifyPropertyChangedを実装していないとメモリリークする件]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://aridai.net/articles/15.html"&gt;【WPF】ViewModelがINotifyPropertyChangedを実装していないとメモリリークする件&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id="databinding-1"&gt;5-2. DataBinding&lt;/h3&gt;
 &lt;p&gt;変数&amp;quot;Counter&amp;quot;は以下のように宣言します。&lt;br /&gt;
@@ -338,7 +337,7 @@ public ReactiveCommand OneDownCommand { get; set; } = new ReactiveCommand();
 &lt;br&gt;
 &lt;p&gt;処理の登録は、下記のようにします。&lt;br /&gt;
 Subscribeに処理を登録することで、ボタンを押したときに登録した処理が実行されるようになります。&lt;br /&gt;
-Icommandとか不要です。&lt;/p&gt;
+ICommandとか不要です。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public ViewModel()
 {
   OneUpCommand.Subscribe(_ =&amp;gt; OneUp());
@@ -352,7 +351,7 @@ Icommandとか不要です。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-3"&gt;終わりに&lt;/h2&gt;
-&lt;p&gt;1~5のサンプルを見て、実は1のコードビハインドに書くやり方が最もシンプルで直観的でわかりやすいと感じるかと思います。&lt;br /&gt;
+&lt;p&gt;1~5のサンプルを見て、実は1のコードビハインドに書くやり方が最もシンプルかつ直観的でわかりやすいと感じるかと思います。&lt;br /&gt;
 しかし、少し複雑なアプリになってくると、画面部と処理部を分離した方が可読性がよく、修正もしやすくなってきます。&lt;/p&gt;
 &lt;p&gt;ササっと簡単なアプリを作る際はコードビハインドを使ってしまうことがありますが、なるべくReactivePropetyを使ってBindingしていく方が長い目で見たときに良い結果になるかと思います。&lt;/p&gt;
 &lt;br&gt;

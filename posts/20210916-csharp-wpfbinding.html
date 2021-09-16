@@ -195,7 +195,7 @@ MainWindow.xaml（画面部）とViewModel.cs（処理部）の間でBindingし�
 <br>
 <h3 id="datacontext">2-1. DataContextの設定</h3>
 <p>Bindingするためには、まずDataContextの設定が必要です。<br />
-DataContextとは、FrameworkElementクラスのプロパティで、画面部のコントロールのBinding値と処理部の変数を紐づけをしてくれるものです。</p>
+DataContextとは、画面部のコントロールのBinding値と処理部の変数を紐づけをしてくれるプロパティです。</p>
 <p>設定方法は、まずはViewModel.csというファイルを作成します。<br />
 （作成するファイル名は何でもいいですが、MVVMモデルに沿ってViewModel.csという名前が良く使われます。）<br />
 その後、MainWindow.xamlのデータコンテキストにViewModelを設定します。</p>
@@ -225,7 +225,7 @@ public MainWindow()
 <p>ViewModelクラスにViewModelBaseクラスを継承して、変数&quot;Counter&quot;のSetterに”RaisePropertyChanged(&quot;Counter&quot;)”を入れます。<br />
 これで、&quot;Counter&quot;の値が変更になったときに、変更をxaml側に反映できるようになります。</p>
 <p><em>ViewModel.cs</em></p>
-<pre><code class="language-C#">class ViewModel : ViewModelBase
+<pre><code class="language-C#">public class ViewModel : ViewModelBase
 {
   private string counter = &quot;0&quot;;
   public string Counter
@@ -256,7 +256,7 @@ public class ViewModelBase : INotifyPropertyChanged
 <p>以上で、DataBindingは完了です。<br />
 ViewModel.csの&quot;Counter&quot;の値が変わると、画面のTextboxの数値も変更されるようになりました。</p>
 <br>
-<p>※　変数&quot;Counter&quot;をViewModel.csの方で宣言しているので、
+<p>※ 変数&quot;Counter&quot;をViewModel.csの方で宣言しているので、
 クリックイベントの処理もViewModel.csの方へ移しておきます。</p>
 <p><em>MainWindow.xml.cs（コードビハインド）</em></p>
 <pre><code class="language-C#">private void OneUp_Click(object sender, RoutedEventArgs e)
@@ -289,10 +289,10 @@ public void OneDown()
 <p>2から、ボタンをクリックしたときのイベント処理もBindingに変更します。<br />
 CommandBindingもDataContextの設定は必須です。</p>
 <br>
-<h3 id="icommand">3-1. Icommandについて</h3>
-<p>CommandBindingにはIcommandインターフェースを使用します。<br />
+<h3 id="icommand">3-1. ICommandについて</h3>
+<p>CommandBindingにはICommandインターフェースを使用します。<br />
 これでないと画面部と処理部の間をBindingできません。</p>
-<p>Icommandインターフェースは3つのメンバがいます。<br />
+<p>ICommandインターフェースは3つのメンバがいます。<br />
 継承先クラスにはこれらを実装する必要があります。</p>
 <pre><code class="language-C#">public interface ICommand
 {
@@ -308,7 +308,7 @@ CommandBindingもDataContextの設定は必須です。</p>
 </ul>
 <br>
 <h3 id="xaml-1">3-2. xaml側のコード実装</h3>
-<p>Clickイベントは削除して、commandプロパティに変数をBindingします。</p>
+<p>ボタンのClickイベントは削除して、Commandプロパティに変数をBindingします。</p>
 <p><em>MainWindow.xaml</em></p>
 <pre><code class="language-C#">&lt;Button Content=&quot;1 UP&quot; Command=&quot;{Binding OneUpCommand}&quot; /&gt;
 &lt;Button Content=&quot;1 DOWN&quot; Command=&quot;{Binding OneDownCommand}&quot;/&gt;
@@ -316,8 +316,8 @@ CommandBindingもDataContextの設定は必須です。</p>
 <br>
 <br>
 <h3 id="viewmodel-1">3-2. ViewModel側のコード実装</h3>
-<p>Icommandで変数を宣言します。<br />
-その後、コンストラクタでIcommand変数に処理を登録します。</p>
+<p>ICommandで変数を宣言します。<br />
+その後、コンストラクタでICommand変数に処理を登録します。</p>
 <pre><code class="language-C#">public ICommand OneUpCommand { get; set; }
 public ICommand OneDownCommand { get; set; }
 
@@ -328,7 +328,7 @@ public ViewModel()
 }
 </code></pre>
 <br>
-<p>処理の実態のコード（上でいうOneUpCommandImpl）には、Icommandを継承します。</p>
+<p>処理の実態のコード（上でいうOneUpCommandImpl）には、ICommandを継承します。</p>
 <pre><code class="language-C#">public class OneUpCommandImpl : ICommand
 {
   public OneUpCommandImpl(ViewModel viewmodel)
@@ -355,11 +355,10 @@ public ViewModel()
 <br>
 <br>
 <h2 id="commandbindingdelegate">4. CommandBindingを少しスマートに実装（Delegate使用）</h2>
-<p>3は、CommandBindingごとにIcommandインターフェースを実装しないといけないので、コード量が増えてくると煩雑になります。<br />
+<p>3は、CommandBindingごとにICommandインターフェースを実装しないといけないので、コード量が増えてくると煩雑になります。<br />
 デリゲードを使用することで少しすっきり記述することができます。</p>
-<p>下記のようなIcommandを継承したCommandクラスを作成します。<br />
-作ったCommandクラスの中にActionデリゲードがあって、インスタンス化時にActionに処理を登録するようにします。<br />
-そうすると、コンストラクタでCommandクラスをnewしてCommandBindingに登録すればよくなり、処理ごとにIcommandを作成する必要がなくなります。</p>
+<p>下記のようなICommandを継承したCommandクラスを作成します。<br />
+作ったCommandクラスの中にActionデリゲードがあって、インスタンス化時にActionに処理を登録するようにします。</p>
 <pre><code class="language-C#">public class Command : ICommand
 {
   private Action execute;
@@ -393,7 +392,7 @@ public ViewModel()
 }
 </code></pre>
 <br>
-<p>Commandクラス内のActionへの登録は、コンストラクタで行います。</p>
+<p>ViewModelのコンストラクタは以下のようになります。</p>
 <pre><code class="language-C#">public ViewModel()
 {
   OneUpCommand = new Command(OneUp);
@@ -421,7 +420,7 @@ nugetからインストール可能です。<br />
 　　・・・
 }
 </code></pre>
-<p>参考<span class="link"></span> <a href="https://aridai.net/articles/15.html">[WPF】ViewModelがINotifyPropertyChangedを実装していないとメモリリークする件]</a></p>
+<p>参考<span class="link"></span> <a href="https://aridai.net/articles/15.html">【WPF】ViewModelがINotifyPropertyChangedを実装していないとメモリリークする件</a></p>
 <br>
 <h3 id="databinding-1">5-2. DataBinding</h3>
 <p>変数&quot;Counter&quot;は以下のように宣言します。<br />
@@ -448,7 +447,7 @@ public ReactiveCommand OneDownCommand { get; set; } = new ReactiveCommand();
 <br>
 <p>処理の登録は、下記のようにします。<br />
 Subscribeに処理を登録することで、ボタンを押したときに登録した処理が実行されるようになります。<br />
-Icommandとか不要です。</p>
+ICommandとか不要です。</p>
 <pre><code class="language-C#">public ViewModel()
 {
   OneUpCommand.Subscribe(_ =&gt; OneUp());
@@ -462,7 +461,7 @@ Icommandとか不要です。</p>
 <br>
 <br>
 <h2 id="section-3">終わりに</h2>
-<p>1~5のサンプルを見て、実は1のコードビハインドに書くやり方が最もシンプルで直観的でわかりやすいと感じるかと思います。<br />
+<p>1~5のサンプルを見て、実は1のコードビハインドに書くやり方が最もシンプルかつ直観的でわかりやすいと感じるかと思います。<br />
 しかし、少し複雑なアプリになってくると、画面部と処理部を分離した方が可読性がよく、修正もしやすくなってきます。</p>
 <p>ササっと簡単なアプリを作る際はコードビハインドを使ってしまうことがありますが、なるべくReactivePropetyを使ってBindingしていく方が長い目で見たときに良い結果になるかと思います。</p>
 <br>
