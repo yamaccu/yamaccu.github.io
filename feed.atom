@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-09-16T13:57:20Z</updated>
+	<updated>2021-09-17T14:43:41Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210916-csharp-wpfbinding</id>
 		<title>WPFでBindingを使う</title>
@@ -13,18 +13,18 @@
 		<content>&lt;p&gt;WPFでBindingを使用する方法のまとめです。&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id="section"&gt;概要&lt;/h2&gt;
-&lt;p&gt;WPFは、Windows上で動作するGUIアプリケーションを作成できるフレームワークです。&lt;br /&gt;
-ToDoリストを管理する、ボタンを押すとTCP/IPでデータを送信する、など様々なGUIアプリが作成可能です。&lt;br /&gt;
+&lt;p&gt;WPFは、Windows上で動作するGUIアプリケーションを作成できるフレームワークです。&lt;br&gt;
+ToDoリストを管理する、ボタンを押すとTCP/IPでデータを送信する、など様々なGUIアプリが作成可能です。&lt;br&gt;
 画面はxaml、処理部はC#で作成します。&lt;/p&gt;
-&lt;p&gt;WPFの特徴の一つとして「Bindingを使用した画面部と処理部の分離」があげられます。&lt;br /&gt;
+&lt;p&gt;WPFの特徴の一つとして「Bindingを使用した画面部と処理部の分離」があげられます。&lt;br&gt;
 分離により管理が容易になったり、処理部でのテストが用意になったりといったメリットがあります。&lt;/p&gt;
 &lt;p&gt;以降、WPFでBindingを使用する方法について記載しています。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-1"&gt;準備&lt;/h2&gt;
-&lt;p&gt;開発環境はVisualStudioを使用します。&lt;br /&gt;
+&lt;p&gt;開発環境はVisualStudioを使用します。&lt;br&gt;
 VisualStudioのインストールおよびWPFのHello Worldまではこちらを参考にしてください。&lt;/p&gt;
-&lt;p&gt;&lt;span Class="link"&gt;&lt;/span&gt; &lt;a href="https://docs.microsoft.com/ja-jp/visualstudio/get-started/csharp/tutorial-wpf?view=vs-2019"&gt;チュートリアル: C# で単純なアプリケーションを作成する&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://docs.microsoft.com/ja-jp/visualstudio/get-started/csharp/tutorial-wpf?view=vs-2019"&gt;チュートリアル: C# で単純なアプリケーションを作成する&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="gui"&gt;今回作成したGUIアプリ&lt;/h2&gt;
@@ -34,7 +34,7 @@ VisualStudioのインストールおよびWPFのHello Worldまではこちらを
 &lt;li&gt;数字を＋１するボタン&lt;/li&gt;
 &lt;li&gt;数字を－１するボタン&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img src="../img/20210916-Csharp-WPFBinding-1.png" Style="width:100%;max-width:450px;"&gt;  
+&lt;img src="../img/20210916-Csharp-WPFBinding-1.png" style="width:100%;max-width:450px;"&gt;  
 &lt;br&gt;
 &lt;br&gt;
 &lt;p&gt;このアプリを、5つの実装方法で作成していきます。&lt;/p&gt;
@@ -45,20 +45,20 @@ VisualStudioのインストールおよびWPFのHello Worldまではこちらを
 &lt;li&gt;CommandBindingを少しスマートに実装（Delegate使用）&lt;/li&gt;
 &lt;li&gt;ReactivePropertyを使用&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;作ったアプリはGithubに上げています。&lt;br /&gt;
-&lt;span Class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/yamaccu/WPF-BindingSample"&gt;github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;作ったアプリはGithubに上げています。&lt;br&gt;
+&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/yamaccu/WPF-BindingSample"&gt;github&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="binding"&gt;1. Bindingなし&lt;/h2&gt;
-&lt;p&gt;コードビハインドに処理を記述します。&lt;br /&gt;
+&lt;p&gt;コードビハインドに処理を記述します。&lt;br&gt;
 コードビハインドとは、xaml.csファイルのことです。&lt;/p&gt;
-&lt;img src="../img/20210916-Csharp-WPFBinding-2.png" Style="width:100%;max-width:300px;"&gt;  
+&lt;img src="../img/20210916-Csharp-WPFBinding-2.png" style="width:100%;max-width:300px;"&gt;  
 &lt;br&gt;
 &lt;br&gt;
 &lt;p&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;Button Content=&amp;quot;1 UP&amp;quot; Click=&amp;quot;OneUp_Click&amp;quot;/&amp;gt;
-&amp;lt;Button Content=&amp;quot;1 DOWN&amp;quot; Click=&amp;quot;OneDown_Click&amp;quot;/&amp;gt;
-&amp;lt;TextBox x:Name=&amp;quot;Counter&amp;quot; Text=&amp;quot;0&amp;quot; /&amp;gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;Button Content="1 UP" Click="OneUp_Click"/&amp;gt;
+&amp;lt;Button Content="1 DOWN" Click="OneDown_Click"/&amp;gt;
+&amp;lt;TextBox x:Name="Counter" Text="0" /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;&lt;em&gt;MainWindow.xaml.cs(コードビハインド)&lt;/em&gt;&lt;/p&gt;
@@ -75,19 +75,22 @@ private void OneDown_Click(object sender, RoutedEventArgs e)
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;これで完了です。&lt;br /&gt;
+&lt;p&gt;これで完了です。&lt;br&gt;
 これは直観的でわかりやすいかなと思います。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="databinding"&gt;2. DataBindingを実装&lt;/h2&gt;
-&lt;p&gt;1から、TextBoxの数値をBindingに変更します。&lt;br /&gt;
+&lt;p&gt;1から、TextBoxの数値をBindingに変更します。&lt;br&gt;
 MainWindow.xaml（画面部）とViewModel.cs（処理部）の間でBindingします。&lt;/p&gt;
 &lt;br&gt;
+&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210916-Csharp-WPFBinding-3.png" style="width:100%;max-width:450px;"&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
 &lt;h3 id="datacontext"&gt;2-1. DataContextの設定&lt;/h3&gt;
-&lt;p&gt;Bindingするためには、まずDataContextの設定が必要です。&lt;br /&gt;
+&lt;p&gt;Bindingするためには、まずDataContextの設定が必要です。&lt;br&gt;
 DataContextとは、画面部のコントロールのBinding値と処理部の変数を紐づけをしてくれるプロパティです。&lt;/p&gt;
-&lt;p&gt;設定方法は、まずはViewModel.csというファイルを作成します。&lt;br /&gt;
-（作成するファイル名は何でもいいですが、MVVMモデルに沿ってViewModel.csという名前が良く使われます。）&lt;br /&gt;
+&lt;p&gt;設定方法は、まずはViewModel.csというファイルを作成します。&lt;br&gt;
+（作成するファイル名は何でもいいですが、MVVMモデルに沿ってViewModel.csという名前が良く使われます。）&lt;br&gt;
 その後、MainWindow.xamlのデータコンテキストにViewModelを設定します。&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;&lt;em&gt;MainWindow.xaml.cs&lt;/em&gt;&lt;/p&gt;
@@ -102,29 +105,29 @@ public MainWindow()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;h3 id="xaml"&gt;2-2. xaml側のコード実装&lt;/h3&gt;
-&lt;p&gt;TextBoxのTextに変数をBindigします。&lt;br /&gt;
-ここでは、&amp;quot;Counter&amp;quot;という名前の変数とします。&lt;/p&gt;
+&lt;p&gt;TextBoxのTextに変数をBindigします。&lt;br&gt;
+ここでは、"Counter"という名前の変数とします。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;TextBox Text=&amp;quot;{Binding Counter}&amp;quot;/&amp;gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;TextBox Text="{Binding Counter}"/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;h3 id="viewmodel"&gt;2-3. ViewModel側のコード実装&lt;/h3&gt;
-&lt;p&gt;Bindingした変数と同じ&amp;quot;Counter&amp;quot;という名前の変数を宣言します。&lt;/p&gt;
-&lt;p&gt;次に、ViewModelBaseクラスを作成します。&lt;br /&gt;
+&lt;p&gt;Bindingした変数と同じ"Counter"という名前の変数を宣言します。&lt;/p&gt;
+&lt;p&gt;次に、ViewModelBaseクラスを作成します。&lt;br&gt;
 これは最初は、必ずコピペする定型処理、と覚えてしまって大丈夫です。&lt;/p&gt;
-&lt;p&gt;ViewModelクラスにViewModelBaseクラスを継承して、変数&amp;quot;Counter&amp;quot;のSetterに”RaisePropertyChanged(&amp;quot;Counter&amp;quot;)”を入れます。&lt;br /&gt;
-これで、&amp;quot;Counter&amp;quot;の値が変更になったときに、変更をxaml側に反映できるようになります。&lt;/p&gt;
+&lt;p&gt;ViewModelクラスにViewModelBaseクラスを継承して、変数"Counter"のSetterに”RaisePropertyChanged("Counter")”を入れます。&lt;br&gt;
+これで、"Counter"の値が変更になったときに、変更をxaml側に反映できるようになります。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public class ViewModel : ViewModelBase
 {
-  private string counter = &amp;quot;0&amp;quot;;
+  private string counter = "0";
   public string Counter
   {
     get { return counter; }
     set
     {
       counter = value;
-      RaisePropertyChanged(&amp;quot;Counter&amp;quot;);
+      RaisePropertyChanged("Counter");
     }
   }
 }
@@ -143,10 +146,10 @@ public class ViewModelBase : INotifyPropertyChanged
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;以上で、DataBindingは完了です。&lt;br /&gt;
-ViewModel.csの&amp;quot;Counter&amp;quot;の値が変わると、画面のTextboxの数値も変更されるようになりました。&lt;/p&gt;
+&lt;p&gt;以上で、DataBindingは完了です。&lt;br&gt;
+ViewModel.csの"Counter"の値が変わると、画面のTextboxの数値も変更されるようになりました。&lt;/p&gt;
 &lt;br&gt;
-&lt;p&gt;※ 変数&amp;quot;Counter&amp;quot;をViewModel.csの方で宣言しているので、
+&lt;p&gt;※ 変数"Counter"をViewModel.csの方で宣言しているので、
 クリックイベントの処理もViewModel.csの方へ移しておきます。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;MainWindow.xml.cs（コードビハインド）&lt;/em&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;private void OneUp_Click(object sender, RoutedEventArgs e)
@@ -176,13 +179,16 @@ public void OneDown()
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="databindingcommandbinding"&gt;3. DataBindingとCommandBindingを実装&lt;/h2&gt;
-&lt;p&gt;2から、ボタンをクリックしたときのイベント処理もBindingに変更します。&lt;br /&gt;
+&lt;p&gt;2から、ボタンをクリックしたときのイベント処理もBindingに変更します。&lt;br&gt;
 CommandBindingもDataContextの設定は必須です。&lt;/p&gt;
 &lt;br&gt;
+&lt;p&gt;&amp;nbsp;&lt;img src="https://yamaccu.github.io/img/20210916-Csharp-WPFBinding-4.png" style="width:100%;max-width:450px;"&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
 &lt;h3 id="icommand"&gt;3-1. ICommandについて&lt;/h3&gt;
-&lt;p&gt;CommandBindingにはICommandインターフェースを使用します。&lt;br /&gt;
+&lt;p&gt;CommandBindingにはICommandインターフェースを使用します。&lt;br&gt;
 これでないと画面部と処理部の間をBindingできません。&lt;/p&gt;
-&lt;p&gt;ICommandインターフェースは3つのメンバがいます。&lt;br /&gt;
+&lt;p&gt;ICommandインターフェースは3つのメンバがいます。&lt;br&gt;
 継承先クラスにはこれらを実装する必要があります。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public interface ICommand
 {
@@ -200,13 +206,13 @@ CommandBindingもDataContextの設定は必須です。&lt;/p&gt;
 &lt;h3 id="xaml-1"&gt;3-2. xaml側のコード実装&lt;/h3&gt;
 &lt;p&gt;ボタンのClickイベントは削除して、Commandプロパティに変数をBindingします。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;Button Content=&amp;quot;1 UP&amp;quot; Command=&amp;quot;{Binding OneUpCommand}&amp;quot; /&amp;gt;
-&amp;lt;Button Content=&amp;quot;1 DOWN&amp;quot; Command=&amp;quot;{Binding OneDownCommand}&amp;quot;/&amp;gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;Button Content="1 UP" Command="{Binding OneUpCommand}" /&amp;gt;
+&amp;lt;Button Content="1 DOWN" Command="{Binding OneDownCommand}"/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h3 id="viewmodel-1"&gt;3-2. ViewModel側のコード実装&lt;/h3&gt;
-&lt;p&gt;ICommandで変数を宣言します。&lt;br /&gt;
+&lt;p&gt;ICommandで変数を宣言します。&lt;br&gt;
 その後、コンストラクタでICommand変数に処理を登録します。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public ICommand OneUpCommand { get; set; }
 public ICommand OneDownCommand { get; set; }
@@ -240,14 +246,14 @@ public ViewModel()
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;OneDownの方も同じように記述します。&lt;br /&gt;
+&lt;p&gt;OneDownの方も同じように記述します。&lt;br&gt;
 これで、画面部のボタンをクリックするとOneUp/OneDownの処理が実行されるようになりました。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="commandbindingdelegate"&gt;4. CommandBindingを少しスマートに実装（Delegate使用）&lt;/h2&gt;
-&lt;p&gt;3は、CommandBindingごとにICommandインターフェースを実装しないといけないので、コード量が増えてくると煩雑になります。&lt;br /&gt;
+&lt;p&gt;3は、CommandBindingごとにICommandインターフェースを実装しないといけないので、コード量が増えてくると煩雑になります。&lt;br&gt;
 デリゲードを使用することで少しすっきり記述することができます。&lt;/p&gt;
-&lt;p&gt;下記のようなICommandを継承したCommandクラスを作成します。&lt;br /&gt;
+&lt;p&gt;下記のようなICommandを継承したCommandクラスを作成します。&lt;br&gt;
 作ったCommandクラスの中にActionデリゲードがあって、インスタンス化時にActionに処理を登録するようにします。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public class Command : ICommand
 {
@@ -294,15 +300,15 @@ public ViewModel()
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="reactiveproperty"&gt;5. ReactivePropertyを使用&lt;/h2&gt;
-&lt;p&gt;ReactivePropertyとは、Bindingを補佐してくれるライブラリです。&lt;br /&gt;
-nugetからインストール可能です。&lt;br /&gt;
+&lt;p&gt;ReactivePropertyとは、Bindingを補佐してくれるライブラリです。&lt;br&gt;
+nugetからインストール可能です。&lt;br&gt;
 2~4で記載してきたBindingのコードを大幅に削減することができます。&lt;/p&gt;
 &lt;p&gt;以下のリンクも参考にしてください。&lt;/p&gt;
-&lt;p&gt;参考1&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/runceel/ReactiveProperty"&gt;公式&lt;/a&gt;&lt;br /&gt;
+&lt;p&gt;参考1&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/runceel/ReactiveProperty"&gt;公式&lt;/a&gt;&lt;br&gt;
 参考2&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://qiita.com/YSRKEN/items/5a36fb8071104a989fb8"&gt;qiita ReactiveProperty全然分からねぇ！って人向けのFAQ集&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id="section-2"&gt;5-1. メモリリーク対策&lt;/h3&gt;
-&lt;p&gt;PropertyChangedを実装しないと、ViewModelが破棄されずにメモリリークするとのことです。&lt;br /&gt;
+&lt;p&gt;PropertyChangedを実装しないと、ViewModelが破棄されずにメモリリークするとのことです。&lt;br&gt;
 以下のコードは必ず実行してください。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;class ViewModel : INotifyPropertyChanged
 {
@@ -313,12 +319,12 @@ nugetからインストール可能です。&lt;br /&gt;
 &lt;p&gt;参考&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://aridai.net/articles/15.html"&gt;【WPF】ViewModelがINotifyPropertyChangedを実装していないとメモリリークする件&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id="databinding-1"&gt;5-2. DataBinding&lt;/h3&gt;
-&lt;p&gt;変数&amp;quot;Counter&amp;quot;は以下のように宣言します。&lt;br /&gt;
+&lt;p&gt;変数"Counter"は以下のように宣言します。&lt;br&gt;
 RaisePropertyChangedは不要です。&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;public ReactiveProperty&amp;lt;string&amp;gt; Counter { get; set; } = new ReactiveProperty&amp;lt;string&amp;gt;(&amp;quot;0&amp;quot;);
+&lt;pre&gt;&lt;code class="language-C#"&gt;public ReactiveProperty&amp;lt;string&amp;gt; Counter { get; set; } = new ReactiveProperty&amp;lt;string&amp;gt;("0");
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;&amp;quot;Counter&amp;quot;の値を変更するには、Valueプロパティに値を入れます。&lt;/p&gt;
+&lt;p&gt;"Counter"の値を変更するには、Valueプロパティに値を入れます。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;private void OneUp()
 {
   var numValue = (Convert.ToString(Convert.ToInt32(Counter.Value) + 1));
@@ -326,7 +332,7 @@ RaisePropertyChangedは不要です。&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;これで、&amp;quot;Couter&amp;quot;の値の変更が画面に反映されるようになりました。&lt;br /&gt;
+&lt;p&gt;これで、"Couter"の値の変更が画面に反映されるようになりました。&lt;br&gt;
 とてもシンプルになります。&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id="commandbinding"&gt;5-3. CommandBinding&lt;/h3&gt;
@@ -335,8 +341,8 @@ RaisePropertyChangedは不要です。&lt;/p&gt;
 public ReactiveCommand OneDownCommand { get; set; } = new ReactiveCommand();
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;処理の登録は、下記のようにします。&lt;br /&gt;
-Subscribeに処理を登録することで、ボタンを押したときに登録した処理が実行されるようになります。&lt;br /&gt;
+&lt;p&gt;処理の登録は、下記のようにします。&lt;br&gt;
+Subscribeに処理を登録することで、ボタンを押したときに登録した処理が実行されるようになります。&lt;br&gt;
 ICommandとか不要です。&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public ViewModel()
 {
@@ -346,16 +352,16 @@ ICommandとか不要です。&lt;/p&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;これで、ボタンを押したときに処理が実行されるようになりました。&lt;br /&gt;
+&lt;p&gt;これで、ボタンを押したときに処理が実行されるようになりました。&lt;br&gt;
 こちらもとてもシンプルです。&lt;/p&gt;
 &lt;br&gt;
 &lt;br&gt;
 &lt;h2 id="section-3"&gt;終わりに&lt;/h2&gt;
-&lt;p&gt;1~5のサンプルを見て、実は1のコードビハインドに書くやり方が最もシンプルかつ直観的でわかりやすいと感じるかと思います。&lt;br /&gt;
+&lt;p&gt;1~5のサンプルを見て、実は1のコードビハインドに書くやり方が最もシンプルかつ直観的でわかりやすいと感じるかと思います。&lt;br&gt;
 しかし、少し複雑なアプリになってくると、画面部と処理部を分離した方が可読性がよく、修正もしやすくなってきます。&lt;/p&gt;
 &lt;p&gt;ササっと簡単なアプリを作る際はコードビハインドを使ってしまうことがありますが、なるべくReactivePropetyを使ってBindingしていく方が長い目で見たときに良い結果になるかと思います。&lt;/p&gt;
 &lt;br&gt;
-&lt;p&gt;以上になります。&lt;br /&gt;
+&lt;p&gt;以上になります。&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
 </content>
 		<summary>&lt;p&gt;WPFでBindingを使用する方法のまとめです。&lt;/p&gt;</summary>
