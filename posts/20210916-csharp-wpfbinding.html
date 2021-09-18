@@ -75,13 +75,13 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/posts">Posts</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/tags">Tags</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
             </li>
 </ul>
     </div>
@@ -440,6 +440,10 @@ RaisePropertyChangedは不要です。</p>
   var numValue = (Convert.ToString(Convert.ToInt32(Counter.Value) + 1));
   Counter.Value = numValue;
 }
+</code></pre>
+<br>
+<p>MainWindow.xamlの&quot;Counter&quot;も、Valueプロパティにします。</p>
+<pre><code class="language-C#">&lt;TextBox Text=&quot;{Binding Counter.Value}&quot;/&gt;
 </code></pre>
 <br>
 <p>これで、&quot;Couter&quot;の値の変更が画面に反映されるようになりました。<br />

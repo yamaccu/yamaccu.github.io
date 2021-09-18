@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-09-17T14:43:41Z</updated>
+	<updated>2021-09-18T10:37:31Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210916-csharp-wpfbinding</id>
 		<title>WPFでBindingを使う</title>
@@ -330,6 +330,10 @@ RaisePropertyChangedは不要です。&lt;/p&gt;
   var numValue = (Convert.ToString(Convert.ToInt32(Counter.Value) + 1));
   Counter.Value = numValue;
 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;MainWindow.xamlの"Counter"も、Valueプロパティにします。&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;TextBox Text="{Binding Counter.Value}"/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;これで、"Couter"の値の変更が画面に反映されるようになりました。&lt;br&gt;
