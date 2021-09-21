@@ -25,7 +25,7 @@ img::selection { color: #fff; background: transparent; }
 
 img::-moz-selection { color: #fff; background: transparent; }
 
-#mainNav { position: absolute; top: 10px; border-bottom: 1px solid #e9ecef; background-color: white; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+#mainNav { position: absolute; border-bottom: 1px solid #e9ecef; background-color: white; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
 #mainNav .navbar-brand { font-weight: 800; color: #343a40; }
 
@@ -223,3 +223,5 @@ table tr:nth-child(odd) td { background: snow; }
 .link:after { content: ''; position: absolute; height: 14px; width: 2px; background-color: gray; left: 8px; transform: rotate(45deg); }
 
 .link:before { content: ''; position: absolute; height: 0px; width: 0px; border-left: 13px solid white; border-top: 13px solid gray; top: -5px; left: 7px; }
+
+.cbtitle { position: relative; top: 25px; }

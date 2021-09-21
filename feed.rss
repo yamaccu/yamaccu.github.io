@@ -5,8 +5,8 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Sat, 18 Sep 2021 10:37:31 GMT</pubDate>
-		<lastBuildDate>Sat, 18 Sep 2021 10:37:31 GMT</lastBuildDate>
+		<pubDate>Tue, 21 Sep 2021 12:34:05 GMT</pubDate>
+		<lastBuildDate>Tue, 21 Sep 2021 12:34:05 GMT</lastBuildDate>
 		<item>
 			<title>WPFでBindingを使う</title>
 			<link>https://yamaccu.github.io/posts/20210916-csharp-wpfbinding</link>
@@ -58,13 +58,13 @@ VisualStudioのインストールおよびWPFのHello Worldまではこちらを
 &lt;img src="../img/20210916-Csharp-WPFBinding-2.png" style="width:100%;max-width:300px;"&gt;  
 &lt;br&gt;
 &lt;br&gt;
-&lt;p&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;Button Content="1 UP" Click="OneUp_Click"/&amp;gt;
 &amp;lt;Button Content="1 DOWN" Click="OneDown_Click"/&amp;gt;
 &amp;lt;TextBox x:Name="Counter" Text="0" /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;&lt;em&gt;MainWindow.xaml.cs(コードビハインド)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;MainWindow.xaml.cs(コードビハインド)&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;private void OneUp_Click(object sender, RoutedEventArgs e)
 {
   var numValue = Convert.ToString(Convert.ToInt32(Counter.Text) + 1);
@@ -96,7 +96,7 @@ DataContextとは、画面部のコントロールのBinding値と処理部の�
 （作成するファイル名は何でもいいですが、MVVMモデルに沿ってViewModel.csという名前が良く使われます。）&lt;br&gt;
 その後、MainWindow.xamlのデータコンテキストにViewModelを設定します。&lt;/p&gt;
 &lt;br&gt;
-&lt;p&gt;&lt;em&gt;MainWindow.xaml.cs&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;MainWindow.xaml.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;ViewModel viewModel = new ViewModel();
 
 public MainWindow()
@@ -110,7 +110,7 @@ public MainWindow()
 &lt;h3 id="xaml"&gt;2-2. xaml側のコード実装&lt;/h3&gt;
 &lt;p&gt;TextBoxのTextに変数をBindigします。&lt;br&gt;
 ここでは、"Counter"という名前の変数とします。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;TextBox Text="{Binding Counter}"/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
@@ -120,7 +120,7 @@ public MainWindow()
 これは最初は、必ずコピペする定型処理、と覚えてしまって大丈夫です。&lt;/p&gt;
 &lt;p&gt;ViewModelクラスにViewModelBaseクラスを継承して、変数"Counter"のSetterに”RaisePropertyChanged("Counter")”を入れます。&lt;br&gt;
 これで、"Counter"の値が変更になったときに、変更をxaml側に反映できるようになります。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public class ViewModel : ViewModelBase
 {
   private string counter = "0";
@@ -154,7 +154,7 @@ ViewModel.csの"Counter"の値が変わると、画面のTextboxの数値も変�
 &lt;br&gt;
 &lt;p&gt;※ 変数"Counter"をViewModel.csの方で宣言しているので、
 クリックイベントの処理もViewModel.csの方へ移しておきます。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;MainWindow.xml.cs（コードビハインド）&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;MainWindow.xml.cs（コードビハインド）&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;private void OneUp_Click(object sender, RoutedEventArgs e)
 {
   viewModel.OneUp();
@@ -166,7 +166,7 @@ private void OneDown_Click(object sender, RoutedEventArgs e)
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
-&lt;p&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public void OneUp()
 {
   var numValue = (Convert.ToString(Convert.ToInt32(Counter) + 1));
@@ -208,7 +208,7 @@ CommandBindingもDataContextの設定は必須です。&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id="xaml-1"&gt;3-2. xaml側のコード実装&lt;/h3&gt;
 &lt;p&gt;ボタンのClickイベントは削除して、Commandプロパティに変数をBindingします。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;Button Content="1 UP" Command="{Binding OneUpCommand}" /&amp;gt;
 &amp;lt;Button Content="1 DOWN" Command="{Binding OneDownCommand}"/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -217,6 +217,7 @@ CommandBindingもDataContextの設定は必須です。&lt;/p&gt;
 &lt;h3 id="viewmodel-1"&gt;3-2. ViewModel側のコード実装&lt;/h3&gt;
 &lt;p&gt;ICommandで変数を宣言します。&lt;br&gt;
 その後、コンストラクタでICommand変数に処理を登録します。&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public ICommand OneUpCommand { get; set; }
 public ICommand OneDownCommand { get; set; }
 
@@ -228,6 +229,7 @@ public ViewModel()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;処理の実態のコード（上でいうOneUpCommandImpl）には、ICommandを継承します。&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public class OneUpCommandImpl : ICommand
 {
   public OneUpCommandImpl(ViewModel viewmodel)
@@ -258,6 +260,7 @@ public ViewModel()
 デリゲードを使用することで少しすっきり記述することができます。&lt;/p&gt;
 &lt;p&gt;下記のようなICommandを継承したCommandクラスを作成します。&lt;br&gt;
 作ったCommandクラスの中にActionデリゲードがあって、インスタンス化時にActionに処理を登録するようにします。&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public class Command : ICommand
 {
   private Action execute;
@@ -292,6 +295,7 @@ public ViewModel()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;ViewModelのコンストラクタは以下のようになります。&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public ViewModel()
 {
   OneUpCommand = new Command(OneUp);
@@ -313,6 +317,7 @@ nugetからインストール可能です。&lt;br&gt;
 &lt;h3 id="section-2"&gt;5-1. メモリリーク対策&lt;/h3&gt;
 &lt;p&gt;PropertyChangedを実装しないと、ViewModelが破棄されずにメモリリークするとのことです。&lt;br&gt;
 以下のコードは必ず実行してください。&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;class ViewModel : INotifyPropertyChanged
 {
   public event PropertyChangedEventHandler PropertyChanged;
@@ -324,10 +329,13 @@ nugetからインストール可能です。&lt;br&gt;
 &lt;h3 id="databinding-1"&gt;5-2. DataBinding&lt;/h3&gt;
 &lt;p&gt;変数"Counter"は以下のように宣言します。&lt;br&gt;
 RaisePropertyChangedは不要です。&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;public ReactiveProperty&amp;lt;string&amp;gt; Counter { get; set; } = new ReactiveProperty&amp;lt;string&amp;gt;("0");
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-C#"&gt;public ReactiveProperty&amp;lt;string&amp;gt; Counter { get; set; } 
+      = new ReactiveProperty&amp;lt;string&amp;gt;("0");
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;"Counter"の値を変更するには、Valueプロパティに値を入れます。&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;private void OneUp()
 {
   var numValue = (Convert.ToString(Convert.ToInt32(Counter.Value) + 1));
@@ -336,6 +344,7 @@ RaisePropertyChangedは不要です。&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;MainWindow.xamlの"Counter"も、Valueプロパティにします。&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;MainWindow.xaml&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;TextBox Text="{Binding Counter.Value}"/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
@@ -344,6 +353,7 @@ RaisePropertyChangedは不要です。&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id="commandbinding"&gt;5-3. CommandBinding&lt;/h3&gt;
 &lt;p&gt;Commandは以下のように宣言します。&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public ReactiveCommand OneUpCommand { get; set; } = new ReactiveCommand();
 public ReactiveCommand OneDownCommand { get; set; } = new ReactiveCommand();
 &lt;/code&gt;&lt;/pre&gt;
@@ -351,12 +361,12 @@ public ReactiveCommand OneDownCommand { get; set; } = new ReactiveCommand();
 &lt;p&gt;処理の登録は、下記のようにします。&lt;br&gt;
 Subscribeに処理を登録することで、ボタンを押したときに登録した処理が実行されるようになります。&lt;br&gt;
 ICommandとか不要です。&lt;/p&gt;
+&lt;p&gt;&lt;label class="cbtitle"&gt;&lt;em&gt;ViewModel.cs&lt;/em&gt;&lt;/label&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-C#"&gt;public ViewModel()
 {
   OneUpCommand.Subscribe(_ =&amp;gt; OneUp());
   OneDownCommand.Subscribe(_ =&amp;gt; OneDown());
 }
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;br&gt;
 &lt;p&gt;これで、ボタンを押したときに処理が実行されるようになりました。&lt;br&gt;
@@ -366,9 +376,9 @@ ICommandとか不要です。&lt;/p&gt;
 &lt;h2 id="section-3"&gt;終わりに&lt;/h2&gt;
 &lt;p&gt;1~5のサンプルを見て、実は1のコードビハインドに書くやり方が最もシンプルかつ直観的でわかりやすいと感じるかと思います。&lt;br&gt;
 しかし、少し複雑なアプリになってくると、画面部と処理部を分離した方が可読性がよく、修正もしやすくなってきます。&lt;/p&gt;
-&lt;p&gt;ササっと簡単なアプリを作る際はコードビハインドを使ってしまうことがありますが、なるべくReactivePropetyを使ってBindingしていく方が長い目で見たときに良い結果になるかと思います。&lt;/p&gt;
+&lt;p&gt;ササっと簡単なアプリを作る際はコードビハインドを使ってしまうことがありますが、なるべくBindingしていく方が長い目で見たときに良い結果になるかと思います。&lt;/p&gt;
 &lt;br&gt;
-&lt;p&gt;以上になります。&lt;br&gt;
+&lt;p&gt;以上です。&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>

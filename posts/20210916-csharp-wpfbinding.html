@@ -57,7 +57,6 @@
 
   
 
-　<!-- 記事のみにAdsense適用、URLの長さで判別している -->
     <script data-ad-client="ca-pub-2127299793131419" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 </head>
@@ -105,7 +104,7 @@
 
               </div>
                 <div class="mt-3">
-                      <a href="/tags/cwpf" class="badge badge-light"> C#/WPF</a>
+                      <a href="/tags/Csharp_WPF" class="badge badge-light"> Csharp_WPF</a>
                 </div>
         </div>
       </div>
@@ -165,13 +164,13 @@ VisualStudioのインストールおよびWPFのHello Worldまではこちらを
 <img src="../img/20210916-Csharp-WPFBinding-2.png" Style="width:100%;max-width:300px;">  
 <br>
 <br>
-<p><em>MainWindow.xaml</em></p>
+<p><label Class="cbtitle"><em>MainWindow.xaml</em></p>
 <pre><code class="language-C#">&lt;Button Content=&quot;1 UP&quot; Click=&quot;OneUp_Click&quot;/&gt;
 &lt;Button Content=&quot;1 DOWN&quot; Click=&quot;OneDown_Click&quot;/&gt;
 &lt;TextBox x:Name=&quot;Counter&quot; Text=&quot;0&quot; /&gt;
 </code></pre>
 <br>
-<p><em>MainWindow.xaml.cs(コードビハインド)</em></p>
+<p><label Class="cbtitle"><em>MainWindow.xaml.cs(コードビハインド)</em></p>
 <pre><code class="language-C#">private void OneUp_Click(object sender, RoutedEventArgs e)
 {
   var numValue = Convert.ToString(Convert.ToInt32(Counter.Text) + 1);
@@ -203,7 +202,7 @@ DataContextとは、画面部のコントロールのBinding値と処理部の�
 （作成するファイル名は何でもいいですが、MVVMモデルに沿ってViewModel.csという名前が良く使われます。）<br />
 その後、MainWindow.xamlのデータコンテキストにViewModelを設定します。</p>
 <br>
-<p><em>MainWindow.xaml.cs</em></p>
+<p><label Class="cbtitle"><em>MainWindow.xaml.cs</em></p>
 <pre><code class="language-C#">ViewModel viewModel = new ViewModel();
 
 public MainWindow()
@@ -217,7 +216,7 @@ public MainWindow()
 <h3 id="xaml">2-2. xaml側のコード実装</h3>
 <p>TextBoxのTextに変数をBindigします。<br />
 ここでは、&quot;Counter&quot;という名前の変数とします。</p>
-<p><em>MainWindow.xaml</em></p>
+<p><label Class="cbtitle"><em>MainWindow.xaml</em></p>
 <pre><code class="language-C#">&lt;TextBox Text=&quot;{Binding Counter}&quot;/&gt;
 </code></pre>
 <br>
@@ -227,7 +226,7 @@ public MainWindow()
 これは最初は、必ずコピペする定型処理、と覚えてしまって大丈夫です。</p>
 <p>ViewModelクラスにViewModelBaseクラスを継承して、変数&quot;Counter&quot;のSetterに”RaisePropertyChanged(&quot;Counter&quot;)”を入れます。<br />
 これで、&quot;Counter&quot;の値が変更になったときに、変更をxaml側に反映できるようになります。</p>
-<p><em>ViewModel.cs</em></p>
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
 <pre><code class="language-C#">public class ViewModel : ViewModelBase
 {
   private string counter = &quot;0&quot;;
@@ -261,7 +260,7 @@ ViewModel.csの&quot;Counter&quot;の値が変わると、画面のTextboxの数
 <br>
 <p>※ 変数&quot;Counter&quot;をViewModel.csの方で宣言しているので、
 クリックイベントの処理もViewModel.csの方へ移しておきます。</p>
-<p><em>MainWindow.xml.cs（コードビハインド）</em></p>
+<p><label Class="cbtitle"><em>MainWindow.xml.cs（コードビハインド）</em></p>
 <pre><code class="language-C#">private void OneUp_Click(object sender, RoutedEventArgs e)
 {
   viewModel.OneUp();
@@ -273,7 +272,7 @@ private void OneDown_Click(object sender, RoutedEventArgs e)
 }
 </code></pre>
 <br>
-<p><em>ViewModel.cs</em></p>
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
 <pre><code class="language-C#">public void OneUp()
 {
   var numValue = (Convert.ToString(Convert.ToInt32(Counter) + 1));
@@ -315,7 +314,7 @@ CommandBindingもDataContextの設定は必須です。</p>
 <br>
 <h3 id="xaml-1">3-2. xaml側のコード実装</h3>
 <p>ボタンのClickイベントは削除して、Commandプロパティに変数をBindingします。</p>
-<p><em>MainWindow.xaml</em></p>
+<p><label Class="cbtitle"><em>MainWindow.xaml</em></p>
 <pre><code class="language-C#">&lt;Button Content=&quot;1 UP&quot; Command=&quot;{Binding OneUpCommand}&quot; /&gt;
 &lt;Button Content=&quot;1 DOWN&quot; Command=&quot;{Binding OneDownCommand}&quot;/&gt;
 </code></pre>
@@ -324,6 +323,7 @@ CommandBindingもDataContextの設定は必須です。</p>
 <h3 id="viewmodel-1">3-2. ViewModel側のコード実装</h3>
 <p>ICommandで変数を宣言します。<br />
 その後、コンストラクタでICommand変数に処理を登録します。</p>
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
 <pre><code class="language-C#">public ICommand OneUpCommand { get; set; }
 public ICommand OneDownCommand { get; set; }
 
@@ -335,6 +335,7 @@ public ViewModel()
 </code></pre>
 <br>
 <p>処理の実態のコード（上でいうOneUpCommandImpl）には、ICommandを継承します。</p>
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
 <pre><code class="language-C#">public class OneUpCommandImpl : ICommand
 {
   public OneUpCommandImpl(ViewModel viewmodel)
@@ -365,6 +366,7 @@ public ViewModel()
 デリゲードを使用することで少しすっきり記述することができます。</p>
 <p>下記のようなICommandを継承したCommandクラスを作成します。<br />
 作ったCommandクラスの中にActionデリゲードがあって、インスタンス化時にActionに処理を登録するようにします。</p>
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
 <pre><code class="language-C#">public class Command : ICommand
 {
   private Action execute;
@@ -399,6 +401,7 @@ public ViewModel()
 </code></pre>
 <br>
 <p>ViewModelのコンストラクタは以下のようになります。</p>
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
 <pre><code class="language-C#">public ViewModel()
 {
   OneUpCommand = new Command(OneUp);
@@ -420,6 +423,7 @@ nugetからインストール可能です。<br />
 <h3 id="section-2">5-1. メモリリーク対策</h3>
 <p>PropertyChangedを実装しないと、ViewModelが破棄されずにメモリリークするとのことです。<br />
 以下のコードは必ず実行してください。</p>
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
 <pre><code class="language-C#">class ViewModel : INotifyPropertyChanged
 {
   public event PropertyChangedEventHandler PropertyChanged;
@@ -431,10 +435,13 @@ nugetからインストール可能です。<br />
 <h3 id="databinding-1">5-2. DataBinding</h3>
 <p>変数&quot;Counter&quot;は以下のように宣言します。<br />
 RaisePropertyChangedは不要です。</p>
-<pre><code class="language-C#">public ReactiveProperty&lt;string&gt; Counter { get; set; } = new ReactiveProperty&lt;string&gt;(&quot;0&quot;);
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
+<pre><code class="language-C#">public ReactiveProperty&lt;string&gt; Counter { get; set; } 
+      = new ReactiveProperty&lt;string&gt;(&quot;0&quot;);
 </code></pre>
 <br>
 <p>&quot;Counter&quot;の値を変更するには、Valueプロパティに値を入れます。</p>
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
 <pre><code class="language-C#">private void OneUp()
 {
   var numValue = (Convert.ToString(Convert.ToInt32(Counter.Value) + 1));
@@ -443,6 +450,7 @@ RaisePropertyChangedは不要です。</p>
 </code></pre>
 <br>
 <p>MainWindow.xamlの&quot;Counter&quot;も、Valueプロパティにします。</p>
+<p><label Class="cbtitle"><em>MainWindow.xaml</em></p>
 <pre><code class="language-C#">&lt;TextBox Text=&quot;{Binding Counter.Value}&quot;/&gt;
 </code></pre>
 <br>
@@ -451,6 +459,7 @@ RaisePropertyChangedは不要です。</p>
 <br>
 <h3 id="commandbinding">5-3. CommandBinding</h3>
 <p>Commandは以下のように宣言します。</p>
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
 <pre><code class="language-C#">public ReactiveCommand OneUpCommand { get; set; } = new ReactiveCommand();
 public ReactiveCommand OneDownCommand { get; set; } = new ReactiveCommand();
 </code></pre>
@@ -458,12 +467,12 @@ public ReactiveCommand OneDownCommand { get; set; } = new ReactiveCommand();
 <p>処理の登録は、下記のようにします。<br />
 Subscribeに処理を登録することで、ボタンを押したときに登録した処理が実行されるようになります。<br />
 ICommandとか不要です。</p>
+<p><label Class="cbtitle"><em>ViewModel.cs</em></p>
 <pre><code class="language-C#">public ViewModel()
 {
   OneUpCommand.Subscribe(_ =&gt; OneUp());
   OneDownCommand.Subscribe(_ =&gt; OneDown());
 }
-
 </code></pre>
 <br>
 <p>これで、ボタンを押したときに処理が実行されるようになりました。<br />
@@ -473,9 +482,9 @@ ICommandとか不要です。</p>
 <h2 id="section-3">終わりに</h2>
 <p>1~5のサンプルを見て、実は1のコードビハインドに書くやり方が最もシンプルかつ直観的でわかりやすいと感じるかと思います。<br />
 しかし、少し複雑なアプリになってくると、画面部と処理部を分離した方が可読性がよく、修正もしやすくなってきます。</p>
-<p>ササっと簡単なアプリを作る際はコードビハインドを使ってしまうことがありますが、なるべくReactivePropetyを使ってBindingしていく方が長い目で見たときに良い結果になるかと思います。</p>
+<p>ササっと簡単なアプリを作る際はコードビハインドを使ってしまうことがありますが、なるべくBindingしていく方が長い目で見たときに良い結果になるかと思います。</p>
 <br>
-<p>以上になります。<br />
+<p>以上です。<br />
 <br></p>
 
               <br>
@@ -504,12 +513,12 @@ ICommandとか不要です。</p>
             <br>
                 <div>
                   <h5>Tags ---</h5>
-                     <a href="/tags/cwpf" class="badge badge-light"> C#/WPF (2)</a>
+                     <a href="/tags/Csharp_WPF" class="badge badge-light"> Csharp_WPF (2)</a>
                      <a href="/tags/github" class="badge badge-light"> github (2)</a>
-                     <a href="/tags/markdown" class="badge badge-light"> MarkDown (2)</a>
-                     <a href="/tags/c" class="badge badge-light"> C# (1)</a>
-                     <a href="/tags/m5stack" class="badge badge-light"> M5Stack (1)</a>
-                     <a href="/tags/htmlcss" class="badge badge-light"> HTML/CSS (1)</a>
+                     <a href="/tags/MarkDown" class="badge badge-light"> MarkDown (2)</a>
+                     <a href="/tags/Csharp" class="badge badge-light"> Csharp (1)</a>
+                     <a href="/tags/M5Stack" class="badge badge-light"> M5Stack (1)</a>
+                     <a href="/tags/HTML_CSS" class="badge badge-light"> HTML_CSS (1)</a>
                      <a href="/tags/python" class="badge badge-light"> python (1)</a>
                      <a href="/tags/micropython" class="badge badge-light"> micropython (1)</a>
                      <a href="/tags/statiq" class="badge badge-light"> statiq (1)</a>
