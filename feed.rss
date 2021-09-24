@@ -5,8 +5,64 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Tue, 21 Sep 2021 12:34:05 GMT</pubDate>
-		<lastBuildDate>Tue, 21 Sep 2021 12:34:05 GMT</lastBuildDate>
+		<pubDate>Fri, 24 Sep 2021 23:59:18 GMT</pubDate>
+		<lastBuildDate>Fri, 24 Sep 2021 23:59:18 GMT</lastBuildDate>
+		<item>
+			<title>Visual Studioで「StyleCop Analyzers」を使う</title>
+			<link>https://yamaccu.github.io/posts/202109xx-csharp-stylecop</link>
+			<description>&lt;p&gt;C#のコードスタイルチェックツールである「StyleCop Analyzers」のまとめです。&lt;/p&gt;</description>
+			<guid>https://yamaccu.github.io/posts/202109xx-csharp-stylecop</guid>
+			<pubDate>Sat, 25 Sep 2021 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;C#のコードスタイルチェックツールである「StyleCop Analyzers」のまとめです。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;概要&lt;/h2&gt;
+&lt;p&gt;StyleCop AnalyzersとはVisual Studioのツールで、C#のコードを分析し、コーディングルールから逸れた記述をリアルタイムに指摘してくれるものです。&lt;br /&gt;
+書き方の統一ができるので、見た目が統一され読みやすいコードを書けるようになります。&lt;br /&gt;
+また、チームでコーディングする際も導入することで、コードの書き方の個人差を減らすことができます。&lt;/p&gt;
+&lt;p&gt;StyleCop Analyzersはオープンソースです。&lt;br /&gt;
+プロジェクトのURLは下記になります。&lt;br /&gt;
+&lt;span Class="link"&gt;&lt;/span&gt; &lt;a href="https://github.com/DotNetAnalyzers/StyleCopAnalyzers"&gt;StyleCopAnalyzers&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;導入も簡単で、気軽に使用できます。&lt;br /&gt;
+以降、StyleCop Analyzersの使い方についてまとめています。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-1"&gt;準備&lt;/h2&gt;
+&lt;p&gt;Visual StudioのNuGetからインストールしたら、すぐに使うことができます。&lt;/p&gt;
+&lt;p&gt;コーディングルールの編集はeditorconfigファイルで行います。&lt;br /&gt;
+ファイルの追加方法は、ソリューションを右クリック→追加→新しい項目で、editorConfigファイル（規定）を追加します。&lt;/p&gt;
+&lt;img src="../img/20210925-Csharp-StyleCop-1.png" Style="width:100%;max-width:550px;"&gt;  
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-2"&gt;警告内容の確認&lt;/h2&gt;
+&lt;p&gt;エラー一覧ウィンドウに警告が表示されます。&lt;br /&gt;
+エラーコードをクリックすると、エラーの詳細ページに飛ぶことができます。&lt;/p&gt;
+&lt;img src="../img/20210925-Csharp-StyleCop-2.png" Style="width:100%;max-width:550px;"&gt;  
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-3"&gt;警告を出ないようにする&lt;/h2&gt;
+&lt;p&gt;警告の種類はかなり多く、中には不要なものも存在します。&lt;/p&gt;
+&lt;p&gt;例えば、SA1200のエラーは、「Usingディレクティブは名前空間の中に書く」という指摘ですが、外に書いてあるものがほとんどで、Microsoftのデフォルトプロジェクトなどでも外に書いてあります。&lt;br /&gt;
+（SA1200　Using directive should appear within a namespace declaration）&lt;/p&gt;
+&lt;p&gt;準備の項目で作った.editorconfigファイルをVisual Studio上で開くと、このような不要な警告を出なくすることができます。&lt;/p&gt;
+&lt;img src="../img/20210925-Csharp-StyleCop-3.png" Style="width:100%;max-width:550px;"&gt;  
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-4"&gt;個人的に無効にした方がよさげな警告&lt;/h2&gt;
+&lt;p&gt;※適宜追加していきます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SA1101　クラスメンバの呼び出しには必ずthisをつける&lt;/li&gt;
+&lt;li&gt;SA1200　Usingディレクティブは、名前空間宣言の中に記述&lt;/li&gt;
+&lt;li&gt;SA1629　コメントの末尾にピリオドがない&lt;/li&gt;
+&lt;li&gt;SA1633　ファイルのトップにファイルヘッダ（作者とか会社名とか書くやつ）がない&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+</content:encoded>
+			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
+		</item>
 		<item>
 			<title>WPFでBindingを使う</title>
 			<link>https://yamaccu.github.io/posts/20210916-csharp-wpfbinding</link>
@@ -1237,73 +1293,6 @@ git push (-f) origin main
 &lt;p&gt;※-fは強制プッシュなので取り扱い注意です&lt;/p&gt;
 &lt;p&gt;※originの設定は、クローン時に自動で設定されます。&lt;/p&gt;
 &lt;p&gt;※2020/10から、デフォルトブランチがmaster ⇒ main に変わりました。&lt;/p&gt;
-&lt;br&gt;
-</content:encoded>
-			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
-		</item>
-		<item>
-			<title>micropythonにreplでアクセス</title>
-			<link>https://yamaccu.github.io/posts/20210818-micropython-repl</link>
-			<description>&lt;p&gt;micropythonにreplでアクセスする方法をまとめています。&lt;/p&gt;</description>
-			<guid>https://yamaccu.github.io/posts/20210818-micropython-repl</guid>
-			<pubDate>Wed, 18 Aug 2021 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;micropythonにreplでアクセスする方法をまとめています。&lt;/p&gt;
-&lt;br&gt;
-&lt;h2 id="repl"&gt;replについて&lt;/h2&gt;
-&lt;p&gt;repl：「Read（読み取り）、Eval（評価）、Print（印字）、Loop（ループ）」の頭字語です。&lt;/p&gt;
-&lt;p&gt;micropython上でコマンドを実行できる仕組みで、コマンドプロンプトのようなイメージです。&lt;br /&gt;
-コードをテストするときに、コマンドを一つずつ実行できるので便利です。&lt;/p&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="section"&gt;アクセス方法&lt;/h2&gt;
-&lt;p&gt;デバイスのシリアルポートに、シリアル通信アプリ（teratermなど）で接続します。&lt;br /&gt;
-通信速度は115200bpsです。&lt;br /&gt;
-CTR+Cを二回で、mainで実行している処理を中止してreplで操作可能になります。&lt;/p&gt;
-&lt;br&gt;
-&lt;br&gt; 
-&lt;h2 id="section-1"&gt;コマンド&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;コマンド&lt;/th&gt;
-&lt;th&gt;内容&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;help()&lt;/td&gt;
-&lt;td&gt;ヘルプを表示&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;help('modules')&lt;/td&gt;
-&lt;td&gt;使用可能なライブラリを表示&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;help(obj)&lt;/td&gt;
-&lt;td&gt;調べたいobjectの説明を表示&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;dir()&lt;/td&gt;
-&lt;td&gt;import済みのファイル情報の表示&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;sys.path.append('パス')&lt;/td&gt;
-&lt;td&gt;import時に探索されるパスを追加&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;os.listdir()&lt;/td&gt;
-&lt;td&gt;カレントディレクトリのファイルを表示&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;tabキー&lt;/td&gt;
-&lt;td&gt;入力候補の表示&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="url"&gt;参考URL&lt;/h2&gt;
-&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html"&gt;micropython公式&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>

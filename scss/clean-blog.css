@@ -73,7 +73,7 @@ header.masthead .post-heading .meta { font-size: 20px; font-weight: 300; font-st
 
 header.masthead .post-heading .meta a { color: #fff; }
 
-@media only screen and (min-width: 768px) { header.masthead .post-heading h1 { font-size: 55px; }
+@media only screen and (min-width: 768px) { header.masthead .post-heading h1 { font-size: 50px; }
   header.masthead .post-heading .subheading { font-size: 30px; } }
 
 .post-preview > a { color: #212529; }
@@ -210,7 +210,7 @@ p { margin: 0 0 1rem 0; }
 
 .col-md-12 { flex: 0 0 100%; max-width: 100%; }
 
-h2 { background-color: whitesmoke; padding: 10px; }
+h2 { background-color: whitesmoke; padding: 10px; font-size: 1.6rem; }
 
 table th, table td { border-collapse: separate; border: solid 1px gainsboro; padding: 4px; }
 
