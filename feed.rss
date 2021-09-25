@@ -5,13 +5,13 @@
 		<link>https://yamaccu.github.io/</link>
 		<description />
 		<copyright>Copyright © 2021</copyright>
-		<pubDate>Fri, 24 Sep 2021 23:59:18 GMT</pubDate>
-		<lastBuildDate>Fri, 24 Sep 2021 23:59:18 GMT</lastBuildDate>
+		<pubDate>Sat, 25 Sep 2021 00:01:44 GMT</pubDate>
+		<lastBuildDate>Sat, 25 Sep 2021 00:01:44 GMT</lastBuildDate>
 		<item>
 			<title>Visual Studioで「StyleCop Analyzers」を使う</title>
-			<link>https://yamaccu.github.io/posts/202109xx-csharp-stylecop</link>
+			<link>https://yamaccu.github.io/posts/20210925-csharp-stylecop</link>
 			<description>&lt;p&gt;C#のコードスタイルチェックツールである「StyleCop Analyzers」のまとめです。&lt;/p&gt;</description>
-			<guid>https://yamaccu.github.io/posts/202109xx-csharp-stylecop</guid>
+			<guid>https://yamaccu.github.io/posts/20210925-csharp-stylecop</guid>
 			<pubDate>Sat, 25 Sep 2021 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;C#のコードスタイルチェックツールである「StyleCop Analyzers」のまとめです。&lt;/p&gt;
 &lt;br&gt;
