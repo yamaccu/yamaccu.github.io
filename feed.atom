@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-09-29T12:34:42Z</updated>
+	<updated>2021-09-29T14:17:02Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210925-csharp-stylecop</id>
 		<title>Visual Studioで「StyleCop Analyzers」を使う</title>
