@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>yokuaru tech notes - MarkDown&#x8A18;&#x6CD5;&#x306E;&#x30E1;&#x30E2;</title>
+  <title>yokuaru tech notes - C#&#x3067;CRC&#x3092;&#x8A08;&#x7B97;&#x3059;&#x308B;</title>
 
-  <link rel="canonical" href="https://yamaccu.github.io/posts/20210816-markdown-tips">
+  <link rel="canonical" href="https://yamaccu.github.io/posts/202109xx-csharp-crc">
 
       <link type="application/rss+xml" rel="alternate" href="/feed.rss" />
       <link type="application/atom+xml" rel="alternate" href="/feed.atom" />
@@ -17,9 +17,9 @@
   <meta name="msapplication-tooltip" content="yokuaru tech notes" />
   <meta name="msapplication-starturl" content="/" />
 
-  <meta property="og:title" content="yokuaru tech notes - MarkDown&#x8A18;&#x6CD5;&#x306E;&#x30E1;&#x30E2;" />
+  <meta property="og:title" content="yokuaru tech notes - C#&#x3067;CRC&#x3092;&#x8A08;&#x7B97;&#x3059;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/posts/20210816-markdown-tips" />
+  <meta property="og:url" content="https://yamaccu.github.io/posts/202109xx-csharp-crc" />
   
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -95,17 +95,16 @@
       <div class="col-md-12">
         <div class="post-heading">
           <h1>
-            MarkDown&#x8A18;&#x6CD5;&#x306E;&#x30E1;&#x30E2;
+            C#&#x3067;CRC&#x3092;&#x8A08;&#x7B97;&#x3059;&#x308B;
           </h1>
               <div class="meta">
-                Published on 2021&#x5E74;8&#x6708;16&#x65E5;
+                Published on 2021&#x5E74;9&#x6708;27&#x65E5;
                 
                 <!--Updatedを追加-->
-                  <a> / Updated on 2021&#x5E74;8&#x6708;30&#x65E5;</a>
 
               </div>
                 <div class="mt-3">
-                      <a href="/tags/MarkDown" class="badge badge-light"> MarkDown</a>
+                      <a href="/tags/Csharp" class="badge badge-light"> Csharp</a>
                 </div>
         </div>
       </div>
@@ -120,57 +119,76 @@
         <div class="container-sm-height">
           <div class="row row-sm-height">
             <div class="col-md-6 right-border col-sm-height">
-              <p>MarkDown記法のメモです。</p>
+              <p>C#でCRCを計算する方法をまとめています。</p>
 <br>
-<h2 id="section">エディタ</h2>
-<p>VSCodeがお勧めです。
-以下の拡張機能をインストールすると、使い勝手が良くなります。</p>
+<h2 id="crc">CRCについて</h2>
+<p>CRCとはCyclic Redundancy Checkの略で、通信データの破損検出の仕組みの一つです。</p>
+<p>通信データをある値（生成多項式）で割り算して、余りをデータに付与して送信します。<br />
+受信側で再度計算して付与された余りが合っているかどうか確認し、合致しない場合は通信データ破損とみなします。</p>
+<p>同じような誤り検出にチェックサムがありますが、こちらはデータを足し算した結果を付与します。<br />
+足し算よりは割り算の方が複雑なアルゴリズムとなり、その分信頼度は向上します。</p>
+<p>Modbus通信やイーサネット通信などで使われているようです。</p>
+<br>
+<br>
+<h2 id="crc-1">CRCの種類</h2>
+<p>CRCには以下のパラメータがあり、これらの値により計算値が異なってきます。<br />
+そのため、CRCと一言で言っても多様な種類が存在しています。</p>
 <ul>
-<li>Markdown All in One</li>
+<li>計算bit数</li>
+<li>生成多項式</li>
+<li>初期値</li>
+<li>ビットシフト方向</li>
 </ul>
-<p>機能は、下記の記事にまとめています。</p>
-<p><span class="link"></span>
-<a href="/posts/20210830-markdown-allinone">VSCodeの拡張機能「Markdown All in One」を使う</a></p>
 <br>
-<h2 id="section-1">見出し</h2>
-<pre><code># h1
-## h2
-### h3
-</code></pre>
-<h2 id="section-2">箇条書き</h2>
-<pre><code>- 箇条書き1
-  - 箇条書き2
-    - 箇条書き3
-- 箇条書き1-2
-- 箇条書き1-3
-</code></pre>
-<h2 id="section-3">コードブロック</h2>
-<pre><code>```C#
-codeblock
-```
-</code></pre>
-<h2 id="section-4">改行</h2>
-<pre><code>&lt;br&gt;
-</code></pre>
-<h2 id="section-5">リンク</h2>
-<pre><code>[リンクテキスト](URL)
-</code></pre>
-<h2 id="section-6">表</h2>
-<pre><code>|  TH  |  TH  |
-| ---- | ---- |
-|  TD  |  TD  |
-|  TD  |  TD  |
-</code></pre>
-<h2 id="section-7">画像貼り付け</h2>
-<pre><code>&lt;img src=&quot;xxxx/xxxx.png&quot; Style=&quot;width:100%;max-width:500px;&quot;&gt;
-</code></pre>
-<h2 id="section-8">半角スペース</h2>
-<pre><code>&amp;nbsp;
-</code></pre>
-<h2 id="section-9">水平線</h2>
-<pre><code>---
-</code></pre>
+<p>例）
+CRC-16-IBM</p>
+<ul>
+<li>計算bit数 : 16</li>
+<li>生成多項式 : x<sup>16</sup>+x<sup>15</sup>+x<sup>2</sup>+1</li>
+<li>初期値 : 0xFFFF</li>
+<li>ビットシフト方向 : 右</li>
+</ul>
+<p>その他の種類については<span Class="link"></span> <a href="https://ja.wikipedia.org/wiki/%E5%B7%A1%E5%9B%9E%E5%86%97%E9%95%B7%E6%A4%9C%E6%9F%BB">wikipedia</a>に記述がありますので参照ください。</p>
 <br>
+<br>
+<h2 id="crc-2">CRCの計算方法</h2>
+<p>CRCの計算方法は、「ビット演算方式」と「テーブル演算方式」があります。</p>
+<ul>
+<li><p>ビット演算方法：
+通信データをその都度割り算して余りを求める方法</p>
+</li>
+<li><p>テーブル演算方法
+あらかじめ計算結果のテーブルを準備して、計算負荷を軽くする方法</p>
+</li>
+</ul>
+<br>
+<p>以降は、CRC-16-IBMのビット演算方式の計算をC#で実施してみます。
+（Modbus-RTUで使われているものです）</p>
+<br>
+<br>
+<h2 id="section">計算コード</h2>
+<pre><code class="language-C#">//CRC計算（CRC16-IBM / 生成多項式:x16+x15+x2+1, initial value is 0xFFFF, 右回り）
+int[] DATA;
+int CRC = 0xffff;
+int CRC16POLY = 0xa001;
+
+foreach (byte i in Data)
+{
+  CRC ^= i;
+  for (var j = 0; j &lt; 8; j++)
+  {
+    if ((CRC &amp; 1) == 1)
+    {
+      CRC &gt;&gt;= 1;
+      CRC ^= CRC16POLY;
+    }
+    else
+    {
+      CRC &gt;&gt;= 1;
+    }
+  }
+}
+</code></pre>
 
               <br>
               <hr>
