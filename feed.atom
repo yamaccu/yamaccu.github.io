@@ -4,251 +4,7 @@
 	<title />
 	<link rel="self" href="https://yamaccu.github.io/" />
 	<rights>Copyright © 2021</rights>
-	<updated>2021-09-29T12:26:56Z</updated>
-	<entry>
-		<id>https://yamaccu.github.io/posts/202110xx-raspi-camera</id>
-		<title>RaspberryPiとカメラモジュールで定点観測する</title>
-		<link href="https://yamaccu.github.io/posts/202110xx-raspi-camera" />
-		<updated>2021-09-29T00:00:00Z</updated>
-		<content>&lt;p&gt;RaspberryPiとカメラモジュールを組み合わせて定点観測を行う方法をまとめています。&lt;/p&gt;
-&lt;br&gt;
-&lt;h2 id="section"&gt;概要&lt;/h2&gt;
-&lt;p&gt;RaspberryPiは、安くて高機能で使いやすいマイコンボードです。&lt;br /&gt;
-超有名なので解説の必要はないでしょう。&lt;/p&gt;
-&lt;p&gt;このラズパイとカメラモジュールを使用すると、定点観測を行うことができます。&lt;br /&gt;
-定期的に写真をとって保存したり、遠隔操作で動画を確認したりできます。&lt;/p&gt;
-&lt;p&gt;以下、実現方法のまとめになります。&lt;/p&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="section-1"&gt;準備&lt;/h2&gt;
-&lt;p&gt;ラズパイとカメラモジュールが必要です。&lt;/p&gt;
-&lt;p&gt;カメラ用途ラズパイ3がお勧めです。
-モデル4はオーバースペックで少し発熱が大きくなります。&lt;/p&gt;
-&lt;p&gt;カメラ&lt;/p&gt;
-&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0"&gt;SerialPort class&lt;/a&gt;を使用します。&lt;br /&gt;
-NugetでSystem.IO.Portsをインストールすると使えるようになります。&lt;br /&gt;
-複数ポートを同時に使用しない場合は、staticで宣言することが多いようです。&lt;/p&gt;
-&lt;p&gt;使用するメソッドは下記です。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;機能&lt;/th&gt;
-&lt;th&gt;メソッド&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;使用可能ポート取得&lt;/td&gt;
-&lt;td&gt;GetPortNames()&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;シリアルポートオープン&lt;/td&gt;
-&lt;td&gt;Open()&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;シリアルポートクローズ&lt;/td&gt;
-&lt;td&gt;Close()&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;データ送信&lt;/td&gt;
-&lt;td&gt;Write(string)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;データ受信&lt;/td&gt;
-&lt;td&gt;ReadExisting()&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="section-2"&gt;使用可能なポートの取得&lt;/h2&gt;
-&lt;p&gt;以下は、使用可能なCOMポートを取得し、アプリ画面のComboBoxに取得データをbindingするコードです。&lt;/p&gt;
-&lt;p&gt;ViewModel.cs：&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;//DataBindig用変数
-public ReactiveCollection&amp;lt;string&amp;gt; COMPorts { get; set; }
-      = new ReactiveCollection&amp;lt;string&amp;gt;(); 
-
-public void GetCOMPorts()
-{
-  COMPorts.Clear();
-  string[] ports = SerialPort.GetPortNames();
-  foreach (var port in ports)
-  {
-    COMPorts.Add(port);
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;MainWindow.xaml：&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;ComboBox ItemsSource=&amp;quot;{Binding COMPorts}&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;br&gt;
-&lt;p&gt;COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。&lt;/p&gt;
-&lt;p&gt;MainWindow.xaml:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;&amp;lt;ComboBox DropDownOpened=&amp;quot;ComboBoxDropDownOpened_COMPort&amp;quot;/&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;MainWindow.xaml.cs:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;private void ComboBoxDropDownOpened_COMPort(object sender, EventArgs e)
-{
-  viewModel.GetCOMPorts();
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="section-3"&gt;シリアルポートのオープン&lt;/h2&gt;
-&lt;p&gt;シリアルポート通信の各種設定をしたのち、接続をOpenします。&lt;br /&gt;
-コードは以下です。&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;public void SerialOpen()
-{
-  try
-  {
-    serialPort.PortName = port;        //選択したport名
-    serialPort.BaudRate = baudrate;    //選択したbaudrate
-    serialPort.DataBits = 8;
-    serialPort.Parity = Parity.None;
-    serialPort.StopBits = StopBits.One;
-    serialPort.WriteTimeout = 1000;
-    serialPort.ReadTimeout = 1000;
-    serialPort.Encoding=Encoding.UTF8;
-    serialPort.Open();
-  }
-  catch (Exception ex)
-  {
-    MessageBox.Show(ex.Message);
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="section-4"&gt;シリアルポートのクローズ&lt;/h2&gt;
-&lt;p&gt;シリアルポート接続をCloseします。&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;public void SerialClose()
-{
-  try
-  {
-    serialPort.Close();
-  }
-  catch (Exception ex)
-  {
-    MessageBox.Show(ex.Message);
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="section-5"&gt;データの送信&lt;/h2&gt;
-&lt;p&gt;文字列を送信します。&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;public void Send()
-{
-  if (serialPort.IsOpen)
-  {
-    serialPort.Write(TXData);
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="section-6"&gt;データの受信&lt;/h2&gt;
-&lt;p&gt;文字列を受信します。&lt;br /&gt;
-受信データの取り出しは、割込みを使って行います。&lt;br /&gt;
-データを受信したらすぐにデータを取り込んでくれます。&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;SerialCom.serialPort.DataReceived += OnReceived;
-
-private void OnReceived(object sender, SerialDataReceivedEventArgs e)
-{
-  RXData += serialPort.ReadExisting();
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="section-7"&gt;動作確認のためのシリアル通信折り返し方法&lt;/h2&gt;
-&lt;p&gt;シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的です。&lt;br /&gt;
-以下のUSB-シリアル変換を使用すれば確認可能です。&lt;br /&gt;
-TxピンとRxピンを導線で繋いで動作確認します。&lt;/p&gt;
-&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://akizukidenshi.com/catalog/g/gM-11007/"&gt;秋月電子 FT-232RQ USBシリアル変換モジュール&lt;/a&gt;&lt;/p&gt;
-&lt;br&gt;
-&lt;p&gt;Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。&lt;/p&gt;
-&lt;br&gt;
-</content>
-		<summary>&lt;p&gt;RaspberryPiとカメラモジュールを組み合わせて定点観測を行う方法をまとめています。&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<id>https://yamaccu.github.io/posts/202109xx-csharp-crc</id>
-		<title>C#でCRCを計算する</title>
-		<link href="https://yamaccu.github.io/posts/202109xx-csharp-crc" />
-		<updated>2021-09-27T00:00:00Z</updated>
-		<content>&lt;p&gt;C#でCRCを計算する方法をまとめています。&lt;/p&gt;
-&lt;br&gt;
-&lt;h2 id="crc"&gt;CRCについて&lt;/h2&gt;
-&lt;p&gt;CRCとはCyclic Redundancy Checkの略で、通信データの破損検出の仕組みの一つです。&lt;/p&gt;
-&lt;p&gt;通信データをある値（生成多項式）で割り算して、余りをデータに付与して送信します。&lt;br /&gt;
-受信側で再度計算して付与された余りが合っているかどうか確認し、合致しない場合は通信データ破損とみなします。&lt;/p&gt;
-&lt;p&gt;同じような誤り検出にチェックサムがありますが、こちらはデータを足し算した結果を付与します。&lt;br /&gt;
-足し算よりは割り算の方が複雑なアルゴリズムとなり、その分信頼度は向上します。&lt;/p&gt;
-&lt;p&gt;Modbus通信やイーサネット通信などで使われているようです。&lt;/p&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="crc-1"&gt;CRCの種類&lt;/h2&gt;
-&lt;p&gt;CRCには以下のパラメータがあり、これらの値により計算値が異なってきます。&lt;br /&gt;
-そのため、CRCと一言で言っても多様な種類が存在しています。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;計算bit数&lt;/li&gt;
-&lt;li&gt;生成多項式&lt;/li&gt;
-&lt;li&gt;初期値&lt;/li&gt;
-&lt;li&gt;ビットシフト方向&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
-&lt;p&gt;例）
-CRC-16-IBM&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;計算bit数 : 16&lt;/li&gt;
-&lt;li&gt;生成多項式 : x&lt;sup&gt;16&lt;/sup&gt;+x&lt;sup&gt;15&lt;/sup&gt;+x&lt;sup&gt;2&lt;/sup&gt;+1&lt;/li&gt;
-&lt;li&gt;初期値 : 0xFFFF&lt;/li&gt;
-&lt;li&gt;ビットシフト方向 : 右&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;その他の種類については&lt;span Class="link"&gt;&lt;/span&gt; &lt;a href="https://ja.wikipedia.org/wiki/%E5%B7%A1%E5%9B%9E%E5%86%97%E9%95%B7%E6%A4%9C%E6%9F%BB"&gt;wikipedia&lt;/a&gt;に記述がありますので参照ください。&lt;/p&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="crc-2"&gt;CRCの計算方法&lt;/h2&gt;
-&lt;p&gt;CRCの計算方法は、「ビット演算方式」と「テーブル演算方式」があります。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;ビット演算方法：
-通信データをその都度割り算して余りを求める方法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;テーブル演算方法
-あらかじめ計算結果のテーブルを準備して、計算負荷を軽くする方法&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
-&lt;p&gt;以降は、CRC-16-IBMのビット演算方式の計算をC#で実施してみます。
-（Modbus-RTUで使われているものです）&lt;/p&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;h2 id="section"&gt;計算コード&lt;/h2&gt;
-&lt;pre&gt;&lt;code class="language-C#"&gt;//CRC計算（CRC16-IBM / 生成多項式:x16+x15+x2+1, initial value is 0xFFFF, 右回り）
-int[] DATA;
-int CRC = 0xffff;
-int CRC16POLY = 0xa001;
-
-foreach (byte i in Data)
-{
-  CRC ^= i;
-  for (var j = 0; j &amp;lt; 8; j++)
-  {
-    if ((CRC &amp;amp; 1) == 1)
-    {
-      CRC &amp;gt;&amp;gt;= 1;
-      CRC ^= CRC16POLY;
-    }
-    else
-    {
-      CRC &amp;gt;&amp;gt;= 1;
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-</content>
-		<summary>&lt;p&gt;C#でCRCを計算する方法をまとめています。&lt;/p&gt;</summary>
-	</entry>
+	<updated>2021-09-29T12:34:42Z</updated>
 	<entry>
 		<id>https://yamaccu.github.io/posts/20210925-csharp-stylecop</id>
 		<title>Visual Studioで「StyleCop Analyzers」を使う</title>
@@ -1418,5 +1174,115 @@ glass:before {
 &lt;br&gt;
 </content>
 		<summary>&lt;p&gt;HTMLのdiv要素を使って、ブラウザに図形を表示させる方法です。&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>https://yamaccu.github.io/posts/20210820-python-pipenv</id>
+		<title>python 仮想環境の作り方</title>
+		<link href="https://yamaccu.github.io/posts/20210820-python-pipenv" />
+		<updated>2021-08-20T00:00:00Z</updated>
+		<content>&lt;p&gt;pythonでプログラミングする際の、仮想環境の構築についてまとめています。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;仮想環境について&lt;/h2&gt;
+&lt;p&gt;Pythonでプログラミングを行う際には、作るプログラムごとに仮想環境を構築します。&lt;/p&gt;
+&lt;p&gt;理由は、&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;仮想環境ごとに必要なパッケージのバージョンをインストールできます。&lt;/li&gt;
+&lt;li&gt;パッケージが複数のプログラムへ影響を与えるなどの、各プログラム間の干渉を回避できます。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;仮想環境の作成にはいくつか方法がありますが、ここではpipenvを使用します。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt; 
+&lt;h2 id="section-1"&gt;仮想環境の作成手順&lt;/h2&gt;
+&lt;p&gt;コマンドプロンプトを使います。&lt;/p&gt;
+&lt;p&gt;① pipenvをインストールします。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pip install pipenv
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;②作業ディレクトリを作成します。&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;③作業ディレクトリに移動して、必要なパッケージをpipenvコマンドでインストールします。&lt;br /&gt;
+（pipfileという設定ファイルが作成され、ここに仮想環境の情報が入ります。）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pipenv install xxxxxx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;④仮想環境を実行します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pipenv shell
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;⑤仮想環境を終了します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;exit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;※仮想環境に入らずにコマンド実行もできます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pipenv run xxxxxx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="hp"&gt;参考HP&lt;/h2&gt;
+&lt;p&gt;&lt;span class="link"&gt;&lt;/span&gt; &lt;a href="https://pipenv.pypa.io/en/latest/"&gt;pipenv公式&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;
+</content>
+		<summary>&lt;p&gt;pythonでプログラミングする際の、仮想環境の構築についてまとめています。&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>https://yamaccu.github.io/posts/20210819-git-push</id>
+		<title>Github pushまでの設定</title>
+		<link href="https://yamaccu.github.io/posts/20210819-git-push" />
+		<updated>2021-08-19T00:00:00Z</updated>
+		<content>&lt;p&gt;githubのレポジトリにpushするまでの設定をまとめています。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id="section"&gt;認証方法&lt;/h2&gt;
+&lt;p&gt;githubの認証には、&amp;quot;HTTP&amp;quot;と&amp;quot;SSH&amp;quot;の2種類あります。
+ここでは、SSHの方法を記載します。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="section-1"&gt;準備&lt;/h2&gt;
+&lt;p&gt;以下が済んでいる必要があります。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;gitのインストール&lt;/li&gt;
+&lt;li&gt;githubへのサインアップ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="ssh"&gt;端末のSSH公開鍵の設定&lt;/h2&gt;
+&lt;p&gt;git bushでSSH公開鍵を生成します。
+下記のコマンドで生成できます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh-keygen -t rsa
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;githubのページにサインインし、Setting =&amp;gt; SSH and GPG keys で生成したSSH鍵を登録します。&lt;/p&gt;
+&lt;img src="../img/20210819-Git-push-1.png" width="85%"&gt;
+&lt;br&gt;
+&lt;br&gt;
+ 
+&lt;h2 id="section-2"&gt;ローカル環境設定&lt;/h2&gt;
+&lt;p&gt;git bushで下記のコマンドを実行して、ローカル環境設定を行います。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git config --global user.name &amp;quot;ユーザー名&amp;quot;
+git config --global user.email &amp;quot;メールアドレス&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ユーザー名、メールアドレスはgithubの登録情報と同じものです。&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="github"&gt;githubのレポジトリをクローン&lt;/h2&gt;
+&lt;p&gt;githubのページでレポジトリ作成して、作成したレポジトリをローカル環境にクローンします。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone &amp;lt;アドレス&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;p&gt;このとき、アドレスはSSHのものにします。&lt;/p&gt;
+&lt;img src="../img/20210819-Git-push-2.png" width="85%"&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;h2 id="commitpush"&gt;commit＆push&lt;/h2&gt;
+&lt;p&gt;ファイルの追加、修正をしたら、以下のコマンドでcommit＆pushします。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git add &amp;lt;ファイル名&amp;gt;
+git commit -m &amp;quot;コメント&amp;quot;
+git push (-f) origin main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;※-fは強制プッシュなので取り扱い注意です&lt;/p&gt;
+&lt;p&gt;※originの設定は、クローン時に自動で設定されます。&lt;/p&gt;
+&lt;p&gt;※2020/10から、デフォルトブランチがmaster ⇒ main に変わりました。&lt;/p&gt;
+&lt;br&gt;
+</content>
+		<summary>&lt;p&gt;githubのレポジトリにpushするまでの設定をまとめています。&lt;/p&gt;</summary>
 	</entry>
 </feed>
