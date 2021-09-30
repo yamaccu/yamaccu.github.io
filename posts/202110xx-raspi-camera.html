@@ -59,6 +59,11 @@
 
     <script data-ad-client="ca-pub-2127299793131419" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@YY87750722" />
+<meta property="og:url" content= https://yamaccu.github.io/posts/202110xx-raspi-camera />
+<meta property="og:title" content= "yokuaru tech notes - RaspberryPi&#x3068;&#x30AB;&#x30E1;&#x30E9;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3067;&#x5B9A;&#x70B9;&#x89B3;&#x6E2C;&#x3059;&#x308B;" />
+
 
 </head>
 
@@ -110,11 +115,12 @@
         <div class="container-sm-height">
           <div class="row row-sm-height">
             <div class="col-md-6 right-border col-sm-height">
-              <p>RaspberryPiとカメラモジュールを組み合わせて定点観測を行う方法をまとめています。</p>
+              <p>RaspberryPiとカメラモジュールを組み合わせて、定点観測を行う方法をまとめました。<br />
+この記事では、カメラはUSBカメラ、ストリーミング用ソフトはmjpeg-streamerを使用しています。</p>
 <br>
 <h2 id="section">概要</h2>
 <p>RaspberryPiは、安くて高機能で使いやすいマイコンボードです。<br />
-超有名なので解説の必要はないでしょう。</p>
+超有名なので説明は不要ですね。</p>
 <p>このラズパイとカメラモジュールを使用すると、定点観測を行うことができます。<br />
 定期的に写真をとって保存したり、遠隔操作で動画を確認したりできます。</p>
 <p>以下、実現方法のまとめになります。</p>
@@ -122,76 +128,52 @@
 <br>
 <h2 id="section-1">準備</h2>
 <p>ラズパイとカメラモジュールが必要です。</p>
-<p>カメラ用途ラズパイ3がお勧めです。
-モデル4はオーバースペックで少し発熱が大きくなります。</p>
-<p>カメラ</p>
-<p><span class="link"></span> <a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0">SerialPort class</a>を使用します。<br />
-NugetでSystem.IO.Portsをインストールすると使えるようになります。<br />
-複数ポートを同時に使用しない場合は、staticで宣言することが多いようです。</p>
-<p>使用するメソッドは下記です。</p>
-<table>
-<thead>
-<tr>
-<th>機能</th>
-<th>メソッド</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>使用可能ポート取得</td>
-<td>GetPortNames()</td>
-</tr>
-<tr>
-<td>シリアルポートオープン</td>
-<td>Open()</td>
-</tr>
-<tr>
-<td>シリアルポートクローズ</td>
-<td>Close()</td>
-</tr>
-<tr>
-<td>データ送信</td>
-<td>Write(string)</td>
-</tr>
-<tr>
-<td>データ受信</td>
-<td>ReadExisting()</td>
-</tr>
-</tbody>
-</table>
+<p>ラズパイは、カメラ用途だけでしたらラズパイ3がお勧めです。<br />
+ラズパイ4は今回の用途にはオーバースペックで、消費電力および発熱が少し大きいです。</p>
+<p>ラズパイに接続できるカメラは、FFP 15ピンとUSBと2種類あります。<br />
+（FFP：Flexible Flat Cable）<br />
+どちらを使用しても問題ありません。</p>
+<img src="../img/202110xx-RasPi-Camera-1.png" Style="width:100%;max-width:300px;">
+<br>
+<p>今回は、USBカメラを使用してみます。</p>
 <br>
 <br>
-<h2 id="section-2">使用可能なポートの取得</h2>
-<p>以下は、使用可能なCOMポートを取得し、アプリ画面のComboBoxに取得データをbindingするコードです。</p>
-<p>ViewModel.cs：</p>
-<pre><code class="language-C#">//DataBindig用変数
-public ReactiveCollection&lt;string&gt; COMPorts { get; set; }
-      = new ReactiveCollection&lt;string&gt;(); 
-
-public void GetCOMPorts()
-{
-  COMPorts.Clear();
-  string[] ports = SerialPort.GetPortNames();
-  foreach (var port in ports)
-  {
-    COMPorts.Add(port);
-  }
-}
-</code></pre>
-<p>MainWindow.xaml：</p>
-<pre><code class="language-C#">&lt;ComboBox ItemsSource=&quot;{Binding COMPorts}&quot; /&gt;
-</code></pre>
+<h2 id="usb">USBカメラの接続確認</h2>
+<p>ラズパイにUSBカメラを接続したら、まず最初に認識しているか確認します。<br />
+ターミナルを起動し、”lsusb” と打ち込みます。<br />
+※ lsusb：USBデバイスの情報を表示するコマンド</p>
+<p>USBカメラ接続時と未接続時で、表示数が変わっていれば認識しています。</p>
+<img src="../img/202110xx-RasPi-Camera-2.png" Style="width:100%;max-width:350px;">
 <br>
-<p>COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。</p>
-<p>MainWindow.xaml:</p>
-<pre><code class="language-C#">&lt;ComboBox DropDownOpened=&quot;ComboBoxDropDownOpened_COMPort&quot;/&gt;
+<p>次に、</p>
+<p>ここで、USBカメラ側のUSBチップセットがラズパイに対応していないと、通信ができません。<br />
+今回使用したUSBカメラは「realtek semiconductor corp」と表示されているので、これに対応したドライバをインストールします。</p>
+<br>
+<br>
+<h3 id="realtek-semiconductor-corp-usb">realtek semiconductor corp USBドライバーのインストール</h3>
+<p>※必要な場合のみ、下記を行ってください。</p>
+<p><a href="https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-usb-3-0-software">https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-usb-3-0-software</a></p>
+<p><a href="https://ambidata.io/samples/network/rpi_usbwifi/">https://ambidata.io/samples/network/rpi_usbwifi/</a></p>
+<br>
+<br>
+<h2 id="section-2">ストリーミング用ソフトのインストール</h2>
+<p>mjpeg-streamerというソフトを使用します。</p>
+<pre><code>sudo apt-get install cmake libjpeg8-dev
+sudo apt-get install gcc g++
+git clone https://github.com/jacksonliam/mjpg-streamer.git
+cd mjpg-streamer/mjpg-streamer-experimental/
+make
+sudo make install
 </code></pre>
-<p>MainWindow.xaml.cs:</p>
-<pre><code class="language-C#">private void ComboBoxDropDownOpened_COMPort(object sender, EventArgs e)
-{
-  viewModel.GetCOMPorts();
-}
+<p>起動は、同じフォルダにあるStart.shというバッシュファイルを実行します。</p>
+<pre><code>bash start.sh
 </code></pre>
+<p><a href="https://non-it-engineer.com/%E3%83%A9%E3%82%BA%E3%83%99%E3%83%AA%E3%83%BC%E3%83%91%E3%82%A4%E3%81%8B%E3%82%89%E3%81%AE%E5%8B%95%E7%94%BB%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E9%85%8D%E4%BF%A1%E3%81%8C">https://non-it-engineer.com/%E3%83%A9%E3%82%BA%E3%83%99%E3%83%AA%E3%83%BC%E3%83%91%E3%82%A4%E3%81%8B%E3%82%89%E3%81%AE%E5%8B%95%E7%94%BB%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E9%85%8D%E4%BF%A1%E3%81%8C</a></p>
+<p>wget -O /tmp/picture.jpg http://localhost:8080/?action=snapshot</p>
+<p>sudo apt-get -y install ffmpeg
+ffmpeg -i http://localhost:8080/?action=stream -an -vcodec MPEG4 file.mp4</p>
+<p>ffmpeg -i http://localhost:8080/?action=stream -an -r 10 -vcodec libx264 ./file.mp4</p>
+<p>ffmpeg -i http://localhost:8080/?action=stream file.avi</p>
 <br>
 <br>
 <h2 id="section-3">シリアルポートのオープン</h2>
