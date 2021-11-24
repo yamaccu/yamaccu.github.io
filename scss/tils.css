@@ -176,7 +176,7 @@ background: snow;
 
 @media (max-width: 768px) {
   .side-layout{
-    left: -65%;
+    left: -80%;
   }
   .menu{
     display:block;
