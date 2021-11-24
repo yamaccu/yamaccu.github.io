@@ -13,7 +13,7 @@ a{
 
 .title{
   text-decoration:none;
-  font-size:50px; 
+  font-size:60px; 
   font-family:'Noto Sans JP', sans-serif; 
   font-weight:700;
   color:dimgray; 
@@ -77,3 +77,11 @@ a{
   height:100%; 
   width: 100%;
 }
+
+
+@media (max-width: 768px) {
+  .title{
+    font-size: 38px;
+  }
+}
+

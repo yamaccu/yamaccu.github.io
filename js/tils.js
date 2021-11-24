@@ -5,7 +5,7 @@ $(function(){
   {
     if(sidemenu.style.left== "5px")
     {
-      sidemenu.style.left = "-65%";
+      sidemenu.style.left = "-100%";
     }
     else
     {
@@ -21,7 +21,7 @@ $(function(){
     }
     else
     {
-      sidemenu.style.left = "-65%";
+      sidemenu.style.left = "-100%";
     }
   });
 });

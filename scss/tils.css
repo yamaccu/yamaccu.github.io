@@ -120,7 +120,7 @@ background: snow;
 
 .title{
   margin-left:10px;
-  font-size:38px;	
+  font-size:20px;	
   font-family:'Noto Sans JP', sans-serif; 
   font-weight:400;
   color:dimgray; 
@@ -176,7 +176,7 @@ background: snow;
 
 @media (max-width: 768px) {
   .side-layout{
-    left: -80%;
+    left: -100%;
   }
   .menu{
     display:block;
