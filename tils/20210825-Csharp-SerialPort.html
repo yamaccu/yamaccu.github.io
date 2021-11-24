@@ -1,0 +1,317 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>WPF&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;&#x3059;&#x308B; | yokuaru Tech notes</title>
+
+    <link href="/scss/tils.css" rel="stylesheet" type="text/css">
+    <link href="/scss/prism.css" rel="stylesheet" type="text/css">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/tils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+
+    
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+
+    <script data-ad-client="ca-pub-2127299793131419" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-197465108-1');
+    </script>
+  </head>
+
+  <body>
+    <header style="background-image:url('/img/main2.png'); position:fixed; top:0; left:0; right:0; z-index: 50;">
+      <div class="flex-wrap">
+        <div class="menu"></div>
+        <div>
+          <a href="/tils" class="title">Today I Learned</a>
+        </div>
+        <div class="ext-link">
+          <a href="/"><img src="/img/home.png" class="ext-link-icon"></a>&nbsp;&nbsp;
+          <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"></a>&nbsp;&nbsp;
+          <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"></a>
+        </div>
+      </div>
+      <br>
+    </header>
+    <br>
+    <div class="flex-nowrap, body-font">
+      <div id="sidemenu" class="side-layout load">
+          <details>
+            <summary class="side-summary">RaspberryPi</summary>
+              <div class="side-content">
+                - 
+                <a href="/tils/20211019-Raspberry-mjpgstreamer">&#x52D5;&#x753B;&#x3092;&#x30B9;&#x30C8;&#x30EA;&#x30FC;&#x30DF;&#x30F3;&#x30B0;&#x3059;&#x308B;</a><br>
+              </div>
+              <div class="side-content">
+                - 
+                <a href="/tils/20211018-Raspberry-Samba">Windows&#x3068;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x5171;&#x6709;(samba)</a><br>
+              </div>
+          </details>
+          <details>
+            <summary class="side-summary">Csharp/&#x30C4;&#x30FC;&#x30EB;</summary>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210925-Csharp-StyleCop">StyleCop Analyzers&#x3092;&#x4F7F;&#x3046;</a><br>
+              </div>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210903-Csharp-ResharperCommand">Resharper&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;</a><br>
+              </div>
+          </details>
+          <details>
+            <summary class="side-summary">Csharp/WPF</summary>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210916-Csharp-WPFBinding">WPF&#x3067;Binding&#x3092;&#x4F7F;&#x3046;</a><br>
+              </div>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210825-Csharp-SerialPort">WPF&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;&#x3059;&#x308B;</a><br>
+              </div>
+          </details>
+          <details>
+            <summary class="side-summary">github</summary>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210907-GithubPages-utterances">Github Pages&#x306B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x6B04;&#x3092;&#x8FFD;&#x52A0;</a><br>
+              </div>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210819-Git-push">&#x521D;push&#x307E;&#x3067;&#x306E;&#x8A2D;&#x5B9A;</a><br>
+              </div>
+          </details>
+          <details>
+            <summary class="side-summary">MarkDown</summary>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210830-MarkDown-AllInOne">VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Markdown All in One&#x300D;&#x3092;&#x4F7F;&#x3046;</a><br>
+              </div>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210816-MarkDown-tips">MarkDown&#x8A18;&#x6CD5;&#x306E;&#x30E1;&#x30E2;</a><br>
+              </div>
+          </details>
+          <details>
+            <summary class="side-summary">M5Stack</summary>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210823-UIFLOW-CustomBlock">UIFLOW&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x4F5C;&#x308B;</a><br>
+              </div>
+          </details>
+          <details>
+            <summary class="side-summary">HTML/CSS</summary>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210821-HTML-figure">div&#x8981;&#x7D20;&#x3067;&#x56F3;&#x5F62;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;</a><br>
+              </div>
+          </details>
+          <details>
+            <summary class="side-summary">python</summary>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210820-Python-pipenv">&#x4EEE;&#x60F3;&#x74B0;&#x5883;&#x306E;&#x4F5C;&#x308A;&#x65B9;</a><br>
+              </div>
+          </details>
+          <details>
+            <summary class="side-summary">micropython</summary>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210818-Micropython-repl">micropython&#x306B;repl&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9;</a><br>
+              </div>
+          </details>
+          <details>
+            <summary class="side-summary">blog</summary>
+              <div class="side-content">
+                - 
+                <a href="/tils/20210815-Blog-setting">&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x6700;&#x521D;&#x306B;&#x3084;&#x308B;&#x3053;&#x3068;</a><br>
+              </div>
+          </details>
+        <br>
+      </div>
+
+      <div class="main-content">
+        <p>2021/08/25</p>
+<h1 id="cwpf">C#/WPFでシリアル通信を行う</h1>
+<hr />
+<p>シリアル通信とは、機器間で通信する方法の一つで、データを1bitづつ送信する形式のものです。<br />
+代表的な規格はRS-232です。<br />
+PCとマイコンボード（arduinoなど）間で通信するのによく使われています。</p>
+<p>C#には、シリアル通信を行うクラスがすでに用意されています。<br />
+これを使うと簡単にシリアル通信ができます。</p>
+<br>
+<p> <img src="../img/20210825-Csharp-SerialPort-1.png" Style="width:100%;max-width:450px;"></p>
+<br>
+<p>今回、シリアル通信をするGUIアプリをWPFで作ってみました。<br />
+<span class="link"></span> <a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main">github</a></p>
+<p> <img src="../img/20210825-Csharp-SerialPort-2.png" Style="width:100%;max-width:400px;"></p>
+<br>
+<p>アプリ作成にあたってReactivePropertyというライブラリを使用しています。<br />
+データバインディングを補佐してくれるもので、大量のINotifyPropertyChangedを実施しなくて済むようになるのでお勧めです。</p>
+<p>また、ReactivePropertyはコマンドバインディングも対応していますが、こちらは今回のアプリでは使用していません。<br />
+正直、規模の小さなアプリではコマンドバインディングするよりコードビハインドにイベント処理を書いてしまった方がシンプルで可読性が良いかと思います。<br />
+（異論はありそうですが。。）</p>
+<p>参考1 <span class="link"></span> <a href="https://github.com/runceel/ReactiveProperty">公式</a><br />
+参考2 <span class="link"></span> <a href="https://qiita.com/YSRKEN/items/5a36fb8071104a989fb8">qiita ReactiveProperty全然分からねぇ！って人向けのFAQ集</a></p>
+<br>
+<p>以下、作ったアプリの説明になります。</p>
+<h2 id="class">使用Class</h2>
+<p><span class="link"></span> <a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0">SerialPort class</a>を使用します。<br />
+NugetでSystem.IO.Portsをインストールすると使えるようになります。<br />
+複数ポートを同時に使用しない場合は、staticで宣言することが多いようです。</p>
+<p>使用するメソッドは下記です。</p>
+<table>
+<thead>
+<tr>
+<th>機能</th>
+<th>メソッド</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用可能ポート取得</td>
+<td>GetPortNames()</td>
+</tr>
+<tr>
+<td>シリアルポートオープン</td>
+<td>Open()</td>
+</tr>
+<tr>
+<td>シリアルポートクローズ</td>
+<td>Close()</td>
+</tr>
+<tr>
+<td>データ送信</td>
+<td>Write(string)</td>
+</tr>
+<tr>
+<td>データ受信</td>
+<td>ReadExisting()</td>
+</tr>
+</tbody>
+</table>
+<h2 id="section">使用可能なポートの取得</h2>
+<p>以下は、使用可能なCOMポートを取得し、アプリ画面のComboBoxに取得データをbindingするコードです。</p>
+<p><span Class="cbtitle"><em>ViewModel.cs</em></span></p>
+<pre><code class="language-C#">//DataBindig用変数
+public ReactiveCollection&lt;string&gt; COMPorts { get; set; }
+      = new ReactiveCollection&lt;string&gt;(); 
+
+public void GetCOMPorts()
+{
+  COMPorts.Clear();
+  string[] ports = SerialPort.GetPortNames();
+  foreach (var port in ports)
+  {
+    COMPorts.Add(port);
+  }
+}
+</code></pre>
+<p><span Class="cbtitle"><em>MainWindow.xaml</em></span></p>
+<pre><code class="language-C#">&lt;ComboBox ItemsSource=&quot;{Binding COMPorts}&quot; /&gt;
+</code></pre>
+<br>
+<p>COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。</p>
+<p><span Class="cbtitle"><em>MainWindow.xaml</em></span></p>
+<pre><code class="language-C#">&lt;ComboBox DropDownOpened=&quot;ComboBoxDropDownOpened_COMPort&quot;/&gt;
+</code></pre>
+<p><span Class="cbtitle"><em>MainWindow.xaml.cs</em></span></p>
+<pre><code class="language-C#">private void ComboBoxDropDownOpened_COMPort(object sender, EventArgs e)
+{
+  viewModel.GetCOMPorts();
+}
+</code></pre>
+<h2 id="section-1">シリアルポートのオープン</h2>
+<p>シリアルポート通信の各種設定をしたのち、接続をOpenします。<br />
+コードは以下です。</p>
+<pre><code class="language-C#">public void SerialOpen()
+{
+  try
+  {
+    serialPort.PortName = port;        //選択したport名
+    serialPort.BaudRate = baudrate;    //選択したbaudrate
+    serialPort.DataBits = 8;
+    serialPort.Parity = Parity.None;
+    serialPort.StopBits = StopBits.One;
+    serialPort.WriteTimeout = 1000;
+    serialPort.ReadTimeout = 1000;
+    serialPort.Encoding=Encoding.UTF8;
+    serialPort.Open();
+  }
+  catch (Exception ex)
+  {
+    MessageBox.Show(ex.Message);
+  }
+}
+</code></pre>
+<h2 id="section-2">シリアルポートのクローズ</h2>
+<p>シリアルポート接続をCloseします。</p>
+<pre><code class="language-C#">public void SerialClose()
+{
+  try
+  {
+    serialPort.Close();
+  }
+  catch (Exception ex)
+  {
+    MessageBox.Show(ex.Message);
+  }
+}
+</code></pre>
+<h2 id="section-3">データの送信</h2>
+<p>文字列を送信します。</p>
+<pre><code class="language-C#">public void Send()
+{
+  if (serialPort.IsOpen)
+  {
+    serialPort.Write(TXData);
+  }
+}
+</code></pre>
+<h2 id="section-4">データの受信</h2>
+<p>文字列を受信します。<br />
+受信データの取り出しは、割込みを使って行います。<br />
+データを受信したらすぐにデータを取り込んでくれます。</p>
+<pre><code class="language-C#">SerialCom.serialPort.DataReceived += OnReceived;
+
+private void OnReceived(object sender, SerialDataReceivedEventArgs e)
+{
+  RXData += serialPort.ReadExisting();
+}
+</code></pre>
+<h2 id="section-5">動作確認のためのシリアル通信折り返し方法</h2>
+<p>シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的です。<br />
+以下のUSB-シリアル変換を使用すれば確認可能です。<br />
+TxピンとRxピンを導線で繋いで動作確認します。</p>
+<p><span class="link"></span> <a href="https://akizukidenshi.com/catalog/g/gM-11007/">秋月電子 FT-232RQ USBシリアル変換モジュール</a></p>
+<br>
+<p>Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。</p>
+<br>
+<hr />
+
+
+          <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+          <script src="https://utteranc.es/client.js"
+            repo="yamaccu/yamaccu.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+          </script>
+      </div>
+    </div>
+  </body>
+</html>
