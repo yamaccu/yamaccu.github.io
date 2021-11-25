@@ -162,7 +162,8 @@ background: snow;
   left:315px;
   height: calc(100vh - 90px);
   width: calc(100vw - 315px);
-  overflow:auto;
+  overflow-x:hidden;
+  overflow-y:auto;
 }
 
 .comment{

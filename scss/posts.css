@@ -35,6 +35,11 @@ h2,h3{
   flex-wrap:wrap;
 }
 
+.post-wrap{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
 .link{
   display: inline-block;
   position:relative;
@@ -74,3 +79,9 @@ h2,h3{
   height:26px;
 }
   
+@media (max-width: 768px) {
+  .post-wrap{
+    flex-wrap: wrap;
+  }
+}
+
