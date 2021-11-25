@@ -177,7 +177,7 @@ background: snow;
 @media (max-width: 768px) {
   .side-layout{
     left: -100%;
-    height: calc(100vh - 120px); 
+    height: calc(100vh - 130px); 
   }
   .menu{
     display:block;
@@ -186,6 +186,6 @@ background: snow;
   .main-content{
     left:5px;
     width: calc(100vw - 5px);
-    height: calc(100vh - 120px);
+    height: calc(100vh - 130px);
   }
 }
