@@ -38,6 +38,7 @@ h2,h3{
 .post-wrap{
   display: flex;
   flex-wrap: nowrap;
+  
 }
 
 .link{
@@ -78,10 +79,20 @@ h2,h3{
 .image-star2{
   height:26px;
 }
+
+.adslot_1 {
+  display: block;
+}
   
 @media (max-width: 768px) {
   .post-wrap{
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 900px) {
+  .adslot_1 {
+    display: none;
   }
 }
 
