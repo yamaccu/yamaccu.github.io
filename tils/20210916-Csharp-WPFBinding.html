@@ -6,16 +6,14 @@
 
     <link href="/scss/tils.css" rel="stylesheet" type="text/css">
     <link href="/scss/prism.css" rel="stylesheet" type="text/css">
-    <script src="/js/jquery-3.6.0.min.js"></script>
-    <script src="/js/tils.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+    <script defer src="/js/jquery-3.6.0.min.js"></script>
+    <script defer src="/js/tils.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
 
-    
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
@@ -40,9 +38,9 @@
           <a href="/tils" class="title">TIL</a>
         </div>
         <div class="ext-link">
-          <a href="/"><img src="/img/home.png" class="ext-link-icon"></a>&nbsp;&nbsp;
-          <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"></a>&nbsp;&nbsp;
-          <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"></a>
+          <a href="/"><img src="/img/home.png" class="ext-link-icon" alt="homeへのリンク"></a>&nbsp;&nbsp;
+          <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon" alt="twitterへのリンク"></a>&nbsp;&nbsp;
+          <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon" alt="githubへのリンク"></a>
         </div>
       </div>
       <br>
@@ -69,7 +67,7 @@
               </div>
               <div class="side-content">
                 - 
-                <a href="/tils/20210903-Csharp-ResharperCommand">Resharper&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;</a><br>
+                <a href="/tils/20210903-Csharp-ResharperCommand">C# Resharper&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;</a><br>
               </div>
           </details>
           <details>
@@ -178,7 +176,7 @@ VisualStudioのインストールおよびWPFのHello Worldまではこちらを
 <li>数字を＋１するボタン</li>
 <li>数字を－１するボタン</li>
 </ul>
-<img src="../img/20210916-Csharp-WPFBinding-1.png" Style="width:100%;max-width:450px;">  
+<img src="../img/20210916-Csharp-WPFBinding-1.png" Style="width:100%;max-width:450px;" alt="WPF Bindig確認用のアプリ">  
 <br>
 <br>
 <p>このアプリを、5つの実装方法で作成していきます。</p>
@@ -194,7 +192,7 @@ VisualStudioのインストールおよびWPFのHello Worldまではこちらを
 <h2 id="binding">1. Bindingなし</h2>
 <p>コードビハインドに処理を記述します。<br />
 コードビハインドとは、xaml.csファイルのことです。</p>
-<img src="../img/20210916-Csharp-WPFBinding-2.png" Style="width:100%;max-width:300px;">  
+<img src="../img/20210916-Csharp-WPFBinding-2.png" Style="width:100%;max-width:300px;" alt="コードビハインド">  
 <br>
 <br>
 <p><span Class="cbtitle"><em>MainWindow.xaml</em></span></p>
@@ -223,7 +221,7 @@ private void OneDown_Click(object sender, RoutedEventArgs e)
 <p>1から、TextBoxの数値をBindingに変更します。<br />
 MainWindow.xaml（画面部）とViewModel.cs（処理部）の間でBindingします。</p>
 <br>
-<p> <img src="../img/20210916-Csharp-WPFBinding-3.png" Style="width:100%;max-width:450px;"></p>
+<p> <img src="../img/20210916-Csharp-WPFBinding-3.png" Style="width:100%;max-width:450px;" alt="DataBinding PropertyChanged"></p>
 <h3 id="datacontext">2-1. DataContextの設定</h3>
 <p>Bindingするためには、まずDataContextの設定が必要です。<br />
 DataContextとは、画面部のコントロールのBinding値と処理部の変数を紐づけをしてくれるプロパティです。</p>
@@ -316,9 +314,7 @@ public void OneDown()
 <p>2から、ボタンをクリックしたときのイベント処理もBindingに変更します。<br />
 CommandBindingもDataContextの設定は必須です。</p>
 <br>
-<p> <img src="../img/20210916-Csharp-WPFBinding-4.png" Style="width:100%;max-width:450px;"></p>
-<br>
-<br>
+<p> <img src="../img/20210916-Csharp-WPFBinding-4.png" Style="width:100%;max-width:450px;" alt="DataBinding Command"></p>
 <h3 id="icommand">3-1. ICommandについて</h3>
 <p>CommandBindingにはICommandインターフェースを使用します。<br />
 これでないと画面部と処理部の間をBindingできません。</p>
