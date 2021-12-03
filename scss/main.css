@@ -5,17 +5,8 @@
   font-style: normal;
   font-weight: 500;
   src: local(''),
+       url('fonts/noto-sans-jp-v36-japanese-500.woff2') format('woff2'), /* Super Modern Browsers */
        url('fonts/noto-sans-jp-v36-japanese-500.woff') format('woff'); /* Modern Browsers */
-}
-
-/* m-plus-rounded-1c-900 - japanese */
-@font-face {
-  font-display: swap;
-  font-family: 'M PLUS Rounded 1c';
-  font-style: normal;
-  font-weight: 900;
-  src: local(''),
-       url('fonts/m-plus-rounded-1c-v10-japanese-900.woff') format('woff'); /* Modern Browsers */
 }
 
 h1{
@@ -87,7 +78,7 @@ a{
 }
 
 .contents-font{
-  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: bold;
 }
 
 .contents-link{
