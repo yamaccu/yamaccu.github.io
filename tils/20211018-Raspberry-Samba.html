@@ -156,10 +156,11 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
 
-        <p>2021/10/17</p>
+        <br>
+<p>2021/10/17</p>
 <h1 id="raspberrypi-windows">RaspberryPi - Windows間でファイル共有</h1>
 <hr />
-<p>Sambaというフリーソフトを使うと、ラズパイとWindows間でファイル共有ができます。<br />
+<p>Sambaというフリーソフトをラズパイにインストールすると、ラズパイとWindows間でファイル共有ができます。<br />
 Windowsからラズパイへ、外付けHDなどと同じようにエクスプローラでアクセスできるので、とてもお手軽です。<br />
 sshやscpでのやり取りは不要になります。</p>
 <p>参考　<span class="link"></span><a href="http://wiki.samba.gr.jp/mediawiki/index.php/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8">日本SAMBAユーザーの会</a></p>
@@ -172,7 +173,7 @@ sudo apt-get install samba
 </code></pre>
 <p>インストール中にWINS設定うんぬん聞かれたら「いいえ」とします。</p>
 <h2 id="section">2. 設定ファイルを編集します。</h2>
-<p>下記の設定ファイルを編集します。</p>
+<p>下記のコマンドで、設定ファイルを編集します。</p>
 <pre><code class="language-C#">sudo nano /etc/samba/smb.conf
 </code></pre>
 <p>編集画面が開いたら、最下部に下記を追加します。</p>
@@ -189,6 +190,7 @@ force user = pi
 <p>Windowsのエクスプローラで &quot;&lt;ラズパイのIPアドレス&gt;/pi&quot; にアクセスできるか確認します。<br />
 読み込み、書き込みができれば終了です。</p>
 <br>
+<p>以上です。</p>
 <br>
 <hr />
 
@@ -200,7 +202,7 @@ force user = pi
             style="display:block"
             data-ad-client="ca-pub-2127299793131419"
             data-ad-slot="2560895837"
-            data-ad-format="auto"
+            data-ad-format="horizontal"
             data-full-width-responsive="true"></ins>
           <script>
             (adsbygoogle = window.adsbygoogle || []).push({});

@@ -6,7 +6,6 @@
   <title>Statiq&#x3067;&#x30D6;&#x30ED;&#x30B0;&#x4F5C;&#x6210;_1 | yokuaru Tech notes</title>
 
   <link href="/scss/posts.css" rel="stylesheet" type="text/css">
-  <script defer src="/js/jquery-3.6.0.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
     data-no-mirror></script>
@@ -53,13 +52,23 @@
 <body class="body-font">
   <div class="post-wrap">
     <div style="max-width:900px;  overflow-x:hidden; overflow-y:auto;">
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle adslot_2" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
       <br>
       <p>2021/11/17</p>
 <h1 id="c-statiq-1">C#の静的サイトジェネレータ &quot;Statiq&quot; でブログを書く<br>その1　導入編</h1>
 <hr />
 <h2 id="section">はじめに</h2>
-<p>エンジニアって、ブログで技術のアウトプットをすると良いらしいよ！<br />
-スキルが定着するし、文章力も上がるし、収益も出てメリット盛りだくさんだよ！</p>
+<p>エンジニアはブログで技術のアウトプットをすると良いらしいよ！<br />
+スキルが定着するし、文章力も上がるし、収益も出てメリット盛りだくさん！</p>
 <p>技術情報を調べていると、しばしばこんな記事を目にします。</p>
 <p>ホントかな、と思うところはありますが、スキルが定着するという一点に関しては、私が求めるものと一致していましたので、勉強のためにブログを作成することにしました。</p>
 <p>ただ、ブログを作ろう！といっても、やり方がいろいろあると思います。<br />
@@ -75,20 +84,13 @@
 私の場合は、「無料であること」、「HTMLの勉強も兼ねたいこと」の2点から、静的サイトのブログを作成することにしました。</p>
 <p>静的サイトジェネレータは、C#を少しだけかじっていましたので、C#製の静的サイトジェネレータであるStatiqを使うことにします。<br />
 また、ホスティングサービスは無料のGithub Pagesを使用します。</p>
-<p>といことで、本サイトでは、Statiqという静的サイトジェネレータ＋github pagesの合わせ技でブログを作っていこうと思います。</p>
+<p>といことで、本サイトでは、Statiqという静的サイトジェネレータ＋github pagesの組み合わせでブログを作っていこうと思います。</p>
 <h2 id="statiq">Statiqの特徴</h2>
 <p>Statiqは、C#で書かれている静的サイトジェネレータです。<br />
 MarkDownもしくはRazor構文で書かれたファイルをHTMLに変換してくれます。</p>
 <p>MarkDownは文章構造を明示的に表現でき、ブログ記事を書きやすいです。<br />
 また、Razor構文はHTMLで書けるのでレイアウトの記述に向いており、静的サイトジェネレータと親和性が高いと感じます。</p>
 <p>つまり、Statiqは記事を書くのにも、レイアウトを作成するのにも、使いやすくてお勧めなのです！</p>
-<p>他にも、<span class="link"></span> <a href="https://www.statiq.dev/">公式HP</a>に書かれている特徴をあげておきます。</p>
-<ul>
-<li>テンプレートが利用できる</li>
-<li>設定ファイルを作ることで、ブログの設定などを簡単に設定できる</li>
-<li>FrameWorkをいじればカスタマイズが容易に可能</li>
-<li>デプロイメントが組み込まれていて、Netlify、AWS、Githubにデプロイが可能</li>
-</ul>
 <h2 id="statiq-1">Statiqの使い方</h2>
 <p>まずは<span class="link"></span> <a href="https://www.statiq.dev/web/">公式ページのQuick Start</a>を一度やることをお勧めします。</p>
 <p>次に、ブログのテーマが用意されているので、適用してみます。<br />
@@ -98,7 +100,7 @@ MarkDownもしくはRazor構文で書かれたファイルをHTMLに変換して
 <p>以降、ブログテーマ適用の手順をメモしていきます。</p>
 <h3 id="section-2">ブログテーマ適用</h3>
 <p>初期状態では、ブログのフォーマットにはなっていません。<br />
-Statiqには、ブログを作成ためのテーマがあります。</p>
+Statiqには、ブログを作成するためのテーマがあります。</p>
 <p>公式のQuick Startで作成したフォルダに&quot;theme&quot;フォルダを作成して、中に<span class="link"></span> <a href="https://github.com/statiqdev/CleanBlog">githubのCleanBlogリポジトリ</a>をクローンすると、自動で反映されてブログの形式になります。</p>
 <p>ブログデザインの変更は、theme→input内の.cshtmlファイルを修正します。</p>
 <h3 id="section-3">記事の書き方</h3>
@@ -113,16 +115,17 @@ MarkDownの書き方は<span class="link"></span> <a href="/tils/20210816-markdo
 theme→settings.ymlが設定ファイルです。</p>
 <p>設定できる項目は、<span class="link"></span> <a href="https://www.statiq.dev/web/configuration/settings">公式HP</a>を参照ください。<br />
 設定例は、<span class="link"></span> <a href="https://github.com/statiqdev/statiqdev.github.io/blob/develop/settings.yml">こちら</a>にあります。</p>
-<p>&quot;Host&quot;と&quot;LinksUseHttps&quot;を設定しないとSitemapが正しく出力されませんので、設定をおすすめします。<br />
+<p>設定例にあるように、&quot;Host&quot;と&quot;LinksUseHttps&quot;を設定しないとSitemapが正しく出力されませんので、設定をおすすめします。<br />
 （ここでちょっとはまりました）</p>
 <h3 id="css">cssの変更・追加</h3>
 <p>cssを変更・追加したい場合は、input→scss→_overrides.scssにcssを記述します。<br />
 記述されたcssがHPに適用されます。</p>
 <h3 id="html">HTMLへの変換</h3>
-<p>dotnet run を実行すると、outputフォルダにHTMLを出力してくれます。</p>
-<p>dotnet run -- preview を実行するとプレビューが見れます。<br />
-ブラウザでhttp://localhost:5080 にアクセスします。</p>
+<p>コンソール（コマンドプロンプトもしくはPowerShell）でdotnet run を実行すると、outputフォルダにHTMLを出力してくれます。</p>
+<p>実際のHPを確認するには、コンソールでdotnet run -- preview を実行します。<br />
+すると、ブラウザでhttp://localhost:5080 にアクセスすることでHPを確認できます</p>
 <br>
+<p>最終的なフォルダ構成は下記のようになっています。</p>
 <p>フォルダ構成<br />
 ├─ input ─┬─ () 　　 ←固定ページ　　<br />
 │  　 　　 　└ posts　　←ブログ記事<br />
@@ -131,18 +134,18 @@ theme→settings.ymlが設定ファイルです。</p>
 ├─ Program.cs<br />
 └─ xxxx.csproj</p>
 <h3 id="sitemap">sitemapの作成</h3>
-<p>dotnet runで、outputフォルダに自動出力されます。</p>
+<p>dotnet runを実行したときに、outputフォルダに自動出力されます。</p>
 <h3 id="headscriptgoogle-analytics">HEADへのScript追加（google analyticsなど）</h3>
 <p>theme→input内の_head.cshtmlファイルで、&lt;HEAD&gt;へのスクリプト追加ができます。<br />
 google analyticsなどのスクリプトを追加したいときは、_head.cshtmlにスクリプトをコピペすると、全ページの&lt;HEAD&gt;に追加されます。</p>
 <h2 id="github-page">Github Pageへアップロード</h2>
-<p>dotnet runを実行するとOutputフォルダにHTMLファイルが出力されています。<br />
+<p>dotnet runを実行したときに、OutputフォルダにHTMLファイルが出力されています。<br />
 これをGithub pagesへアップロードします。<br />
-手順は公式ページが詳しいですので、参照ください。</p>
+この手順は公式ページが詳しいですので、参照ください。</p>
 <p><span class="link"></span> <a href="https://docs.github.com/ja/pages/quickstart">Quickstart for GitHub Pages</a></p>
 <br>
 <p>また、Github pagesへコメント欄を追加することができます。<br />
-手順は下記の記事にまとめています。</p>
+手順は下記の記事にまとめていますのでご興味があれば参照ください。</p>
 <p><span class="link"></span> <a href="https://yamaccu.github.io/tils/20210907-githubpages-utterances">Github Pagesにコメント欄を追加</a></p>
 <h2 id="section-5">終わりに</h2>
 <p>これで、ブログを作成することができました。</p>

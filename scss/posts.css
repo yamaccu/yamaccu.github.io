@@ -83,6 +83,11 @@ h2,h3{
 .adslot_1 {
   display: block;
 }
+
+.adslot_2 {
+  display: none;
+}
+
   
 @media (max-width: 768px) {
   .post-wrap{
@@ -94,5 +99,10 @@ h2,h3{
   .adslot_1 {
     display: none;
   }
+
+  .adslot_2 {
+    display: block;
+  }
+  
 }
 

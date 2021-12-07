@@ -170,13 +170,13 @@ ToDoリストを管理する、ボタンを押すとTCP/IPでデータを送信�
 VisualStudioのインストールおよびWPFのHello Worldまではこちらを参考にしてください。</p>
 <p><span Class="link"></span> <a href="https://docs.microsoft.com/ja-jp/visualstudio/get-started/csharp/tutorial-wpf?view=vs-2019">チュートリアル: C# で単純なアプリケーションを作成する</a></p>
 <h2 id="gui">今回作成したGUIアプリ</h2>
-<p>今回、Bindnigの確認用に、以下のアプリを作成しました。</p>
+<p>今回、Bindinigの確認用に、以下のアプリを作成しました。</p>
 <ul>
 <li>数字の0が初期値で表示されているテキストボックス</li>
 <li>数字を＋１するボタン</li>
 <li>数字を－１するボタン</li>
 </ul>
-<img src="../img/20210916-Csharp-WPFBinding-1.png" Style="width:100%;max-width:450px;" alt="WPF Bindig確認用のアプリ">  
+<img src="../img/20210916-Csharp-WPFBinding-1.png" Style="width:100%;max-width:450px;" alt="WPF Binding確認用のアプリ">  
 <br>
 <br>
 <p>このアプリを、5つの実装方法で作成していきます。</p>
@@ -240,7 +240,7 @@ public MainWindow()
 }
 </code></pre>
 <h3 id="xaml">2-2. xaml側のコード実装</h3>
-<p>TextBoxのTextに変数をBindigします。<br />
+<p>TextBoxのTextに変数をBindingします。<br />
 ここでは、&quot;Counter&quot;という名前の変数とします。</p>
 <p><span Class="cbtitle"><em>MainWindow.xaml</em></span></p>
 <pre><code class="language-C#">&lt;TextBox Text=&quot;{Binding Counter}&quot;/&gt;
@@ -505,7 +505,7 @@ ICommandとか不要です。</p>
             style="display:block"
             data-ad-client="ca-pub-2127299793131419"
             data-ad-slot="2560895837"
-            data-ad-format="auto"
+            data-ad-format="horizontal"
             data-full-width-responsive="true"></ins>
           <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
