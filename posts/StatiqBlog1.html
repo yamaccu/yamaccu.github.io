@@ -98,19 +98,30 @@ MarkDownもしくはRazor構文で書かれたファイルをHTMLに変換して
 <p><span class="link"></span> <a href="https://www.daveaglick.com/">参考ブログ</a></p>
 <br>
 <p>以降、ブログテーマ適用の手順をメモしていきます。</p>
-<h3 id="section-2">ブログテーマ適用</h3>
+<h2 id="section-2">ブログテーマ適用</h2>
 <p>初期状態では、ブログのフォーマットにはなっていません。<br />
 Statiqには、ブログを作成するためのテーマがあります。</p>
-<p>公式のQuick Startで作成したフォルダに&quot;theme&quot;フォルダを作成して、中に<span class="link"></span> <a href="https://github.com/statiqdev/CleanBlog">githubのCleanBlogリポジトリ</a>をクローンすると、自動で反映されてブログの形式になります。</p>
-<p>ブログデザインの変更は、theme→input内の.cshtmlファイルを修正します。</p>
-<h3 id="section-3">記事の書き方</h3>
-<p>MarkDownで記述します。<br />
-MarkDownの書き方は<span class="link"></span> <a href="/tils/20210816-markdown-tips">こちら</a>にメモしています。</p>
-<p>記事を書いたら、&quot;input&quot;フォルダとその配下に&quot;posts&quot;フォルダを作成し、書いたmdファイルを保存します。</p>
-<h3 id="section-4">固定ページの書き方</h3>
+<p>公式のQuick Startで作成したフォルダに&quot;theme&quot;フォルダを作成して、中に<span class="link"></span> <a href="https://github.com/statiqdev/CleanBlog">githubのCleanBlogリポジトリ</a>をクローンすると、自動で反映されてブログの形式になります。<br />
+（CleanBlogというものを元に作成しているようです）</p>
+<p>使い方はリポジトリのReadMeに書いてありますが、簡単な手順を以降で紹介していきます。</p>
+<h3 id="section-3">記事を書く</h3>
+<p>MarkDownで書きます。<br />
+MarkDownの書き方は<span class="link"></span> <a href="/tils/20210816-MarkDown-tips">こちら</a>にメモしています。</p>
+<p>記事を書いたら、文章の一番上に下記のようなヘッダを追記します。
+（StatiqではFront Matterと呼ばれています）</p>
+<pre><code class="language-C#">Title: This Is An Example Post     //pageのタイトル
+Lead: Yay for examples!            //pageの概要説明
+Published: 12/13/2014              //公開日
+Tags:                              //ブログのタグ（複数設定可）
+  - Examples
+  - Code
+---
+</code></pre>
+<p>最後に、&quot;input&quot;フォルダとその配下に&quot;posts&quot;フォルダを作成し、書いたmdファイルを保存します。</p>
+<h3 id="section-4">固定ページを作る</h3>
 <p>プライバシーポリシーなどの固定ページを作成するには、inputフォルダ直下にMarkDownファイルを保存します。<br />
 そうすると、ページ上部のタブにリンクが追加されます。</p>
-<h3 id="statiq-2">Statiq設定</h3>
+<h3 id="statiq-2">Statiqの設定</h3>
 <p>設定は設定ファイルで変えることができます。<br />
 theme→settings.ymlが設定ファイルです。</p>
 <p>設定できる項目は、<span class="link"></span> <a href="https://www.statiq.dev/web/configuration/settings">公式HP</a>を参照ください。<br />
@@ -119,7 +130,7 @@ theme→settings.ymlが設定ファイルです。</p>
 （ここでちょっとはまりました）</p>
 <h3 id="css">cssの変更・追加</h3>
 <p>cssを変更・追加したい場合は、input→scss→_overrides.scssにcssを記述します。<br />
-記述されたcssがHPに適用されます。</p>
+ここに記述されたcssは、従来のものに上書きされます。</p>
 <h3 id="html">HTMLへの変換</h3>
 <p>コンソール（コマンドプロンプトもしくはPowerShell）でdotnet run を実行すると、outputフォルダにHTMLを出力してくれます。</p>
 <p>実際のHPを確認するには、コンソールでdotnet run -- preview を実行します。<br />
@@ -138,17 +149,20 @@ theme→settings.ymlが設定ファイルです。</p>
 <h3 id="headscriptgoogle-analytics">HEADへのScript追加（google analyticsなど）</h3>
 <p>theme→input内の_head.cshtmlファイルで、&lt;HEAD&gt;へのスクリプト追加ができます。<br />
 google analyticsなどのスクリプトを追加したいときは、_head.cshtmlにスクリプトをコピペすると、全ページの&lt;HEAD&gt;に追加されます。</p>
+<br>
+<p>以上が、Statiqの手順になります。</p>
 <h2 id="github-page">Github Pageへアップロード</h2>
 <p>dotnet runを実行したときに、OutputフォルダにHTMLファイルが出力されています。<br />
 これをGithub pagesへアップロードします。<br />
 この手順は公式ページが詳しいですので、参照ください。</p>
 <p><span class="link"></span> <a href="https://docs.github.com/ja/pages/quickstart">Quickstart for GitHub Pages</a></p>
 <br>
-<p>また、Github pagesへコメント欄を追加することができます。<br />
+<p>また、Github pagesは、「utterances」というオープンソースのツールを使うことでコメント欄を追加することができます。<br />
 手順は下記の記事にまとめていますのでご興味があれば参照ください。</p>
-<p><span class="link"></span> <a href="https://yamaccu.github.io/tils/20210907-githubpages-utterances">Github Pagesにコメント欄を追加</a></p>
+<p><span class="link"></span> <a href="https://yamaccu.github.io/tils/20210907-GithubPages-utterances">Github Pagesにコメント欄を追加</a></p>
 <h2 id="section-5">終わりに</h2>
-<p>これで、ブログを作成することができました。</p>
+<p>これで、ブログを作成することができました。<br />
+MarkDownで記事を書いてpostsフォルダに追加していけば、どんどんブログ記事が増えていきます。</p>
 <p>次は、サイトにオリジナリティを出すために、ブログテーマを使わないで独自のサイトの作成にチャレンジしてみたいと思います。</p>
 <br>
 <br>
