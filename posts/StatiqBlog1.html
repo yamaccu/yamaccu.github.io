@@ -6,6 +6,7 @@
   <title>Statiq&#x3067;&#x30D6;&#x30ED;&#x30B0;&#x4F5C;&#x6210;_1 | yokuaru Tech notes</title>
 
   <link href="/scss/posts.css" rel="stylesheet" type="text/css">
+  <link href="/scss/prism.css" rel="stylesheet" type="text/css">
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
     data-no-mirror></script>
@@ -96,15 +97,13 @@ MarkDownもしくはRazor構文で書かれたファイルをHTMLに変換して
 <p>次に、ブログのテーマが用意されているので、適用してみます。<br />
 適用完了すると、以下のようなブログが作成できます。（Statiqを作っている方のブログです。）</p>
 <p><span class="link"></span> <a href="https://www.daveaglick.com/">参考ブログ</a></p>
-<br>
-<p>以降、ブログテーマ適用の手順をメモしていきます。</p>
-<h2 id="section-2">ブログテーマ適用</h2>
-<p>初期状態では、ブログのフォーマットにはなっていません。<br />
+<h2 id="cleanblog">CleanBlogテーマの適用</h2>
+<p>Statiqで作成するサイトは初期状態では、ブログのフォーマットにはなっていません。<br />
 Statiqには、ブログを作成するためのテーマがあります。</p>
 <p>公式のQuick Startで作成したフォルダに&quot;theme&quot;フォルダを作成して、中に<span class="link"></span> <a href="https://github.com/statiqdev/CleanBlog">githubのCleanBlogリポジトリ</a>をクローンすると、自動で反映されてブログの形式になります。<br />
 （CleanBlogというものを元に作成しているようです）</p>
-<p>使い方はリポジトリのReadMeに書いてありますが、簡単な手順を以降で紹介していきます。</p>
-<h3 id="section-3">記事を書く</h3>
+<p>このテーマの使い方はリポジトリのReadMeに書いてありますが、簡単な手順を以降で紹介していきます。</p>
+<h3 id="section-2">記事を書く</h3>
 <p>MarkDownで書きます。<br />
 MarkDownの書き方は<span class="link"></span> <a href="/tils/20210816-MarkDown-tips">こちら</a>にメモしています。</p>
 <p>記事を書いたら、文章の一番上に下記のようなヘッダを追記します。
@@ -117,8 +116,8 @@ Tags:                              //ブログのタグ（複数設定可）
   - Code
 ---
 </code></pre>
-<p>最後に、&quot;input&quot;フォルダとその配下に&quot;posts&quot;フォルダを作成し、書いたmdファイルを保存します。</p>
-<h3 id="section-4">固定ページを作る</h3>
+<p>そして、&quot;input&quot;フォルダとその配下に&quot;posts&quot;フォルダを作成し、書いたmdファイルを保存します。</p>
+<h3 id="section-3">固定ページを作る</h3>
 <p>プライバシーポリシーなどの固定ページを作成するには、inputフォルダ直下にMarkDownファイルを保存します。<br />
 そうすると、ページ上部のタブにリンクが追加されます。</p>
 <h3 id="statiq-2">Statiqの設定</h3>
@@ -133,8 +132,8 @@ theme→settings.ymlが設定ファイルです。</p>
 ここに記述されたcssは、従来のものに上書きされます。</p>
 <h3 id="html">HTMLへの変換</h3>
 <p>コンソール（コマンドプロンプトもしくはPowerShell）でdotnet run を実行すると、outputフォルダにHTMLを出力してくれます。</p>
-<p>実際のHPを確認するには、コンソールでdotnet run -- preview を実行します。<br />
-すると、ブラウザでhttp://localhost:5080 にアクセスすることでHPを確認できます</p>
+<p>実際のサイトを確認するには、コンソールでdotnet run -- preview を実行します。<br />
+すると、ブラウザでhttp://localhost:5080 にアクセスすることで作成したサイトを確認できます</p>
 <br>
 <p>最終的なフォルダ構成は下記のようになっています。</p>
 <p>フォルダ構成<br />
@@ -160,7 +159,7 @@ google analyticsなどのスクリプトを追加したいときは、_head.csht
 <p>また、Github pagesは、「utterances」というオープンソースのツールを使うことでコメント欄を追加することができます。<br />
 手順は下記の記事にまとめていますのでご興味があれば参照ください。</p>
 <p><span class="link"></span> <a href="https://yamaccu.github.io/tils/20210907-GithubPages-utterances">Github Pagesにコメント欄を追加</a></p>
-<h2 id="section-5">終わりに</h2>
+<h2 id="section-4">終わりに</h2>
 <p>これで、ブログを作成することができました。<br />
 MarkDownで記事を書いてpostsフォルダに追加していけば、どんどんブログ記事が増えていきます。</p>
 <p>次は、サイトにオリジナリティを出すために、ブログテーマを使わないで独自のサイトの作成にチャレンジしてみたいと思います。</p>
