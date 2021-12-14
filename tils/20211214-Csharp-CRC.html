@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Markdown All in One&#x300D;&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
+    <title>CRC&#x3092;&#x8A08;&#x7B97;&#x3059;&#x308B; | yokuaru Tech notes</title>
 
     <link href="/scss/tils.css" rel="stylesheet" type="text/css">
     <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -164,106 +164,78 @@
           </script>
           <br>
 
-        <p>2021/08/30</p>
-<h1 id="vscodemarkdown-all-in-one">VSCodeの拡張機能「Markdown All in One」を使う</h1>
+        <br>
+<p>2021/12/14</p>
+<h1 id="ccrc">C#でCRCを計算する方法</h1>
 <hr />
-<p>VSCodeでMarkDownを書くのに、拡張機能「Markdown All in One」を導入すると便利です。</p>
-<p>Markdownの記法メモもまとめてみました。<br />
-<span class="link"></span>
-<a href="/tils/20210816-MarkDown-tips">MarkDown記法のメモ</a></p>
-<h2 id="section">ショートカット機能</h2>
-<br>
-<table>
-<thead>
-<tr>
-<th>キーボード操作</th>
-<th>機能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctr+B</td>
-<td>太字 (**)</td>
-</tr>
-<tr>
-<td>Ctr+I</td>
-<td>イタリック(*)</td>
-</tr>
-<tr>
-<td>Ctr+Shift+]</td>
-<td>見出し(#)、実行ごとに#が増える</td>
-</tr>
-<tr>
-<td>Ctr+Shift+[</td>
-<td>見出し(#)、実行ごと#が減る</td>
-</tr>
-<tr>
-<td>Ctr+M</td>
-<td>数式挿入($)</td>
-</tr>
-<tr>
-<td>Alt+C</td>
-<td>チェックボックスのON（[x]）、もう一度押すと解除</td>
-</tr>
-<tr>
-<td>Alt+S</td>
-<td>取り消し(~~)</td>
-</tr>
-<tr>
-<td>Alt+Shift+F</td>
-<td>表の表記のフォーマット整形</td>
-</tr>
-</tbody>
-</table>
-<br>
-<p>以下はもともとVSCodeに入っており便利なショートカット</p>
-<table>
-<thead>
-<tr>
-<th>キーボード操作</th>
-<th>機能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctr+K → v</td>
-<td>サイドにプレビュー表示</td>
-</tr>
-<tr>
-<td>Ctr+shift+v</td>
-<td>タブにプレビュー表示</td>
-</tr>
-</tbody>
-</table>
-<h2 id="section-1">目次の自動作成</h2>
-<p>見出し(#)の目次を自動で作成してくれます。</p>
+<p>CRCとはCyclic Redundancy Checkの略で、通信データの破損検出の仕組みの一つです。</p>
+<p>通信データをある値（生成多項式）で割り算して、余りをデータに付与して送信します。<br />
+受信側で再度計算して付与された余りが合っているかどうか確認し、合致しない場合は通信データ破損とみなします。</p>
+<p>同じような誤り検出にチェックサムがありますが、チェックサムはデータを足し算した結果を付与します。<br />
+足し算よりは割り算の方が複雑なアルゴリズムとなり、その分信頼度は向上します。</p>
+<p>Modbus通信やイーサネット通信などで使われているようです。</p>
+<h2 id="crc">CRCの種類</h2>
+<p>CRCには以下のパラメータがあり、これらの値により計算値が異なってきます。<br />
+そのため、CRCと一言で言ってもたくさんの種類が存在しています。</p>
 <ul>
-<li>自動作成：Ctr+Shift+p → Markdown All in One: Create Table of Contents</li>
-<li>更新　　：Ctr+Shift+p → Markdown All in One: Update Table of Contents</li>
+<li>計算bit数</li>
+<li>生成多項式</li>
+<li>初期値</li>
+<li>ビットシフト方向</li>
 </ul>
-<p>↓こんな感じです。<br />
-<img src="../img/20210830-MarkDown-AllInOne-2.png" Style="width:100%;max-width:450px;" alt="MarkDownAllInOne目次の自動作成"></p>
 <br>
-<p>また、見出しに自動で番号を振ってくれます。</p>
+<p>例）
+CRC-16-IBM</p>
 <ul>
-<li>番号追加：Ctr+Shift+p → MarkDown All in One: Add/Update section numbers</li>
-<li>番号削除：Ctr+Shift+p → MarkDown All in One: Remove section numbers</li>
+<li>計算bit数 : 16</li>
+<li>生成多項式 : x<sup>16</sup>+x<sup>15</sup>+x<sup>2</sup>+1</li>
+<li>初期値 : 0xFFFF</li>
+<li>ビットシフト方向 : 右</li>
 </ul>
-<p>↓こんな感じです。<br />
-<img src="../img/20210830-MarkDown-AllInOne-3.png" Style="width:100%;max-width:450px;" alt="MarkDownAllInOne目次に自動で番号を振る"></p>
+<p>その他の種類については <span Class="link"></span> <a href="https://ja.wikipedia.org/wiki/%E5%B7%A1%E5%9B%9E%E5%86%97%E9%95%B7%E6%A4%9C%E6%9F%BB">wikipedia</a>に記述がありますので参照ください。</p>
+<h2 id="crc-1">CRCの計算方法</h2>
+<p>CRCの計算方法は、「ビット演算方式」と「テーブル演算方式」があります。</p>
+<ul>
+<li><p>ビット演算方法：
+通信データをその都度割り算して余りを求める方法</p>
+</li>
+<li><p>テーブル演算方法：
+あらかじめ計算結果のテーブルを準備して、計算負荷を軽くする方法</p>
+</li>
+</ul>
 <br>
-<p>目次に入れたくない見出しがある場合は、見出しの前の行に「&lt;!-- omit in toc --&gt;」を追加します。</p>
-<h2 id="section-2">リストの入力補佐</h2>
-<p>- や1. などのリストを作成しているときに、行追加時に自動でリストが追加されます。<br />
-また、tabでインデントされます。<br />
-地味に便利なやつ。</p>
-<h2 id="html">HTML出力</h2>
-<p>現在開いているMarkDownファイルをHTMLへ変換できます。<br />
-Ctr+Shift+p → Markdown All in One: Print current document to HTML</p>
-<h2 id="section-3">リンクの作成</h2>
-<p>HPなどのアドレスをコピーした状態で、テキストを選択してCtr+Vすると、リンクを自動作成してくれます。</p>
-<img src="../img/20210830-MarkDown-AllInOne-4.png" Style="width:100%;max-width:350px;" alt="MarkDownAllInOneリンク作成">  
+<p>以降は、CRC-16-IBMのビット演算方式の計算をC#で実施してみます。<br />
+（Modbus-RTUで使われているものです）</p>
+<h2 id="section">計算コード</h2>
+<pre><code class="language-C#">//CRC計算（CRC16-IBM / 生成多項式:x16+x15+x2+1, initial value is 0xFFFF, 右回り）
+int[] DATA;
+int CRC = 0xffff;
+int CRC16POLY = 0xa001;
+
+foreach (byte i in Data)
+{
+  CRC ^= i;
+  for (var j = 0; j &lt; 8; j++)
+  {
+    if ((CRC &amp; 1) == 1)
+    {
+      CRC &gt;&gt;= 1;
+      CRC ^= CRC16POLY;
+    }
+    else
+    {
+      CRC &gt;&gt;= 1;
+    }
+  }
+}
+
+//最終的に、CRCに計算結果が代入されています。
+</code></pre>
 <br>
+<p>githubにサンプルコードを上げていますので、よろしければ参照ください。<br />
+<span class="link"></span> <a href="https://github.com/yamaccu/Csharp-CRC16-IBM">github</a></p>
+<br>
+以上です。  
 <br>
 <hr />
 
