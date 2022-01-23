@@ -42,7 +42,7 @@
   <div class="flex-wrap">
     <div>
       <span class="title">
-        TECH NOTES
+        TECH BLOG
       </span>
     </div>
     <div class="ext-link">
@@ -59,7 +59,7 @@
 
 <body class="body-font">
   <div class="post-wrap">
-    <div style="max-width:900px;  overflow-x:hidden; overflow-y:auto;">
+    <div class="body-post">
 
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
         crossorigin="anonymous"></script>
@@ -72,7 +72,7 @@
 
       <br>
       <br>
-<p>2021/11/17</p>
+<p>2021/11/24</p>
 <h1 id="c-statiq-1">C#の静的サイトジェネレータ &quot;Statiq&quot; でブログを書く<br>その1　導入編</h1>
 <hr />
 <h2 id="section">はじめに</h2>
@@ -93,25 +93,25 @@
 私の場合は、「無料であること」、「HTMLの勉強も兼ねたいこと」の2点から、静的サイトのブログを作成することにしました。</p>
 <p>静的サイトジェネレータは、C#を少しだけかじっていましたので、C#製の静的サイトジェネレータであるStatiqを使うことにします。<br />
 また、ホスティングサービスは無料のGithub Pagesを使用します。</p>
-<p>といことで、本サイトでは、Statiqという静的サイトジェネレータ＋github pagesの組み合わせでブログを作っていこうと思います。</p>
+<p>といことで、以降この記事では、Statiqという静的サイトジェネレータ＋github pagesの組み合わせでブログを作っていこうと思います。</p>
 <h2 id="statiq">Statiqの特徴</h2>
-<p>Statiqは、C#で書かれている静的サイトジェネレータです。<br />
+<p>Statiqは、C#で作成されている静的サイトジェネレータです。<br />
 MarkDownもしくはRazor構文で書かれたファイルをHTMLに変換してくれます。</p>
 <p>MarkDownは文章構造を明示的に表現でき、ブログ記事を書きやすいです。<br />
 また、Razor構文はHTMLで書けるのでレイアウトの記述に向いており、静的サイトジェネレータと親和性が高いと感じます。</p>
 <p>つまり、Statiqは記事を書くのにも、レイアウトを作成するのにも、使いやすくてお勧めなのです！</p>
-<h2 id="statiq-1">Statiqの使い方</h2>
+<h2 id="statiq-1">Statiqでブログを作る方法</h2>
 <p>まずは<span class="link"></span> <a href="https://www.statiq.dev/web/">公式ページのQuick Start</a>を一度やることをお勧めします。</p>
-<p>次に、ブログのテーマが用意されているので、適用してみます。<br />
+<p>次に、ブログのテーマが用意されているので、適用していきます。<br />
 適用完了すると、以下のようなブログが作成できます。（Statiqを作っている方のブログです。）</p>
 <p><span class="link"></span> <a href="https://www.daveaglick.com/">参考ブログ</a></p>
-<h2 id="cleanblog">CleanBlogテーマの適用</h2>
+<h3 id="cleanblog">1. CleanBlogテーマの適用</h3>
 <p>Statiqで作成するサイトは初期状態では、ブログのフォーマットにはなっていません。<br />
 Statiqには、ブログを作成するためのテーマがあります。</p>
 <p>公式のQuick Startで作成したフォルダに&quot;theme&quot;フォルダを作成して、中に<span class="link"></span> <a href="https://github.com/statiqdev/CleanBlog">githubのCleanBlogリポジトリ</a>をクローンすると、自動で反映されてブログの形式になります。<br />
 （CleanBlogというものを元に作成しているようです）</p>
 <p>このテーマの使い方はリポジトリのReadMeに書いてありますが、簡単な手順を以降で紹介していきます。</p>
-<h3 id="section-2">記事を書く</h3>
+<h3 id="section-2">2. 記事を書く</h3>
 <p>MarkDownで書きます。<br />
 MarkDownの書き方は<span class="link"></span> <a href="/tils/20210816-MarkDown-tips">こちら</a>にメモしています。</p>
 <p>記事を書いたら、文章の一番上に下記のようなヘッダを追記します。
@@ -125,20 +125,20 @@ Tags:                              //ブログのタグ（複数設定可）
 ---
 </code></pre>
 <p>そして、&quot;input&quot;フォルダとその配下に&quot;posts&quot;フォルダを作成し、書いたmdファイルを保存します。</p>
-<h3 id="section-3">固定ページを作る</h3>
+<h3 id="section-3">3. 固定ページを作る</h3>
 <p>プライバシーポリシーなどの固定ページを作成するには、inputフォルダ直下にMarkDownファイルを保存します。<br />
 そうすると、ページ上部のタブにリンクが追加されます。</p>
-<h3 id="statiq-2">Statiqの設定</h3>
+<h3 id="statiq-2">4. Statiqの設定</h3>
 <p>設定は設定ファイルで変えることができます。<br />
 theme→settings.ymlが設定ファイルです。</p>
 <p>設定できる項目は、<span class="link"></span> <a href="https://www.statiq.dev/web/configuration/settings">公式HP</a>を参照ください。<br />
 設定例は、<span class="link"></span> <a href="https://github.com/statiqdev/statiqdev.github.io/blob/develop/settings.yml">こちら</a>にあります。</p>
 <p>設定例にあるように、&quot;Host&quot;と&quot;LinksUseHttps&quot;を設定しないとSitemapが正しく出力されませんので、設定をおすすめします。<br />
 （ここでちょっとはまりました）</p>
-<h3 id="css">cssの変更・追加</h3>
+<h3 id="css">5. cssの変更・追加</h3>
 <p>cssを変更・追加したい場合は、input→scss→_overrides.scssにcssを記述します。<br />
 ここに記述されたcssは、従来のものに上書きされます。</p>
-<h3 id="html">HTMLへの変換</h3>
+<h3 id="html">6. HTMLへの変換</h3>
 <p>コンソール（コマンドプロンプトもしくはPowerShell）でdotnet run を実行すると、outputフォルダにHTMLを出力してくれます。</p>
 <p>実際のサイトを確認するには、コンソールでdotnet run -- preview を実行します。<br />
 すると、ブラウザでhttp://localhost:5080 にアクセスすることで作成したサイトを確認できます</p>
@@ -151,9 +151,9 @@ theme→settings.ymlが設定ファイルです。</p>
 ├─ output　　　　　　←HTML出力<br />
 ├─ Program.cs<br />
 └─ xxxx.csproj</p>
-<h3 id="sitemap">sitemapの作成</h3>
+<h3 id="sitemap">7. sitemapの作成</h3>
 <p>dotnet runを実行したときに、outputフォルダに自動出力されます。</p>
-<h3 id="headscriptgoogle-analytics">HEADへのScript追加（google analyticsなど）</h3>
+<h3 id="headscriptgoogle-analytics">8. HEADへのScript追加（google analyticsなど）</h3>
 <p>theme→input内の_head.cshtmlファイルで、&lt;HEAD&gt;へのスクリプト追加ができます。<br />
 google analyticsなどのスクリプトを追加したいときは、_head.cshtmlにスクリプトをコピペすると、全ページの&lt;HEAD&gt;に追加されます。</p>
 <br>
@@ -197,7 +197,7 @@ MarkDownで記事を書いてpostsフォルダに追加していけば、どん�
     <div class="adslot_1" style="flex-grow: 1;">
       <div style="margin-left:50px;">
 
-        Tech Notes Index
+        Tech Blog Index
 
         <ul>
 

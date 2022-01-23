@@ -75,6 +75,19 @@ a{
     left:7px;
   }
 
+.body-about{
+  max-width:850px; 
+  margin-left: 50px;
+}
+
+.body-post{
+  max-width:900px;
+  overflow-x:hidden; 
+  overflow-y:auto; 
+  margin-left: 50px;
+}
+
+
 .image-star{
   height:36px;
   margin:0 8px;
@@ -96,6 +109,12 @@ a{
 @media (max-width: 768px) {
   .post-wrap{
     flex-wrap: wrap;
+  }
+  .body-post{
+    margin-left: 0px;
+  }
+  .body-about{
+    margin-left:0px;
   }
 }
 
