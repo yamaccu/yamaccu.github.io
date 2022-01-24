@@ -180,7 +180,12 @@ background: snow;
 	background: #E6FFE9;
   border-radius: 30px;
   padding-left: 10px;
-  left: 30px;
+  left: 20px;
+  margin-left:15px; 
+  display:flex; 
+  align-items:center; 
+  color:dimgray;
+  max-width: calc(100vw - 510px);
 }
 
 .comment_books:before{
@@ -193,29 +198,6 @@ background: snow;
   border-top: 13px solid transparent;
   border-right: 26px solid #E6FFE9;
   border-bottom: 13px solid transparent;
-}
-
-.arrow_box:after, .arrow_box:before {
-	right: 100%;
-	top: 50%;
-	border: solid transparent;
-	content: "";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
-
-.arrow_box:after {
-	border-color: rgba(237, 237, 237, 0);
-	border-right-color: #ededed;
-	border-width: 30px;
-	margin-top: -30px;
-}
-.arrow_box:before {
-	border-color: rgba(145, 169, 184, 0);
-	border-right-color: dimgray;
-	margin-top: -36px;
 }
 
 @media (max-width: 768px) {
@@ -231,5 +213,9 @@ background: snow;
     left:5px;
     width: calc(100vw - 5px);
     height: calc(100vh - 130px);
+  }
+
+  .comment_books {
+    max-width: calc(100vw - 190px)
   }
 }
