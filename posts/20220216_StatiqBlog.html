@@ -1,0 +1,262 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Statiq&#x3067;&#x30D6;&#x30ED;&#x30B0;&#x4F5C;&#x6210; | yokuaru Tech notes</title>
+
+  <link href="/scss/posts.css" rel="stylesheet" type="text/css">
+  <link href="/scss/prism.css" rel="stylesheet" type="text/css">
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
+    data-no-mirror></script>
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+
+  <script data-ad-client="ca-pub-2127299793131419" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-197465108-1');
+  </script>
+
+  <meta property="og:title" content="Statiq&#x3067;&#x30D6;&#x30ED;&#x30B0;&#x4F5C;&#x6210;" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yamaccu.github.io/posts/20220216_StatiqBlog" />
+  <meta property="og:site_name" content="yokuaru Tech notes" />
+  <meta property="og:locale" content="ja_JP" />
+
+</head>
+
+<header style="background-image:url('/img/main2.png')">
+  <div class="flex-wrap">
+    <div>
+      <span class="title">
+        TECH BLOG
+      </span>
+    </div>
+    <div class="ext-link">
+      <a href="/"><img src="/img/home.png" class="ext-link-icon"
+          alt="homeへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"
+          alt="twitterへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"
+          alt="githubへのリンク"></a>
+    </div>
+  </div>
+  <br>
+</header>
+
+<body class="body-font">
+  <div class="post-wrap">
+    <div class="body-post">
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle adslot_2" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+      <br>
+      <br>
+<p>2022/2/16</p>
+<h1 id="c-statiq">C#の静的サイトジェネレータ &quot;Statiq&quot; でブログを書く</h1>
+<hr />
+<h2 id="section">はじめに</h2>
+<p>この度、ソフトウェアの勉強のためにブログを作りました。<br />
+エンジニアがブログを作ると、以下のようなメリットがあるらしいです。</p>
+<ul>
+<li>スキルが定着する</li>
+<li>文章力があがる</li>
+<li>収益が出る（らしい）</li>
+</ul>
+<p>ただ、ブログを作ろう！といっても、やり方がいろいろあると思います。<br />
+まずはブログを作る方法を考えてみます。</p>
+<h2 id="section-1">ブログを作る方法</h2>
+<p>調べたところ、3通りあります。</p>
+<ul>
+<li>ブログサービスを利用： はてなブログなど</li>
+<li>動的サイト作成： WordPress＋レンタルサーバーなど</li>
+<li>静的サイト作成： 静的サイトジェネレータ＋ホスティングサービスなど</li>
+</ul>
+<p>それぞれメリット・デメリットあります。<br />
+私の場合は、「無料であること」、「HTMLの勉強も兼ねたいこと」の2点から、静的サイトのブログを作成することにしました。</p>
+<p>静的サイトジェネレータは、C#を少しだけかじっていましたので、C#製の静的サイトジェネレータであるStatiqを使うことにします。<br />
+また、ホスティングサービスは無料で使えて広告も貼れるGithub Pagesを使用します。</p>
+<p>といことで、この記事では、「Statiqという静的サイトジェネレータ」＋「github pages」の組み合わせでブログを作っていこうと思います。</p>
+<h2 id="statiqget-started">Statiqの特徴とGet Started</h2>
+<p>Statiqはマイナーなのかネットに情報があまりないようです。<br />
+とりあえず、簡単な紹介と導入方法をQiitaに投稿してみました。<br />
+Statiqのブログテーマを適用してブログを書く方法です。</p>
+<p>りんく準備中</p>
+<p>この記事では、サイトにオリジナリティを出すために、ブログテーマを使わないで独自のサイトの作成にチャレンジしていきます。</p>
+<h2 id="layout">layoutと記事について</h2>
+<p>Statiqでは、layoutと記事でファイルが別となります。<br />
+layoutファイルを一つ作って、複数の記事へ適用することができます。</p>
+<p>layoutはRazor構文で作成します。<br />
+Razor構文とは、HTML上にC#を埋め込んで実行するプログラミング構文です。<br />
+layoutとして作成したファイルは、ファイル名の先頭にアンダーバー(_)をつけます。<br />
+これをつけることで、記事として認識されなくなります。</p>
+<p>例）_layout.cshtml</p>
+<p>記事へのlayoutの適用は、Metadata上で設定します。<br />
+Metadataの設定方法はたくさんあるのですが、以下の3つのうち、どれかで行えば十分かと思います。</p>
+<ul>
+<li>Front matter　⇒記事ごとに設定する。</li>
+<li>Directory metadata　⇒ディレクトリごとに設定する</li>
+<li>Configuration files　⇒すべてのファイルに設定する</li>
+</ul>
+<p>詳細は以下を参照ください。</p>
+<p><span class="link"></span><a href="https://www.statiq.dev/web/content-and-data/metadata/">公式サイト MetaData</a></p>
+<p>layoutファイル内で「&#64;RenderBody()」と記述すると、その部分に記事が呼び出されます。</p>
+<h2 id="archive">Archive機能について</h2>
+<p>Archive機能は、Statiqでブログを作るうえで重要な機能です。<br />
+一言でいうと<br />
+「記事をタグで整理して、インデックスを作ってくれる」<br />
+機能です。</p>
+<p>cshmtlファイルのFront Matterに、”ArchiveSources”で記事を保存しているフォルダを指定し、”ArchiveKey”でタグを設定すると、指定したフォルダ内の記事をタグでまとめて以下のHTMLを出力してくれます。</p>
+<ul>
+<li>タグを列挙したHTML　（&lt;archiveファイル名.html&gt;）</li>
+<li>タグごとの記事を列挙したHTML　（&lt;archiveファイル名/tag名&gt;.html）</li>
+</ul>
+<p>出力HTML例</p>
+<img src="../img/20220216_statiqblog-1.png" Style="height:auto;width:100%;max-width:400px;margin:0 5px 5px 0;vertical-align:top" alt="tagを列挙したHTML">
+<img src="../img/20220216_statiqblog-2.png" Style="width:100%;max-width:400px;" alt="tagごとの記事を列挙したHTML">
+<br>
+<p>ファイルの例</p>
+<pre><code class="language-C#">ArchiveSources: posts/*
+ArchiveKey: Colors
+---
+
+&#64;if (Document.ContainsKey(Keys.GroupKey))
+{
+    &lt;!-- Render a group page --&gt;
+    &#64;foreach (IDocument document in Document.GetChildren())
+    {
+        &lt;p&gt;&#64;Html.DocumentLink(document)&lt;/p&gt;
+        &#64;Html.Raw(document.GetString(Keys.Excerpt))
+    }
+}
+else
+{
+    &lt;!-- Render an index page --&gt;
+    &#64;foreach (IDocument document in Document.GetChildren())
+    {
+        &lt;p&gt;&#64;Html.DocumentLink(document)&lt;/p&gt;
+    }
+}
+</code></pre>
+<p>↓↓図解するとこのようなイメージです。</p>
+<img src="../img/20220216_statiqblog-3.png" Style="width:100%;max-width:600px;" alt="statiq archiveの図解">
+<p>この機能を利用することで、ブログのタグ構造をつくることができます。</p>
+<h2 id="achive">Achiveの子記事へのアクセス</h2>
+<p>上記のファイル例で、インデックスを作成するのに以下のコードを記述しています。</p>
+<pre><code class="language-C#">&#64;foreach (IDocument document in Document.GetChildren())
+{
+}
+</code></pre>
+<p>&#64;Document.GetChildren で、ツリー構造の配下の記事を取得できます。<br />
+それをforeachでひとつづつ取り出して処理しています。</p>
+<img src="../img/20220216_statiqblog-4.png" Style="width:100%;max-width:500px;" alt="statiq GetChildrenの図解">
+<h2 id="metadata">MetaDataへのアクセス</h2>
+<p>Razor構文内で&#64;Documentを使用することで、記事のMetaDataへアクセスすることができます。<br />
+例えば以下のような感じです。</p>
+<ul>
+<li>&#64;Document.GetString(&quot;Title&quot;)　⇒　記事のタイトル</li>
+<li>&#64;Document.GetString(&quot;Published&quot;)　⇒　記事の公開日</li>
+</ul>
+<p>layoutファイルを多数の記事に適用するときに、記事ごとに表示を変えたいときなどに使用します。<br />
+例えば、タイトルは以下のようにすると、記事ごとのMetaDataにあるTitleを表示できます。</p>
+<pre><code class="language-C#">&lt;title&gt;&#64;Document.GetString(&quot;Title&quot;) &lt;/title&gt;
+</code></pre>
+<h2 id="section-2">サンプルを作ってみた</h2>
+<p>以上の情報を使って、ものすごいザックリなサンプルを作ってみました。<br />
+記事はStatiqの <span class="link"></span><a href="https://github.com/statiqdev/Statiq.Web/tree/main/examples/Statiq.Web.Examples">公式example</a> から拝借しました。</p>
+<p><span class="link"></span><a href="https://github.com/yamaccu/Statiq-test">サンプル（github）</a></p>
+<p>ちなみに、本サイトもStatiqで作成しています。</p>
+<h2 id="section-3">まとめ</h2>
+<p>静的サイトジェネレータは、以前はPhtyon製のPelicanというものを使っていましたが、Statiqの方がページの自由度が高く使いやすいと感じています。<br />
+Statiq、お勧めですので是非使ってみてください。</p>
+<p>Statiqでブログを作って公開してから半年になりますが、感じたことは</p>
+<ul>
+<li>記事を書くと知識が整理されて良いし、オンラインで見れるメモとして使える</li>
+<li>文章力はあがる</li>
+<li>収益はでない（今のところ月収30円程度。。）</li>
+</ul>
+<p>というような感じで、勉強にはなるかなと思っています。<br />
+また、静的サイトジェネレータは一度環境を作ってしまえば、あとはMarkDownで記事を書くだけで公開していけるのでお手軽です。<br />
+このままブログを続けていけたらと思います。</p>
+<br>
+<p>以上です。</p>
+<br>
+<br>
+<hr />
+
+
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+      <script src="https://utteranc.es/client.js" repo="yamaccu/yamaccu.github.io" issue-term="pathname"
+        theme="github-light" crossorigin="anonymous" async>
+        </script>
+
+    </div>
+    <div class="adslot_1" style="flex-grow: 1;">
+      <div style="margin-left:50px;">
+
+        Tech Blog Index
+
+        <ul>
+
+              <li><a href="/posts/20220216_StatiqBlog">Statiq&#x3067;&#x30D6;&#x30ED;&#x30B0;&#x4F5C;&#x6210;</a></li>
+        </ul>
+
+        <br>
+
+        <script async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+          data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br>
+        <br>
+
+        <script async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+          data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
