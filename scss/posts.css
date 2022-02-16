@@ -42,7 +42,7 @@ a{
 .post-wrap{
   display: flex;
   flex-wrap: nowrap;
-  
+  justify-content:center;
 }
 
 .link{
