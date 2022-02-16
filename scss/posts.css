@@ -85,6 +85,7 @@ a{
   overflow-x:hidden; 
   overflow-y:auto; 
   margin-left: 50px;
+  flex-grow: 1;
 }
 
 
