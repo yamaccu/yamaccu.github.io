@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>HTML div&#x8981;&#x7D20;&#x3067;&#x56F3;&#x5F62;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B; | yokuaru Tech notes</title>
+  <title>&#x30D3;&#x30B8;&#x30CD;&#x30B9;&#x66F8; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -32,9 +32,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="HTML div&#x8981;&#x7D20;&#x3067;&#x56F3;&#x5F62;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;" />
+  <meta property="og:title" content="&#x30D3;&#x30B8;&#x30CD;&#x30B9;&#x66F8;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210821-HTML-figure" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/books-business" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -189,106 +189,123 @@
         </script>
         <br>
 
-      <p>2021/08/21</p>
-<h1 id="htmldiv">HTMLのdiv要素を使ってブラウザに図形を表示させる</h1>
-<hr />
-<p>HTMLで図形を表示させるとき、div要素を使うことができます。<br />
-div要素のサイズを指定して、色を付けてあげれば図形になります。</p>
-<h2 id="section">四角と丸</h2>
-<div style="height:50px;width:50px;background:black;"></div>
-<div style="height:50px;width:50px;background:black;border-radius:50px;"></div>
-<pre><code class="language-C#">(HTML)
-&lt;div class=&quot;square&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;circle&quot;&gt;&lt;/div&gt;
+      
+<h1>ビジネス書</h1>
+<p>読んで良かったビジネス書を、3行で紹介しています。</p>
 
-(CSS)
-.square {
-  width: 50px;
-  height: 50px;
-  background: black;
-}
-.circle {
-  width: 50px;
-  height: 50px;
-  background: black;
-  border-radius: 50px;
-}
-</code></pre>
-<h2 id="section-1">複雑な形の図形</h2>
-<p>疑似要素（before / after）を使います。<br />
-疑似要素とは、HTMLの要素に対して、CSSで要素を追記できる方法です。<br />
-これを使えば、作った図形に2つまで図形の追加ができます。<br />
-（合計3つの図形を一つのDiv内に作れる）</p>
-<p>お試しでハンバーガーメニューマークを作ってみます。</p>
-<div class="menu2"></div>
-<pre><code class="language-C#">(HTML)
-&lt;div class=&quot;menu&quot;&gt;&lt;/div&gt;
 
-(CSS)
-.menu{
-  height:30px;
-  width:30px;
-  position:relative;
-  top:10px;
-  margin-right:5px;
-  display:none;
-}
-  .menu::before{
-    content: &quot;&quot;;
-    display: block;
-    position: relative;
-    width: 20px;
-    height: 2px;
-    top: 6px;
-    left: 2px;
-    box-shadow: 0px 6px dimgray, 0px 12px dimgray;
-  }
-</code></pre>
-<h2 id="span">spanでの図形表示</h2>
-<p>divを使うと前後に改行が入ります。<br />
-改行させたくない場合は、&lt;span&gt;を使用します。
-その場合、cssに&quot;display: inline-block;&quot;を追加すると、divと同じように図形を表示させることができます。</p>
-<p>お試しでリンクマークを作ってみます。</p>
-<p><span class="link"></span>テスト</p>
-<pre><code class="language-C#">(HTML)
-&lt;span class=&quot;link&quot;&gt;&lt;/span&gt;
+<h2>ロジカルシンキング</h2>
 
-.link{
-  display: inline-block;
-  position:relative;
-  height:10px;
-  width:10px;
-  top:2px;
-  border:solid 2px gray;
-  margin-right:4px;
-}
-  .link:after{
-    content:'';
-    position:absolute;
-    height:12px;
-    width:2px;
-    top:-4px;
-    left:7px;
-    transform:rotate(45deg);
-  }
-  .link:before{
-    content:'';
-    position:absolute;
-    height:0px;
-    width:0px;
-    border-left: 8px solid white;
-    border-top: 8px solid gray;
-    top:-5px;  
-    left:7px;
-  }
-</code></pre>
-<h2 id="url">参考URL</h2>
-<p><span class="link"></span> <a href="https://qiita.com/yaegaki/items/a1e518d16be9b85479b4">qiita CSSで作図する</a></p>
-<p><span class="link"></span> <a href="https://morobrand.net/mororeco/web/css/css-shape/">CSSでいろんなカタチを表現してみる</a></p>
-<p><span class="link"></span> <a href="https://saruwakakun.com/html-css/basic/before-after">CSSの疑似要素とは？beforeとafterの使い方まとめ</a></p>
+<div style="display:flex; flex-wrap:nowrap; margin:10px 0;">
+<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2FB00978ZQOG" rel="nofollow" referrerpolicy="no-referrer-when-downgrade">
+<img src="https://images-fe.ssl-images-amazon.com/images/I/51jO2xczS-L._SL160_.jpg" alt="" style="border: none;" />
+</a>
+<img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" alt="" width="1" height="1" style="border: 0px;" />
+<div class="comment_books">
+    ロジカルシンキングの基礎の基礎<br>
+    ロジカルな意思疎通、ロジカルな思考方法が学べる<br>
+    読んだ内容はすべての業務に適用が可能
+  </div>
+</div>
+<br>
+
+<h2>プロジェクトマネジメント</h2>
+
+<div style="display:flex; flex-wrap:nowrap; margin:10px 0;">
+<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4862806430" rel="nofollow" referrerpolicy="no-referrer-when-downgrade">
+<img src="https://images-fe.ssl-images-amazon.com/images/I/51O5nWWBGJL._SL160_.jpg" alt="" style="border: none;" />
+</a>
+<img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" alt="" width="1" height="1" style="border: 0px;" />    
+<div class="comment_books">
+    プロジェクトマネジメントを一通り解説している<br>
+    平易な言葉でわかりやすい<br>
+    プロマネの最初の1冊として最適
+  </div>
+</div>
+<br>
+
+
+<h2>時間管理</h2>
+
+<div style="display:flex; flex-wrap:nowrap; margin:10px 0;">
+<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4788907550" rel="nofollow" referrerpolicy="no-referrer-when-downgrade">
+<img src="https://images-fe.ssl-images-amazon.com/images/I/41qglkQH2zL._SL160_.jpg" alt="" style="border: none;" />
+</a>
+<img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" alt="" width="1" height="1" style="border: 0px;" />  
+<div class="comment_books">
+    これ以上ないくらいシンプルな時間管理術<br>
+    タスクを分解して自分のリソースに組み込む簡単な方法<br>
+    続けるコツやプロジェクトマネジメントについても記述もあり
+  </div>
+</div>
+<br>
+<hr>
+
+<div style="display:flex; flex-wrap:nowrap; margin:10px 0;">
+<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2FB00BG1CA96" rel="nofollow" referrerpolicy="no-referrer-when-downgrade">
+<img src="https://images-fe.ssl-images-amazon.com/images/I/51ZwmxI9xhL._SL160_.jpg" alt="" style="border: none;" />
+</a>
+<img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" alt="" width="1" height="1" style="border: 0px;" />
+<div class="comment_books">
+    マネージャー向けの時間管理術<br>
+    問題をサルに例えてわかりやすく解説<br>
+    サル（問題）を部下にお世話させる方法が書かれている
+  </div>
+</div>
+<br>
+
+<h2>マーケティング</h2>
+
+<div style="display:flex; flex-wrap:nowrap; margin:10px 0;">
+<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2FB07P6XKQ14" rel="nofollow" referrerpolicy="no-referrer-when-downgrade">
+<img src="https://images-fe.ssl-images-amazon.com/images/I/51rhY2nttBL._SL160_.jpg" alt="" style="border: none;" />
+</a>
+<img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" alt="" width="1" height="1" style="border: 0px;" />
+<div class="comment_books">
+    スマートニュースのマーケターが書いた本<br>
+    N1分析、顧客ピラミッド、9セグマップなどの独自ツールの解説<br>
+    作者の体験談を通してマーケティングの基礎から応用まで学べる
+  </div>
+</div>
+<br>
+
+<h2>その他</h2>
+
+<div style="display:flex; flex-wrap:nowrap; margin:10px 0;">
+<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4872905245" rel="nofollow" referrerpolicy="no-referrer-when-downgrade">
+<img src="https://images-fe.ssl-images-amazon.com/images/I/51X9JOAtTIL._SL160_.jpg" alt="" style="border: none;" />
+</a>
+<img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" alt="" width="1" height="1" style="border: 0px;" />
+<div class="comment_books">
+    ケーキ屋店長の立場で様々な問題に対処するケーススタディ本<br>
+    正しい判断、案件処理方法を学べる<br>
+    ストーリー仕立てになっていて読みやすい
+  </div>
+</div>
+<br>
+
+
 <br>
 <br>
-<hr />
+<!--
+
+<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4873115655" 
+   rel="nofollow" referrerpolicy="no-referrer-when-downgrade">
+  <div style="display:flex; flex-wrap:nowrap; margin:10px 0;">
+    <img src="https://images-fe.ssl-images-amazon.com/images/I/51MgH8Jmr3L._SL160_.jpg" 
+         alt="" style="border: none;" />
+    <br>
+    <div style="margin-left:15px; display:flex; align-items:center;">
+      aaaaa
+    </div>
+  </div>
+</a>
+<img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" 
+     alt="" width="1" height="1" style="border: 0px;" />
+
+<hr>
+-->
+
 
 
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
