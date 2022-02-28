@@ -73,6 +73,10 @@
           <summary class="side-summary">Csharp</summary>
             <div class="side-content">
               -
+              <a href="/tils/20220228-Csharp-Array">C#&#x306E;&#x914D;&#x5217;&#x307E;&#x3068;&#x3081;</a><br>
+            </div>
+            <div class="side-content">
+              -
               <a href="/tils/20211214-Csharp-CRC">C#&#x3067;CRC&#x3092;&#x8A08;&#x7B97;&#x3059;&#x308B;</a><br>
             </div>
         </details>
@@ -201,7 +205,7 @@ LCDが標準装備なのが一番の特徴かと思います。<br />
 <p>参考　<span class="link"></span><a href="https://m5stack.com/">公式HP</a></p>
 <h2 id="uiflow">UIFLOWについて</h2>
 <p>UIFLOWとは、M5Stackのプログラミング環境の一つで、スクラッチのようにビジュアルプログラミングでM5Stackのコードが書ける優れものです。<br />
-更にwebベースでプログラミングできるので、プログラム環境の準備がお手軽です。<br />
+更にwebベースでプログラミングできるので、プログラム環境の準備がいりません。<br />
 使い方、プログラミングの仕方などは下記のHPを参照ください。</p>
 <p>参考1 <span class="link"></span> <a href="https://m5stack.github.io/UIFlow_doc/ja/">公式HP</a><br />
 参考2 <span class="link"></span> <a href="https://flow.m5stack.com/">プログラミングページ</a></p>
@@ -220,10 +224,31 @@ LCDが標準装備なのが一番の特徴かと思います。<br />
 </ol>
 <h3 id="python">1. Pythonでプログラムを書く</h3>
 <p>まずはブロック化したい機能のプログラムをpythonで書きます。<br />
-処理は関数にして呼び出しできるようにしておきます。</p>
+以下のように処理はdefで定義して、関数として呼び出しできるようにしておきます。</p>
+<pre><code class="language-C#">from machine import I2S
+from wav import wave
+
+def playwav(filePath,volume):
+    wav = wave.open(filePath)
+    i2s = I2S(mode=I2S.MODE_MASTER | I2S.MODE_TX | I2S.MODE_DAC_BUILT_IN)
+    i2s.set_dac_mode(i2s.DAC_RIGHT_EN)
+    i2s.sample_rate(wav.getframerate())
+    i2s.bits(wav.getsampwidth() * 8)
+    i2s.nchannels(wav.getnchannels())
+    i2s.volume(volume)
+    while True:
+        data = wav.readframes(256)
+        if len(data) &gt; 0:
+            i2s.write(data)
+        else:
+            wav.close()
+            i2s.deinit()
+            break
+</code></pre>
 <h3 id="section-2">2. 初期設定用のブロックを作る</h3>
 <p>import、defを行うブロックを作成します。<br />
-このブロックは最初のsetupで実行するものです。</p>
+このブロックは最初のsetupで実行するものです。<br />
+1章で作ったようなプログラムをBlock Code欄へ丸コピします。</p>
 <div style="display:flex;flex-wrap:wrap">
 <div>
 <img src="../img/20210823-UIFLOW-CustomBlock-2.png" Style="width:100%;max-width:420px;margin-right:5px;" alt="UIFlowBlockMaker 初期設定ブロック作成">  

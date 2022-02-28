@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>micropython&#x306B;repl&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9; | yokuaru Tech notes</title>
+  <title>C#&#x306E;&#x914D;&#x5217;&#x307E;&#x3068;&#x3081; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -32,9 +32,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="micropython&#x306B;repl&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9;" />
+  <meta property="og:title" content="C#&#x306E;&#x914D;&#x5217;&#x307E;&#x3068;&#x3081;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210818-Micropython-repl" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220228-Csharp-Array" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -193,57 +193,174 @@
         </script>
         <br>
 
-      <p>2021/8/18</p>
-<h1 id="micropythonrepl">micropythonにreplでアクセスする</h1>
+      <br>
+<p>2022/2/28</p>
+<h1 id="c">C#の配列まとめ</h1>
 <hr />
-<p>replとは、repl：「Read（読み取り）、Eval（評価）、Print（印字）、Loop（ループ）」の頭字語です。<br />
-micropython上でコマンドを実行できる仕組みで、コマンドプロンプトのようなイメージです。<br />
-コードをテストするときに、コマンドを一つずつ実行できるので便利です。</p>
-<p>参考　<span class="link"></span><a href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html">micropython公式</a></p>
-<h2 id="section">アクセス方法</h2>
-<p>デバイスのシリアルポートに、シリアル通信アプリ（teratermなど）で接続します。<br />
-通信速度は115200bpsです。<br />
-CTR+Cを二回で、mainで実行している処理を中止してreplで操作可能になります。</p>
-<h2 id="section-1">コマンド</h2>
+<p>C#の配列についてまとめました。<br />
+大量のデータを扱うときに、多次元配列やジャグ配列を使用すると便利です。</p>
+<h2 id="section">普通の配列</h2>
+<p>説明は省略。</p>
+<pre><code class="language-C#">//① 普通に宣言
+int[] a = new int[]{0,1,2,3,4};
+
+//② 暗黙的に宣言
+var a = new []{0,1,2,3,4};
+
+//③ 値 All 0で宣言
+int[] a = new int[5];
+</code></pre>
+<h2 id="section-1">2次元配列</h2>
+<p>x方向、y方向の平面に値を保存するイメージです。</p>
+<pre><code class="language-C#">//① 普通に宣言
+int[,] a = new int[,]
+{
+  {0,1,2},{3,4,5},{6,7,8},{9,10,11},{12,13,14}
+};
+
+//② 暗黙的に宣言
+var a = new[,]
+{
+  {0,1,2},{3,4,5},{6,7,8},{9,10,11},{12,13,14}
+};
+
+//③ 値 All 0で宣言
+int[,] a = new int[5,3];
+</code></pre>
+<p>int[x,y] の値は以下のようになっています。</p>
 <table>
 <thead>
 <tr>
-<th>コマンド</th>
-<th>内容</th>
+<th></th>
+<th>y=0</th>
+<th>y=1</th>
+<th>y=2</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>help()</td>
-<td>ヘルプを表示</td>
+<td>x=0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
 </tr>
 <tr>
-<td>help('modules')</td>
-<td>使用可能なライブラリを表示</td>
+<td>x=1</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
 </tr>
 <tr>
-<td>help(obj)</td>
-<td>調べたいobjectの説明を表示</td>
+<td>x=2</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
 </tr>
 <tr>
-<td>dir()</td>
-<td>import済みのファイル情報の表示</td>
+<td>x=3</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
 </tr>
 <tr>
-<td>sys.path.append('パス')</td>
-<td>import時に探索されるパスを追加</td>
-</tr>
-<tr>
-<td>os.listdir()</td>
-<td>カレントディレクトリのファイルを表示</td>
-</tr>
-<tr>
-<td>tabキー</td>
-<td>入力候補の表示</td>
+<td>x=4</td>
+<td>12</td>
+<td>13</td>
+<td>14</td>
 </tr>
 </tbody>
 </table>
+<h2 id="section-2">ジャグ配列（配列の配列）</h2>
+<p>こちらも平面に値を保存するイメージですが、2次元配列と異なって、y軸方向の配列の長さが変えられます。</p>
+<pre><code class="language-C#">//① 普通に宣言 その1
+int[][] a = new int[3][];
+a[0] = new int[]{0, 1, 2};
+a[1] = new int[]{3, 4};
+a[2] = new int[]{5, 6, 7, 8};
+
+//② 普通に宣言　その2
+int[][] a = 
+{
+  new int[]{0, 1, 2,},
+  new int[]{3, 4},
+  new int[]{5, 6, 7, 8}
+};
+
+//③ 暗黙的に宣言
+var a = new[]
+{
+  new[]{0, 1, 2,},
+  new[]{3, 4},
+  new[]{5, 6, 7, 8}
+};
+
+//④ 値 All 0で宣言
+int[][] a = new int[3][];
+a[0] = new int[3];
+a[1] = new int[2];
+a[2] = new int[4];
+</code></pre>
+<p>int[x,y] の値は以下のようになっています。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>y=0</th>
+<th>y=1</th>
+<th>y=2</th>
+<th>y=3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x=0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>xxx</td>
+</tr>
+<tr>
+<td>x=1</td>
+<td>3</td>
+<td>4</td>
+<td>xxx</td>
+<td>xxx</td>
+</tr>
+<tr>
+<td>x=2</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h2 id="section-3">配列へのアクセス時の便利機能</h2>
+<p>以下、配列の中身を取り出す際に、便利な方法です。</p>
+<h3 id="section-4">配列の範囲アクセス</h3>
+<p>a[i..j]と記述することで、配列のi番目からj番目を指定して取り出すことができます。</p>
+<pre><code class="language-C#">var a = new[] { 1, 2, 3, 4, 5 };
+var b = a[1..^1];
+</code></pre>
+<p>これで、配列bは、配列a[1]～a[3]の値を代入され、{2, 3, 4}となります。<br />
+^1は、後ろから数えて2番目を表しています。（1番目は^0）</p>
+<h3 id="foreach">多次元配列のforeach</h3>
+<p>多次元配列にforeachでアクセスする場合、多次元ではなく1次元として処理されます。<br />
+つまり、foreach一発で全要素へアクセスすることになります。</p>
+<pre><code class="language-C#">var a = new[,]
+{
+  {0,1,2},{3,4,5},{6,7,8},{9,10,11},{12,13,14}
+};
+
+foreach(var i in a)
+{
+  Console.WriteLine(i);
+}
+
+//上記でaの要素すべてを出力する。0 1 2 3 ・・・ 14 となる。
+</code></pre>
 <br>
+以上です。  
 <br>
 <hr />
 
