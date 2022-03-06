@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>css display:flex&#x307E;&#x3068;&#x3081; | yokuaru Tech notes</title>
+  <title>&#x300C;M5StickC&#x300D;6&#x8EF8;&#x30BB;&#x30F3;&#x30B5;&#x3092;&#x3064;&#x304B;&#x3046; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -32,9 +32,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="css display:flex&#x307E;&#x3068;&#x3081;" />
+  <meta property="og:title" content="&#x300C;M5StickC&#x300D;6&#x8EF8;&#x30BB;&#x30F3;&#x30B5;&#x3092;&#x3064;&#x304B;&#x3046;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20220216-Display-flex" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220307-M5stickc-6jiku" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -197,123 +197,78 @@
         </script>
         <br>
 
-      <p>2022/02/16</p>
-<h1 id="displayflex">display:flexの設定値のまとめ</h1>
+      <p>2022/3/7</p>
+<h1 id="m5stickc6">M5StickCの6軸センサを使う</h1>
 <hr />
-<p>HTMLにおいて、cssの &quot;display:flex&quot; を使うと要素を並列に並べることができます。<br />
-設定値によって色々な並べ方が可能なので、まとめてみました。</p>
-<h2 id="section">基本</h2>
-<div style="height:100px;border:solid 2px lightgray;display:flex;">
-<div style="height:50px;width:100px;background:lightpink;">要素1</div>
-<div style="height:50px;width:100px;background:lightblue;">要素2</div>
-<div style="height:50px;width:100px;background:lightgreen;">要素3</div>
-</div>
-<pre><code class="language-C#">&lt;div style=&quot;display:flex;&quot;&gt;
-  &lt;div&gt;要素1&lt;/div&gt;
-  &lt;div&gt;要素2&lt;/div&gt;
-  &lt;div&gt;要素3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<h2 id="section-1">中央寄せ</h2>
-<div style="height:100px;border:solid 2px lightgray;display:flex; justify-content:center;align-items: center;">
-<div style="height:50px;width:100px;background:lightpink;">要素1</div>
-<div style="height:50px;width:100px;background:lightblue;">要素2</div>
-<div style="height:50px;width:100px;background:lightgreen;">要素3</div>
-</div>
-<pre><code class="language-C#">&lt;div style=&quot;display:flex; justify-content:center; align-items:center;&quot;&gt;
-  &lt;div&gt;要素1&lt;/div&gt;
-  &lt;div&gt;要素2&lt;/div&gt;
-  &lt;div&gt;要素3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<h2 id="section-2">右寄せ</h2>
-<div style="height:100px;border:solid 2px lightgray;display:flex; justify-content:flex-end;align-items:flex-end">
-<div style="height:50px;width:100px;background:lightpink;">要素1</div>
-<div style="height:50px;width:100px;background:lightblue;">要素2</div>
-<div style="height:50px;width:100px;background:lightgreen;">要素3</div>
-</div>
-<pre><code class="language-C#">&lt;div style=&quot;display:flex; justify-content:flex-end; align-items:flex-end;&quot;&gt;
-  &lt;div&gt;要素1&lt;/div&gt;
-  &lt;div&gt;要素2&lt;/div&gt;
-  &lt;div&gt;要素3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<h2 id="section-3">均等スペース　間だけ均等</h2>
-<div style="height:100px;border:solid 2px lightgray;display:flex; justify-content:space-between">
-<div style="height:50px;width:100px;background:lightpink;">要素1</div>
-<div style="height:50px;width:100px;background:lightblue;">要素2</div>
-<div style="height:50px;width:100px;background:lightgreen;">要素3</div>
-</div>
-<pre><code class="language-C#">&lt;div style=&quot;display:flex; justify-content:space-between;&quot;&gt;
-  &lt;div&gt;要素1&lt;/div&gt;
-  &lt;div&gt;要素2&lt;/div&gt;
-  &lt;div&gt;要素3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<h2 id="section-4">均等スペース　全部均等</h2>
-<div style="height:100px;border:solid 2px lightgray;display:flex; justify-content:space-around">
-<div style="height:50px;width:100px;background:lightpink;">要素1</div>
-<div style="height:50px;width:100px;background:lightblue;">要素2</div>
-<div style="height:50px;width:100px;background:lightgreen;">要素3</div>
-</div>
-<pre><code class="language-C#">&lt;div style=&quot;display:flex; justify-content:space-around;&quot;&gt;
-  &lt;div&gt;要素1&lt;/div&gt;
-  &lt;div&gt;要素2&lt;/div&gt;
-  &lt;div&gt;要素3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<h2 id="section-5">最後だけ右寄せ</h2>
-<div style="height:100px;border:solid 2px lightgray;display:flex;">
-<div style="height:50px;width:100px;background:lightpink;">要素1</div>
-<div style="height:50px;width:100px;background:lightblue;">要素2</div>
-<div style="margin-left:auto;height:50px;width:100px;background:lightgreen;">要素3</div>
-</div>
-<pre><code class="language-C#">&lt;div style=&quot;display:flex;&quot;&gt;
-  &lt;div&gt;要素1&lt;/div&gt;
-  &lt;div&gt;要素2&lt;/div&gt;
-  &lt;div style=&quot;margin-left:auto;&quot;&gt;要素3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<h2 id="section-6">スペースを埋める</h2>
-<div style="height:100px;border:solid 2px lightgray;display:flex;">
-<div style="height:50px;width:100px;background:lightpink;flex-grow:1;">要素1</div>
-<div style="height:50px;width:100px;background:lightblue;flex-grow:1;">要素2</div>
-<div style="margin-left:auto;height:50px;width:100px;background:lightgreen;flex-grow:1;">要素3</div>
-</div>
-<pre><code class="language-C#">&lt;div style=&quot;display:flex;&quot;&gt;
-  &lt;div style=&quot;flex-grow:1;&quot;&gt;要素1&lt;/div&gt;
-  &lt;div style=&quot;flex-grow:1;&quot;&gt;要素2&lt;/div&gt;
-  &lt;div style=&quot;flex-grow:1;&quot;&gt;要素3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<h2 id="section-7">一か所だけ幅固定</h2>
-<div style="height:100px;border:solid 2px lightgray;display:flex;">
-<div style="height:50px;width:100px;background:lightpink;flex-basis:100px;">要素1</div>
-<div style="height:50px;width:100px;background:lightblue;flex-grow:1;">要素2</div>
-<div style="margin-left:auto;height:50px;width:100px;background:lightgreen;flex-grow:1;">要素3</div>
-</div>
-<pre><code class="language-C#">&lt;div style=&quot;display:flex;&quot;&gt;
-  &lt;div style=&quot;flex-basis:100px;&quot;&gt;要素1&lt;/div&gt;
-  &lt;div style=&quot;flex-grow:1;&quot;&gt;要素2&lt;/div&gt;
-  &lt;div style=&quot;flex-grow:1;&quot;&gt;要素3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<h2 id="section-8">端までいったら折り返す</h2>
-<div style="height:100px;border:solid 2px lightgray;display:flex; flex-wrap:wrap">
-<div style="height:50px;width:150px;background:lightpink;">要素1</div>
-<div style="height:50px;width:150px;background:lightblue;">要素2</div>
-<div style="height:50px;width:150px;background:lightgreen;">要素3</div>
-</div>
-<pre><code class="language-C#">&lt;div style=&quot;display:flex; flex-wrap:wrap&quot;&gt;
-  &lt;div&gt;要素1&lt;/div&gt;
-  &lt;div&gt;要素2&lt;/div&gt;
-  &lt;div&gt;要素3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+<p> <img src="../img/20220307-M5stickc-6jiku-1.png" width="40px" alt="M5StickCイラスト">
+← M5StickCはこんなやつ。</p>
+<p>M5StickCとは、小型（消しゴムサイズくらい）ながら多機能を備えたマイコンボードです。<br />
+LCD、Wifi、6軸センサなどが搭載されています。</p>
+<h2 id="section">6軸センサについて</h2>
+<p>6軸センサとは、3軸の加速度センサ（x方向、y方向、z方向）と3軸の角速度センサ（x方向、y方向、z方向）が搭載されているセンサです。<br />
+これを使うと、水平方向にどのくらい動いたか、どのくらい回転したか、などを検出することができます。</p>
+<img src="../img/20220307-M5stickc-6jiku-2.png" width="400px" alt="UIFlowでM5StickCの6軸センサの説明の図">
+<p>以降、この6軸センサの使い方を説明していきます。</p>
+<br>
+<p>また、プログラムはUIFlowを使用します。<br />
+UIFlowについてはこちらを参照ください。</p>
+<p><span class="link"></span><a href="https://m5stack.github.io/UIFlow_doc/ja/">UIFlow Use</a><br />
+<span class="link"></span><a href="https://yamaccu.github.io/tils/20210823-UIFLOW-CustomBlock">M5Stack向けのVisual Programming「UIFLOW」でカスタムブロックを作成する</a></p>
+<h2 id="uiflow6">UIFlowで6軸センサの値を取得する</h2>
+<p>まずUIFlowを開きます。<br />
+web版のURLは↓↓です。</p>
+<p><span class="link"></span><a href="https://flow.m5stack.com/">M5Flow</a></p>
+<p>ブロックを選ぶメニューの「ハードウェア」⇒「加速度＆ジャイロ」を開くと、x/y/z それぞれの加速度、角速度のブロックが表示されます。</p>
+<img src="../img/20220307-M5stickc-6jiku-3.png" width="600px" alt="UIFlowでM5StickCの6軸センサの値を取得する図">
+<br>
+<br>
+<p>次に、この加速度、角速度の値をLCDに表示するプログラムを作ります。</p>
+<img src="../img/20220307-M5stickc-6jiku-4.png" width="400px" alt="UIFlowでM5StickCの6軸センサの値をLCDに表示する図">
+<br>
+<br>
+<p>これをM5StickCへ転送すると、画面にx軸方向の加速度が表示されます。<br />
+他のパラメータも同様に表示ができます。</p>
+<img src="../img/20220307-M5stickc-6jiku-5.png" width="200px" alt="UIFlowでM5StickCの6軸センサの値をLCDに表示する写真">
+<h2 id="section-1">加速度の見方</h2>
+<p>何も動かさない状態では、重力のみを検知します。<br />
+重力は1Gです。</p>
+<p><img src="../img/20220307-M5stickc-6jiku-6.png" width="300px" alt="M5StickCの6軸センサの値 加速度x軸方向"><br>
+<img src="../img/20220307-M5stickc-6jiku-7.png" width="150px" alt="M5StickCの6軸センサの値 加速度y軸方向"><br>
+<img src="../img/20220307-M5stickc-6jiku-8.png" width="300px" alt="M5StickCの6軸センサの値 加速度z軸方向"></p>
+<p>M5StickCを振ったりして動かすと、それに応じた加速度が観測できます。<br />
+観測値の単位は「G」です。</p>
+<h2 id="section-2">角速度の見方</h2>
+<p>何も動かさない状態では角速度は0です、と言いたいのですが初期値が0からずれていることが多いようです。<br />
+少しくらいなら気にする必要はないと思いますが、気になる方は0になるよう値をオフセットしておくと良いと思います。</p>
+<img src="../img/20220307-M5stickc-6jiku-9.png" width="150px" alt="M5StickCの6軸センサの値 角速度">
+<p>回転方向に動かすと、それに応じた角速度が観測できます。<br />
+観測値の単位は「dps: degrees per second」です。</p>
+<h2 id="m5stickc">M5StickC購入先</h2>
+<p>秋葉原へ行くと秋月電子やマルツで購入できます。<br />
+また、オンラインですとamazonのスイッチサイエンスショップでも購入できます。</p>
+<!-- START MoshimoAffiliateEasyLink -->
+<script type="text/javascript">
+(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+c.getElementById(a)||(d=c.createElement(f),d.src=g,
+d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20210203","msmaflink");
+msmaflink({"n":"M5StickC Plus","b":"スイッチサイエンス","t":"","d":"https:\/\/m.media-amazon.com","c_p":"","p":["\/images\/I\/41H4Q+Pi1zL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B09MVQD8QJ","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":2,"u_tx":"Amazonで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B09MVQD8QJ","a_id":2991341,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":0}],"eid":"YvUpd","s":"s"});
+</script>
+<div id="msmaflink-YvUpd">リンク</div>
+<!-- MoshimoAffiliateEasyLink END -->
+<h2 id="ic">（参考）6軸センサのIC</h2>
+<p>MPU6886というICが使われています。<br />
+UIFlowを使う場合はICを意識する必要はありませんが、arduinoなどでプログラミングする際はレジスタマップなどを確認すると、更に詳細な制御ができるようになります。<br />
+一応データシートのリンクを載せておきます。</p>
+<p><span class="link"></span><a href="https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/datasheet/core/MPU-6886-000193%2Bv1.1_GHIC_en.pdf">DataSheet</a></p>
+<p>加速度は±2g/±4g/±8g/±16g<br />
+角速度は±250dps/±500dps/±1000dps/±2000dps（dps: degrees per second）
+の測定レンジを設定可能のようです。</p>
+<br>
 <br>
 <p>以上です。</p>
-<br>
-<br>
 <hr />
 
 
