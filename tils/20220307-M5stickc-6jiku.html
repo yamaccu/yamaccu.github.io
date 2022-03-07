@@ -200,14 +200,14 @@
       <p>2022/3/7</p>
 <h1 id="m5stickc6">M5StickCの6軸センサを使う</h1>
 <hr />
-<p> <img src="../img/20220307-M5stickc-6jiku-1.png" width="40px" alt="M5StickCイラスト">
+<p> <img src="../img/20220307-M5stickc-6jiku-1.png" style="max-width:40px;" alt="M5StickCイラスト">
 ← M5StickCはこんなやつ。</p>
 <p>M5StickCとは、小型（消しゴムサイズくらい）ながら多機能を備えたマイコンボードです。<br />
 LCD、Wifi、6軸センサなどが搭載されています。</p>
 <h2 id="section">6軸センサについて</h2>
 <p>6軸センサとは、3軸の加速度センサ（x方向、y方向、z方向）と3軸の角速度センサ（x方向、y方向、z方向）が搭載されているセンサです。<br />
 これを使うと、水平方向にどのくらい動いたか、どのくらい回転したか、などを検出することができます。</p>
-<img src="../img/20220307-M5stickc-6jiku-2.png" width="400px" alt="UIFlowでM5StickCの6軸センサの説明の図">
+<img src="../img/20220307-M5stickc-6jiku-2.png" style="width:100%;max-width:400px" alt="UIFlowでM5StickCの6軸センサの説明の図">
 <p>以降、この6軸センサの使い方を説明していきます。</p>
 <br>
 <p>また、プログラムはUIFlowを使用します。<br />
@@ -219,28 +219,28 @@ UIFlowについてはこちらを参照ください。</p>
 web版のURLは↓↓です。</p>
 <p><span class="link"></span><a href="https://flow.m5stack.com/">M5Flow</a></p>
 <p>ブロックを選ぶメニューの「ハードウェア」⇒「加速度＆ジャイロ」を開くと、x/y/z それぞれの加速度、角速度のブロックが表示されます。</p>
-<img src="../img/20220307-M5stickc-6jiku-3.png" width="600px" alt="UIFlowでM5StickCの6軸センサの値を取得する図">
+<img src="../img/20220307-M5stickc-6jiku-3.png" style="width:100%;max-width:600px" alt="UIFlowでM5StickCの6軸センサの値を取得する図">
 <br>
 <br>
 <p>次に、この加速度、角速度の値をLCDに表示するプログラムを作ります。</p>
-<img src="../img/20220307-M5stickc-6jiku-4.png" width="400px" alt="UIFlowでM5StickCの6軸センサの値をLCDに表示する図">
+<img src="../img/20220307-M5stickc-6jiku-4.png" style="width:100%;max-width:400px" alt="UIFlowでM5StickCの6軸センサの値をLCDに表示する図">
 <br>
 <br>
 <p>これをM5StickCへ転送すると、画面にx軸方向の加速度が表示されます。<br />
 他のパラメータも同様に表示ができます。</p>
-<img src="../img/20220307-M5stickc-6jiku-5.png" width="200px" alt="UIFlowでM5StickCの6軸センサの値をLCDに表示する写真">
+<img src="../img/20220307-M5stickc-6jiku-5.png" style="width:100%;max-width:200px" alt="UIFlowでM5StickCの6軸センサの値をLCDに表示する写真">
 <h2 id="section-1">加速度の見方</h2>
 <p>何も動かさない状態では、重力のみを検知します。<br />
 重力は1Gです。</p>
-<p><img src="../img/20220307-M5stickc-6jiku-6.png" width="300px" alt="M5StickCの6軸センサの値 加速度x軸方向"><br>
-<img src="../img/20220307-M5stickc-6jiku-7.png" width="150px" alt="M5StickCの6軸センサの値 加速度y軸方向"><br>
-<img src="../img/20220307-M5stickc-6jiku-8.png" width="300px" alt="M5StickCの6軸センサの値 加速度z軸方向"></p>
+<p><img src="../img/20220307-M5stickc-6jiku-6.png" style="width:100%;max-width:300px" alt="M5StickCの6軸センサの値 加速度x軸方向"><br>
+<img src="../img/20220307-M5stickc-6jiku-7.png" style="width:100%;max-width:150px" alt="M5StickCの6軸センサの値 加速度y軸方向"><br>
+<img src="../img/20220307-M5stickc-6jiku-8.png" style="width:100%;max-width:300px" alt="M5StickCの6軸センサの値 加速度z軸方向"></p>
 <p>M5StickCを振ったりして動かすと、それに応じた加速度が観測できます。<br />
 観測値の単位は「G」です。</p>
 <h2 id="section-2">角速度の見方</h2>
 <p>何も動かさない状態では角速度は0です、と言いたいのですが初期値が0からずれていることが多いようです。<br />
 少しくらいなら気にする必要はないと思いますが、気になる方は0になるよう値をオフセットしておくと良いと思います。</p>
-<img src="../img/20220307-M5stickc-6jiku-9.png" width="150px" alt="M5StickCの6軸センサの値 角速度">
+<img src="../img/20220307-M5stickc-6jiku-9.png" style="width:100%;max-width:150px" alt="M5StickCの6軸センサの値 角速度">
 <p>回転方向に動かすと、それに応じた角速度が観測できます。<br />
 観測値の単位は「dps: degrees per second」です。</p>
 <h2 id="m5stickc">M5StickC購入先</h2>
