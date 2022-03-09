@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x6700;&#x521D;&#x306B;&#x3084;&#x308B;&#x3053;&#x3068; | yokuaru Tech notes</title>
+  <title>&#x300C;M5StickC&#x300D;SpeakerHat&#x3067;wav&#x3092;&#x518D;&#x751F;&#x3059;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -32,9 +32,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x6700;&#x521D;&#x306B;&#x3084;&#x308B;&#x3053;&#x3068;" />
+  <meta property="og:title" content="&#x300C;M5StickC&#x300D;SpeakerHat&#x3067;wav&#x3092;&#x518D;&#x751F;&#x3059;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210815-Blog-setting" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/202203xx-M5stickc-playwav" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -201,36 +201,100 @@
         </script>
         <br>
 
-      <p>2021/08/15</p>
-<h1 id="section">ブログを作ったら最初にやること</h1>
+      <p>2022/3/10</p>
+<h1 id="m5stickcspeakerhatwav">M5StickCとSpeakerHatでwavを再生する</h1>
 <hr />
-<p>ブログを作ったら最初にやっておいた方が良いことをまとめています。</p>
-<h2 id="google-analytics">Google Analyticsの登録</h2>
-<p>HPへのアクセス状況が確認できるようになります。<br />
-登録が完了したら、トラッキングIDをHTMLの&lt;HEAD&gt;内に追記する必要があります。</p>
-<p>参考<span class="link"></span> <a href="https://blog.siteanatomy.com/register-google-analytics/">Google Analytics登録方法</a></p>
-<h2 id="sitemap">sitemapの作成</h2>
-<p>Google検索にページをヒットさせ易くするためのファイルです。<br />
-作成後、Google Search Consoleに登録します。</p>
-<p>小規模HPには不要のようですが、一応作成しておくとよいです。<br />
-静的サイトジェネレータを使用している場合は、自動で出力してくれるものが多いようです。</p>
-<p>参考<span class="link"></span> <a href="https://ferret-plus.com/curriculums/3580">サイトマップ作成方法</a></p>
-<h2 id="robots.txt">robots.txtの作成</h2>
-<p>sitemapへのリンクファイルです。<br />
-rootディレクトリに、「robots.txt」という名前のファイルを作成して、中身を以下のように記述します。</p>
-<pre><code class="language-C#">User-agent: *
-    Disallow:
-    
-    Sitemap: https://xxxxxxxxx/sitemap.xml
+<p> <img src="../img/20220307-M5stickc-6jiku-1.png" style="max-width:40px;" alt="M5StickCイラスト">
+←M5StickCです</p>
+<p>M5StickCとは、小型（消しゴムサイズくらい）ながら多機能を備えたマイコンボードです。<br />
+M5StickCには「HAT」と呼ばれる拡張モジュールが用意されており、HATを装着することにより、様々な機能を追加できます。<br />
+本記事では、SpeakerHatを使用して、wavファイルを再生していきます。</p>
+<p><span class="link"></span><a href="https://shop.m5stack.com/collections/m5-sensor/HAT">HATの種類</a></p>
+<p>また、プログラムはUIFlowを使用します。<br />
+UIFlowについてはこちらを参照ください。</p>
+<p><span class="link"></span><a href="https://m5stack.github.io/UIFlow_doc/ja/">UIFlow Use</a></p>
+<br>
+<p>※注</p>
+<p>本記事の方法でwav再生できるのは、UIFLOWのバージョンが1.7.5のものになります。<br />
+1.9以上のものはI2Sクラスの中身が異なっており、再生することができませんのでご注意ください。<br />
+詳しくは末尾の &quot;（参考）micropythonについて&quot; を参照ください。</p>
+<h2 id="speakerhat">SpeakerHatについて</h2>
+<img src="../img/20220310-M5stickc-playwav-1.png" Style="width:100%;max-width:150px" alt="SpeakerHatの写真">  
+←Speaker Hatはこんなの  
+<br>
+<p>SpeakerHatの中にはアンプとスピーカーが入っています。<br />
+M5StickCのG26ピン（内蔵DAC出力）から音声信号が出力され、Speaker Hat内のアンプで増幅してスピーカーで音を出します。</p>
+<img src="../img/20220310-M5stickc-playwav-2.png" Style="width:100%;max-width:450px" alt="M5StickCとSpeakerHatの接続ブロック図">  
+<br>
+<br>
+<p>アンプはPAM8303というICを使用しています。<br />
+回路図は↓↓です。<br />
+/SD端子（シャットダウン）がG0に繋がっていて、G0をLowレベルにすると音声出力が止まります。</p>
+<img src="../img/20220310-M5stickc-playwav-3.png" Style="width:100%;max-width:450px" alt="SpeakerHatの回路図">  
+<h2 id="micropythoni2s">micropythonのI2Sクラスについて</h2>
+<p>M5StickCから音声信号を出すために、machineモジュールのI2Sクラスを使用します。<br />
+I2Sクラスの内容および説明は、下記のページが参考になります。</p>
+<p><span class="link"></span><a href="https://lang-ship.com/reference/unofficial/M5StickC_UIFlow/class/machine.I2S/">M5StickC UIFlow非公式日本語リファレンス</a><br />
+<span class="link"></span><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/i2s.html">espressif Inter-IC Sound (I2S)</a></p>
+<p>これらを使ってwavファイルを再生します。</p>
+<h2 id="wav">wavファイルを再生するプログラム</h2>
+<p>wavファイルをM5StickCへアップロードします。<br />
+まず、UIFlowの設定画面でCore2を選択します。(M5StickCの設定だと50kbまでしか転送できないので)</p>
+<p>　<img src="../img/20220310-M5stickc-playwav-4.png" Style="width:100%;max-width:500px" alt="UIFlowでwavファイルをアップロードする説明の図 その1"><br></p>
+<p>その後、MANAGERアイコンをクリックし、wavファイルを転送します。<br />
+画面はCore2になっていますが、ちゃんとM5StickCへファイル転送できます。</p>
+<p>　<img src="../img/20220310-M5stickc-playwav-5.png" Style="width:100%;max-width:500px" alt="UIFlowでwavファイルをアップロードする説明の図 その2"><br>
+　<img src="../img/20220310-M5stickc-playwav-6.png" Style="width:100%;max-width:500px;margin-top:25px;" alt="UIFlowでwavファイルをアップロードする説明の図 その3"><br><br></p>
+<p>wavファイルを再生するには下記のプログラムを実行します。</p>
+<pre><code class="language-python">from machine import I2S
+from wav import wave
+
+wav = wave.open('res/&lt;ファイル名.wav&gt;')
+i2s = I2S(mode=I2S.MODE_MASTER | I2S.MODE_TX | I2S.MODE_DAC_BUILT_IN)
+i2s.set_dac_mode(i2s.DAC_RIGHT_EN)
+i2s.sample_rate(wav.getframerate())
+i2s.bits(wav.getsampwidth() * 8)
+i2s.nchannels(wav.getnchannels())
+i2s.volume(70)
+
+while True:
+    data = wav.readframes(256)
+    if len(data) &gt; 0:
+        i2s.write(data)
+    else:
+        wav.close()
+        i2s.deinit()
+        break
 </code></pre>
-<h2 id="google-search-console-sitemap">Google Search Consoleの登録 / sitemapの登録</h2>
-<p>HPへの流入ルート、検索順位などSEO関連情報が確認できます。</p>
-<p>登録完了したら、サイトマップも登録します。<br />
-登録したては「サイトマップを読み込めませんでした」とエラーが出ますが、しばらく放置しておくと読み込んでくれるようです。</p>
-<p>⇒　3週間後に確認したら、読み込んでいました。</p>
-<p>参考<span class="link"></span> <a href="http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html">Google Serach Console登録方法</a></p>
+<p>UIFlowで実行するには下記のようにします。<br />
+pin0は、SpeakerHat内のアンプのON/OFFをしています。<br />
+wavファイル名を変えるのを忘れずに。</p>
+<p>　<img src="../img/20220310-M5stickc-playwav-7.png" Style="width:100%;max-width:500px" alt="UIFlowでwavファイルをアップロードする説明の図 その3"><br><br></p>
+<p>これをM5StickCへ転送してボタンを押せば、wavファイルを再生できます。</p>
+<h2 id="section">カスタムブロックの作成</h2>
+<p>UIFlowにはブロックを自作する機能があります。<br />
+先ほどのwav再生のプログラムのブロックを作成しておくと、何度も使うときにいちいちコピペしなくて良くなり便利です。<br />
+ブロックの作り方は以下を参照ください。<br />
+例として、wavファイルを再生するブロックの作成方法の説明があります。</p>
+<p><span class="link"></span><a href="https://yamaccu.github.io/tils/20210823-UIFLOW-CustomBlock">M5Stack向けのVisual Programming「UIFLOW」でカスタムブロックを作成する</a></p>
+<h2 id="micropython">（参考）micropythonについて</h2>
+<p>UIFLowはmicropythonをベースに作成されています。<br />
+micropythonとは、pythonをマイコン上で動かせるように最適化したものです。<br />
+主にesp32系のマイコンでよく使われているようです。</p>
+<p>特徴として、pythonで書けるので記述がシンプルになるのと、REPLと呼ばれるインタープリタが使用できデバッグしやすいなどがあります。<br />
+また、オープンソースで以下で公開されています。</p>
+<p><span class="link"></span><a href="https://github.com/micropython/micropython">github micropython</a></p>
+<p>micropythonには、loborisという派生バージョンがあります。<br />
+色々違いはあるのですが、I2Sクラスを使って内蔵DACで音声再生ができる機能が追加されています。</p>
+<p><span class="link"></span><a href="https://github.com/loboris/MicroPython_ESP32_psRAM_LoBo">github MicroPython_ESP32_psRAM_LoBo</a></p>
+<p>UIFlowはver 1.7.5ではloboris版をベースに作成されていますが、最新版ではmainstream版で作成されています。<br />
+mainstream版では、I2Sクラスで内蔵DACから音声データを出力することができません。<br />
+なので、本記事の方法でwavデータを再生することができなくなっています。<br />
+再生する他の方法としては、UIFlowではなくArduinoを使う、外部にI2S対応アンプをつなげるなどがあります。</p>
+<p><span class="link"></span><a href="https://community.m5stack.com/topic/3216/updated-micropython">参考 M5Stack Community</a></p>
 <br>
 <br>
+<p>以上です。</p>
 <hr />
 
 
