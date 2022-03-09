@@ -231,15 +231,15 @@ M5StickCのG26ピン（内蔵DAC出力）から音声信号が出力され、Spe
 回路図は↓↓です。<br />
 /SD端子（シャットダウン）がG0に繋がっていて、G0をLowレベルにすると音声出力が止まります。</p>
 <img src="../img/20220310-M5stickc-playwav-3.png" Style="width:100%;max-width:450px" alt="SpeakerHatの回路図">  
-<h2 id="micropythoni2s">micropythonのI2Sクラスについて</h2>
+<h2 id="uiflowmicropythoni2s">UIFlow(micropython)のI2Sクラスについて</h2>
 <p>M5StickCから音声信号を出すために、machineモジュールのI2Sクラスを使用します。<br />
 I2Sクラスの内容および説明は、下記のページが参考になります。</p>
 <p><span class="link"></span><a href="https://lang-ship.com/reference/unofficial/M5StickC_UIFlow/class/machine.I2S/">M5StickC UIFlow非公式日本語リファレンス</a><br />
 <span class="link"></span><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/i2s.html">espressif Inter-IC Sound (I2S)</a></p>
 <p>これらを使ってwavファイルを再生します。</p>
 <h2 id="wav">wavファイルを再生するプログラム</h2>
-<p>wavファイルをM5StickCへアップロードします。<br />
-まず、UIFlowの設定画面でCore2を選択します。(M5StickCの設定だと50kbまでしか転送できないので)</p>
+<p>まず最初に、wavファイルをM5StickCへアップロードします。<br />
+UIFlowの設定画面でCore2を選択します。(M5StickCの設定だと50kbまでしか転送できないので)</p>
 <p>　<img src="../img/20220310-M5stickc-playwav-4.png" Style="width:100%;max-width:500px" alt="UIFlowでwavファイルをアップロードする説明の図 その1"><br></p>
 <p>その後、MANAGERアイコンをクリックし、wavファイルを転送します。<br />
 画面はCore2になっていますが、ちゃんとM5StickCへファイル転送できます。</p>
@@ -277,6 +277,33 @@ wavファイル名を変えるのを忘れずに。</p>
 ブロックの作り方は以下を参照ください。<br />
 例として、wavファイルを再生するブロックの作成方法の説明があります。</p>
 <p><span class="link"></span><a href="https://yamaccu.github.io/tils/20210823-UIFLOW-CustomBlock">M5Stack向けのVisual Programming「UIFLOW」でカスタムブロックを作成する</a></p>
+<h2 id="m5stickc">M5StickC購入先</h2>
+<p>秋葉原へ行くと秋月電子やマルツで購入できます。<br />
+また、オンラインですとamazonのスイッチサイエンスショップでも購入できます。</p>
+<!-- START MoshimoAffiliateEasyLink -->
+<script type="text/javascript">
+(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+c.getElementById(a)||(d=c.createElement(f),d.src=g,
+d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20210203","msmaflink");
+msmaflink({"n":"M5StickC Plus","b":"スイッチサイエンス","t":"","d":"https:\/\/m.media-amazon.com","c_p":"","p":["\/images\/I\/41H4Q+Pi1zL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B09MVQD8QJ","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":2,"u_tx":"Amazonで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B09MVQD8QJ","a_id":2991341,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":0}],"eid":"YvUpd","s":"s"});
+</script>
+<div id="msmaflink-YvUpd">リンク</div>
+<!-- MoshimoAffiliateEasyLink END -->
+<!-- START MoshimoAffiliateEasyLink -->
+<script type="text/javascript">
+(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+c.getElementById(a)||(d=c.createElement(f),d.src=g,
+d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20210203","msmaflink");
+msmaflink({"n":"M5StickC Speaker Hat（PAM8303搭載）","b":"スイッチサイエンス","t":"M5STACK-SPK-HAT","d":"https:\/\/m.media-amazon.com","c_p":"\/images\/I","p":["\/21UuNuhxH0S._SL500_.jpg","\/31T9KCO8MNL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B07Z4VD4DX","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":2,"u_tx":"Amazonで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B07Z4VD4DX","a_id":2991341,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":1}],"eid":"5eu3P","s":"s"});
+</script>
+<div id="msmaflink-5eu3P">リンク</div>
+<!-- MoshimoAffiliateEasyLink END -->
 <h2 id="micropython">（参考）micropythonについて</h2>
 <p>UIFLowはmicropythonをベースに作成されています。<br />
 micropythonとは、pythonをマイコン上で動かせるように最適化したものです。<br />
