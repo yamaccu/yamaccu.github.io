@@ -255,7 +255,7 @@ i2s.set_dac_mode(i2s.DAC_RIGHT_EN)
 i2s.sample_rate(wav.getframerate())
 i2s.bits(wav.getsampwidth() * 8)
 i2s.nchannels(wav.getnchannels())
-i2s.volume(70)
+i2s.volume(50)
 
 while True:
     data = wav.readframes(256)
@@ -268,7 +268,7 @@ while True:
 </code></pre>
 <p>UIFlowで実行するには下記のようにします。<br />
 pin0は、SpeakerHat内のアンプのON/OFFをしています。<br />
-wavファイル名を変えるのを忘れずに。</p>
+wavファイル名指定のところを変えるのを忘れずに。</p>
 <p>　<img src="../img/20220310-M5stickc-playwav-7.png" Style="width:100%;max-width:500px" alt="UIFlowでwavファイルをアップロードする説明の図 その3"><br><br></p>
 <p>これをM5StickCへ転送してボタンを押せば、wavファイルを再生できます。</p>
 <h2 id="section">カスタムブロックの作成</h2>
@@ -316,9 +316,9 @@ micropythonとは、pythonをマイコン上で動かせるように最適化し
 <p><span class="link"></span><a href="https://github.com/loboris/MicroPython_ESP32_psRAM_LoBo">github MicroPython_ESP32_psRAM_LoBo</a></p>
 <p>UIFlowはver 1.7.5ではloboris版をベースに作成されていますが、最新版ではmainstream版で作成されています。<br />
 mainstream版では、I2Sクラスで内蔵DACから音声データを出力することができません。<br />
-なので、本記事の方法でwavデータを再生することができなくなっています。<br />
-再生する他の方法としては、UIFlowではなくArduinoを使う、外部にI2S対応アンプをつなげるなどがあります。</p>
+なので、本記事の方法でwavデータを再生することができなくなっています。</p>
 <p><span class="link"></span><a href="https://community.m5stack.com/topic/3216/updated-micropython">参考 M5Stack Community</a></p>
+<p>再生する他の方法としては、UIFlowではなくArduinoを使う、外部にI2S対応アンプをつなげてI2Sで音声を出力するなどがあるかと思います。</p>
 <br>
 <br>
 <p>以上です。</p>
