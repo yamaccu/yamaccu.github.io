@@ -209,7 +209,7 @@
         <br>
 
       <p>2022/3/16</p>
-<h1 id="blazorchart.js">Blazor上でChart.jsでグラフを描く</h1>
+<h1 id="blazorchart.js">BlazorでChart.jsを使ってグラフを描く</h1>
 <hr />
 <p>BlazorでChart.jsを使う方法をまとめました。</p>
 <h2 id="section">手順</h2>
@@ -218,11 +218,12 @@
 <li>グラフの設定データの準備</li>
 <li>Javscriptでグラフを描くfunctionを作成</li>
 <li>グラフを挿入したい場所に&lt;canvas&gt;を追加</li>
-<li>Razor側から「JSRuntime.InvokeAsync」でJavaScriptを実行</li>
+<li>「JSRuntime.InvokeAsync」でJavaScriptを実行</li>
 </ol>
 <h2 id="chart.js">1.Chart.jsをインストール</h2>
 <p>VisualStudioで、「wwwroot」の下にインポート用のフォルダを作成し、右クリックして「クライアント側のライブラリ」を選択します。</p>
-<img src="../img/20220316-Blazor-Chartjs-2.png" Style="width:100%; max-width:650px" alt="Chart.jsをBlazorにインポートする手順の画像その1">  
+<img src="../img/20220316-Blazor-Chartjs-2.png" Style="width:100%; max-width:600px" alt="Chart.jsをBlazorにインポートする手順の画像その1">  
+<br>
 <p>ライブラリで「Chart.js」を選択しインストールします。</p>
 <img src="../img/20220316-Blazor-Chartjs-3.png" style="width:100%; max-width:500px;" alt="Chart.jsをBlazorにインポートする手順の画像その2">  
 <p>これでインストール完了です。</p>
@@ -251,7 +252,7 @@
 }
 </code></pre>
 <br>
-<p>C#でjsonファイルを作るには、クラスで階層構造を作成し、JsonSerializer.SerializeメソッドでクラスをJsonファイルに変換します。</p>
+<p>C#でjsonファイルを作るには、クラスで階層構造を作成し、JsonSerializer.Serializeメソッドで作ったクラスをJsonファイルに変換します。</p>
 <p>クラスの例</p>
 <pre><code class="language-C#">public class ChartJson
 {
@@ -302,7 +303,7 @@ Blazor Webassenblyの場合は「index.html」、Blazor Serverの場合は「_Ho
     &lt;canvas id=&quot;myChart&quot;&gt;&lt;/canvas&gt;
 &lt;/div&gt;
 </code></pre>
-<h2 id="razorjsruntime.invokeasyncjavascript">5.Razor側から「JSRuntime.InvokeAsync」でJavaScriptを実行</h2>
+<h2 id="jsruntime.invokeasyncjavascript">5.「JSRuntime.InvokeAsync」でJavaScriptを実行</h2>
 <p>jsonファイル用のクラスにグラフのパラメータを設定します。<br />
 ここでは、データはBlazorデフォルトプロジェクトのWeather forecastのものを使用しています。</p>
 <pre><code class="language-C#">&#64;using System.Linq
