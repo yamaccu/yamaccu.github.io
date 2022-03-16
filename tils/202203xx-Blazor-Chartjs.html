@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x6700;&#x521D;&#x306B;&#x3084;&#x308B;&#x3053;&#x3068; | yokuaru Tech notes</title>
+  <title>&#x300C;Blazor&#x300D;Chart.js&#x3067;&#x30B0;&#x30E9;&#x30D5;&#x3092;&#x63CF;&#x304F; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -32,9 +32,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x6700;&#x521D;&#x306B;&#x3084;&#x308B;&#x3053;&#x3068;" />
+  <meta property="og:title" content="&#x300C;Blazor&#x300D;Chart.js&#x3067;&#x30B0;&#x30E9;&#x30D5;&#x3092;&#x63CF;&#x304F;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210815-Blog-setting" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/202203xx-Blazor-Chartjs" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -208,36 +208,150 @@
         </script>
         <br>
 
-      <p>2021/08/15</p>
-<h1 id="section">ブログを作ったら最初にやること</h1>
+      <p>2022/3/16</p>
+<h1 id="blazorchart.js">Blazor上でChart.jsでグラフを描く</h1>
 <hr />
-<p>ブログを作ったら最初にやっておいた方が良いことをまとめています。</p>
-<h2 id="google-analytics">Google Analyticsの登録</h2>
-<p>HPへのアクセス状況が確認できるようになります。<br />
-登録が完了したら、トラッキングIDをHTMLの&lt;HEAD&gt;内に追記する必要があります。</p>
-<p>参考<span class="link"></span> <a href="https://blog.siteanatomy.com/register-google-analytics/">Google Analytics登録方法</a></p>
-<h2 id="sitemap">sitemapの作成</h2>
-<p>Google検索にページをヒットさせ易くするためのファイルです。<br />
-作成後、Google Search Consoleに登録します。</p>
-<p>小規模HPには不要のようですが、一応作成しておくとよいです。<br />
-静的サイトジェネレータを使用している場合は、自動で出力してくれるものが多いようです。</p>
-<p>参考<span class="link"></span> <a href="https://ferret-plus.com/curriculums/3580">サイトマップ作成方法</a></p>
-<h2 id="robots.txt">robots.txtの作成</h2>
-<p>sitemapへのリンクファイルです。<br />
-rootディレクトリに、「robots.txt」という名前のファイルを作成して、中身を以下のように記述します。</p>
-<pre><code class="language-C#">User-agent: *
-    Disallow:
-    
-    Sitemap: https://xxxxxxxxx/sitemap.xml
+<p>BlazorでChart.jsを使う方法をまとめました。</p>
+<h2 id="section">手順</h2>
+<ol>
+<li>Chart.jsをインストール</li>
+<li>グラフの設定データの準備</li>
+<li>Javscriptでグラフを描くfunctionを作成</li>
+<li>グラフを挿入したい場所に&lt;canvas&gt;を追加</li>
+<li>Razor側から「JSRuntime.InvokeAsync」でJavaScriptを実行</li>
+</ol>
+<h2 id="chart.js">1.Chart.jsをインストール</h2>
+<p>VisualStudioで、「wwwroot」の下にインポート用のフォルダを作成し、右クリックして「クライアント側のライブラリ」を選択します。</p>
+<img src="../img/20220316-Blazor-Chartjs-2.png" Style="width:100%; max-width:650px" alt="Chart.jsをBlazorにインポートする手順の画像その1">  
+<p>ライブラリで「Chart.js」を選択しインストールします。</p>
+<img src="../img/20220316-Blazor-Chartjs-3.png" style="width:100%; max-width:500px;" alt="Chart.jsをBlazorにインポートする手順の画像その2">  
+<p>これでインストール完了です。</p>
+<h2 id="section-1">2.グラフの設定データの準備</h2>
+<p>chart.jsのグラフのデータは、jsonファイルで設定します。</p>
+<p>jsonファイルの例</p>
+<pre><code class="language-json">{
+    &quot;type&quot;:&quot;line&quot;,
+    &quot;data&quot;:{
+        &quot;labels&quot;:[&quot;2018/05/06&quot;,&quot;2018/05/07&quot;,&quot;2018/05/08&quot;,&quot;2018/05/09&quot;,&quot;2018/05/10&quot;],
+        &quot;datasets&quot;:[{
+            &quot;label&quot;:&quot;temp.(C)&quot;,
+            &quot;data&quot;:[1,14,-13,-16,-2],
+            &quot;backgroundColor&quot;:&quot;rgba(255, 99, 132, 0.2)&quot;,
+            &quot;borderColor&quot;:&quot;rgba(255, 99, 132, 1)&quot;,
+            &quot;borderWidth&quot;:1
+        },
+        {
+            &quot;label&quot;:&quot;temp.(F)&quot;,
+            &quot;data&quot;:[33,57,9,4,29],
+            &quot;backgroundColor&quot;:&quot;rgba(54, 162, 235, 0.2)&quot;,
+            &quot;borderColor&quot;:&quot;rgba(54, 162, 235, 1)&quot;,
+            &quot;borderWidth&quot;:1
+        }]
+    }
+}
 </code></pre>
-<h2 id="google-search-console-sitemap">Google Search Consoleの登録 / sitemapの登録</h2>
-<p>HPへの流入ルート、検索順位などSEO関連情報が確認できます。</p>
-<p>登録完了したら、サイトマップも登録します。<br />
-登録したては「サイトマップを読み込めませんでした」とエラーが出ますが、しばらく放置しておくと読み込んでくれるようです。</p>
-<p>⇒　3週間後に確認したら、読み込んでいました。</p>
-<p>参考<span class="link"></span> <a href="http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html">Google Serach Console登録方法</a></p>
+<br>
+<p>C#でjsonファイルを作るには、クラスで階層構造を作成し、JsonSerializer.SerializeメソッドでクラスをJsonファイルに変換します。</p>
+<p>クラスの例</p>
+<pre><code class="language-C#">public class ChartJson
+{
+    public string type { get; set; }
+    public Data data { get; set; }
+}
+
+public class Data
+{
+    public IEnumerable&lt;string&gt; labels { get; set; }
+    public Dataset[] datasets { get; set; }
+}
+
+public class Dataset
+{
+    public string label { get; set; }
+    public IEnumerable&lt;int&gt; data { get; set; }
+    public string backgroundColor { get; set; }
+    public string borderColor { get; set; }
+    public int borderWidth { get; set; }
+}
+</code></pre>
+<br>
+<p>グラフをカスタマイズしたいときは、下記のサイトを参考にメンバ変数を追加していきます。<br />
+例えば、縦軸の範囲を固定したり、メモリを調整したり、表示時のアニメーションを追加したりできます。</p>
+<p><span class="link"></span><a href="https://www.chartjs.org/docs/latest/">Chart.js公式</a><br />
+<span class="link"></span><a href="https://www.tohoho-web.com/ex/chartjs.html#sample">とほほのChart.js入門</a></p>
+<h2 id="javscriptfunction">3.Javscriptでグラフを描くfunctionを作成</h2>
+<p>JavaScriptでグラフを描くスクリプトを作成します。<br />
+Blazor Webassenblyの場合は「index.html」、Blazor Serverの場合は「_Host.cshtml」の&lt;body&gt;に追加していきます。</p>
+<p>まず、Chart.jsを呼び出せるようにします。</p>
+<pre><code class="language-JavaScript">&lt;script type=&quot;text/javascript&quot; src=&quot;js/Chart.js/chart.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>グラフを描くプログラムは下記です。</p>
+<pre><code class="language-JavaScript">&lt;script&gt;
+    function renderChart(data) {
+        if (window.chartObj) {
+            window.chartObj.destroy();
+        }
+        var ctx = document.getElementById('myChart');
+        window.chartObj = new Chart(ctx, JSON.parse(data));
+    };
+&lt;/script&gt;
+</code></pre>
+<h2 id="canvas">4.グラフを挿入したい場所に&lt;canvas&gt;を追加</h2>
+<p>グラフを挿入したい場所に、以下のように&lt;canvas&gt;を追加します。</p>
+<pre><code class="language-HTML">&lt;div&gt;
+    &lt;canvas id=&quot;myChart&quot;&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="razorjsruntime.invokeasyncjavascript">5.Razor側から「JSRuntime.InvokeAsync」でJavaScriptを実行</h2>
+<p>jsonファイル用のクラスにグラフのパラメータを設定します。<br />
+ここでは、データはBlazorデフォルトプロジェクトのWeather forecastのものを使用しています。</p>
+<pre><code class="language-C#">&#64;using System.Linq
+
+var DataSets1 = new Dataset()
+{
+    label = &quot;temp.(C)&quot;,
+    data = forecasts.Select(f =&gt; f.TemperatureC),
+    backgroundColor = &quot;rgba(255, 99, 132, 0.2)&quot;,
+    borderColor = &quot;rgba(255, 99, 132, 1)&quot;,
+    borderWidth = 1,
+};
+
+var DataSets2 = new Dataset()
+{
+    label = &quot;temp.(F)&quot;,
+    data = forecasts.Select(f =&gt; f.TemperatureF),
+    backgroundColor = &quot;rgba(54, 162, 235, 0.2)&quot;,
+    borderColor = &quot;rgba(54, 162, 235, 1)&quot;,
+    borderWidth = 1,
+};
+
+chartJson = new ChartJson()
+{
+    type = &quot;line&quot;,
+    data = new Data()
+    {
+        labels = forecasts.Select(f =&gt; f.Date.ToShortDateString()),
+        datasets = new Dataset[2] { DataSets1, DataSets2 },
+    },
+};
+</code></pre>
+<p>このクラスをJsonSerializer.SerializeでJsonファイルに変換してJSRuntime.InvokeAsyncを実行します。<br />
+すると、「renderChart」functionが実行されて、Canvasにグラフが表示されます。</p>
+<pre><code class="language-C#">&#64;inject IJSRuntime JSRuntime
+&#64;using System.Text.Json
+
+var jsonStr = JsonSerializer.Serialize(chartJson);
+await JSRuntime.InvokeAsync&lt;string&gt;(&quot;renderChart&quot;, jsonStr);
+</code></pre>
+<p>画面がレンダリングされると同時にグラフを表示するには、下記のメソッドで上記コードを実行します。</p>
+<pre><code class="language-C#">protected override async Task OnInitializedAsync()
+{
+    ~~~~~
+}
+</code></pre>
 <br>
 <br>
+<p>以上です。</p>
 <hr />
 
 
