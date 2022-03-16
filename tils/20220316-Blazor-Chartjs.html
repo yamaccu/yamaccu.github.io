@@ -211,7 +211,8 @@
       <p>2022/3/16</p>
 <h1 id="blazorchart.js">BlazorでChart.jsを使ってグラフを描く</h1>
 <hr />
-<p>BlazorでChart.jsを使う方法をまとめました。</p>
+<p>BlazorでChart.jsを使う方法をまとめました。<br />
+環境：dotnet 5.0.300 / Chart.js 3.7.1</p>
 <h2 id="section">手順</h2>
 <ol>
 <li>Chart.jsをインストール</li>
@@ -252,7 +253,7 @@
 }
 </code></pre>
 <br>
-<p>C#でjsonファイルを作るには、クラスで階層構造を作成し、JsonSerializer.Serializeメソッドで作ったクラスをJsonファイルに変換します。</p>
+<p>C#でjsonファイルを作るには、クラスで階層構造を作成し、JsonSerializer.Serializeメソッドを使用して作ったクラスをJsonファイルに変換します。</p>
 <p>クラスの例</p>
 <pre><code class="language-C#">public class ChartJson
 {
@@ -304,7 +305,7 @@ Blazor Webassenblyの場合は「index.html」、Blazor Serverの場合は「_Ho
 &lt;/div&gt;
 </code></pre>
 <h2 id="jsruntime.invokeasyncjavascript">5.「JSRuntime.InvokeAsync」でJavaScriptを実行</h2>
-<p>jsonファイル用のクラスにグラフのパラメータを設定します。<br />
+<p>まず、jsonファイル用のクラスにグラフのパラメータを設定します。<br />
 ここでは、データはBlazorデフォルトプロジェクトのWeather forecastのものを使用しています。</p>
 <pre><code class="language-C#">&#64;using System.Linq
 
@@ -350,6 +351,9 @@ await JSRuntime.InvokeAsync&lt;string&gt;(&quot;renderChart&quot;, jsonStr);
     ~~~~~
 }
 </code></pre>
+<br>
+<p>これで、以下のようなグラフが表示されます。</p>
+<img src="../img/20220316-Blazor-Chartjs-1.png" Style="width:100%; max-width:600px" alt="Chart.jsで作成したグラフ">  
 <br>
 <br>
 <p>以上です。</p>
