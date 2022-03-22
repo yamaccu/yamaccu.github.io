@@ -254,7 +254,25 @@ for file in files:
         os.remove(file)
 </code></pre>
 <p>os.remove() ： ファイルを削除します。</p>
-<h2 id="section-2">ファイルコピー</h2>
+<h2 id="section-2">ファイルをゴミ箱に移動</h2>
+<p>更新日時が20日以上前のファイルをゴミ箱に移動します。<br />
+send2trashをインストールする必要があります。</p>
+<pre><code class="language-python">pip install send2trash
+</code></pre>
+<pre><code class="language-python">import os
+from datetime import datetime
+from send2trash import send2trash
+
+files = os.listdir()
+now = datetime.now()
+
+for file in files: 
+    mtime = datetime.fromtimestamp(os.path.getmtime(file))
+
+    if((now - mtime).days &gt; 20):
+        send2trash(file)
+</code></pre>
+<h2 id="section-3">ファイルコピー</h2>
 <p>更新日時が20日以上前のファイルをoldフォルダへ移動します。<br />
 コピー先のフォルダが存在しないとエラーになります。<br />
 import shutil が増えています。</p>
