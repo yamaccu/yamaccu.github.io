@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>RaspberryPi&#x3067;&#x52D5;&#x753B;&#x3092;&#x30B9;&#x30C8;&#x30EA;&#x30FC;&#x30DF;&#x30F3;&#x30B0;&#x3059;&#x308B; | yokuaru Tech notes</title>
+  <title>python&#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x65E5;&#x4ED8;&#x306B;&#x3088;&#x3063;&#x3066;&#x64CD;&#x4F5C;&#x3059;&#x308B;&#x3002; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -32,9 +32,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="RaspberryPi&#x3067;&#x52D5;&#x753B;&#x3092;&#x30B9;&#x30C8;&#x30EA;&#x30FC;&#x30DF;&#x30F3;&#x30B0;&#x3059;&#x308B;" />
+  <meta property="og:title" content="python&#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x65E5;&#x4ED8;&#x306B;&#x3088;&#x3063;&#x3066;&#x64CD;&#x4F5C;&#x3059;&#x308B;&#x3002;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20211019-Raspberry-mjpgstreamer" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220322-Python-Fileope" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -212,51 +212,69 @@
         </script>
         <br>
 
-      <p>2021/10/18</p>
-<h1 id="raspberrypi">RaspberryPiで動画を撮影してストリーミングする</h1>
+      <p>2022/3/22</p>
+<h1 id="python">pythonでファイルを日付によって操作する</h1>
 <hr />
-<p>mjpg-streamerというフリーソフトを使うと、ラズパイ＋カメラで撮影している映像をwebブラウザ上に表示できます。<br />
-また、他のPCからもラズパイにアクセスすることで、その映像を見ることができます。</p>
-<p>参考　<span class="link"></span><a href="https://github.com/jacksonliam/mjpg-streamer">github mjpg-streamer</a></p>
+<p>pythonで、フォルダ内にあるファイルを日付によってコピーしたり削除したりする方法をまとめました。</p>
+<h2 id="section">プログラムの基本形</h2>
+<p>pythonの実行ファイルと同じフォルダにあるファイルで、更新日が20日以上前のもののファイル名をコンソール上に表示するプログラムです。<br />
+これを基本形として、&quot;print(file)&quot;の部分を、コピーにしたり削除にしたりすれば様々な処理が可能です。</p>
+<pre><code class="language-python">import os
+from datetime import datetime
+
+files = os.listdir()
+now = datetime.now()
+
+for file in files: 
+    mtime = datetime.fromtimestamp(os.path.getmtime(file))
+
+    if((now - mtime).days &gt; 20):
+        print(file)
+</code></pre>
+<p>os.listdir() ： ディレクトリ内のファイル一覧を取得します<br />
+datetime.now() ： 現在時刻を取得します<br />
+os.path.getmtime() ： ファイルの最後に更新した時刻をUNIX時間で取得します<br />
+datetime.fromtimestamp() ： UNIX時間を現在時間に変換します</p>
+<p>※UNIX時間とは、1970年1月1日午前0時0分0秒からの経過秒数です。<br />
+　詳細は下記を参照ください。<br />
+<span class="link"></span><a href="https://ja.wikipedia.org/wiki/UNIX%E6%99%82%E9%96%93">wikipedia UNIX時間</a></p>
+<h2 id="section-1">ファイル削除</h2>
+<p>更新日時が20日以上前のファイルを削除します。<br />
+削除したファイルは復活できませんので（危険・・！）、上記の基本形で対象ファイルを確認してから実行すると良いです。</p>
+<pre><code class="language-python">import os
+from datetime import datetime
+
+files = os.listdir()
+now = datetime.now()
+
+for file in files: 
+    mtime = datetime.fromtimestamp(os.path.getmtime(file))
+
+    if((now - mtime).days &gt; 20):
+        os.remove(file)
+</code></pre>
+<p>os.remove() ： ファイルを削除します。</p>
+<h2 id="section-2">ファイルコピー</h2>
+<p>更新日時が20日以上前のファイルをoldフォルダへ移動します。<br />
+コピー先のフォルダが存在しないとエラーになります。<br />
+import shutil が増えています。</p>
+<pre><code class="language-python">import os
+from datetime import datetime, date
+import shutil
+
+files = os.listdir()
+now = datetime.now()
+
+for file in files: 
+    mtime = datetime.fromtimestamp(os.path.getmtime(file))
+
+    if((now - mtime).days &gt; 20):
+        shutil.copyfile(file , &quot;./old/&quot; + file)
+</code></pre>
+<p>shutil.copyfile(src, dist) ： srcをdistへコピーします。</p>
 <br>
-<p>以下、手順になります。</p>
-<h2 id="section">1. ラズパイに必要なソフトをインストールします。</h2>
-<p>下記コマンドをターミナルで実行します。</p>
-<pre><code class="language-C#">sudo apt-get update
-sudo apt-get install cmake libjpeg8-dev
-sudo apt-get install gcc g++
-</code></pre>
-<h2 id="github">2. githubからソースをクローンしてビルドします。</h2>
-<p>下記コマンドをターミナルで実行してビルドします。</p>
-<pre><code class="language-C#">git clone https://github.com/jacksonliam/mjpg-streamer.git
-cd mjpg-streamer/mjpg-streamer-experimental
-make
-sudo make install
-</code></pre>
-<h2 id="section-1">3. 起動します。</h2>
-<p>起動には、同じフォルダにあるStart.shファイルを使用すると簡単です。<br />
-起動設定を変えたい場合は、Start.shファイルの中身を修正します。</p>
-<pre><code class="language-C#">bash Start.sh
-</code></pre>
-<br>
-<h2 id="section-2">4. 映像を確認します。</h2>
-<p>ラズパイでChromeなどのwebブラウザを起動して &quot;localhost:8080&quot; にアクセスすると、以下のような画面になります。<br />
-また、ラズパイがネットワークにつながっていれば、他のPCから &quot;ラズパイのIPアドレス:8080&quot; にアクセスすると同じ画面が見れます。</p>
-<img src="../img/20211019_Raspberry_mjpgstreamer-1.png" Style="width:100%;max-width:400px;" alt="mjpg-streamer画面">
-<h2 id="section-3">静止画保存</h2>
-<pre><code class="language-C#">wget -O /tmp/picture.jpg http://localhost:8080/?action=snapshot
-</code></pre>
-<h2 id="section-4">動画保存</h2>
-<p>ffmpegというソフトを使用します。<br />
-まず、以下のコマンドでインストールします。</p>
-<pre><code class="language-C#">sudo apt-get install ffmpeg
-</code></pre>
-<p>動画の保存は以下のコマンドを実行します。</p>
-<pre><code class="language-C#">ffmpeg -i http://localhost:8080/?action=stream file.avi
-</code></pre>
 <br>
 <p>以上です。</p>
-<br>
 <hr />
 
 
