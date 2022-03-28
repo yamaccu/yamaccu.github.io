@@ -219,7 +219,7 @@
 <h1 id="javascript">JavaScriptを使ってサイドメニューを表示したり非表示にしたりする</h1>
 <hr />
 <p>webサイトでよくあるサイドメニューを、ボタンを押すごとに表示したり非表示にしたりする方法です。<br />
-本サイトでも実装しており、携帯表示等の表示幅が小さい状態で、左上のハンバーガーメニューを押すとサイドメニューがぐいっと出てきます。<br />
+本サイトでも実装しており、携帯のブラウザなど表示幅が小さい状態で、左上のハンバーガーメニューを押すとサイドメニューがぐいっと出てきます。<br />
 PCでご覧の方は、今開いているwebブラウザの幅を狭めると確認できると思います。</p>
 <h2 id="section">実装方法</h2>
 <p>メニューの非表示は、メニューの位置を画面外に追いやることで実現します。<br />
@@ -230,23 +230,20 @@ PCでご覧の方は、今開いているwebブラウザの幅を狭めると確
 下記は、要素をクリックすると、サイドメニューが画面外に移動⇔復帰を繰り返すプログラムです。<br />
 ここでは要素はid: humbergericon、サイドメニューはid: sidemenuとしています。</p>
 <p>javascript</p>
-<pre><code class="language-javascript">window.onload = function () {
-  var humbergericon = document.getElementById(&quot;humbergericon&quot;);
-  humbergericon.onclick = function () {
-    if(sidemenu.style.left== &quot;5px&quot;)
-    {
-      sidemenu.style.left = &quot;-100%&quot;;
-    }
-    else
-      {
-      sidemenu.style.left = &quot;5px&quot;;
-    }
+<pre><code class="language-javascript">var humbergericon = document.getElementById(&quot;humbergericon&quot;);
+humbergericon.onclick = function () {
+  if(sidemenu.style.left== &quot;5px&quot;)
+  {
+    sidemenu.style.left = &quot;-100%&quot;;
+  }
+  else
+  {
+    sidemenu.style.left = &quot;5px&quot;;
   }
 }
 </code></pre>
-<p>window.onload： ページの読み込み処理が完了した後に実行されるイベントです。</p>
 <p>humbergericon.onclick： 指定した要素がクリックされた時に実行されるイベントです。ここではid: humbergericonを指定要素としています。</p>
-<p>sidemenu.style.left = &quot;-100%&quot;： id:sidemenuの要素のleftプロパティを-100%に設定しています。これにより、id:sidemenuの要素が左側の画面外へ飛ばされています。</p>
+<p>sidemenu.style.left = &quot;-100%&quot;： id:sidemenuの要素のleftプロパティを-100%に設定しています。これにより、id:sidemenuの要素を左側の画面外へ飛ばしています。</p>
 <br>
 <p>以上です。</p>
 <br>
