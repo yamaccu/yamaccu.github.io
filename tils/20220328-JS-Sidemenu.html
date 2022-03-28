@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>C#&#x3067;CRC&#x3092;&#x8A08;&#x7B97;&#x3059;&#x308B; | yokuaru Tech notes</title>
+  <title>&#x300C;JavaScript&#x300D;&#x30B5;&#x30A4;&#x30C9;&#x30E1;&#x30CB;&#x30E5;&#x30FC;&#x306E;&#x8868;&#x793A;/&#x975E;&#x8868;&#x793A; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="C#&#x3067;CRC&#x3092;&#x8A08;&#x7B97;&#x3059;&#x308B;" />
+  <meta property="og:title" content="&#x300C;JavaScript&#x300D;&#x30B5;&#x30A4;&#x30C9;&#x30E1;&#x30CB;&#x30E5;&#x30FC;&#x306E;&#x8868;&#x793A;/&#x975E;&#x8868;&#x793A;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20211214-Csharp-CRC" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220328-JS-Sidemenu" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -215,89 +215,41 @@
         </script>
         <br>
 
-      <br>
-<p>2021/12/14</p>
-<h1 id="ccrc">C#でCRCを計算する</h1>
+      <p>2022/03/28</p>
+<h1 id="javascript">JavaScriptを使ってサイドメニューを表示したり非表示にしたりする</h1>
 <hr />
-<p>CRCとはCyclic Redundancy Checkの略で、通信データの破損検出の仕組みの一つです。</p>
-<p>通信データをある値（生成多項式）で割り算して、余りをデータに付与して送信します。<br />
-受信側で再度計算して付与された余りが合っているかどうか確認し、合致しない場合は通信データ破損とみなします。</p>
-<p>同じような誤り検出にチェックサムがありますが、チェックサムはデータを足し算した結果を付与します。<br />
-足し算よりは割り算の方が複雑なアルゴリズムとなり、その分信頼度は向上します。</p>
-<p>Modbus通信やイーサネット通信などで使われているようです。</p>
-<h2 id="crc">CRCの種類</h2>
-<p>CRCには以下のパラメータがあり、これらの値により計算値が異なってきます。<br />
-そのため、CRCと一言で言ってもたくさんの種類が存在しています。</p>
-<ul>
-<li>計算bit数</li>
-<li>生成多項式</li>
-<li>初期値</li>
-<li>ビットシフト方向</li>
-</ul>
-<br>
-<p>例）
-CRC-16-IBM</p>
-<ul>
-<li>計算bit数 : 16</li>
-<li>生成多項式 : x<sup>16</sup>+x<sup>15</sup>+x<sup>2</sup>+1</li>
-<li>初期値 : 0xFFFF</li>
-<li>ビットシフト方向 : 右</li>
-</ul>
-<p>その他の種類については <span Class="link"></span> <a href="https://ja.wikipedia.org/wiki/%E5%B7%A1%E5%9B%9E%E5%86%97%E9%95%B7%E6%A4%9C%E6%9F%BB">wikipedia</a>に記述がありますので参照ください。</p>
-<h2 id="crc-1">CRCの計算方法</h2>
-<p>CRCの計算方法は、「ビット演算方式」と「テーブル演算方式」があります。</p>
-<ul>
-<li><p>ビット演算方法：
-通信データをその都度割り算して余りを求める方法</p>
-</li>
-<li><p>テーブル演算方法：
-あらかじめ計算結果のテーブルを準備して、計算負荷を軽くする方法</p>
-</li>
-</ul>
-<br>
-<p>以降は、CRC-16-IBMのビット演算方式の計算をC#で実施してみます。<br />
-（Modbus-RTUで使われているものです）</p>
-<h2 id="section">計算コード</h2>
-<pre><code class="language-C#">//CRC計算（CRC16-IBM / 生成多項式:x16+x15+x2+1, initial value is 0xFFFF, 右回り）
-int[] DATA;
-int CRC = 0xffff;
-int CRC16POLY = 0xa001;
-
-foreach (byte i in Data)
-{
-  CRC ^= i;
-  for (var j = 0; j &lt; 8; j++)
-  {
-    if ((CRC &amp; 1) == 1)
+<p>webサイトでよくあるサイドメニューを、ボタンを押すごとに表示したり非表示にしたりする方法です。<br />
+本サイトでも実装しており、携帯表示等の表示幅が小さい状態で、左上のハンバーガーメニューを押すとサイドメニューがぐいっと出てきます。<br />
+PCでご覧の方は、今開いているwebブラウザの幅を狭めると確認できると思います。</p>
+<h2 id="section">実装方法</h2>
+<p>メニューの非表示は、メニューの位置を画面外に追いやることで実現します。<br />
+イメージはこんな感じです。</p>
+<img src="../img/20220328-JS-Sidemenu-1.png" Style="width:100%; max-width:500px" alt="サイドメニューを非表示にする方法の説明図">  
+<h2 id="section-1">プログラム</h2>
+<p>HTML側は、サイドメニューと、何かしらの要素を用意しておきます。<br />
+下記は、要素をクリックすると、サイドメニューが画面外に移動⇔復帰を繰り返すプログラムです。<br />
+ここでは要素はid: humbergericon、サイドメニューはid: sidemenuとしています。</p>
+<p>javascript</p>
+<pre><code class="language-javascript">window.onload = function () {
+  var humbergericon = document.getElementById(&quot;humbergericon&quot;);
+  humbergericon.onclick = function () {
+    if(sidemenu.style.left== &quot;5px&quot;)
     {
-      CRC &gt;&gt;= 1;
-      CRC ^= CRC16POLY;
+      sidemenu.style.left = &quot;-100%&quot;;
     }
     else
-    {
-      CRC &gt;&gt;= 1;
+      {
+      sidemenu.style.left = &quot;5px&quot;;
     }
   }
 }
-
-//最終的に、CRCに計算結果が代入されています。
 </code></pre>
+<p>window.onload： ページの読み込み処理が完了した後に実行されるイベントです。</p>
+<p>humbergericon.onclick： 指定した要素がクリックされた時に実行されるイベントです。ここではid: humbergericonを指定要素としています。</p>
+<p>sidemenu.style.left = &quot;-100%&quot;： id:sidemenuの要素のleftプロパティを-100%に設定しています。これにより、id:sidemenuの要素が左側の画面外へ飛ばされています。</p>
 <br>
-<p>githubにサンプルコードを上げていますので、よろしければ参照ください。<br />
-<span class="link"></span> <a href="https://github.com/yamaccu/Csharp-CRC16-IBM">github</a></p>
-<h2 id="section-1">計算コードの解説</h2>
-<p>コードで実施している内容は下記になります。<br />
-データを生成多項式で割り算しています。</p>
-<ol>
-<li>初期値”0xFFFF”と、送信データ値の最初の1byte目をXORする。　</li>
-<li>右へ1ビットシフトする。</li>
-<li>CF(キャリーフラグ)=1の場合、”0xA001”とXORする。CF=0の場合、何もしない。</li>
-<li>上記2と3を8回繰り返す。</li>
-<li>送信データの次の1byteとXORする。</li>
-<li>上記2から5を、送信データの最後のbyteまで繰り返す。</li>
-</ol>
+<p>以上です。</p>
 <br>
-以上です。  
 <br>
 <hr />
 
