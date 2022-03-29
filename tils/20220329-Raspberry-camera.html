@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>C# Resharper&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
+  <title>RaspberryPi&#x3067;&#x6BCE;&#x65E5;&#x6C7A;&#x307E;&#x3063;&#x305F;&#x6642;&#x9593;&#x306B;&#x5199;&#x771F;&#x3092;&#x64AE;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="C# Resharper&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;" />
+  <meta property="og:title" content="RaspberryPi&#x3067;&#x6BCE;&#x65E5;&#x6C7A;&#x307E;&#x3063;&#x305F;&#x6642;&#x9593;&#x306B;&#x5199;&#x771F;&#x3092;&#x64AE;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210903-Csharp-ResharperCommand" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220329-Raspberry-camera" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -219,75 +219,46 @@
         </script>
         <br>
 
-      <p>2021/09/03</p>
-<h1 id="cresharper">C#の開発支援ツール「Resharper」のコマンドラインツールを使う</h1>
+      <p>2022/3/29</p>
+<h1 id="raspberrypi">RaspberryPi＋カメラで毎日決まった時間に定期的に写真を撮る</h1>
 <hr />
-<p>Resharperとは、JetBrains社が販売しているC#開発支援ツールです。<br />
-Visual Studio向けのアドオンと、コマンドラインで実行できるコマンドラインツールがあります。</p>
-<p>Visual Studio向けのアドオンは基本有料で、コーディングのヒントや、ネーミング規則に違反した箇所の指摘などをアクティブに実施してくれます。</p>
-<p>コマンドラインツールは無料で、コードを静的に解析するものです。コードレビュー等に有用です。</p>
-<p>本記事では、無料のコマンドラインツールについてまとめています。</p>
-<h2 id="section">準備</h2>
-<p>Resharper公式から、コマンドラインツールをダウンロードしておきます。</p>
-<p><span class="link"></span> <a href="https://www.jetbrains.com/ja-jp/resharper/download/#section=commandline">ダウンロード先</a></p>
-<h2 id="section-1">コマンドラインツールの3つの機能</h2>
-<p>Resharperのコマンドラインツールには3つの機能があります。</p>
-<ul>
-<li>CleanupCode：コードの整形</li>
-<li>dupFinder  ：コードの重複の検出</li>
-<li>InspectCode：コードの検査</li>
-</ul>
-<h2 id="cleanupcode">CleanupCode</h2>
-<p>インデントの修正、修飾子の修正、不要Usingディレクティブの削除など、コードの可読性を改善してくれます。</p>
-<pre><code class="language-C#">&lt;実行コマンド&gt;
-cleanupcode.exe YourSolution.sln
+<p>ラズパイのcronという機能と、カメラを制御するpythonのプログラムを組み合わせることで、毎日決まった時間に写真を撮って保存することができます。<br />
+何かを観測するときに便利です。</p>
+<p>以下、手順になります。</p>
+<h2 id="section">1. カメラの画像を保存するプログラムを作る</h2>
+<p>ラズパイ画面の左上メニューの「プログラミング ⇒ Thonny Python IDE」をクリックして起動し、下記のようなプログラムを作成します。<br />
+カメラの画像を保存するプログラムです。</p>
+<pre><code class="language-Python">from picamera import PiCamera
+import datetime
+
+camera = PiCamera()
+nowdate = datetime.datetime.now()
+
+camera.start_preview()
+filename = '/home/pi/Desktop/pictures/'+nowdate.strftime('%m%d_%H%M%S')+'.jpg'
+camera.capture(filename)
+camera.stop_preview()
 </code></pre>
-<br>
-<p>既存のファイルに修正結果が上書きされますので、実行時は注意してください。</p>
-<br>
-<p>公式doc日本語訳<br />
-<span class="link"></span> <a href="https://pleiades.io/help/resharper/CleanupCode.html">CleanupCodeコマンドラインツール</a></p>
-<h2 id="dupfinder">dupFinder</h2>
-<p>コードの重複を調べてレポートファイルをxml形式で出力してくれます。</p>
-<pre><code class="language-C#">&lt;実行コマンド&gt;
-dupFinder.exe &lt;source&gt; --output=&lt;FileName&gt;
+<p>以下のサイトが参考になります。<br />
+<span class="link"></span><a href="https://projects.raspberrypi.org/ja-JP/projects/getting-started-with-picamera/4">カメラモジュールを始めよう</a></p>
+<h2 id="cron">2. cronを設定して定期的にプログラムを実行する</h2>
+<p>ラズパイのターミナルで下記のコマンドを実行し、ラズパイのcronを設定します。</p>
+<p>cronとは、Linux系のOSの機能で、時間を指定して繰り返し処理を実行する仕組みです。<br />
+例えば、毎日9時に指定したコマンドを実行する、といった処理が可能です。<br />
+詳細は下記を参照ください。</p>
+<p><span Class="link"></span> <a href="https://qiita.com/hikouki/items/e744b3a4d356d2af12cf">Qiita cronの設定方法</a></p>
+<pre><code class="language-C#">crontab -l
+
+編集画面が開いたら以下を記述
+*/5 * * * * /usr/bin/python3  /home/pi/camera.py
 </code></pre>
+<p>上記は、5分おきに「/home/pi/camera.py」をpythonで実行する設定です。<br />
+時間や実行コマンドを、自分の使う環境に合わせて変更して使用します。</p>
+<p>撮った写真は、Sambaというソフトをラズパイに入れておくと、Windowsから簡単に取り出すことができます。<br />
+下記に手順をまとめていますのでよろしければ参照ください。</p>
+<p><span class="link"></span><a href="http://localhost:5080/tils/20211018-Raspberry-Samba">RaspberryPi - Windows間でファイル共有</a></p>
 <br>
-<pre><code class="language-C#">&lt;レポートに重複コードまで含める場合の実行コマンド&gt;
-dupFinder.exe &lt;source&gt; --output=&lt;FileName&gt; --show-text
-</code></pre>
-<br>
-<p>レポートファイルは下記のような感じです。</p>
-<ul>
-<li>statistics：重複コードの相対サイズがわかります。</li>
-<li>duplicates：重複箇所を示します。</li>
-</ul>
-<img src="../img/20210903-Csharp-ResharperCommand-1.png" Style="width:100%;max-width:550px;" alt="ResharperコマンドツールdupFinder">  
-<br>
-<br>
-<p>公式doc日本語訳<br />
-<span class="link"></span> <a href="https://pleiades.io/help/resharper/dupFinder.html">dupFinderコマンドラインツール</a></p>
-<h2 id="inspectcode">InspectCode</h2>
-<p>コードを解析して、結果をxml形式で出力してくれます。</p>
-<pre><code class="language-C#">&lt;実行コマンド&gt;
-InspectCode.exe YourSolution.sln --output=&lt;FileName&gt;
-</code></pre>
-<br>
-<p>レポートファイルは下記のような感じです。<br />
-(小さくて見えづらいかもしれません)</p>
-<ul>
-<li>TypeId：指摘のカテゴリ</li>
-<li>Message：指摘詳細</li>
-<li>File/Offset/Line：指摘の場所</li>
-</ul>
-<img src="../img/20210903-Csharp-ResharperCommand-2.png" Style="width:100%;max-width:750px;" alt="ResharperコマンドツールIsnpectCode">  
-<br>
-<br>
-<p>例えば、「TypeId：InconsistentNaming」は、ネーミングルール違反を教えてくれています。</p>
-<br>
-<p>公式doc日本語訳<br />
-<span class="link"></span> <a href="https://pleiades.io/help/resharper/InspectCode.html">InspectCodeコマンドラインツール </a><br />
-<span class="link"></span> <a href="https://pleiades.io/help/resharper/Reference__Code_Inspections_CSHARP.html">C# のコードインスペクション</a></p>
+<p>以上です。</p>
 <br>
 <hr />
 
