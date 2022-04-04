@@ -240,11 +240,12 @@ UIFlowについてはこちらを参照ください。</p>
 <p>まずUIFlowを開きます。<br />
 web版のURLは↓↓です。</p>
 <p><span class="link"></span><a href="https://flow.m5stack.com/">M5Flow</a></p>
-<p>ブロックを選ぶメニューの「ハードウェア」⇒「加速度＆ジャイロ」を開くと、x/y/z それぞれの加速度、角速度のブロックが表示されます。</p>
+<p>ブロックを選ぶメニューで「ハードウェア」⇒「加速度＆ジャイロ」を開くと、x/y/z それぞれの加速度、角速度のブロックが表示されます。<br />
+また、水平に対する現在の角度はピッチ角とロール角で取得できます。</p>
 <img src="../img/20220307-M5stickc-6jiku-3.png" style="width:100%;max-width:600px" alt="UIFlowでM5StickCの6軸センサの値を取得する図">
 <br>
 <br>
-<p>次に、この加速度、角速度の値をLCDに表示するプログラムを作ります。</p>
+<p>次に、これらの値をLCDに表示するプログラムを作ります。</p>
 <img src="../img/20220307-M5stickc-6jiku-4.png" style="width:100%;max-width:400px" alt="UIFlowでM5StickCの6軸センサの値をLCDに表示する図">
 <br>
 <br>
@@ -265,6 +266,16 @@ web版のURLは↓↓です。</p>
 <img src="../img/20220307-M5stickc-6jiku-9.png" style="width:100%;max-width:150px" alt="M5StickCの6軸センサの値 角速度">
 <p>回転方向に動かすと、それに応じた角速度が観測できます。<br />
 観測値の単位は「dps: degrees per second」です。</p>
+<h2 id="section-3">現在の角度の見方</h2>
+<p>画面を上に向けた状態で水平に置くと、ピッチ角とロール角が共に0°になります。<br />
+ここからM5StickCを傾けていくと、ピッチ角とロール角の値が変わっていきます。<br />
+観測値の単位は「度(°)」ですので、垂直に立たせると値は90になります。</p>
+<img src="../img/20220307-M5stickc-6jiku-10.png" style="width:100%;max-width:250px" alt="M5StickCの6軸センサの値 ピッチ角とロール角">
+<p>ピッチ角とロール角の値は、加速度と角速度から計算しています。<br />
+複雑な計算式があるようですが、UIFLowではブロックを使用すれば、計算を意識する必要はありません。</p>
+<p>このピッチ角とロール角を使用することで、M5StickCの傾きによった処理を実行できます。<br />
+例えば、下記のような倒立振子などを作成することができます。</p>
+<p><span class="link"></span> <a href="https://qiita.com/Google_Homer/items/e88eedd951c7e5cea865">qiita 【改良】M5StickC UiFLOWブロックプログラミングで倒立振子(ピッチ角版)</a></p>
 <h2 id="m5stickc">M5StickC購入先</h2>
 <p>秋葉原へ行くと秋月電子やマルツで購入できます。<br />
 また、オンラインですとamazonのスイッチサイエンスショップでも購入できます。</p>
