@@ -235,6 +235,8 @@
 <p>要素それぞれの値に処理を実施します。</p>
 <pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
 var select = array.Select(x =&gt; x % 3);   // {0, 1, 2, 0, 1, 2}
+
+string[] array2 = {0, 1, 2, 3, 4, 5};
 var select2 = array.Select(x =&gt; int.Parse(x));  // int変換
 </code></pre>
 <h3 id="where">Where</h3>
