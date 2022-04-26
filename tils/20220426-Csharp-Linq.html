@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>C# WPF&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;&#x3059;&#x308B; | yokuaru Tech notes</title>
+  <title>C#&#x306E;Linq&#x307E;&#x3068;&#x3081; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="C# WPF&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;&#x3059;&#x308B;" />
+  <meta property="og:title" content="C#&#x306E;Linq&#x307E;&#x3068;&#x3081;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210825-Csharp-SerialPort" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220426-Csharp-Linq" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -223,161 +223,41 @@
         </script>
         <br>
 
-      <p>2021/08/25</p>
-<h1 id="cwpf">C#/WPFでシリアル通信を行う</h1>
+      <br>
+<p>2022/4/26</p>
+<h1 id="clinq">C#のLinqまとめ</h1>
 <hr />
-<p>シリアル通信とは、機器間で通信する方法の一つで、データを1bitづつ送信する形式のものです。<br />
-代表的な規格はRS-232です。<br />
-PCとマイコンボード（arduinoなど）間で通信するのによく使われています。</p>
-<p>C#には、シリアル通信を行うクラスがすでに用意されています。<br />
-これを使うと簡単にシリアル通信ができます。</p>
+<p>C#のLinqについてまとめました。<br />
+配列、Listなどのコレクションの中身を処理するときに便利です。</p>
+<p>Linqの出力はIEnumerable型となります。<br />
+配列にしたいときは.ToArray()、リストにしたいときは.ToList()を最後にくっつけます。</p>
+<h2 id="select">Select</h2>
+<p>要素それぞれの値に処理を実施します。</p>
+<pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
+var select = array.Select(x =&gt; x % 3);   // {0, 1, 2, 0, 1, 2}
+var select2 = array.Select(x =&gt; int.Parse(x));  // int変換
+</code></pre>
+<h3 id="where">Where</h3>
+<p>要素を選別します。</p>
+<pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
+var where = array.Where(x =&gt; x % 3 == 0);  // {0, 3}
+</code></pre>
+<h3 id="count">Count</h3>
+<p>要素を数えます。</p>
+<pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
+var where = array.Count(x =&gt; x % 2 == 0);  // 3
+</code></pre>
+<h3 id="maxminaveragesum">Max/Min/Average/Sum</h3>
+<p>要素全部を計算して結果を返します。</p>
+<pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
+var max = array.Max();      //5
+var min = array.Min();      //0
+var ave = array.Average();  //2.5
+var sum = array.Sum();      //15
+</code></pre>
+<p>以下、適宜追加していきます。</p>
 <br>
-<p> <img src="../img/20210825-Csharp-SerialPort-1.png" Style="width:100%;max-width:450px;" alt="シリアル通信によるPCとマイコンボードの接続"></p>
-<br>
-<p>今回、シリアル通信をするGUIアプリをWPFで作ってみました。<br />
-<span class="link"></span> <a href="https://github.com/yamaccu/WPF-SerialCommunication/tree/main">github</a></p>
-<p> <img src="../img/20210825-Csharp-SerialPort-2.png" Style="width:100%;max-width:400px;" alt="シリアル通信アプリ画面"></p>
-<br>
-<p>アプリ作成にあたってReactivePropertyというライブラリを使用しています。<br />
-データバインディングを補佐してくれるもので、大量のINotifyPropertyChangedを実施しなくて済むようになるのでお勧めです。</p>
-<p>また、ReactivePropertyはコマンドバインディングも対応していますが、こちらは今回のアプリでは使用していません。<br />
-正直、規模の小さなアプリではコマンドバインディングするよりコードビハインドにイベント処理を書いてしまった方がシンプルで可読性が良いかと思います。<br />
-（異論はありそうですが。。）</p>
-<p>参考1 <span class="link"></span> <a href="https://github.com/runceel/ReactiveProperty">公式</a><br />
-参考2 <span class="link"></span> <a href="https://qiita.com/YSRKEN/items/5a36fb8071104a989fb8">qiita ReactiveProperty全然分からねぇ！って人向けのFAQ集</a></p>
-<br>
-<p>以下、作ったアプリの説明になります。</p>
-<h2 id="class">使用Class</h2>
-<p><span class="link"></span> <a href="https://docs.microsoft.com/ja-jp/dotnet/api/system.io.ports.serialport?view=dotnet-plat-ext-5.0">SerialPort class</a>を使用します。<br />
-NugetでSystem.IO.Portsをインストールすると使えるようになります。<br />
-複数ポートを同時に使用しない場合は、staticで宣言することが多いようです。</p>
-<p>使用するメソッドは下記です。</p>
-<table>
-<thead>
-<tr>
-<th>機能</th>
-<th>メソッド</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>使用可能ポート取得</td>
-<td>GetPortNames()</td>
-</tr>
-<tr>
-<td>シリアルポートオープン</td>
-<td>Open()</td>
-</tr>
-<tr>
-<td>シリアルポートクローズ</td>
-<td>Close()</td>
-</tr>
-<tr>
-<td>データ送信</td>
-<td>Write(string)</td>
-</tr>
-<tr>
-<td>データ受信</td>
-<td>ReadExisting()</td>
-</tr>
-</tbody>
-</table>
-<h2 id="section">使用可能なポートの取得</h2>
-<p>以下は、使用可能なCOMポートを取得し、アプリ画面のComboBoxに取得データをbindingするコードです。</p>
-<p><span Class="cbtitle"><em>ViewModel.cs</em></span></p>
-<pre><code class="language-C#">//DataBindig用変数
-public ReactiveCollection&lt;string&gt; COMPorts { get; set; }
-      = new ReactiveCollection&lt;string&gt;(); 
-
-public void GetCOMPorts()
-{
-  COMPorts.Clear();
-  string[] ports = SerialPort.GetPortNames();
-  foreach (var port in ports)
-  {
-    COMPorts.Add(port);
-  }
-}
-</code></pre>
-<p><span Class="cbtitle"><em>MainWindow.xaml</em></span></p>
-<pre><code class="language-C#">&lt;ComboBox ItemsSource=&quot;{Binding COMPorts}&quot; /&gt;
-</code></pre>
-<br>
-<p>COMポートを取得するメソッドは、ComboBoxのDropDownOpenedイベントに登録しておくと、ドロップダウンを開く度に使用可能ポートを更新してくれて便利です。</p>
-<p><span Class="cbtitle"><em>MainWindow.xaml</em></span></p>
-<pre><code class="language-C#">&lt;ComboBox DropDownOpened=&quot;ComboBoxDropDownOpened_COMPort&quot;/&gt;
-</code></pre>
-<p><span Class="cbtitle"><em>MainWindow.xaml.cs</em></span></p>
-<pre><code class="language-C#">private void ComboBoxDropDownOpened_COMPort(object sender, EventArgs e)
-{
-  viewModel.GetCOMPorts();
-}
-</code></pre>
-<h2 id="section-1">シリアルポートのオープン</h2>
-<p>シリアルポート通信の各種設定をしたのち、接続をOpenします。<br />
-コードは以下です。</p>
-<pre><code class="language-C#">public void SerialOpen()
-{
-  try
-  {
-    serialPort.PortName = port;        //選択したport名
-    serialPort.BaudRate = baudrate;    //選択したbaudrate
-    serialPort.DataBits = 8;
-    serialPort.Parity = Parity.None;
-    serialPort.StopBits = StopBits.One;
-    serialPort.WriteTimeout = 1000;
-    serialPort.ReadTimeout = 1000;
-    serialPort.Encoding=Encoding.UTF8;
-    serialPort.Open();
-  }
-  catch (Exception ex)
-  {
-    MessageBox.Show(ex.Message);
-  }
-}
-</code></pre>
-<h2 id="section-2">シリアルポートのクローズ</h2>
-<p>シリアルポート接続をCloseします。</p>
-<pre><code class="language-C#">public void SerialClose()
-{
-  try
-  {
-    serialPort.Close();
-  }
-  catch (Exception ex)
-  {
-    MessageBox.Show(ex.Message);
-  }
-}
-</code></pre>
-<h2 id="section-3">データの送信</h2>
-<p>文字列を送信します。</p>
-<pre><code class="language-C#">public void Send()
-{
-  if (serialPort.IsOpen)
-  {
-    serialPort.Write(TXData);
-  }
-}
-</code></pre>
-<h2 id="section-4">データの受信</h2>
-<p>文字列を受信します。<br />
-受信データの取り出しは、割込みを使って行います。<br />
-データを受信したらすぐにデータを取り込んでくれます。</p>
-<pre><code class="language-C#">SerialCom.serialPort.DataReceived += OnReceived;
-
-private void OnReceived(object sender, SerialDataReceivedEventArgs e)
-{
-  RXData += serialPort.ReadExisting();
-}
-</code></pre>
-<h2 id="section-5">動作確認のためのシリアル通信折り返し方法</h2>
-<p>シリアル通信で送信したデータを折り返してそのまま受信すると、送信と受信の確認を同時にできて効率的です。<br />
-以下のUSB-シリアル変換を使用すれば確認可能です。<br />
-TxピンとRxピンを導線で繋いで動作確認します。</p>
-<p><span class="link"></span> <a href="https://akizukidenshi.com/catalog/g/gM-11007/">秋月電子 FT-232RQ USBシリアル変換モジュール</a></p>
-<br>
-<p>Arduinoなどが手元にあれば、折り返しするようプログラミングしても良いですね。</p>
+以上です。  
 <br>
 <hr />
 
