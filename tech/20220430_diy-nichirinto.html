@@ -1,0 +1,333 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>M5StickC&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30C0;&#x30A4;&#x30BD;&#x30FC;&#x306E;&#x5FCD;&#x8005;&#x5200;&#x3092;&#x65E5;&#x8F2A;&#x5200;&#x306B;&#x6539;&#x9020; | yokuaru Tech notes</title>
+
+  <link href="/scss/tech.css" rel="stylesheet" type="text/css">
+  <link href="/scss/prism.css" rel="stylesheet" type="text/css">
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
+    data-no-mirror></script>
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+
+  <script data-ad-client="ca-pub-2127299793131419" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-197465108-1');
+  </script>
+
+  <meta property="og:title" content="M5StickC&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30C0;&#x30A4;&#x30BD;&#x30FC;&#x306E;&#x5FCD;&#x8005;&#x5200;&#x3092;&#x65E5;&#x8F2A;&#x5200;&#x306B;&#x6539;&#x9020;" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yamaccu.github.io/tech/20220430_diy-nichirinto" />
+  <meta property="og:site_name" content="yokuaru Tech notes" />
+  <meta property="og:locale" content="ja_JP" />
+
+</head>
+
+<header style="background-image:url('/img/main2.png')">
+  <div class="flex-wrap">
+    <div>
+      <a href="/tech" class="title">
+        TECH BLOG
+      </a>
+    </div>
+    <div class="ext-link">
+      <a href="/"><img src="/img/home.png" class="ext-link-icon"
+          alt="homeへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"
+          alt="twitterへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"
+          alt="githubへのリンク"></a>
+    </div>
+  </div>
+  <br>
+</header>
+
+<body class="body-font">
+  <div class="post-wrap">
+    <div class="body-post">
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle adslot_2" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+      <br>
+      <br>
+<p>2022/4/30</p>
+<h1 id="m5stickc">M5StickCを使ってダイソーに売っている忍者刀を改造する</h1>
+<hr />
+<h2 id="section">はじめに</h2>
+<p>うちの子供（小4）は鬼滅の刃が大好きです。<br />
+登場人物を全員漢字でかけるくらいにはまっております。</p>
+<p>この熱量を何かに使えないかなと思い、プログラミングの勉強をかねて一緒に日輪刀を作ってみることにしました。</p>
+<p>↓↓つくったやつです。</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">M5StickCとダイソーの忍者刀で、日輪刀を作ってみました。横斬り⇒水面切り、縦斬り⇒滝壺、3回目の技⇒碧羅の天が出ます。子供と一緒に作りました😀<a href="https://twitter.com/hashtag/m5stickC?src=hash&amp;ref_src=twsrc%5Etfw">#m5stickC</a> <a href="https://twitter.com/hashtag/m5stack?src=hash&amp;ref_src=twsrc%5Etfw">#m5stack</a> <a href="https://twitter.com/hashtag/%E6%97%A5%E8%BC%AA%E5%88%80?src=hash&amp;ref_src=twsrc%5Etfw">#日輪刀</a> <a href="https://t.co/p4QkxEEuyV">pic.twitter.com/p4QkxEEuyV</a></p>&mdash; やまっく (&#64;YY87750722) <a href="https://twitter.com/YY87750722/status/1520222302293864448?ref_src=twsrc%5Etfw">April 30, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<h2 id="section-1">日輪刀の材料</h2>
+<table>
+<thead>
+<tr>
+<th>材料</th>
+<th>購入先</th>
+<th>リンク</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>忍者刀</td>
+<td>ダイソー</td>
+<td>　<a href="https://jp.daisonet.com/products/4549131577549" target="_blank" class="link"></a></td>
+</tr>
+<tr>
+<td>M5StickC</td>
+<td>Amazonなど</td>
+<td>　<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2FB09MVQD8QJ" rel="nofollow" referrerpolicy="no-referrer-when-downgrade" target="_blank" class="link"></a><img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" alt="" width="1" height="1" style="border: 0px;" /></td>
+</tr>
+<tr>
+<td>M5StickC Speaker Hat</td>
+<td>Amazonなど</td>
+<td>　<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2FB07Z4VD4DX" rel="nofollow" referrerpolicy="no-referrer-when-downgrade" target="_blank" class="link"></a><img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" alt="" width="1" height="1" style="border: 0px;" /></td>
+</tr>
+<tr>
+<td>GROVEケーブル</td>
+<td>Amazonなど</td>
+<td>　<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2FB00CDFYD62" rel="nofollow" referrerpolicy="no-referrer-when-downgrade" target="_blank" class="link"></a><img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" alt="" width="1" height="1" style="border: 0px;" /></td>
+</tr>
+<tr>
+<td>コモンタイプの赤・青2色LED 5p（リンク先はカソードコモン）</td>
+<td>秋月電子など</td>
+<td>　<a href="https://akizukidenshi.com/catalog/g/gI-01395/" target="_blank" class="link"></a></td>
+</tr>
+<tr>
+<td>定電流ダイオード 5p（LEDに合わせて電流値を選択）</td>
+<td>秋月電子など</td>
+<td>　<a href="https://akizukidenshi.com/catalog/g/gI-02876/" target="_blank" class="link"></a></td>
+</tr>
+<tr>
+<td>pnpトランジスタ 2p（リンク先はデュアルタイプなので1pでok）</td>
+<td>秋月電子など</td>
+<td>　<a href="https://akizukidenshi.com/catalog/g/gI-13877/" target="_blank" class="link"></a></td>
+</tr>
+<tr>
+<td>pnpトランジスタ用変換基板</td>
+<td>秋月電子など</td>
+<td>　<a href="https://akizukidenshi.com/catalog/g/gP-12674/" target="_blank" class="link"></a></td>
+</tr>
+<tr>
+<td>npnデジトラ 2p</td>
+<td>秋月電子など</td>
+<td>　<a href="https://akizukidenshi.com/catalog/g/gI-12467/" target="_blank" class="link"></a></td>
+</tr>
+<tr>
+<td>CR2電池 2p</td>
+<td>秋月電子など</td>
+<td>　<a href="https://akizukidenshi.com/catalog/g/gB-10130/" target="_blank" class="link"></a></td>
+</tr>
+<tr>
+<td>ダイオード（保護＆6V→5V電圧降下用）</td>
+<td>秋月電子など</td>
+<td>　<a href="https://akizukidenshi.com/catalog/g/gI-08327/" target="_blank" class="link"></a></td>
+</tr>
+<tr>
+<td>ユニバーサル基板</td>
+<td>秋月電子など</td>
+<td>　<a href="https://akizukidenshi.com/catalog/g/gP-03229//" target="_blank" class="link"></a></td>
+</tr>
+<tr>
+<td>抵抗 10kΩ</td>
+<td>秋月電子など</td>
+<td>　<a href="https://akizukidenshi.com/catalog/g/gR-25103/" target="_blank" class="link"></a></td>
+</tr>
+<tr>
+<td>アイスの棒（電池固定用）</td>
+<td>なんでもOK</td>
+<td>　<a href="//af.moshimo.com/af/c/click?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2FB01LWYVWI5" rel="nofollow" referrerpolicy="no-referrer-when-downgrade" target="_blank" class="link"></a><img src="//i.moshimo.com/af/i/impression?a_id=2991341&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" alt="" width="1" height="1" style="border: 0px;"/></td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>ダイソーの忍者刀です。これを改造していきます。</p>
+<div><img src="../img/20220430_diy-nichirinto-1.png" Style="width:100%;max-width:350px;" alt="ダイソーの忍者刀の写真"></div>  
+<p>M5StickCです。これを忍者刀の中に仕込んでプログラミングします。</p>
+<div><img src="../img/20220307-M5stickc-6jiku-5.png" Style="width:100%;max-width:150px;" alt="M5StickCの写真"></div>  
+<h2 id="section-2">必要スキル</h2>
+<ul>
+<li>はんだ付け</li>
+<li>プログラミング　UIFlowというビジュアルプログラミングを使用します</li>
+<li>電気回路の知識　M5StickCのGPIOを操作して、トランジスタ・LEDを駆動します</li>
+</ul>
+<h2 id="section-3">回路</h2>
+<img src="../img/20220430_diy-nichirinto-2.png" Style="width:100%;max-width:700px;" alt="手作り日輪刀の回路図">  
+<ul>
+<li><p>2色LEDがカソードコモンのものしか入手できなかったため、LED駆動にPNPトランジスタを使っています。<br />
+アノードコモンのものがあれば、NPNトランジスタ1段でシンプルに駆動可能かと思います。<br />
+秋葉原を散策したのですが見つかりませんでした、アノードコモン。。</p>
+</li>
+<li><p>npnトランジスタはデジトラを使えば、ベースの入力抵抗とGND抵抗の10kΩが内蔵されています。</p>
+</li>
+</ul>
+<h2 id="section-4">1. 柄の部分の加工</h2>
+<p>忍者刀を分解するとこんな感じです。<br />
+スピーカー、スイッチ、LEDの部分、電池の金具は再利用します。</p>
+<div><img src="../img/20220430_diy-nichirinto-3.png" Style="width:100%;max-width:350px;" alt="ダイソーの忍者刀を分解した時の写真"></div>  
+<p>中をニッパーなどでくりぬくと、M5StickC＋Speaker Hat（ケースを外したもの）がピッタリ収まります。<br />
+奇跡のジャストフィットです。</p>
+<div><img src="../img/20220430_diy-nichirinto-4.png" Style="width:100%;max-width:350px;" alt="ダイソーの忍者刀にM5StickCを入れた写真"></div>  
+<p>電池を固定するのに、アイスの棒を切って、元からあった電池止め金具を貼り付けます。<br />
+柄の内部にうまく切り込みを入れてはまるようにすれば、しっかり固定できます。</p>
+<div><img src="../img/20220430_diy-nichirinto-10.png" Style="width:100%;max-width:350px;" alt="ダイソーの忍者刀を分解した時の写真2"></div>  
+<h2 id="led">2. 刃の部分のLED付け替え</h2>
+<p>赤と青のLEDで、水の呼吸と日の呼吸を再現します。<br />
+忍者刀に元からついているLEDの色は赤と緑なので、はんだごてを使って取り替えます。</p>
+<div><img src="../img/20220430_diy-nichirinto-6.png" Style="width:100%;max-width:300px;" alt="ダイソーの忍者刀を分解した時の写真2"></div>  
+<p>赤と青の2色LEDに定電流ダイオードをはんだ付けします。<br />
+これで、LEDに定電流（今回は18mA）が流れます。<br />
+赤と青の2色LEDだと、それぞれ光らせる電圧（順電圧）が違うので抵抗で電流調整するのが難しいのですが、定電流ダイオードを使うとそんなことは考えなくて良くなります。<br />
+便利！</p>
+<div><img src="../img/20220430_diy-nichirinto-7.png" Style="width:100%;max-width:400px;" alt="2色LEDと定電流ダイオードの写真"></div>  
+<p>このLEDを、元々あるLEDの代わりに置き換えていきます。<br />
+5p使うと、十分な光量が得られました。</p>
+<div><img src="../img/20220430_diy-nichirinto-8.png" Style="width:100%;max-width:500px;" alt="2色LEDと定電流ダイオードの写真2"></div>  
+<h2 id="section-5">3. 回路図に沿ってはんだ付け</h2>
+<p>上記の回路図の通りに、部品をはんだ付けしていきます。<br />
+下記はトランジスタと抵抗をユニバーサル基板にはんだづけしたものです。<br />
+結構こまかい。</p>
+<div><img src="../img/20220430_diy-nichirinto-9.png" Style="width:100%;max-width:500px;" alt="ユニバーサル基板にトランジスタをはんだ付けした写真"></div>  
+<p>スピーカーは、Speaker Hatのものは外して、忍者刀に元から入っていたものに取り換えます。<br />
+最終的にはこんな感じになります↓↓</p>
+<div><img src="../img/20220430_diy-nichirinto-5.png" Style="width:100%;max-width:350px;" alt="ダイソーの忍者刀にM5StickCを入れた写真2"></div>  
+<h2 id="uiflow">4. UIFlowでプログラミング</h2>
+<p>日輪刀のハードウェアが完成したので、次は中身のソフトを作ります。<br />
+以下の機能を実装していきます。</p>
+<ul>
+<li>スイッチを入れたら赤LED点灯＋wav再生（オープニング）</li>
+<li>横に振ったら青LED点灯＋wav再生（壱ノ型 水面切り）</li>
+<li>縦に振ったら青LED点灯＋wav再生（捌ノ型 滝壷）</li>
+<li>三回目の技を出したときは赤LED点灯＋wav再生（ヒノカミ神楽 碧羅の天）</li>
+</ul>
+<p>今回は子供と一緒にプログラミングするので、ビジュアルプログラミングのUIFlowを使用することにします。</p>
+<h3 id="led-1">4-1. LED点灯する</h3>
+<p>回路図上のG32/G33でLEDの点灯・消灯を行うことができます。</p>
+<ul>
+<li>G32/G33をHレベル：LED点灯</li>
+<li>G32/G33をLレベル：LED消灯</li>
+</ul>
+<p>UIFlowでは下記のようにすると、G33が500msごとにHレベル⇔Lレベルとなり、LEDもそれに合わせて点滅します。</p>
+<div><img src="../img/20220430_diy-nichirinto-11.png" Style="width:100%;max-width:550px;" alt="UIFLOWでLEDを制御している画像"></div>  
+<h3 id="wav">4-2. wav再生する</h3>
+<p>M5StickCでWAVファイルを再生する方法は、下記にまとめていますので参照ください。<br />
+wav再生用のプログラムを用意していますので、wavファイルを準備してプログラムを実行します。</p>
+<p>　<span class="link"></span><a href="https://yamaccu.github.io/tils/20220310-M5stickc-playwav">M5StickCとSpeakerHatでwavを再生する</a></p>
+<h3 id="ledwav">4-3. 縦斬りと横斬りを検知してLED点灯＆wav再生を行う</h3>
+<p>縦斬りと横斬りの検知には、M5StickCに入っている6軸センサを使用します。</p>
+<ul>
+<li>Z方向の加速度がある　＝　水平</li>
+<li>X方向およびY方向の加速度がある　＝　垂直</li>
+<li>Z方向の角速度がある　＝　刀が振られている</li>
+</ul>
+<p>と判定しています。</p>
+<p>これで水面切りと滝壷を使い分けできます。</p>
+<p>って書くと簡単なのですが、結構えぐい各パラメータの調整が必要でした。。<br />
+プログラムは下記に置きましたので参照ください。</p>
+<p>　<span class="link"></span><a href="https://github.com/yamaccu/UIFLOW-NichirinSword">github</a></p>
+<p>また、6軸センサについては下記にまとめていますので、宜しければご覧ください。</p>
+<p>　<span class="link"></span><a href="https://yamaccu.github.io/tils/20220307-M5stickc-6jiku">M5StickCの6軸センサを使う</a></p>
+<h3 id="m5stickc-1">4-4. 電源を切ったらM5StickCの電源も切れるようにする</h3>
+<p>M5StickCにはバッテリが入っているので、回路図上のスイッチを切っても動き続けてしまいます。<br />
+M5StickCの電源を切るには、入力電圧を監視して、電圧が切れたら自分で電源を切るプログラムが必要です。</p>
+<p>↓↓こんな感じです。</p>
+<div><img src="../img/20220430_diy-nichirinto-12.png" Style="width:100%;max-width:350px;" alt="UIFLOWでM5StickCの電源を切る画像"></div>  
+<h2 id="section-6">まとめ</h2>
+<p>最初は子供と一緒に楽しくやろうと思っていたのですが、想像以上に難易度が高く、後半は自分ひとりで作業してしまいました。<br />
+子供ができたのは</p>
+<ul>
+<li>はんだづけの簡単な箇所</li>
+<li>LEDを光らせる部分のプログラム</li>
+</ul>
+<p>辺りです。</p>
+<p>ただ、ちょっとしかできなかったけど動いたときはとても喜んでいたので、今後も一緒に何か作っていけたらと思っています。<br />
+次はもっと簡単なお題を見つけなくてはですね。</p>
+<br>
+<p>以上です。</p>
+<br>
+<br>
+<hr />
+
+
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+      <script src="https://utteranc.es/client.js" repo="yamaccu/yamaccu.github.io" issue-term="pathname"
+        theme="github-light" crossorigin="anonymous" async>
+        </script>
+
+    </div>
+    <div class="adslot_1" style="flex-basis:250px;">
+      <div style="margin-left:20px;">
+
+        <p>Tech Blog Index</p>
+
+        <ul>
+
+              <li style="margin-left:-10px;"><a href="/tech/20220430_diy-nichirinto">&#x65E5;&#x8F2A;&#x5200;&#x3092;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;</a></li>
+              <li style="margin-left:-10px;"><a href="/tech/20220216_StatiqBlog">Statiq&#x3067;&#x30D6;&#x30ED;&#x30B0;&#x4F5C;&#x6210;</a></li>
+        </ul>
+
+        <br>
+
+
+        <p>Sponsor</p>
+
+        <script async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+          data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br>
+        <br>
+
+        <script async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+          data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

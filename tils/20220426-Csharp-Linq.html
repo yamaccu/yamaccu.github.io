@@ -239,17 +239,17 @@ var select = array.Select(x =&gt; x % 3);   // {0, 1, 2, 0, 1, 2}
 string[] array2 = {0, 1, 2, 3, 4, 5};
 var select2 = array.Select(x =&gt; int.Parse(x));  // int変換
 </code></pre>
-<h3 id="where">Where</h3>
+<h2 id="where">Where</h2>
 <p>要素を選別します。</p>
 <pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
 var where = array.Where(x =&gt; x % 3 == 0);  // {0, 3}
 </code></pre>
-<h3 id="count">Count</h3>
+<h2 id="count">Count</h2>
 <p>要素を数えます。</p>
 <pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
 var where = array.Count(x =&gt; x % 2 == 0);  // 3
 </code></pre>
-<h3 id="maxminaveragesum">Max/Min/Average/Sum</h3>
+<h2 id="maxminaveragesum">Max/Min/Average/Sum</h2>
 <p>要素全部を計算して結果を返します。</p>
 <pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
 var max = array.Max();      //5
