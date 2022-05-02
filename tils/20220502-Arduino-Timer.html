@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>micropython&#x306B;repl&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9; | yokuaru Tech notes</title>
+  <title>Arduino&#x3067;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3046; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="micropython&#x306B;repl&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9;" />
+  <meta property="og:title" content="Arduino&#x3067;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3046;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210818-Micropython-repl" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220502-Arduino-Timer" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -230,65 +230,92 @@
         </script>
         <br>
 
-      <p>2021/8/18</p>
-<h1 id="micropythonrepl">micropythonにreplでアクセスする</h1>
+      <p>2022/5/2</p>
+<h1 id="arduino">Arduinoでタイマー処理を行う方法</h1>
 <hr />
-<p>replとは、repl：「Read（読み取り）、Eval（評価）、Print（印字）、Loop（ループ）」の頭字語です。<br />
-micropython上でコマンドを実行できる仕組みで、コマンドプロンプトのようなイメージです。<br />
-コードをテストするときに、コマンドを一つずつ実行できるので便利です。</p>
-<p>参考　<span class="link"></span><a href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html">micropython公式</a></p>
-<h2 id="section">アクセス方法</h2>
-<p>デバイスのシリアルポートに、シリアル通信アプリ（teratermなど）で接続します。<br />
-通信速度は115200bpsです。<br />
-CTR+Cを二回で、mainで実行している処理を中止してreplで操作可能になります。</p>
-<h2 id="section-1">コマンド</h2>
-<table>
-<thead>
-<tr>
-<th>コマンド</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>help()</td>
-<td>ヘルプを表示</td>
-</tr>
-<tr>
-<td>help('modules')</td>
-<td>使用可能なライブラリを表示</td>
-</tr>
-<tr>
-<td>help(obj)</td>
-<td>調べたいobjectの説明を表示</td>
-</tr>
-<tr>
-<td>dir()</td>
-<td>import済みのファイル情報の表示</td>
-</tr>
-<tr>
-<td>sys.path.append('パス')</td>
-<td>import時に探索されるパスを追加</td>
-</tr>
-<tr>
-<td>os.listdir()</td>
-<td>カレントディレクトリのファイルを表示</td>
-</tr>
-<tr>
-<td>os.listdir(&quot;パス&quot;)</td>
-<td>&quot;パス&quot;内のファイルを表示</td>
-</tr>
-<tr>
-<td>os.chdir(&quot;パス&quot;)</td>
-<td>&quot;パス&quot;へカレントディレクトリを移動</td>
-</tr>
-<tr>
-<td>tabキー</td>
-<td>入力候補の表示</td>
-</tr>
-</tbody>
-</table>
+<p>Arduinoで、一定時間ごとに処理を実施するタイマー処理の方法とまとめました。<br />
+millis()を使う、MsTimer2を使う、の2通りを説明します。</p>
+<h2 id="millis">1. millis()を使う</h2>
+<p>millis()は、Arduino起動後からの時間を単位msで返してくれる関数です。<br />
+タイマー開始時のmillis()を記憶しておいて、現在のmillis()から引き算すると、タイマー開始時からの経過時間がわかります。</p>
+<pre><code class="language-C">unsigned long now;
+unsigned long starttime1 = 0;
+unsigned long starttime2 = 0;
+
+now = millis();
+if(now - starttime1 &gt; 1000)
+{
+  doSometing();   //1秒おきに何か処理を実行
+  starttime1 = now;
+}
+
+now = millis();
+if(now - starttime2 &gt; 5000)
+{
+  doSometing();   //5秒おきに何か処理を実行
+  starttime2 = now;
+}
+</code></pre>
+<h2 id="mstimer2">2. MsTimer2を使う</h2>
+<p>MsTimer2は、timer2を簡単に使うためのライブラリです。</p>
+<p><span class="link"></span> <a href="https://github.com/PaulStoffregen/MsTimer2">github MsTimer2</a></p>
+<p>以下のようにすると、指定した時間ごとに割込みで処理を実行してくれます。</p>
+<pre><code class="language-C"> MsTimer2::set(500, doSometing);  // 500ms周期でdoSometingを実行
+ MsTimer2::start();}
+</code></pre>
+<p>MsTimer2では、タイマーを複数登録することができません。<br />
+複数のタイマーを実行するには、MsTimer2をカウンターとして利用し、カウントによって処理を実行するようにする必要があります。</p>
+<pre><code class="language-C">void setup() 
+{
+  MsTimer2::set(1, timerCount);
+  MsTimer2::start();
+}
+ 
+void timerCount() 
+{
+  timerCount10ms++;
+  timerCount100ms++;
+ 
+  if (timerCount10ms &gt;= 10) 
+  {
+    timerCount10ms = 0;
+    timerCount10msFLG = true;
+  }
+ 
+  if (timerCount100ms &gt;= 100) 
+  {
+    timerCount100ms = 0;
+    timerCount100msFLG = true;
+  }
+}
+
+void loop()
+{
+  if(timerCount10msFLG)
+  {
+    doSomething;
+    timerCount10msFLG = false;
+  }
+
+  if(timerCount100msFLG)
+  {
+    doSomething;
+    timerCount100msFLG = false;
+  }
+}
+</code></pre>
+<h2 id="millis-1">millis()のオーバーフローについて</h2>
+<p>millis()の型はunsign long（32bit 符号なし整数）なので、2^32msでオーバーフローし値が0にリセットされてしまいます。<br />
+ただし、上記の例のように、現在時刻からタイマー開始時間を引き算する方式の場合、引き算時にもオーバーフローが発生し結果として経過時間が正しく測定できます。<br />
+ですので、オーバーフローは気にする必要はありません。</p>
+<p>例えば、以下のようになります。</p>
+<pre><code class="language-C">unsigned long a = 1000;
+unsigned long b = 4294967296;
+Serial.println(a-b);    //1000がシリアルモニタに表示される
+</code></pre>
+<p>参考 <span Class="link"></span><a href="https://garretlab.web.fc2.com/arduino/lab/millis/">millis()のオーバーフロー</a></p>
 <br>
+<p>以上です。</p>
 <br>
 <hr />
 
