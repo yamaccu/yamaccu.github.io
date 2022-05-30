@@ -79,6 +79,10 @@
           <summary class="side-summary">Csharp</summary>
             <div class="side-content">
               -
+              <a href="/tils/202206xx-Csharp-ToString">C#&#x306E;ToString&#x307E;&#x3068;&#x3081;</a><br>
+            </div>
+            <div class="side-content">
+              -
               <a href="/tils/20220426-Csharp-Linq">C#&#x306E;Linq&#x307E;&#x3068;&#x3081;</a><br>
             </div>
             <div class="side-content">
@@ -233,7 +237,7 @@
       <p>2022/5/2</p>
 <h1 id="arduino">Arduinoでタイマー処理を行う方法</h1>
 <hr />
-<p>Arduinoで、一定時間ごとに処理を実施するタイマー処理の方法とまとめました。<br />
+<p>Arduinoで、一定時間ごとに処理を実施するタイマー処理の方法をまとめました。<br />
 millis()を使う、MsTimer2を使う、の2通りを説明します。</p>
 <h2 id="millis">1. millis()を使う</h2>
 <p>millis()は、Arduino起動後からの時間を単位msで返してくれる関数です。<br />
@@ -257,7 +261,7 @@ if(now - starttime2 &gt; 5000)
 }
 </code></pre>
 <h2 id="mstimer2">2. MsTimer2を使う</h2>
-<p>MsTimer2は、timer2を簡単に使うためのライブラリです。</p>
+<p>MsTimer2は、arduinoに使われているマイコン「ATmega328p」に内蔵されているtimer2を簡単に使うためのライブラリです。</p>
 <p><span class="link"></span> <a href="https://github.com/PaulStoffregen/MsTimer2">github MsTimer2</a></p>
 <p>以下のようにすると、指定した時間ごとに割込みで処理を実行してくれます。</p>
 <pre><code class="language-C"> MsTimer2::set(500, doSometing);  // 500ms周期でdoSometingを実行
@@ -305,7 +309,7 @@ void loop()
 }
 </code></pre>
 <h2 id="millis-1">millis()のオーバーフローについて</h2>
-<p>millis()の型はunsign long（32bit 符号なし整数）なので、2^32msでオーバーフローし値が0にリセットされてしまいます。<br />
+<p>millis()の型はunsigned long（32bit 符号なし整数）なので、2^32msでオーバーフローし値が0にリセットされてしまいます。<br />
 ただし、上記の例のように、現在時刻からタイマー開始時間を引き算する方式の場合、引き算時にもオーバーフローが発生し結果として経過時間が正しく測定できます。<br />
 ですので、オーバーフローは気にする必要はありません。</p>
 <p>例えば、以下のようになります。</p>
