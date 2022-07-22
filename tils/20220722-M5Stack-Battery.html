@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>RaspberryPi&#x3068;Windows&#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x5171;&#x6709;(samba) | yokuaru Tech notes</title>
+  <title>&#x300C;M5Stack&#x300D;&#x30D0;&#x30C3;&#x30C6;&#x30EA;&#x30FC;&#x306E;&#x6B8B;&#x308A;&#x3092;&#x8ABF;&#x3079;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="RaspberryPi&#x3068;Windows&#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x5171;&#x6709;(samba)" />
+  <meta property="og:title" content="&#x300C;M5Stack&#x300D;&#x30D0;&#x30C3;&#x30C6;&#x30EA;&#x30FC;&#x306E;&#x6B8B;&#x308A;&#x3092;&#x8ABF;&#x3079;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20211018-Raspberry-Samba" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220722-M5Stack-Battery" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -241,40 +241,34 @@
         </script>
         <br>
 
-      <p>2021/10/17</p>
-<h1 id="raspberrypi-windows">RaspberryPi - Windows間でファイル共有</h1>
+      <p>2022/07/22</p>
+<h1 id="m5stack">M5Stackのバッテリーの残量を調べる</h1>
 <hr />
-<p>Sambaというフリーソフトをラズパイにインストールすると、ラズパイとWindows間でファイル共有ができます。<br />
-Windowsからラズパイへ、外付けHDなどと同じようにエクスプローラでアクセスできるので、とてもお手軽です。<br />
-sshやscpでのやり取りは不要になります。</p>
-<p>参考　<span class="link"></span><a href="http://wiki.samba.gr.jp/mediawiki/index.php/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8">日本SAMBAユーザーの会</a></p>
+<p> <img src="../img/20210823-UIFLOW-CustomBlock-1.png" width="65px" alt="M5Stackイラスト">
+← M5Stackはこんなやつ。</p>
+<p>M5Stackのボトムにはバッテリーが入っています。<br />
+このバッテリーの残量をプログラム(arduino)で取得することができます。</p>
+<h2 id="section">バッテリー残量の取得</h2>
+<p>バッテリー残量を調べるにはM5.Powerクラスを使います。<br />
+beginで初期化して、getBatteryLevelで残量を取得できます。<br />
+残量は％表示で、「0, 24, 50, 70, 100」の5値で表されます。</p>
+<pre><code class="language-C">M5.Power.begin();     // 初期化
+
+uint8_t BatteryLevel = M5.Power.getBatteryLevel();     // 残量取得
+</code></pre>
+<h2 id="m5.power">M5.Powerクラスについて</h2>
+<p>M5.Powerクラスには、バッテリー残量以外の機能もあります。<br />
+が、あんまり使わないような気がします。</p>
+<p>詳細は以下が参考になります。</p>
+<p><span class="link"></span><a href="https://bokunimo.net/blog/esp/1167/">M5Stack電源IC IP5306 用モニタ</a><br />
+<span class="link"></span><a href="https://knt60345blog.com/m5stack_api_list/#toc8">【初心者おすすめ】M5Stackライブラリ APIまとめ。公式サイトへのリンク付き。</a></p>
+<h2 id="ic-ip5306">電源IC IP5306</h2>
+<p>M5Stackの電源管理は、IP5306というICが使われています。<br />
+上記のM5.Powerクラスを使わずに、I2Cで直接電源ICのレジスタにアクセスすることもできます。<br />
+詳細は以下がわかりやすいです。</p>
+<p><span class="link"></span><a href="https://zenn.dev/tomorrow56/articles/43f64daa279510">Zenn M5Stackの充電制御IC IP5306のネット上に分散していたレジスタ情報をまとめる</a></p>
 <br>
-<p>以下、導入手順になります。</p>
-<h2 id="samba">1. ラズパイにSambaをインストールします。</h2>
-<p>下記コマンドをターミナルで実行します。</p>
-<pre><code class="language-C#">sudo apt-get update
-sudo apt-get install samba
-</code></pre>
-<p>インストール中にWINS設定うんぬん聞かれたら「いいえ」とします。</p>
-<h2 id="section">2. 設定ファイルを編集します。</h2>
-<p>下記のコマンドで、設定ファイルを編集します。</p>
-<pre><code class="language-C#">sudo nano /etc/samba/smb.conf
-</code></pre>
-<p>編集画面が開いたら、最下部に下記を追加します。</p>
-<pre><code class="language-C#">[pi]  
-path = /home/pi  
-guest ok = no  
-read only = no  
-force user = pi  
-</code></pre>
-<p>下記コマンドで、設定ファイルを適用します。</p>
-<pre><code class="language-C#">sudo service smbd restart
-</code></pre>
-<h2 id="windows">3. Windows側からアクセスできるか確認</h2>
-<p>Windowsのエクスプローラで &quot;¥¥&lt;ラズパイのIPアドレス&gt;¥pi&quot; にアクセスできるか確認します。<br />
-読み込み、書き込みができれば終了です。</p>
-<br>
-<p>以上です。</p>
+以上です。
 <br>
 <hr />
 
