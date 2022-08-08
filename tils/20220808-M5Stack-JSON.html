@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>RaspberryPi&#x3067;&#x6BCE;&#x65E5;&#x6C7A;&#x307E;&#x3063;&#x305F;&#x6642;&#x9593;&#x306B;&#x5199;&#x771F;&#x3092;&#x64AE;&#x308B; | yokuaru Tech notes</title>
+  <title>&#x300C;M5Stack&#x300D;wifi&#x63A5;&#x7D9A;&#x3057;&#x3066;JSON&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="RaspberryPi&#x3067;&#x6BCE;&#x65E5;&#x6C7A;&#x307E;&#x3063;&#x305F;&#x6642;&#x9593;&#x306B;&#x5199;&#x771F;&#x3092;&#x64AE;&#x308B;" />
+  <meta property="og:title" content="&#x300C;M5Stack&#x300D;wifi&#x63A5;&#x7D9A;&#x3057;&#x3066;JSON&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20220329-Raspberry-camera" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220808-M5Stack-JSON" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -249,46 +249,154 @@
         </script>
         <br>
 
-      <p>2022/3/29</p>
-<h1 id="raspberrypi">RaspberryPi＋カメラで毎日決まった時間に定期的に写真を撮る</h1>
+      <p>2022/08/08</p>
+<h1 id="m5stackwifijson">M5Stackでwifiに接続しJSONを取得する</h1>
 <hr />
-<p>ラズパイのcronという機能と、カメラを制御するpythonのプログラムを組み合わせることで、毎日決まった時間に写真を撮って保存することができます。<br />
-何かを観測するときに便利です。</p>
-<p>以下、手順になります。</p>
-<h2 id="section">1. カメラの画像を保存するプログラムを作る</h2>
-<p>ラズパイ画面の左上メニューの「プログラミング ⇒ Thonny Python IDE」をクリックして起動し、下記のようなプログラムを作成します。<br />
-カメラの画像を保存するプログラムです。</p>
-<pre><code class="language-Python">from picamera import PiCamera
-import datetime
+<p> <img src="../img/20210823-UIFLOW-CustomBlock-1.png" width="65px" alt="M5Stackイラスト">
+← これがM5Stack</p>
+<p>M5Stackでwifiに接続し、JSONを取得する方法をまとめました。<br />
+web APIなどはJSON形式であることが多いので、JSONを取り扱うことで様々な情報を取り込むことができます。<br />
+本ページでは例として、天気予報JSONを取得して画面に表示します。</p>
+<p>以下の手順で説明していきます。</p>
+<ol>
+<li>wifiに接続する</li>
+<li>HTTPClientライブラリでJSONファイルで取得する</li>
+<li>ArduinoJSONライブラリでJSONファイルから情報を抽出する</li>
+<li>LCDに表示する</li>
+</ol>
+<h2 id="wifi">1. wifiに接続する</h2>
+<p>M5Stackに搭載されているESP32マイコンには、Wifi機能が標準でついています。<br />
+WiFi.begin でWifiに接続でき、Wifi.Status が”WL_CONNECTED”になれば接続完了です。</p>
+<pre><code class="language-C">#include &lt;WiFi.h&gt;
 
-camera = PiCamera()
-nowdate = datetime.datetime.now()
+const char *ssid = &quot;xxxxxxxxxx&quot;;       //接続先wifiのssid
+const char *password = &quot;xxxxxxxxxx&quot;;   //接続先wifiのパスワード
+unsigne long startTime = millis();
 
-camera.start_preview()
-filename = '/home/pi/Desktop/pictures/'+nowdate.strftime('%m%d_%H%M%S')+'.jpg'
-camera.capture(filename)
-camera.stop_preview()
+WiFi.begin(ssid, password);
+
+while (WiFi.status() != WL_CONNECTED)  // 接続されるまで待つ
+{
+  delay(500);
+  if(millis() - startTime &gt; 10000)     // タイムアウト(10秒)
+  {
+    // エラー処理があれば入れる
+    break;
+  }
+}
 </code></pre>
-<p>以下のサイトが参考になります。<br />
-<span class="link"></span><a href="https://projects.raspberrypi.org/ja-JP/projects/getting-started-with-picamera/4">カメラモジュールを始めよう</a></p>
-<h2 id="cron">2. cronを設定して定期的にプログラムを実行する</h2>
-<p>ラズパイのターミナルで下記のコマンドを実行し、ラズパイのcronを設定します。</p>
-<p>cronとは、Linux系のOSの機能で、時間を指定して繰り返し処理を実行する仕組みです。<br />
-例えば、毎日9時に指定したコマンドを実行する、といった処理が可能です。<br />
-詳細は下記を参照ください。</p>
-<p><span Class="link"></span> <a href="https://qiita.com/hikouki/items/e744b3a4d356d2af12cf">Qiita cronの設定方法</a></p>
-<pre><code class="language-C#">crontab -l
-
-編集画面が開いたら以下を記述
-*/5 * * * * /usr/bin/python3  /home/pi/camera.py
+<p>WiFi.begin(const char *ssid, const char *password)</p>
+<ul>
+<li>ssid： 接続先WiFiのssidを指定します。</li>
+<li>password： 接続先WiFiのパスワードを指定します。</li>
+</ul>
+<p>Wifi.Status()</p>
+<ul>
+<li>Wifi接続情報を取得します。<br />
+接続成功したら“WL_CONNECTED”（= 3）となります。<br />
+他には以下のようなステータスがあるようです。</li>
+</ul>
+<pre><code class="language-C">typedef enum {
+    WL_NO_SHIELD        = 255,   // for compatibility with WiFi Shield library
+    WL_IDLE_STATUS      = 0,
+    WL_NO_SSID_AVAIL    = 1,
+    WL_SCAN_COMPLETED   = 2,
+    WL_CONNECTED        = 3,
+    WL_CONNECT_FAILED   = 4,
+    WL_CONNECTION_LOST  = 5,
+    WL_DISCONNECTED     = 6
+} wl_status_t;
 </code></pre>
-<p>上記は、5分おきに「/home/pi/camera.py」をpythonで実行する設定です。<br />
-時間や実行コマンドを、自分の使う環境に合わせて変更して使用します。</p>
-<p>撮った写真は、Windows PCに取り出したい場合は、ラズパイにSambaというソフトを入れておくと簡単に取り出すことができます。<br />
-下記に手順をまとめていますのでよろしければ参照ください。</p>
-<p><span class="link"></span><a href="http://localhost:5080/tils/20211018-Raspberry-Samba">RaspberryPi - Windows間でファイル共有</a></p>
+<p>wifiライブラリはArduinoフレームワークに元から入っています。<br />
+関数一式は下記のページが参考になります。<br />
+<span class="link"></span> <a href="https://garretlab.web.fc2.com/arduino/esp32/reference/libraries/WiFi/">WiFiライブラリリファレンス</a></p>
+<h2 id="httpclientjson">2. HTTPClientライブラリでJSONファイルを取得する</h2>
+<p>Wifiに接続したら、webからJSONを取得できます。<br />
+ここでは例として、気象庁の天気予報JSONを取得してみます。<br />
+URLは「<a href="https://www.jma.go.jp/bosai/forecast/data/forecast/130000.json">https://www.jma.go.jp/bosai/forecast/data/forecast/130000.json</a>」です。</p>
+<p>操作は単純で、begin ⇒ GET ⇒ getString で読み込むだけです。</p>
+<pre><code class="language-C">#include &lt;HTTPClient.h&gt;
+
+HTTPClient http;
+String payload;
+
+http.begin(&quot;https://www.jma.go.jp/bosai/forecast/data/forecast/130000.json&quot;);
+int httpCode = http.GET();
+
+if (httpCode &gt; 0)
+{
+  if (httpCode == HTTP_CODE_OK)
+  {
+    payload = http.getString();
+  }
+}
+else if (httpCode &lt;= 0)
+{
+  // エラー処理があれば入れる
+}
+
+http.end();
+</code></pre>
+<p>begin(String url);</p>
+<ul>
+<li>url： アクセスするURLを指定します。</li>
+</ul>
+<p>GET()</p>
+<ul>
+<li>HTTP GETリクエストを送信し、レスポンスコードを取得します。</li>
+</ul>
+<p>getString()</p>
+<ul>
+<li>レスポンスメッセージをStringで取得します。</li>
+</ul>
+<p>HTTPClientライブラリはArduinoフレームワークに元から入っています。<br />
+関数一式は下記のページが参考になります。<br />
+<span class="link"></span> <a href="https://garretlab.web.fc2.com/arduino/esp32/reference/libraries/HTTPClient/">HTTPClientライブラリリファレンス</a></p>
+<h2 id="arduinojsonjson">3. ArduinoJSONライブラリを使ってJSONファイルから情報を抽出する</h2>
+<p>上記ではJSONファイルをStringで読み込んでいますが、ArduinoJSONライブラリを使うとJSONファイルの扱いがグっと楽になります。<br />
+下記のソースでは、取得したJSONデータをJsonDocumentへ解析・入力し、その後に日付と予報テキストを抽出しています。</p>
+<p>ArduinoJSONのレポジトリは以下になります。<br />
+<span class="link"></span><a href="https://github.com/bblanchon/ArduinoJson">github ArduinoJSON</a></p>
+<pre><code class="language-C">#include &lt;ArduinoJson.h&gt;
+
+DynamicJsonDocument doc(4096);
+
+deserializeJson(doc, payload);
+
+String date = doc[0][&quot;reportDatetime&quot;];
+String forecast = doc[0][&quot;timeSeries&quot;][0][&quot;areas&quot;][0][&quot;weathers&quot;][0];
+</code></pre>
+<p>deserializeJson(JsonDocument &amp;doc, String &amp;input)</p>
+<ul>
+<li>doc： JSONファイルの解析結果が入力されます。<br />
+JSON構造が多次元配列のようになって格納されています。</li>
+<li>input： 解析するJSONファイルを指定します。</li>
+</ul>
+<h2 id="lcd">4. LCDに表示する</h2>
+<p>上記において、dateとforecastをLCDに描画すると、日付と天気予報が表示されます。<br />
+描画にはM5Unifiedライブラリを使用すると便利です。</p>
+<p><span class="link"></span><a href="https://github.com/m5stack/M5Unified">github M5Unified</a></p>
+<pre><code class="language-C">#include &lt;M5Unified.h&gt;
+
+auto cfg = M5.config();
+M5.begin(cfg);
+
+M5.Lcd.setFont(&amp;fonts::lgfxJapanGothic_24);
+M5.Lcd.setCursor(0, 0);
+M5.Lcd.print(date);
+
+M5.Lcd.setCursor(0, 30);
+M5.Lcd.print(forecast);
+</code></pre>
+<p>そうすると、以下のようにM5Stackの画面に天気予報が表示されます。</p>
 <br>
-<p>以上です。</p>
+<img src="../img/20220808-M5Stack-JSON-1.png" Style="width:100%;max-width:400px;" alt="M5Stackに天気予報を表示する図">  
+<br>
+<br>
+<p>プログラム全体は以下のgithubにあげましたので、よろしければ参照ください。<br />
+<span class="link"></span> <a href="https://github.com/yamaccu/M5Stack-Sample/blob/main/GetJSONTest/main.cpp">github</a></p>
+<br>
+以上です。
 <br>
 <hr />
 
