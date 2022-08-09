@@ -260,8 +260,8 @@ web APIなどはJSON形式であることが多いので、JSONを取り扱う�
 <p>以下の手順でまとめています。</p>
 <ol>
 <li>wifiに接続する</li>
-<li>HTTPClientライブラリでJSONファイルで取得する</li>
-<li>ArduinoJSONライブラリでJSONファイルから情報を抽出する</li>
+<li>HTTPClientライブラリでJSONデータを取得する</li>
+<li>ArduinoJSONライブラリでJSONデータから情報を抽出する</li>
 <li>LCDに表示する</li>
 </ol>
 <h2 id="wifi">1. wifiに接続する</h2>
@@ -309,7 +309,7 @@ while (WiFi.status() != WL_CONNECTED)  // 接続されるまで待つ
 <p>wifiライブラリはArduinoフレームワークに元から入っています。<br />
 関数一式は下記のページが参考になります。<br />
 <span class="link"></span> <a href="https://garretlab.web.fc2.com/arduino/esp32/reference/libraries/WiFi/">WiFiライブラリリファレンス</a></p>
-<h2 id="httpclientjson">2. HTTPClientライブラリでJSONファイルを取得する</h2>
+<h2 id="httpclientjson">2. HTTPClientライブラリでJSONデータを取得する</h2>
 <p>Wifiに接続したら、webからJSONを取得できます。<br />
 ここでは例として、気象庁の<span Clasas="link"></span><a href="https://www.jma.go.jp/bosai/forecast/data/forecast/130000.json">天気予報JSON</a>を取得してみます。</p>
 <p>操作は単純で、begin ⇒ GET ⇒ getString で読み込むだけです。</p>
@@ -350,8 +350,8 @@ http.end();
 <p>HTTPClientライブラリはArduinoフレームワークに元から入っています。<br />
 関数一式は下記のページが参考になります。<br />
 <span class="link"></span> <a href="https://garretlab.web.fc2.com/arduino/esp32/reference/libraries/HTTPClient/">HTTPClientライブラリリファレンス</a></p>
-<h2 id="arduinojsonjson">3. ArduinoJSONライブラリを使ってJSONファイルから情報を抽出する</h2>
-<p>上記ではJSONファイルをStringで読み込んでいますが、ArduinoJSONライブラリを使うとJSONファイルの扱いがグっと楽になります。<br />
+<h2 id="arduinojsonjson">3. ArduinoJSONライブラリを使ってJSONデータから情報を抽出する</h2>
+<p>上記ではJSONデータをStringで読み込んでいますが、ArduinoJSONライブラリを使うとJSONデータの扱いがグっと楽になります。<br />
 下記のソースでは、取得したJSONデータをJsonDocumentへ解析・入力し、その後に日付と予報テキストを抽出しています。</p>
 <p>ArduinoJSONのレポジトリは以下になります。<br />
 <span class="link"></span><a href="https://github.com/bblanchon/ArduinoJson">github ArduinoJSON</a></p>
@@ -366,9 +366,9 @@ String forecast = doc[0][&quot;timeSeries&quot;][0][&quot;areas&quot;][0][&quot;
 </code></pre>
 <p>deserializeJson(JsonDocument &amp;doc, String &amp;input)</p>
 <ul>
-<li>doc： JSONファイルの解析結果が入力されます。<br />
+<li>doc： JSONデータの解析結果が入力されます。<br />
 JSON構造が多次元配列のようになって格納されています。</li>
-<li>input： 解析するJSONファイルを指定します。</li>
+<li>input： 解析するJSONデータを指定します。</li>
 </ul>
 <h2 id="lcd">4. LCDに表示する</h2>
 <p>上記において、dateとforecastをLCDに描画すると、日付と天気予報が表示されます。<br />
