@@ -275,6 +275,11 @@ sudo make install
 起動設定を変えたい場合は、Start.shファイルの中身を修正します。</p>
 <pre><code class="language-C#">bash Start.sh
 </code></pre>
+<p>ラズパイカメラを使用する場合は、実行するコマンドを以下のようにします。</p>
+<pre><code class="language-C#">./mjpg_streamer -i &quot;./input_raspicam.so&quot; -o &quot;./output_http.so -w ./www&quot;
+</code></pre>
+<p>コマンドのオプションは下記を参照ください。<br />
+<span class="link"></span><a href="https://github.com/jacksonliam/mjpg-streamer/blob/master/mjpg-streamer-experimental/plugins/input_raspicam/README.md">input_raspicam/README.md</a></p>
 <br>
 <h2 id="section-2">4. 映像を確認します。</h2>
 <p>ラズパイでChromeなどのwebブラウザを起動して &quot;localhost:8080&quot; にアクセスすると、以下のような画面になります。<br />

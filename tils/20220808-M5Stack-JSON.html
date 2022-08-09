@@ -257,7 +257,7 @@
 <p>M5Stackでwifiに接続し、JSONを取得する方法をまとめました。<br />
 web APIなどはJSON形式であることが多いので、JSONを取り扱うことで様々な情報を取り込むことができます。<br />
 本ページでは例として、天気予報JSONを取得して画面に表示します。</p>
-<p>以下の手順で説明していきます。</p>
+<p>以下の手順でまとめています。</p>
 <ol>
 <li>wifiに接続する</li>
 <li>HTTPClientライブラリでJSONファイルで取得する</li>
@@ -271,7 +271,7 @@ WiFi.begin でWifiに接続でき、Wifi.Status が”WL_CONNECTED”になれ�
 
 const char *ssid = &quot;xxxxxxxxxx&quot;;       //接続先wifiのssid
 const char *password = &quot;xxxxxxxxxx&quot;;   //接続先wifiのパスワード
-unsigne long startTime = millis();
+unsigned long startTime = millis();
 
 WiFi.begin(ssid, password);
 
@@ -280,8 +280,7 @@ while (WiFi.status() != WL_CONNECTED)  // 接続されるまで待つ
   delay(500);
   if(millis() - startTime &gt; 10000)     // タイムアウト(10秒)
   {
-    // エラー処理があれば入れる
-    break;
+    // タイムアウト処理があれば入れる
   }
 }
 </code></pre>
@@ -394,6 +393,19 @@ M5.Lcd.print(forecast);
 <br>
 <p>プログラム全体は以下のgithubにあげましたので、よろしければ参照ください。<br />
 <span class="link"></span> <a href="https://github.com/yamaccu/M5Stack-Sample/blob/main/GetJSONTest/main.cpp">github</a></p>
+<h2 id="json">おまけ　天気予報JSON公開サイトについて</h2>
+<p>天気予報JSONを調べたところ、無料で日本語で使用できるのは以下の3つが見つかりました。<br />
+気象庁以外は個人の方が運用しているようです。（感謝！）</p>
+<ol>
+<li><a href="https://qiita.com/michan06/items/48503631dd30275288f7">気象庁（qiitaの解説記事）</a></li>
+<li><a href="https://weather.tsukumijima.net/">天気予報 API（livedoor 天気互換）</a></li>
+<li><a href="https://www.drk7.jp/weather/">気象庁の天気予報情報を XML で配信</a></li>
+</ol>
+<p>気象庁のAPIは一般公開用ではないのか、ちょっと使いにくい印象です。<br />
+2か3のJSONを使用すると、もう少し楽に天気予報を表示できるかと思います。<br />
+3番目のサイトでは、レスポンスの形式がJSONPなので少し加工が必要です。</p>
+<p>参考サイト<br />
+<span class="link"></span> <a href="https://kuracux.hatenablog.jp/entry/2019/07/13/101143">天気予報をM5Stackで表示してみた</a></p>
 <br>
 以上です。
 <br>
