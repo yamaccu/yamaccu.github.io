@@ -275,7 +275,8 @@ sudo make install
 起動設定を変えたい場合は、Start.shファイルの中身を修正します。</p>
 <pre><code class="language-C#">bash Start.sh
 </code></pre>
-<p>ラズパイカメラを使用する場合は、実行するコマンドを以下のようにします。</p>
+<p>ラズパイカメラを使用する場合は、実行するコマンドのインプット設定を以下のようにします。<br />
+※元のコマンド（input_uvc）のままラズパイカメラを使用すると、解像度が悪いなど設定が変になる可能性があります。</p>
 <pre><code class="language-C#">./mjpg_streamer -i &quot;./input_raspicam.so&quot; -o &quot;./output_http.so -w ./www&quot;
 </code></pre>
 <p>コマンドのオプションは下記を参照ください。<br />

@@ -277,7 +277,7 @@ camera.stop_preview()
 例えば、毎日9時に指定したコマンドを実行する、といった処理が可能です。<br />
 詳細は下記を参照ください。</p>
 <p><span Class="link"></span> <a href="https://qiita.com/hikouki/items/e744b3a4d356d2af12cf">Qiita cronの設定方法</a></p>
-<pre><code class="language-C#">crontab -l
+<pre><code class="language-C#">crontab -e
 
 編集画面が開いたら以下を記述
 */5 * * * * /usr/bin/python3  /home/pi/camera.py
@@ -286,7 +286,7 @@ camera.stop_preview()
 時間や実行コマンドを、自分の使う環境に合わせて変更して使用します。</p>
 <p>撮った写真は、Windows PCに取り出したい場合は、ラズパイにSambaというソフトを入れておくと簡単に取り出すことができます。<br />
 下記に手順をまとめていますのでよろしければ参照ください。</p>
-<p><span class="link"></span><a href="http://localhost:5080/tils/20211018-Raspberry-Samba">RaspberryPi - Windows間でファイル共有</a></p>
+<p><span class="link"></span><a href="https://yamaccu.github.io/tils/20211018-Raspberry-Samba">RaspberryPi - Windows間でファイル共有</a></p>
 <br>
 <p>以上です。</p>
 <br>
