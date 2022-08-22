@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>&#x300C;M5Stack&#x300D;UIFLOW&#x306E;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x4F5C;&#x308B; | yokuaru Tech notes</title>
+  <title>&#x300C;M5Stack&#x300D;AquesTalk&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="&#x300C;M5Stack&#x300D;UIFLOW&#x306E;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x4F5C;&#x308B;" />
+  <meta property="og:title" content="&#x300C;M5Stack&#x300D;AquesTalk&#x3092;&#x4F7F;&#x3046;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210823-UIFLOW-CustomBlock" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/202208xx-M5Stack-AquesTalk" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -253,114 +253,113 @@
         </script>
         <br>
 
-      <p>2021/08/23</p>
-<h1 id="m5stackvisual-programminguiflow">M5Stack向けのVisual Programming「UIFLOW」でカスタムブロックを作成する</h1>
+      <p>2022/08/08</p>
+<h1 id="m5stackaquestalk">M5StackでAquesTalkを使って音声出力する</h1>
 <hr />
-<h2 id="m5stack">M5Stackについて</h2>
 <p> <img src="../img/20210823-UIFLOW-CustomBlock-1.png" width="65px" alt="M5Stackイラスト">
-← M5Stackはこんなやつ。</p>
-<p>M5Stackとは、ESP32を使用しwifi/LCD/各種センサなどを一体化させた、使いやすいマイコンボードです。<br />
-LCDが標準装備なのが一番の特徴かと思います。<br />
-センシングした値を表示させたり、顔をつけてみたりと、いろいろ遊べます。</p>
-<p>参考　<span class="link"></span><a href="https://m5stack.com/">公式HP</a></p>
-<h2 id="uiflow">UIFLOWについて</h2>
-<p>UIFLOWとは、M5Stackのプログラミング環境の一つで、スクラッチのようにビジュアルプログラミングでM5Stackのコードが書ける優れものです。<br />
-更にwebベースでプログラミングできるので、プログラム環境の準備がいりません。<br />
-使い方、プログラミングの仕方などは下記のHPを参照ください。</p>
-<p>参考1 <span class="link"></span> <a href="https://m5stack.github.io/UIFlow_doc/ja/">公式HP</a><br />
-参考2 <span class="link"></span> <a href="https://flow.m5stack.com/">プログラミングページ</a></p>
-<br>
-<p>UIFLOWでは、事前に用意されたブロックを組み合わせてプログラミングしますので、ブロックに用意されていない機能は、自分でカスタムブロックを作る必要があります。<br />
-以降、UIFLOWでカスタムブロックを作成する方法を記載しています。</p>
-<h2 id="section">カスタムブロックのサンプル</h2>
-<p><span class="link"></span> <a href="https://github.com/yamaccu/UIFLOW-wavplayer">github</a>にWAVファイルを再生するためのカスタムブロックをあげています。</p>
-<h2 id="section-1">カスタムブロックの作成手順</h2>
-<p><span class="link"></span> <a href="http://block-maker.m5stack.com/">こちらのカスタムブロック作成ページ</a>から作成します。</p>
-<p>作成手順は</p>
-<ol>
-<li>Pythonでプログラムを書く</li>
-<li>初期設定用のブロックを作る</li>
-<li>関数を実行するブロックを作る</li>
-</ol>
-<h3 id="python">1. Pythonでプログラムを書く</h3>
-<p>まずはブロック化したい機能のプログラムをpythonで書きます。<br />
-以下のように処理はdefで定義して、関数として呼び出しできるようにしておきます。</p>
-<pre><code class="language-python">from machine import I2S
-from wav import wave
+← これがM5Stack</p>
+<p>M5StackでAquesTalkを使用して音声出力する方法をまとめました。<br />
+AquesTalkは音声合成エンジンで、使用するとM5Stackから日本語を音声出力できます。<br />
+詳細は以下の公式HPを参照ください。</p>
+<p><span class="link"></span><a href="https://www.a-quest.com/products/aquestalk.html">AquesTalk公式</a></p>
+<p>以下、使用方法をまとめています。</p>
+<p>なお、本ページでは開発環境にVSCode + PlatformIOを使用しています。<br />
+Arduino IDEでは動作確認していませんのでご注意ください。</p>
+<h2 id="section">ライブラリをダウンロード</h2>
+<p>以下のページから、ESP32向けのAquesTalkライブラリをダウンロードして、libフォルダに保存します。</p>
+<p><span class="link"></span><a href="https://www.a-quest.com/download.html">AquesTalk 評価版ダウンロード</a></p>
+<p>ライセンス未購入の状態では、「ナ行、マ行」の音韻がすべて「ヌ」になる制限があります。<br />
+ライセンスは<span class="link"></span><a href="https://store.a-quest.com/items/10524168">こちら</a>から購入できます。<br />
+1デバイスあたり1ライセンスが必要のようです。</p>
+<h2 id="section-1">音声出力のプログラム（ローマ字入力）</h2>
+<p>TTS.create で初期化して、TTS.play で再生します。</p>
+<pre><code class="language-Cpp">#include &lt;AquesTalkTTS.h&gt;
 
-def playwav(filePath,volume):
-    wav = wave.open(filePath)
-    i2s = I2S(mode=I2S.MODE_MASTER | I2S.MODE_TX | I2S.MODE_DAC_BUILT_IN)
-    i2s.set_dac_mode(i2s.DAC_RIGHT_EN)
-    i2s.sample_rate(wav.getframerate())
-    i2s.bits(wav.getsampwidth() * 8)
-    i2s.nchannels(wav.getnchannels())
-    i2s.volume(volume)
-    while True:
-        data = wav.readframes(256)
-        if len(data) &gt; 0:
-            i2s.write(data)
-        else:
-            wav.close()
-            i2s.deinit()
-            break
+// ライセンスキー、無効な値だと単に無視されます
+const char* AQUESTALK_KEY = &quot;XXXX-XXXX-XXXX-XXXX&quot;;  
+
+TTS.create(AQUESTALK_KEY);
+
+TTS.play(&quot;konnichiwa&quot;, 100);
 </code></pre>
-<h3 id="section-2">2. 初期設定用のブロックを作る</h3>
-<p>import、defを行うブロックを作成します。<br />
-このブロックは最初のsetupで実行するものです。<br />
-1章で作ったようなプログラムをBlock Code欄へ丸コピします。</p>
-<div style="display:flex;flex-wrap:wrap">
-<div>
-<img src="../img/20210823-UIFLOW-CustomBlock-2.png" Style="width:100%;max-width:420px;margin-right:5px;" alt="UIFlowBlockMaker 初期設定ブロック作成">  
-<br>
-<br>
-</div>
-<div Style="max-width:450px;">
-<ol>
-<li>NameSpace：Blockmaker上だけの識別名なので何でもOK</li>
-<li>BlockColor：ブロックの色を設定</li>
-<li>Add Block/Remove Block：ブロックの追加・削除</li>
-<li>Type：Executeにする</li>
-<li>Parameter：まずブロック名をtype:Labelで設定する<br />
-変数があれば、type:String/Number/Variableで設定する</li>
-<li>BlockCode：作ったプログラムをコピペ</li>
-</ol>
-</div>
-</div>
-<h3 id="section-3">3. 関数を実行するブロックを作る</h3>
-<p>defで定義した関数を実行するブロックを作ります。<br />
-Add Blockをクリックするとブロックが増えますので、設定していきます。<br />
-引数がある場合は、parameterで設定します。</p>
-<div style="display:flex;flex-wrap:wrap">
-<div>
-<img src="../img/20210823-UIFLOW-CustomBlock-3.png" Style="width:100%;max-width:420px;margin-right:5px;" alt="UIFlowBlockMaker 関数実行ブロック作成">  
-<br>
-<br>
-</div>
-<div Style="max-width:450px;">
-<ol>
-<li>NameSpace：Blockmaker上だけの識別名なので何でもOK</li>
-<li>BlockColor：ブロックの色を設定</li>
-<li>Add Block/Remove Block：ブロックの追加・削除</li>
-<li>Type：Executeにする</li>
-<li>Parameter：まずブロック名をtype:Labelで設定する<br />
-変数があれば、type:String/Number/Variableで設定する</li>
-<li>BlockCode：自作関数の呼び出しを行う<br />
-引数は上記のParameterで設定して、<br />
-BlockCode内で&quot;$(hoge)&quot;の形で記述する</li>
-</ol>
-<pre><code class="language-C#">ex)playwav(${playwav},${volume})
+<p>create(const char *licencekey)</p>
+<ul>
+<li>AquesTalkを初期化します。</li>
+<li>licencekey：ライセンスキーを指定します。<br />
+指定したライセンスキーが無効の値の場合は無視されます。</li>
+</ul>
+<p>play(const char *koe, int speed)</p>
+<ul>
+<li>koe：音声出力する言葉をローマ字で指定します。</li>
+<li>speed：音声出力スピードを指定します、100で標準です。</li>
+</ul>
+<h2 id="section-2">音声出力のプログラム（ひらがな、漢字入力）</h2>
+<p>ひらがな、漢字で音声を指定することもできます。<br />
+その場合、ダウンロードしたデータ内に一緒に梱包されている「aq_dicフォルダ」をSDカードにコピーしておく必要があります。<br />
+TTS.createK で初期化して、TTS.playK で再生します。<br />
+SDカードを読み込むので、SD.beginも実行します。</p>
+<pre><code class="language-Cpp">#include &lt;AquesTalkTTS.h&gt;
+#include &lt;M5Stack.h&gt;
+
+// ライセンスキー、無効な値だと単に無視されます
+const char* AQUESTALK_KEY = &quot;XXXX-XXXX-XXXX-XXXX&quot;; 
+
+SD.begin(GPIO_NUM_4);
+
+TTS.createK(AQUESTALK_KEY);
+
+TTS.playK(&quot;こんにちは、良い天気ですね&quot;, 100);
 </code></pre>
-</div>
-</div>
-<h3 id="section-4">完成したら</h3>
-<p>ページ右下のDownloadボタンをおして、DownloadファイルをUIFLOWの<span class="link"></span><a href="https://flow.m5stack.com/">プログラミングページ</a>のCustomから開きます。<br />
-そうすると、UIFLOWで自作のカスタムブロックが使用できるようになります。</p>
-<img src="../img/20210823-UIFLOW-CustomBlock-4.png" Style="width:100%;max-width:150px" alt="UIFlowBlockMakerで作成したカスタムブロックファイルのダウンロード">
+<p>SD.begin(uint8_t ssPin)</p>
+<ul>
+<li>ssPin：SDカードとのSPI通信のCSピンを指定します。
+M5Stackの場合は&quot;GPIO4&quot;です。</li>
+</ul>
+<p>createK(const char *licencekey)</p>
+<ul>
+<li>AquesTalkを初期化します。</li>
+<li>licencekey：ライセンスキーを指定します。<br />
+指定したライセンスキーが無効の値の場合は無視されます。</li>
+</ul>
+<p>playK(const char *kanji, int speed)</p>
+<ul>
+<li>kanji：音声出力する言葉を漢字、ひらがなで指定します。</li>
+<li>speed：音声出力スピードを指定します、100で標準です。</li>
+</ul>
+<h2 id="m5stack-avatar">M5Stack-Avatarと組み合わせる</h2>
+<p>M5Stack-Avatarという、M5Stackに顔を表示させるライブラリを組み合わせると、M5Stackがしゃべってる感が出てとてもかわいくなります。<br />
+M5Stack-Avatarを使うにはM5Unifiedライブラリもインストールする必要があります。</p>
+<p><span class="link"></span><a href="https://github.com/meganetaaan/m5stack-avatar">github M5Stack-Avatar</a><br />
+<span class="link"></span><a href="https://github.com/m5stack/M5Unified">github M5Unified</a></p>
+<p>サンプルコードは下記になります。</p>
+<pre><code class="language-Cpp">#include &lt;M5Unified.h&gt;
+#include &lt;Avatar.h&gt;
+
+using namespace m5avatar;
+Avatar avatar;
+
+M5.begin();
+avatar.init(); // start drawing
+</code></pre>
+<h2 id="section-3">バグ情報</h2>
+<p>2022/8/19時点で、開発platformであるespressif32の最新バージョン（5.1.0）ではバグがあり、I2Sを使用したInternal DACによる音声出力がうまくいきません。</p>
+<p><span class="link"></span><a href="https://github.com/espressif/arduino-esp32/issues/5938">参考 The esp32 i2s internal DAC output is not working with the release 2.0.1</a></p>
+<p>対策は、調べた限り2通りあります。</p>
+<ol>
+<li>platformIOのバージョンを4.0.0以前にする。</li>
+</ol>
+<p>platform.iniファイル内の&quot;platform&quot;の項目で、espressif32のバージョンを4.0.0以前に指定すると、バグ発生前のバージョンとなり音声出力できます。</p>
+<pre><code class="language-C">platform = espressif32&#64;4.0.0
+</code></pre>
+<ol start="2">
+<li>M5Unifiedライブラリを使用する。</li>
+</ol>
+<p>M5UnifiedのSpeakerクラスを使用すると、正常に音声出力できます。<br />
+M5Unifiedライブラリおよびサンプルコードは下記になります。</p>
+<p><span class="link"></span><a href="https://github.com/espressif/arduino-esp32/issues/5938">参考 The esp32 i2s internal DAC output is not working with the release 2.0.1</a><br />
+<span class="link"></span><a href="https://github.com/espressif/arduino-esp32/issues/5938">参考 The esp32 i2s internal DAC output is not working with the release 2.0.1</a></p>
 <br>
-<br>
-<img src="../img/20210823-UIFLOW-CustomBlock-5.png" Style="width:100%;max-width:450px" alt="UIFlow カスタムブロックの読み込み箇所">  
-<br>
+以上です。
 <br>
 <hr />
 
