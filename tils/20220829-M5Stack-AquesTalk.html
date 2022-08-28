@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>C#&#x306E;Linq&#x307E;&#x3068;&#x3081; | yokuaru Tech notes</title>
+  <title>&#x300C;M5Stack&#x300D;AquesTalk&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="C#&#x306E;Linq&#x307E;&#x3068;&#x3081;" />
+  <meta property="og:title" content="&#x300C;M5Stack&#x300D;AquesTalk&#x3092;&#x4F7F;&#x3046;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20220426-Csharp-Linq" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220829-M5Stack-AquesTalk" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -253,43 +253,161 @@
         </script>
         <br>
 
-      <br>
-<p>2022/4/26</p>
-<h1 id="clinq">C#のLinqまとめ</h1>
+      <p>2022/08/29</p>
+<h1 id="m5stackaquestalk">M5StackでAquesTalkを使って音声出力する</h1>
 <hr />
-<p>C#のLinqについてまとめました。<br />
-配列、Listなどのコレクションの中身を処理するときに便利です。</p>
-<p>Linqの出力はIEnumerable型となります。<br />
-配列にしたいときは.ToArray()、リストにしたいときは.ToList()を最後にくっつけます。</p>
-<h2 id="select">Select</h2>
-<p>要素それぞれの値に処理を実施します。</p>
-<pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
-var select = array.Select(x =&gt; x % 3);   // {0, 1, 2, 0, 1, 2}
+<p> <img src="../img/20210823-UIFLOW-CustomBlock-1.png" width="65px" alt="M5Stackイラスト">
+← これがM5Stack</p>
+<p>M5StackでAquesTalkを使用して音声出力する方法をまとめました。<br />
+AquesTalkは音声合成エンジンで、使用するとM5Stackから日本語を音声出力できます。<br />
+詳細は以下の公式HPを参照ください。</p>
+<p><span class="link"></span><a href="https://www.a-quest.com/products/aquestalk.html">AquesTalk公式</a></p>
+<h2 id="section">注意事項</h2>
+<p>本ページでは開発環境にVSCode + PlatformIOを使用しています。</p>
+<p>2022/8/29の時点で、開発Platformであるespressif32の最新バージョンは5.1.1ですが、4.1.0（arduino-esp32 2.0.1）でI2S関連のコードが変更されており、それ以降バグがあったり出力にノイズがのったりと安定しないようです。<br />
+この先改善される可能性もありますが、今のところはバージョン4.0.0以前（arduino-esp32 2.0.0）を使用することをお勧めします。</p>
+<p><span class="link"></span><a href="https://github.com/espressif/arduino-esp32/issues/5938">参考：The esp32 i2s internal DAC output is not working with the release 2.0.1</a></p>
+<p>開発Platformのバージョン指定は、platform.iniファイル内の&quot;platform&quot;の項目で指定できます。</p>
+<pre><code class="language-Cpp">platform = espressif32&#64;4.0.0
+</code></pre>
+<h2 id="section-1">ライブラリをダウンロード</h2>
+<p>AquesTalkの公式HPから、ESP32向けのAquesTalkライブラリをダウンロードして、プロジェクトのlibフォルダに保存します。<br />
+また、ダウンロードしたファイル内の、examples/hello_aquestalk_ttsフォルダ内の「AquesTalkTTS.cpp」「AquesTalkTTS.h」を、読み込めるようにaquestalk-esp32\srcフォルダにコピーします。</p>
+<p><span class="link"></span><a href="https://www.a-quest.com/download.html">AquesTalk 評価版ダウンロード</a></p>
+<img src="../img/20220829-M5Stack-AquesTalk-1.png" style="max-width:350px" alt="AquesTalkのソースファイルを置くフォルダ">
+<p>ライセンス未購入でも使用できますが、「ナ行、マ行」の音韻がすべて「ヌ」になる制限があります。<br />
+ライセンスは <span class="link"></span><a href="https://store.a-quest.com/items/10524168">こちら</a> から購入できます。<br />
+1デバイスあたり1ライセンスが必要のようです。</p>
+<h2 id="section-2">音声出力のプログラム（ローマ字入力）</h2>
+<p>TTS.create で初期化して、TTS.play で再生します。</p>
+<pre><code class="language-Cpp">#include &lt;AquesTalkTTS.h&gt;
 
-string[] array2 = {0, 1, 2, 3, 4, 5};
-var select2 = array.Select(x =&gt; int.Parse(x));  // int変換
+const char* AQUESTALK_KEY = &quot;XXXX-XXXX-XXXX-XXXX&quot;;  
+
+TTS.create(AQUESTALK_KEY);
+
+TTS.play(&quot;konnichiwa&quot;, 100);
 </code></pre>
-<h2 id="where">Where</h2>
-<p>要素を選別します。</p>
-<pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
-var where = array.Where(x =&gt; x % 3 == 0);  // {0, 3}
-</code></pre>
-<h2 id="count">Count</h2>
-<p>要素を数えます。</p>
-<pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
-var where = array.Count(x =&gt; x % 2 == 0);  // 3
-</code></pre>
-<h2 id="maxminaveragesum">Max/Min/Average/Sum</h2>
-<p>要素全部を計算して結果を返します。</p>
-<pre><code class="language-C#">int[] array = {0, 1, 2, 3, 4, 5};
-var max = array.Max();      //5
-var min = array.Min();      //0
-var ave = array.Average();  //2.5
-var sum = array.Sum();      //15
-</code></pre>
-<p>以下、適宜追加していきます。</p>
+<p>create(const char *licencekey)</p>
+<ul>
+<li>AquesTalkを初期化します。</li>
+<li>licencekey：ライセンスキーを指定します。<br />
+指定したライセンスキーが無効の値の場合は、ライセンスなしで初期化されます。</li>
+</ul>
+<p>play(const char *koe, int speed)</p>
+<ul>
+<li>koe：音声出力する言葉をローマ字で指定します。</li>
+<li>speed：音声出力スピードを指定します、100でだいたい標準です。</li>
+</ul>
 <br>
-以上です。  
+<p>ローマ字入力は、下記の公式HPでテストができます。<br />
+音声合成エンジンは「AquesTalk pico」、声種は「pico f1 女声（ゆっくり）」です。</p>
+<p><span class="link"></span><a href="https://www.a-quest.com/demo/index.html">AquesTalk オンラインデモ</a></p>
+<h2 id="section-3">音声出力のプログラム（ひらがな、漢字入力）</h2>
+<p>ひらがな、漢字で音声を指定することもできます。<br />
+その場合、ダウンロードしたデータ内に一緒に梱包されている「aq_dic」フォルダをSDカードにコピーしておく必要があります。<br />
+TTS.createK で初期化して、TTS.playK で再生します。<br />
+SDカードを読み込むので、SD.beginも実行します。</p>
+<pre><code class="language-Cpp">#include &lt;AquesTalkTTS.h&gt;
+#include &lt;M5Stack.h&gt;
+
+const char* AQUESTALK_KEY = &quot;XXXX-XXXX-XXXX-XXXX&quot;; 
+
+SD.begin(GPIO_NUM_4);
+
+TTS.createK(AQUESTALK_KEY);
+
+TTS.playK(&quot;こんにちは、良い天気ですね&quot;, 100);
+</code></pre>
+<p>SD.begin(uint8_t ssPin)</p>
+<ul>
+<li>ssPin：SDカードとのSPI通信のCSピンを指定します。<br />
+M5Stackの場合は&quot;GPIO4&quot;です。</li>
+</ul>
+<p>createK(const char *licencekey)</p>
+<ul>
+<li>AquesTalkを初期化します。</li>
+<li>licencekey：ライセンスキーを指定します。<br />
+指定したライセンスキーが無効の値の場合は、ライセンスなしで初期化されます。</li>
+</ul>
+<p>playK(const char *kanji, int speed)</p>
+<ul>
+<li>kanji：音声出力する言葉を漢字、ひらがなで指定します。</li>
+<li>speed：音声出力スピードを指定します、100でだいたい標準です。</li>
+</ul>
+<h2 id="aquestalk">AquesTalkの音量変更</h2>
+<p>AquesTalk.cppの289行目の&quot;val&quot;の値に掛け算すると音量を変更できます。</p>
+<pre><code class="language-Cpp">sample[0]=sample[1]=val*0.4; // 信号振幅を0.4倍して、音量を小さくしている
+</code></pre>
+<h2 id="m5stack-avatar">M5Stack-Avatarと組み合わせる</h2>
+<p>M5Stack-AvatarというM5Stackに顔を表示させるライブラリがあるのですが、AquesTalkと組み合わせると、M5Stackがしゃべってる感が出てとてもかわいくなります。<br />
+使用するには、M5Unifiedライブラリもセットで必要になります。<br />
+また、ソースコードに出てくるlipSyncは音声出力に合わせてAvatarの口が動く機能で、M5Stack-Avatarに入っている機能です。</p>
+<p><span class="link"></span><a href="https://github.com/meganetaaan/m5stack-avatar">github M5Stack-Avatar</a><br />
+<span class="link"></span><a href="https://github.com/m5stack/M5Unified">github M5Unified</a></p>
+<pre><code class="language-Cpp">#include &lt;AquesTalkTTS.h&gt;
+#include &lt;M5Unified.h&gt;
+#include &lt;Avatar.h&gt;
+#include &lt;tasks/LipSync.h&gt;
+
+using namespace m5avatar;
+Avatar avatar;
+
+M5.begin();
+
+avatar.init(); // start drawing
+
+avatar.addTask(lipSync, &quot;lipSync&quot;);
+</code></pre>
+<p>M5.begin()</p>
+<ul>
+<li>M5Unifiedの初期化です。</li>
+</ul>
+<p>Avatar.init()</p>
+<ul>
+<li>M5Stack-avatarの初期化です。</li>
+</ul>
+<p>avatar.addTask(TaskFunction_t f, const char *name)</p>
+<ul>
+<li>TaskFunction_t：マルチタスクに関数を登録します。<br />
+登録された関数は別タスクとして並行処理されます。</li>
+<li>*name：マルチタスクに登録する関数名を指定します。</li>
+</ul>
+<br>
+<div style="max-width:300px">
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">おはよー <a href="https://t.co/gWNURFBlal">pic.twitter.com/gWNURFBlal</a></p>&mdash; やまっく (&#64;YY87750722) <a href="https://twitter.com/YY87750722/status/1563998002075025408?ref_src=twsrc%5Etfw">August 28, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<p>かわいいですね！</p>
+<br>
+<p>githubにサンプルを上げていますので、良かったら参照ください。</p>
+<p><span class="link"></span><a href="https://github.com/yamaccu/M5Stack-Sample/blob/main/Aquestalk/main.cpp">github</a></p>
+<h2 id="m5unified">M5Unifiedライブラリを使用したプログラム</h2>
+<p>M5Unifiedとは、M5Stack製品群に使用でき様々な機能を実行できる共通ライブラリです。<br />
+音声出力を工夫されており、使うことでより高音質にできるようです。<br />
+M5Unifiedライブラリおよびサンプルコードは下記になります。</p>
+<p><span class="link"></span><a href="https://github.com/m5stack/M5Unified/blob/master/examples/Advanced/Speak_with_AquesTalk/Speak_with_AquesTalk.ino">AquesTalk M5Unifiedサンプルコード</a></p>
+<h2 id="m5unifiedm5stack-avatar">M5Unifiedライブラリを使用してM5Stack-Avatarと組み合わせる</h2>
+<p>M5UnifiedとM5Stack-Avatarを組み合わせる場合、LipSyncの方法が異なり、avatar.setMouthOpenRatioを使用します。<br />
+talk_task関数の最後に、以下のコードを追加します。<br />
+音声振幅を取得して、その値に従って口のサイズを変更しています。</p>
+<pre><code class="language-Cpp">float f = abs(wav[tri_index][0]) / 12000.0;
+float open = min(1.0f, f);
+avatar.setMouthOpenRatio(open);
+</code></pre>
+<p>wav</p>
+<ul>
+<li>talk_task内で定義されている音声出力値です。</li>
+</ul>
+<p>avatar.setMouthOpenRatio(float ratio)</p>
+<ul>
+<li>ratio：口のサイズを指定します。<br />
+0.0～1.0くらいの値になるようにすると良いと思います。</li>
+</ul>
+<br>
+<p>こちらもgithubにサンプルを上げていますので、良かったら参照ください。</p>
+<p><span class="link"></span><a href="https://github.com/yamaccu/M5Stack-Sample/blob/main/Aquestalk-M5Unified/main.cpp">github</a></p>
+<br>
+以上です。
 <br>
 <hr />
 
