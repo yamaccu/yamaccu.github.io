@@ -259,7 +259,7 @@
 <p> <img src="../img/20210823-UIFLOW-CustomBlock-1.png" width="65px" alt="M5Stackイラスト">
 ← これがM5Stack</p>
 <p>M5StackでAquesTalkを使用して音声出力する方法をまとめました。<br />
-AquesTalkは音声合成エンジンで、使用するとM5Stackから日本語を音声出力できます。<br />
+AquesTalkは音声合成エンジンで、使用するとM5Stackが日本語でしゃべりだします。<br />
 詳細は以下の公式HPを参照ください。</p>
 <p><span class="link"></span><a href="https://www.a-quest.com/products/aquestalk.html">AquesTalk公式</a></p>
 <h2 id="section">注意事項</h2>
@@ -305,7 +305,7 @@ TTS.play(&quot;konnichiwa&quot;, 100);
 <p><span class="link"></span><a href="https://www.a-quest.com/demo/index.html">AquesTalk オンラインデモ</a></p>
 <h2 id="section-3">音声出力のプログラム（ひらがな、漢字入力）</h2>
 <p>ひらがな、漢字で音声を指定することもできます。<br />
-その場合、ダウンロードしたデータ内に一緒に梱包されている「aq_dic」フォルダをSDカードにコピーしておく必要があります。<br />
+その場合、ダウンロードしたデータに一緒に梱包されている「aq_dic」フォルダをSDカードにコピーしておく必要があります。<br />
 TTS.createK で初期化して、TTS.playK で再生します。<br />
 SDカードを読み込むので、SD.beginも実行します。</p>
 <pre><code class="language-Cpp">#include &lt;AquesTalkTTS.h&gt;
@@ -365,7 +365,7 @@ avatar.addTask(lipSync, &quot;lipSync&quot;);
 </ul>
 <p>Avatar.init()</p>
 <ul>
-<li>M5Stack-avatarの初期化です。</li>
+<li>M5Stack-avatarの初期化、描画開始です。</li>
 </ul>
 <p>avatar.addTask(TaskFunction_t f, const char *name)</p>
 <ul>
