@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>micropython&#x306B;repl&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9; | yokuaru Tech notes</title>
+  <title>&#x300C;RaspberryPi&#x300D;I2C&#x3067;&#x6E29;&#x6E7F;&#x5EA6;&#x30BB;&#x30F3;&#x30B5;SHT31&#x3068;&#x901A;&#x4FE1;&#x3059;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="micropython&#x306B;repl&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9;" />
+  <meta property="og:title" content="&#x300C;RaspberryPi&#x300D;I2C&#x3067;&#x6E29;&#x6E7F;&#x5EA6;&#x30BB;&#x30F3;&#x30B5;SHT31&#x3068;&#x901A;&#x4FE1;&#x3059;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210818-Micropython-repl" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/202209xx-Raspberry-I2S-sht31" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -261,65 +261,30 @@
         </script>
         <br>
 
-      <p>2021/8/18</p>
-<h1 id="micropythonrepl">micropythonにreplでアクセスする</h1>
+      <p>2022/09/xx</p>
+<h1 id="raspberrypii2csht31">RaspberryPiでI2Cを使って温湿度センサSHT31と通信する</h1>
 <hr />
-<p>replとは、repl：「Read（読み取り）、Eval（評価）、Print（印字）、Loop（ループ）」の頭字語です。<br />
-micropython上でコマンドを実行できる仕組みで、コマンドプロンプトのようなイメージです。<br />
-コードをテストするときに、コマンドを一つずつ実行できるので便利です。</p>
-<p>参考　<span class="link"></span><a href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html">micropython公式</a></p>
-<h2 id="section">アクセス方法</h2>
-<p>デバイスのシリアルポートに、シリアル通信アプリ（teratermなど）で接続します。<br />
-通信速度は115200bpsです。<br />
-CTR+Cを二回で、mainで実行している処理を中止してreplで操作可能になります。</p>
-<h2 id="section-1">コマンド</h2>
-<table>
-<thead>
-<tr>
-<th>コマンド</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>help()</td>
-<td>ヘルプを表示</td>
-</tr>
-<tr>
-<td>help('modules')</td>
-<td>使用可能なライブラリを表示</td>
-</tr>
-<tr>
-<td>help(obj)</td>
-<td>調べたいobjectの説明を表示</td>
-</tr>
-<tr>
-<td>dir()</td>
-<td>import済みのファイル情報の表示</td>
-</tr>
-<tr>
-<td>sys.path.append('パス')</td>
-<td>import時に探索されるパスを追加</td>
-</tr>
-<tr>
-<td>os.listdir()</td>
-<td>カレントディレクトリのファイルを表示</td>
-</tr>
-<tr>
-<td>os.listdir(&quot;パス&quot;)</td>
-<td>&quot;パス&quot;内のファイルを表示</td>
-</tr>
-<tr>
-<td>os.chdir(&quot;パス&quot;)</td>
-<td>&quot;パス&quot;へカレントディレクトリを移動</td>
-</tr>
-<tr>
-<td>tabキー</td>
-<td>入力候補の表示</td>
-</tr>
-</tbody>
-</table>
+<p>RaspberryPiには、I2Cという通信を行う機能が予め搭載されています。<br />
+I2Cを使うと、様々なセンサやデバイスと通信を行うことができます。</p>
+<p>SHT31という温湿度センサとI2Cで通信する方法をまとめています。</p>
 <br>
+<p>以下、手順になります。</p>
+<h2 id="i2c">1. I2Cを有効にする</h2>
+<h2 id="sht31">2. ラズパイとSHT31を導線で繋ぐ</h2>
+<h2 id="section">3. 接続確認する</h2>
+<h2 id="pythoni2c">4. pythonでI2C通信を行うプログラムを作成する</h2>
+<h2 id="sht31-1">参考 SHT31について</h2>
+<p>SHT31は、センシリオン社の高性能な温湿度センサです。<br />
+測定可能レンジは</p>
+<ul>
+<li>温度：-40℃~+125℃、±0.3℃(&#64;0℃~90℃)</li>
+<li>相対湿度：0%<sub>100%、±2%(&#64;0℃</sub>90℃)
+とかなり優秀です。</li>
+</ul>
+<p>ちなみに、センシリオンはこの分野では有名なメーカーで、私もよく使っています。</p>
+<p><a href="https://akizukidenshi.com/catalog/g/gK-12125/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://akizukidenshi.com/img/goods/C/K-12125.jpg');"></div></div><div class="text-box"><p class="title">ＳＨＴ３１使用　高精度温湿度センサモジュールキット: センサ一般 秋月電子通商-電子部品・ネット通販</p><p class="description">ＳＨＴ３１使用　高精度温湿度センサモジュールキット</p></div></div></a></p>
+<br>
+<p>以上です。</p>
 <br>
 <hr />
 

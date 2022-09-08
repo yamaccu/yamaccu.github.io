@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>micropython&#x306B;repl&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9; | yokuaru Tech notes</title>
+  <title>&#x300C;M5Stack&#x300D;LCD&#x753B;&#x9762;&#x306B;&#x753B;&#x50CF;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="micropython&#x306B;repl&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9;" />
+  <meta property="og:title" content="&#x300C;M5Stack&#x300D;LCD&#x753B;&#x9762;&#x306B;&#x753B;&#x50CF;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210818-Micropython-repl" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20220908-M5Stack-image" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -261,65 +261,68 @@
         </script>
         <br>
 
-      <p>2021/8/18</p>
-<h1 id="micropythonrepl">micropythonにreplでアクセスする</h1>
+      <p>2022/09/08</p>
+<h1 id="m5stacklcd">M5StackでLCD画面に画像を表示する</h1>
 <hr />
-<p>replとは、repl：「Read（読み取り）、Eval（評価）、Print（印字）、Loop（ループ）」の頭字語です。<br />
-micropython上でコマンドを実行できる仕組みで、コマンドプロンプトのようなイメージです。<br />
-コードをテストするときに、コマンドを一つずつ実行できるので便利です。</p>
-<p>参考　<span class="link"></span><a href="https://micropython-docs-ja.readthedocs.io/ja/latest/esp8266/tutorial/repl.html">micropython公式</a></p>
-<h2 id="section">アクセス方法</h2>
-<p>デバイスのシリアルポートに、シリアル通信アプリ（teratermなど）で接続します。<br />
-通信速度は115200bpsです。<br />
-CTR+Cを二回で、mainで実行している処理を中止してreplで操作可能になります。</p>
-<h2 id="section-1">コマンド</h2>
-<table>
-<thead>
-<tr>
-<th>コマンド</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>help()</td>
-<td>ヘルプを表示</td>
-</tr>
-<tr>
-<td>help('modules')</td>
-<td>使用可能なライブラリを表示</td>
-</tr>
-<tr>
-<td>help(obj)</td>
-<td>調べたいobjectの説明を表示</td>
-</tr>
-<tr>
-<td>dir()</td>
-<td>import済みのファイル情報の表示</td>
-</tr>
-<tr>
-<td>sys.path.append('パス')</td>
-<td>import時に探索されるパスを追加</td>
-</tr>
-<tr>
-<td>os.listdir()</td>
-<td>カレントディレクトリのファイルを表示</td>
-</tr>
-<tr>
-<td>os.listdir(&quot;パス&quot;)</td>
-<td>&quot;パス&quot;内のファイルを表示</td>
-</tr>
-<tr>
-<td>os.chdir(&quot;パス&quot;)</td>
-<td>&quot;パス&quot;へカレントディレクトリを移動</td>
-</tr>
-<tr>
-<td>tabキー</td>
-<td>入力候補の表示</td>
-</tr>
-</tbody>
-</table>
+<p> <img src="../img/20210823-UIFLOW-CustomBlock-1.png" width="65px" alt="M5Stackイラスト">
+← M5Stackです。</p>
+<p>M5StackでLCDに画像を表示する方法をまとめました。</p>
+<h2 id="section">画像データの転送方法</h2>
+<p>画像データの保存先ですが、SDカードと、SPIFFS（M5Stackの内蔵ROM）があります。<br />
+SDカードは、単純にWindowsPCなどからSDカードへデータをコピーして、M5Stackに刺せば使用できます。<br />
+SPIFFSは、以下の方法でデータの転送ができます。</p>
+<h3 id="vscode-platformio">VSCode + PlatformIOを使用する場合</h3>
+<p>プロジェクトフォルダの直下に&quot;data&quot;フォルダを作成し、そこに転送したいファイルを保存します。<br />
+すると、プログラム書き込み時に一緒にSPIFFSへ書き込んでくれます。</p>
+<img src="../img/20220908-M5Stack-image-1.png" width="300px" alt="M5StackのSPIFFSへファイルをアップロードする方法1">
+<p>また、書き込み時でなくても、「Project TaskのPlatform ⇒ upload filesystem image」を使用してもdataフォルダ内のファイルを転送できます。</p>
+<img src="../img/20220908-M5Stack-image-2.png" width="300px" alt="M5StackのSPIFFSへファイルをアップロードする方法2">
+<h3 id="arduino-ide">Arduino IDEを使用する場合</h3>
+<p>下記HPがわかりやすいですので参照ください。</p>
+<p><a href="https://garretlab.web.fc2.com/arduino/lab/spiffs/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://garretlab.web.fc2.com/images/garretlab_ogp.png');"></div></div><div class="text-box"><p class="title">Arduinoで遊ぶページ SPIFFS</p><p class="description">Arduino core for the ESP32を使った、ESP-WROOM-32開発ボードのSPIFFSについての実験です。SPIFFSと、PCのデータをESP-WROOM-32にアップロードするためのアップローダの使い方を調べました。</p></div></div></a></p>
+<h2 id="section-1">画像の表示方法</h2>
+<p>M5Unifiedライブラリを使用します。</p>
+<p><a href="https://github.com/m5stack/M5Unified" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/5b57357183ebc350338e97ffb2f3a9258dd780eb771b583355e5a2c3630a4c5c/m5stack/M5Unified');"></div></div><div class="text-box"><p class="title">GitHub - m5stack/M5Unified</p><p class="description">Unified library for M5Stack series. Contribute to m5stack/M5Unified development by creating an account on GitHub.</p></div></div></a></p>
+<p>以下の関数を使うと、簡単に画像を表示できます。</p>
+<pre><code class="language-Cpp">#include M5Unified.h
+
+auto cfg = M5.config();
+M5.begin(cfg);
+
+SPIFFS.begin();
+SD.begin(GPIO_NUM_4);
+
+M5.Lcd.drawJpgFile(SPIFFS, filePath, 0, 0);
+M5.Lcd.drawBmpFile(SPIFFS, filePath, 0, 0);
+M5.Lcd.drawPngFile(SD, filePath, 0, 0);
+</code></pre>
+<p>M5.begin()</p>
+<ul>
+<li>M5Unifiedの初期化をします。<br />
+M5.config()はデフォルト設定です。</li>
+</ul>
+<p>SPIFFS.begin()</p>
+<ul>
+<li>SPIFFSの初期化をします。</li>
+</ul>
+<p>SD.begin(uint8_t ssPin)</p>
+<ul>
+<li>SDの初期化をします。</li>
+<li>ssPin：SDカードとのSPI通信のCSピンを指定します。
+M5Stackの場合は&quot;GPIO4&quot;です。</li>
+</ul>
+<p>M5.Lcd.drawJpgFile(fs::FS &amp;fs, const char *path, uint16_t x, uint16_t y)</p>
+<ul>
+<li>&amp;fs：&quot;SPIFFS&quot;もしくは&quot;SD&quot;を指定します。</li>
+<li>*path：画像のパスを指定します。</li>
+<li>x：画像の描画位置のx方向を指定します。省略した場合は0になります。</li>
+<li>y：画像の描画位置のy方向を指定します。省略した場合は0になります。</li>
+</ul>
 <br>
+<p>サンプルプログラムをgithubに挙げていますので、よろしければ参照ください。</p>
+<p><a href="https://github.com/yamaccu/M5Stack-Sample/tree/main/DrawImageTest" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/2aeed0c5c4a2808473bdb83ac34e22af42d13008f6108fa77e60d508b101e70b/yamaccu/M5Stack-Sample');"></div></div><div class="text-box"><p class="title">M5Stack-Sample/DrawImageTest</p><p class="description"></p></div></div></a></p>
+<br>
+以上です。
 <br>
 <hr />
 
