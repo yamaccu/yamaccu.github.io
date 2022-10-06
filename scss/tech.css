@@ -193,6 +193,10 @@ background: snow;
   .adslot_1 {
     display: none;
   }
+  .post-wrap{
+    flex-wrap: wrap;
+    justify-content:left;
+  }
 
   .adslot_2 {
     display: block;
