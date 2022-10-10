@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>&#x300C;M5StickC&#x300D;SpeakerHat&#x3067;wav&#x3092;&#x518D;&#x751F;&#x3059;&#x308B; | yokuaru Tech notes</title>
+  <title>&#x300C;python&#x300D;CUI&#x3067;&#x30DD;&#x30C3;&#x30D7;&#x30A2;&#x30C3;&#x30D7;&#x3001;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x3092;&#x51FA;&#x3059; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="&#x300C;M5StickC&#x300D;SpeakerHat&#x3067;wav&#x3092;&#x518D;&#x751F;&#x3059;&#x308B;" />
+  <meta property="og:title" content="&#x300C;python&#x300D;CUI&#x3067;&#x30DD;&#x30C3;&#x30D7;&#x30A2;&#x30C3;&#x30D7;&#x3001;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x3092;&#x51FA;&#x3059;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20220310-M5stickc-playwav" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/202210xx-Python-popup" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -265,125 +265,139 @@
         </script>
         <br>
 
-      <p>2022/3/10</p>
-<h1 id="m5stickcspeakerhatwav">M5StickCとSpeakerHatでwavを再生する</h1>
+      <p>2022/10/xx</p>
+<h1 id="pythoncui">pythonで作成したCUIでポップアップやファイルダイアログを使う</h1>
 <hr />
-<p> <img src="../img/20220307-M5stickc-6jiku-1.png" style="max-width:40px;" alt="M5StickCイラスト">
-←M5StickCです</p>
-<p>M5StickCとは、小型（消しゴムサイズくらい）ながら多機能を備えたマイコンボードです。<br />
-M5StickCには「HAT」と呼ばれる拡張モジュールが用意されており、HATを装着することにより、様々な機能を追加できます。<br />
-本記事では、SpeakerHatを使用して、wavファイルを再生していきます。</p>
-<p><span class="link"></span><a href="https://shop.m5stack.com/collections/m5-sensor/HAT">HATの種類</a></p>
-<p>また、プログラムはUIFlowを使用します。<br />
-UIFlowについてはこちらを参照ください。</p>
-<p><span class="link"></span><a href="https://m5stack.github.io/UIFlow_doc/ja/">UIFlow Use</a></p>
-<br>
-<p>※注</p>
-<p>本記事の方法でwav再生できるのは、UIFLOWのバージョンが1.7.5のものになります。<br />
-1.9以上のものはI2Sクラスの中身が異なっており、再生することができませんのでご注意ください。<br />
-詳しくは末尾の &quot;（参考）micropythonについて&quot; を参照ください。</p>
-<h2 id="speakerhat">SpeakerHatについて</h2>
-<img src="../img/20220310-M5stickc-playwav-1.png" Style="width:100%;max-width:150px" alt="SpeakerHatの写真">  
-←Speaker Hatはこんなの  
-<br>
-<p>SpeakerHatの中にはアンプとスピーカーが入っています。<br />
-M5StickCのG26ピン（内蔵DAC出力）から音声信号が出力され、Speaker Hat内のアンプで増幅してスピーカーで音を出します。</p>
-<img src="../img/20220310-M5stickc-playwav-2.png" Style="width:100%;max-width:450px" alt="M5StickCとSpeakerHatの接続ブロック図">  
-<br>
-<br>
-<p>アンプはPAM8303というICを使用しています。<br />
-回路図は↓↓です。<br />
-/SD端子（シャットダウン）がG0に繋がっていて、G0をLowレベルにすると音声出力が止まります。</p>
-<img src="../img/20220310-M5stickc-playwav-3.png" Style="width:100%;max-width:450px" alt="SpeakerHatの回路図">  
-<h2 id="uiflowmicropythoni2s">UIFlow(micropython)のI2Sクラスについて</h2>
-<p>M5StickCから音声信号を出すために、machineモジュールのI2Sクラスを使用します。<br />
-I2Sクラスの内容および説明は、下記のページが参考になります。</p>
-<p><span class="link"></span><a href="https://lang-ship.com/reference/unofficial/M5StickC_UIFlow/class/machine.I2S/">M5StickC UIFlow非公式日本語リファレンス</a><br />
-<span class="link"></span><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/i2s.html">espressif Inter-IC Sound (I2S)</a></p>
-<p>これらを使ってwavファイルを再生します。</p>
-<h2 id="wav">wavファイルを再生するプログラム</h2>
-<p>まず最初に、wavファイルをM5StickCへアップロードします。<br />
-UIFlowの設定画面でCore2を選択します。(M5StickCの設定だと50kbまでしか転送できないので)</p>
-<p>※M5StickCが使えるメモリは少なく、転送ファイルは合計1Mb以下程度に納めることをお勧めします。</p>
-<p>　<img src="../img/20220310-M5stickc-playwav-4.png" Style="width:100%;max-width:500px" alt="UIFlowでwavファイルをアップロードする説明の図 その1"><br></p>
-<p>その後、MANAGERアイコンをクリックし、wavファイルを転送します。<br />
-画面はCore2になっていますが、ちゃんとM5StickCへファイル転送できます。</p>
-<p>　<img src="../img/20220310-M5stickc-playwav-5.png" Style="width:100%;max-width:500px" alt="UIFlowでwavファイルをアップロードする説明の図 その2"><br>
-　<img src="../img/20220310-M5stickc-playwav-6.png" Style="width:100%;max-width:500px;margin-top:25px;" alt="UIFlowでwavファイルをアップロードする説明の図 その3"><br><br></p>
-<p>wavファイルを再生するには下記のプログラムを実行します。</p>
-<pre><code class="language-python">from machine import I2S
-from wav import wave
+<p>pythonでCUIアプリ（Character User Interface）を作成したときに、処理の途中でエラーなどのポップアップ（メッセージボックス）や、ファイル選択のダイアログを出す方法をまとめました。</p>
+<h2 id="section">使用するライブラリ</h2>
+<p>pythonでポップアップを出すライブラリはいくつかありますが、本ページでは、デフォルトでpythonに含まれている&quot;tkinter&quot;を使用します。</p>
+<p><a href="https://docs.python.org/ja/3/library/tkinter.html" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://docs.python.org/ja/3/_static/py.svg');"></div></div><div class="text-box"><p class="title">tkinter</p><p class="description">Tcl/Tk の Python インターフェース</p></div></div></a></p>
+<h2 id="section-1">ポップアップ（メッセージボックス）</h2>
+<p>以下のプログラムでポップアップを実行します。</p>
+<pre><code class="language-python">import tkinter
+from tkinter import messagebox
 
-wav = wave.open('res/&lt;ファイル名.wav&gt;')
-i2s = I2S(mode=I2S.MODE_MASTER | I2S.MODE_TX | I2S.MODE_DAC_BUILT_IN)
-i2s.set_dac_mode(i2s.DAC_RIGHT_EN)
-i2s.sample_rate(wav.getframerate())
-i2s.bits(wav.getsampwidth() * 8)
-i2s.nchannels(wav.getnchannels())
-i2s.volume(50)
+tk = tkinter
+tk.Tk().withdraw()
 
-while True:
-    data = wav.readframes(256)
-    if len(data) &gt; 0:
-        i2s.write(data)
-    else:
-        wav.close()
-        i2s.deinit()
-        break
+tk.messagebox.showinfo('showinfo', 'information')
+tk.messagebox.showwarning('showwarning', 'warning')
+tk.messagebox.showerror('showerror', 'error')
+
+tk.messagebox.askquestion('askquestion', 'Yes or No ?')
+tk.messagebox.askokcancel('askokcancel', 'OK or Cancel ?')
+tk.messagebox.askretrycancel('askretrycancel', 'Retry or Cancel ?')
+tk.messagebox.askyesno('askyesno', 'Yes or No ?')
+tk.messagebox.askyesnocancel('askyesnocancel', 'Yes or No or Cancel ?')
 </code></pre>
-<p>UIFlowで実行するには下記のようにします。<br />
-pin0は、SpeakerHat内のアンプのON/OFFをしています。<br />
-wavファイル名指定のところを変えるのを忘れずに。</p>
-<p>　<img src="../img/20220310-M5stickc-playwav-7.png" Style="width:100%;max-width:500px" alt="UIFlowでwavファイルをアップロードする説明の図 その3"><br><br></p>
-<p>これをM5StickCへ転送してボタンを押せば、wavファイルを再生できます。</p>
-<h2 id="section">カスタムブロックの作成</h2>
-<p>UIFlowにはブロックを自作する機能があります。<br />
-先ほどのwav再生のプログラムのブロックを作成しておくと、何度も使うときにいちいちコピペしなくて良くなり便利です。<br />
-ブロックの作り方は以下を参照ください。<br />
-例として、wavファイルを再生するブロックの作成方法の説明があります。</p>
-<p><span class="link"></span><a href="https://yamaccu.github.io/tils/20210823-UIFLOW-CustomBlock">M5Stack向けのVisual Programming「UIFLOW」でカスタムブロックを作成する</a></p>
-<h2 id="m5stickc">M5StickC購入先</h2>
-<p>秋葉原へ行くと秋月電子やマルツで購入できます。<br />
-また、オンラインですとamazonのスイッチサイエンスショップでも購入できます。</p>
-<!-- START MoshimoAffiliateEasyLink -->
-<script type="text/javascript">
-(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
-b[a]=b[a]||function(){arguments.currentScript=c.currentScript
-||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
-c.getElementById(a)||(d=c.createElement(f),d.src=g,
-d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
-(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20210203","msmaflink");
-msmaflink({"n":"M5StickC Plus","b":"スイッチサイエンス","t":"","d":"https:\/\/m.media-amazon.com","c_p":"","p":["\/images\/I\/41H4Q+Pi1zL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B09MVQD8QJ","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":2,"u_tx":"Amazonで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B09MVQD8QJ","a_id":2991341,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":0}],"eid":"YvUpd","s":"s"});
-</script>
-<div id="msmaflink-YvUpd">リンク</div>
-<!-- MoshimoAffiliateEasyLink END -->
-<!-- START MoshimoAffiliateEasyLink -->
-<script type="text/javascript">
-(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
-b[a]=b[a]||function(){arguments.currentScript=c.currentScript
-||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
-c.getElementById(a)||(d=c.createElement(f),d.src=g,
-d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
-(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20210203","msmaflink");
-msmaflink({"n":"M5StickC Speaker Hat（PAM8303搭載）","b":"スイッチサイエンス","t":"M5STACK-SPK-HAT","d":"https:\/\/m.media-amazon.com","c_p":"\/images\/I","p":["\/21UuNuhxH0S._SL500_.jpg","\/31T9KCO8MNL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B07Z4VD4DX","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":2,"u_tx":"Amazonで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B07Z4VD4DX","a_id":2991341,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":1}],"eid":"5eu3P","s":"s"});
-</script>
-<div id="msmaflink-5eu3P">リンク</div>
-<!-- MoshimoAffiliateEasyLink END -->
-<h2 id="micropython">（参考）micropythonについて</h2>
-<p>UIFLowはmicropythonをベースに作成されています。<br />
-micropythonとは、pythonをマイコン上で動かせるように最適化したものです。<br />
-主にesp32系のマイコンでよく使われているようです。</p>
-<p>特徴として、pythonで書けるので記述がシンプルになるのと、REPLと呼ばれるインタープリタが使用できデバッグしやすいなどがあります。<br />
-また、オープンソースで以下で公開されています。</p>
-<p><span class="link"></span><a href="https://github.com/micropython/micropython">github micropython</a></p>
-<p>micropythonには、loborisという派生バージョンがあります。<br />
-色々違いはあるのですが、I2Sクラスを使って内蔵DACで音声再生ができる機能が追加されています。</p>
-<p><span class="link"></span><a href="https://github.com/loboris/MicroPython_ESP32_psRAM_LoBo">github MicroPython_ESP32_psRAM_LoBo</a></p>
-<p>UIFlowはver 1.7.5ではloboris版をベースに作成されていますが、最新版ではmainstream版で作成されています。<br />
-mainstream版では、I2Sクラスで内蔵DACから音声データを出力することができません。<br />
-なので、本記事の方法でwavデータを再生することができなくなっています。</p>
-<p><span class="link"></span><a href="https://community.m5stack.com/topic/3216/updated-micropython">参考 M5Stack Community</a></p>
-<p>再生する他の方法としては、UIFlowではなくArduinoを使う、外部にI2S対応アンプをつなげてI2Sで音声を出力するなどがあるかと思います。</p>
+<p>TK().withdraw()</p>
+<ul>
+<li>tkinterを実行するとウインドウが自動で表示されるのですが、<br />
+CUIアプリではウインドウを使わないので、この関数でウインドウを消しています。</li>
+</ul>
+<p>messagebox</p>
+<ul>
+<li>定型のメッセージボックスをポップアップします。<br />
+ポップアップで押すボタンによって戻り値が異なります。<br />
+詳細は以下で説明していきます。</li>
+</ul>
+<h3 id="showinfo">1. showinfo</h3>
+<div style="display:flex; flex-wrap:wrap">
+<img src="../img/202210xx-Python-popup-1.png" style="width:100%; max-width:150px;" alt="Tkinter MessageBox.showinfoの画像">
+<div style="margin-left:5px;">
+<pre><code class="language-python">messagebox.showinfo('showinfo', 'information')
+</code></pre>
+<p>    戻り値：&quot;ok&quot;</p>
+</div>
+</div>
+<h3 id="showwarning">2. showwarning</h3>
+<div style="display:flex; flex-wrap:wrap">
+<img src="../img/202210xx-Python-popup-2.png" style="width:100%; max-width:132px;" alt="Tkinter MessageBox.showwarningの画像">
+<div style="margin-left:5px;">
+<pre><code class="language-python">messagebox.showwarning('showwarning', 'warning')
+</code></pre>
+<p>    戻り値：&quot;ok&quot;</p>
+</div>
+</div>
+<h3 id="showerror">3. showerror</h3>
+<div style="display:flex; flex-wrap:wrap">
+<img src="../img/202210xx-Python-popup-3.png" style="width:100%; max-width:118px;" alt="Tkinter MessageBox.showerrorの画像">
+<div style="margin-left:5px;">
+<pre><code class="language-python">messagebox.showerror('showerror', 'error')
+</code></pre>
+<p>    戻り値：&quot;ok&quot;</p>
+</div>
+</div>
+<h3 id="askquestion">4. askquestion</h3>
+<div style="display:flex; flex-wrap:wrap">
+<img src="../img/202210xx-Python-popup-4.png" style="width:100%; max-width:210px;" alt="Tkinter MessageBox.askquestionの画像">
+<div style="margin-left:5px;">
+<pre><code class="language-python">messagebox.askquestion('askquestion', 'yes or no ?')
+</code></pre>
+<p>    戻り値：<br />
+      はい(Y) ⇒ &quot;yes&quot;<br />
+      いいえ(N) ⇒ &quot;no&quot;</p>
+</div>
+</div>
+<h3 id="askokcancel">5. askokcancel</h3>
+<div style="display:flex; flex-wrap:wrap">
+<img src="../img/202210xx-Python-popup-5.png" style="width:100%; max-width:210px;" alt="Tkinter MessageBox.askokcancelの画像">
+<div style="margin-left:5px;">
+<pre><code class="language-python">messagebox.askokcancel('askokcancel', 'OK or cancel ?')
+</code></pre>
+<p>    戻り値：<br />
+      OK ⇒ True<br />
+      キャンセル ⇒ False</p>
+</div>
+</div>
+<h3 id="askretrycancel">6. askretrycancel</h3>
+<div style="display:flex; flex-wrap:wrap">
+<img src="../img/202210xx-Python-popup-6.png" style="width:100%; max-width:210px;" alt="Tkinter MessageBox.askretrycancelの画像">
+<div style="margin-left:5px;">
+<pre><code class="language-python">messagebox.askretrycancel('askretrycancel', 'Retry or Cancel ?')
+</code></pre>
+<p>    戻り値：<br />
+      再試行(R) ⇒ True<br />
+      キャンセル ⇒ False</p>
+</div>
+</div>
+<h3 id="askyesno">7. askyesno</h3>
+<div style="display:flex; flex-wrap:wrap">
+<img src="../img/202210xx-Python-popup-7.png" style="width:100%; max-width:210px;" alt="Tkinter MessageBox.askyesnoの画像">
+<div style="margin-left:5px;">
+<pre><code class="language-python">messagebox.askyesno('askyesno', 'Yes or No ?')
+</code></pre>
+<p>    戻り値：<br />
+      はい(Y) ⇒ True<br />
+      いいえ(N) ⇒ False</p>
+</div>
+</div>
+<h3 id="askyesnocancel">8. askyesnocancel</h3>
+<div style="display:flex; flex-wrap:wrap">
+<img src="../img/202210xx-Python-popup-8.png" style="width:100%; max-width:290px;" alt="Tkinter MessageBox.askyesnocancelの画像">
+<div style="margin-left:5px;">
+<pre><code class="language-python">messagebox.askyesnocancel('askyesnocancel', 'Yes or No or Cancel ?')
+</code></pre>
+<p>    戻り値：<br />
+      はい(Y) ⇒ True<br />
+      いいえ(N) ⇒ False<br />
+      キャンセル ⇒ None</p>
+</div>
+</div>
+<h2 id="section-2">ファイル選択ダイアログ</h2>
+<p>以下のプログラムでダイアログを実行します。</p>
+<pre><code class="language-python">import tkinter
+from tkinter import filedialog
+
+type = [('テキストファイル','*.txt')] 
+path = tk.filedialog.askopenfilename(filetypes = type)
+</code></pre>
+<p>filedialog.askopenfilename</p>
+<ul>
+<li>ファイル選択ダイアログを開き、選択したファイルの絶対パスを戻します。</li>
+<li>filetypes：選択するファイル形式を指定できます。</li>
+</ul>
+<img src="../img/202210xx-Python-popup-9.png" style="width:100%; max-width:330px;" alt="Tkinter filedialog.askopenfilenameの画像">
 <br>
 <br>
 <p>以上です。</p>
