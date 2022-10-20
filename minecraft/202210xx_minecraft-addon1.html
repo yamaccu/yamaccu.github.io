@@ -1,0 +1,189 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>&#x30DE;&#x30A4;&#x30AF;&#x30E9;&#x7D71;&#x5408;&#x7248;&#xFF08;BE&#xFF09;&#x306E;&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x306E;&#x4F5C;&#x308A;&#x65B9;&#x2460; &#x6E96;&#x5099;&#x7DE8; | yokuaru Tech notes</title>
+
+  <link href="/scss/tech.css" rel="stylesheet" type="text/css">
+  <link href="/scss/prism.css" rel="stylesheet" type="text/css">
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
+    data-no-mirror></script>
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+
+  <script data-ad-client="ca-pub-2127299793131419" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-197465108-1');
+  </script>
+
+  <meta property="og:title" content="&#x30DE;&#x30A4;&#x30AF;&#x30E9;&#x7D71;&#x5408;&#x7248;&#xFF08;BE&#xFF09;&#x306E;&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x306E;&#x4F5C;&#x308A;&#x65B9;&#x2460; &#x6E96;&#x5099;&#x7DE8;" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yamaccu.github.io/minecraft/202210xx_minecraft-addon1" />
+  <meta property="og:site_name" content="yokuaru Tech notes" />
+  <meta property="og:locale" content="ja_JP" />
+
+</head>
+
+<header style="background-image:url('/img/main3.png')">
+  <div class="flex-wrap">
+    <div>
+      <a href="/minecraft" class="title">
+        MineCraft Note
+      </a>
+    </div>
+    <div class="ext-link">
+      <a href="/"><img src="/img/home.png" class="ext-link-icon"
+          alt="homeへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"
+          alt="twitterへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"
+          alt="githubへのリンク"></a>
+    </div>
+  </div>
+  <br>
+</header>
+
+<body class="body-font">
+  <div class="post-wrap">
+    <div class="body-post">
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle adslot_2" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+      <br>
+      <p>2022/10/21</p>
+<h1 id="section">マイクラ統合版のアドオンを作る① 準備編</h1>
+<hr />
+<p>うちの子供が「マイクラ統合版のアドオンを作ってみたい！」と言っていて色々と調べているのですが、まとまった情報がなくて苦労しています。<br />
+あとで忘れないように、また、もしかしたら誰かの役にたつかもしれないので、自分が調べたことをまとめていこうと思います。</p>
+<p>アドオンとは簡単に言うと、ゲームに装備やmob、新しいルールなどを追加することができるファイルのことです。</p>
+<br>
+<p><strong>◆マイクラ統合版のアドオンを作る目次◆</strong></p>
+<ol>
+<li>マイクラ統合版のアドオンを作るための準備　　←今この記事です</li>
+<li>作成中・・</li>
+</ol>
+<h2 id="section-1">準備するもの</h2>
+<p>以下を準備します。</p>
+<ul>
+<li>テキストエディタ</li>
+<li>アドオンの元データ</li>
+<li>作ったアドオン置き場</li>
+</ul>
+<h3 id="section-2">テキストエディタ</h3>
+<p>マイクラのアドオンは、jsonファイルというテキストファイルを編集して作ります。<br />
+このjsonファイルを編集をしやすいテキストエディタをダウンロードしてきます。</p>
+<p>おすすめは、microsoftが出している「Visual Studio Code」というテキストエディタです。<br />
+以下からダウンロードできます。</p>
+<p><a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://azurecomcdn.azureedge.net/cvt-868ff44bac82fea18766986f48022e6c7bb8538815cb89845c3630541dbe09a4/images/shared/social/azure-icon-250x250.png');"></div></div><div class="text-box"><p class="title">Visual Studio Code – コード エディター | Microsoft Azure</p><p class="description">ほぼすべての言語に対応し、任意の OS で動作する強力なコード エディター、Visual Studio Code を使用して、Azure で編集、デバッグ、デプロイを行います。</p></div></div></a></p>
+<p>フォーマットが間違っている箇所を波線で教えてくれるので、とても助かります。</p>
+<h3 id="section-3">アドオンの元データ</h3>
+<p>アドオンのベースとなるデータを入手します。（バニラと呼ばれています）<br />
+以下のページの一番下からダウンロードできます。</p>
+<p><a href="https://learn.microsoft.com/ja-jp/minecraft/creator/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://learn.microsoft.com/en-us/media/logos/logo-ms-social.png');"></div></div><div class="text-box"><p class="title">Minecraft: Bedrock Edition クリエイター ドキュメント</p><p class="description">アドオンを使用して Minecraft に MOD を入れる方法を学びましょう。 スキンを作成したり、ユニークな体験を設計したり、最新機能を入手したりしながら、Minecraft のクリエイターとしてスキルを磨いていくことができます。</p></div></div></a></p>
+<p>アドオンには、ビヘイビアパックとリソースパックの2つがあります。</p>
+<ul>
+<li>ビヘイビアパック：主にmobやアイテムの動きや仕様を変更、追加する</li>
+<li>リソースパック：主にmobやアイテムの見た目を変更、追加する</li>
+</ul>
+<h3 id="section-4">作ったアドオン置き場</h3>
+<p>作ったアドオンはweb上にアップロードしておくと、携帯でダウンロードして使用したり、他の人に使ってもらったりできます。<br />
+ここでは以下の2つのサイトを紹介します。</p>
+<ul>
+<li>クラフターズコロニー：<br />
+　マイクラ配布データ用のサイトです。<br />
+　色々な方がアドオンを上げていて参考になります。</li>
+</ul>
+<p><a href="https://minecraft-mcworld.com/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://minecraft-mcworld.com/wp-content/uploads/169クラフターズコロニー.png');"></div></div><div class="text-box"><p class="title">クラフターズコロニー　-マイクラの配布サイト-</p><p class="description">「クラフターズコロニー」はMinecraft統合版(be)/Java版の投稿型ワールド配布サイトです。景観マップや脱出マップなどの配布ワールドをはじめテクスチャやアドオン、MODなどの様々な投稿が行えます。</p></div></div></a></p>
+<ul>
+<li>github：<br />
+　主にプログラミングのソースコードを管理するサイトなのですが、何でもアップロードできるので便利です。<br />
+　操作方法はちょっと複雑ですが、無料で使えます。</li>
+</ul>
+<p><a href="https://github.co.jp/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://github.githubassets.com/images/modules/open_graph/github-logo.png');"></div></div><div class="text-box"><p class="title">GitHub Japan</p><p class="description">GitHubはソフトウェア開発のプラットフォームです。GitHubには8000万件以上ものプロジェクトがホスティングされており、2700万人以上のユーザーがプロジェクトを探したり、フォークしたり、コントリビュートしたりしています。</p></div></div></a></p>
+<br>
+<p>以上、その２へ続きます！</p>
+<br>
+<br>
+<hr />
+
+
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+      <script src="https://utteranc.es/client.js" repo="yamaccu/yamaccu.github.io" issue-term="pathname"
+        theme="github-light" crossorigin="anonymous" async>
+        </script>
+        <hr>
+
+    </div>
+    <div style="flex-basis:350px;">
+      <div style="margin-left:20px;">
+
+        <p>MineCraft Note Index</p>
+
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/21</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/202210xx_minecraft-addon1">&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x4F5C;&#x6210;&#x2460; &#x6E96;&#x5099;&#x7DE8;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/5</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/20221005_minecraft-3DCAD">3D CAD&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;</a></p>
+
+        <br>
+
+        <div class="adslot_1">
+          <p>Sponsor</p>
+          <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+            crossorigin="anonymous"></script>
+          <!-- head -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+            data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+
+          <br>
+          <br>
+
+          <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+            crossorigin="anonymous"></script>
+          <!-- head -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+            data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
