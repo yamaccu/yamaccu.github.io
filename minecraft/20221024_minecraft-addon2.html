@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>&#x30DE;&#x30A4;&#x30AF;&#x30E9;&#x7D71;&#x5408;&#x7248;&#xFF08;BE&#xFF09;&#x306E;&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x306E;&#x4F5C;&#x308A;&#x65B9;&#x2460; &#x6E96;&#x5099;&#x7DE8; | yokuaru Tech notes</title>
+  <title>&#x30DE;&#x30A4;&#x30AF;&#x30E9;&#x7D71;&#x5408;&#x7248;&#xFF08;BE&#xFF09;&#x306E;&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x306E;&#x4F5C;&#x308A;&#x65B9;&#x2461; &#x30D7;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x5F37;&#x5316; | yokuaru Tech notes</title>
 
   <link href="/scss/tech.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -30,9 +30,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="&#x30DE;&#x30A4;&#x30AF;&#x30E9;&#x7D71;&#x5408;&#x7248;&#xFF08;BE&#xFF09;&#x306E;&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x306E;&#x4F5C;&#x308A;&#x65B9;&#x2460; &#x6E96;&#x5099;&#x7DE8;" />
+  <meta property="og:title" content="&#x30DE;&#x30A4;&#x30AF;&#x30E9;&#x7D71;&#x5408;&#x7248;&#xFF08;BE&#xFF09;&#x306E;&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x306E;&#x4F5C;&#x308A;&#x65B9;&#x2461; &#x30D7;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x5F37;&#x5316;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/minecraft/20221021_minecraft-addon1" />
+  <meta property="og:url" content="https://yamaccu.github.io/minecraft/20221024_minecraft-addon2" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -71,62 +71,117 @@
       </script>
 
       <br>
-      <p>2022/10/21</p>
-<h1 id="section">マイクラ統合版のアドオンを作る① 準備編</h1>
+      <p>2022/10/24</p>
+<h1 id="section">マイクラ統合版のアドオンを作る② プレイヤー強化編</h1>
 <hr />
-<p>うちの子供が「マイクラ統合版のアドオンを作ってみたい！」と言っていて色々と調べているのですが、まとまった情報がなくて苦労しています。<br />
-あとで忘れないように、また、もしかしたら誰かの役にたつかもしれないので、自分が調べたことをまとめていこうと思います。</p>
-<p>アドオンとは簡単に言うと、ゲームに装備やmob、新しいルールなどを追加することができるファイルのことです。</p>
-<br>
-<p><strong>◆マイクラ統合版のアドオンを作る目次◆</strong></p>
+<p>マイクラ統合版のアドオン作成方法の2回目です。</p>
 <ol>
-<li>アドオンを作るための準備　　←今ここ</li>
-<li>アドオンでプレイヤーを強化</li>
-<li>作成中・・</li>
+<li><a href="https://yamaccu.github.io/minecraft/20221021_minecraft-addon1">アドオンを作るための準備</a> <span class="link"></span></li>
+<li>アドオンでプレイヤーを強化　　←今ここ</li>
+<li>作成中・・・</li>
 </ol>
-<h2 id="section-1">準備するもの</h2>
-<p>以下を準備します。</p>
+<h2 id="section-1">概要</h2>
+<p>今回は、ビヘイビアパックの中にあるentitiesのplayer.jsonファイルを修正して、プレイヤーを強化してみます。<br />
+以下の手順で説明しています。</p>
 <ul>
-<li>テキストエディタ</li>
-<li>アドオンの元データ</li>
-<li>作ったアドオン置き場</li>
+<li>ビヘイビアパックのバニラを入手する</li>
+<li>manifest.jsonファイルのUUIDを修正する</li>
+<li>player.jsonファイルを修正する</li>
+<li>マインクラフトに適用する</li>
 </ul>
-<h3 id="section-2">テキストエディタ</h3>
-<p>マイクラのアドオンは、jsonファイルというテキストファイルを編集して作ります。<br />
-このjsonファイルを編集をしやすいテキストエディタをダウンロードしてきます。</p>
-<p>おすすめは、microsoftが出している「Visual Studio Code」というテキストエディタです。<br />
-以下からダウンロードできます。</p>
-<p><a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://azurecomcdn.azureedge.net/cvt-868ff44bac82fea18766986f48022e6c7bb8538815cb89845c3630541dbe09a4/images/shared/social/azure-icon-250x250.png');"></div></div><div class="text-box"><p class="title">Visual Studio Code – コード エディター | Microsoft Azure</p><p class="description">ほぼすべての言語に対応し、任意の OS で動作する強力なコード エディター、Visual Studio Code を使用して、Azure で編集、デバッグ、デプロイを行います。</p></div></div></a></p>
-<p>フォーマットが間違っている箇所を波線で教えてくれるので、とても助かります。</p>
-<h3 id="section-3">アドオンの元データ</h3>
-<p>アドオンのベースとなるデータを入手します。（バニラと呼ばれています）<br />
-以下のページの一番下からダウンロードできます。</p>
+<br>
+<p>↓パンチ一発でエンダードラゴンを倒せるようになります。</p>
+<p><video src="../video/20221024-minecraft-addon2-1.mp4" style="width:100%;" controls></video></p>
+<h2 id="section-2">ビヘイビアパックのバニラを入手する</h2>
+<p>以下のページから、ビヘイビアパックのバニラをダウンロードします。<br />
+一番下からダウンロードできます。</p>
+<p>バニラとは、アドオンのベースとなるデータで、これを編集してアドオンを作っていきます。</p>
 <p><a href="https://learn.microsoft.com/ja-jp/minecraft/creator/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://learn.microsoft.com/en-us/media/logos/logo-ms-social.png');"></div></div><div class="text-box"><p class="title">Minecraft: Bedrock Edition クリエイター ドキュメント</p><p class="description">アドオンを使用して Minecraft に MOD を入れる方法を学びましょう。 スキンを作成したり、ユニークな体験を設計したり、最新機能を入手したりしながら、Minecraft のクリエイターとしてスキルを磨いていくことができます。</p></div></div></a></p>
-<p>アドオンには、ビヘイビアパックとリソースパックの2つがあります。</p>
+<h2 id="manifest.jsonuuid">manifest.jsonファイルのUUIDを修正する</h2>
+<p>アドオンにはUUIDというものがあり、ビヘイビアーパック内のmanifest.jsonファイル内に設定箇所があります。<br />
+アドオンごとに固有のものを記載する必要があり、以下のサイトで取得することができます。</p>
+<p><a href="https://www.uuidgenerator.net/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://yamaccu.github.io/img/20221005_minecraft-3DCAD-10.png');"></div></div><div class="text-box"><p class="title">Online UUID Generator</p><p class="description"></p></div></div></a></p>
+<p>manifest.jsonを開いて、下記の2か所のUUIDを取得した値に書き換えます。<br />
+&quot;dependencies&quot;の項目は不要なので消してしまいます。<br />
+（上記ページをリロードすると新しいUUIDが表示されますので、2 ID取得します。）</p>
+<img src="../img/20221005_minecraft-3DCAD-11.png" style="width:100%; max-width:400px; margin-top:5px" alt="UUIDの変更箇所">  
+<p>ちなみに、headerの項目の下の、descriptionを変えるとマイクラ内でのアドオンの説明文を、<br />
+nameの項目を変えるとマイクラで呼び出すときのパック名称が変更できます。</p>
+<h2 id="player.json">player.jsonを修正する</h2>
+<p>entitiesフォルダのなかに、「player.json」というファイルがあります。<br />
+これはプレイヤーの設定が書かれているファイルで、これを書き換えることで普段とは違ったふるまいを実現できます。</p>
+<img src="../img/20221024-minecraft-addon2-1.png" style="width:100%; max-width:350px;" alt="player.jsonの場所">  
+<p>今回は、攻撃力とハートの数を変更してみます。</p>
+<h3 id="player.json-1">player.jsonの構成の説明</h3>
+<p>ファイル内の構成は、以下のようになっています。</p>
+<pre><code class="language-json">{
+  &quot;format_version&quot;: &quot;1.18.20&quot;,
+  &quot;minecraft:entity&quot;: {
+    &quot;description&quot;: {
+//      ・・・中略
+    },
+
+    &quot;component_groups&quot;: {
+//      ・・・中略
+    },
+
+    &quot;components&quot;: {
+//      ・・・中略
+    },
+
+    &quot;events&quot;: {
+//      ・・・中略
+    }
+  }
+}
+</code></pre>
 <ul>
-<li>ビヘイビアパック：主にmobやアイテムの動きや仕様を変更、追加する</li>
-<li>リソースパック：主にmobやアイテムの見た目を変更、追加する</li>
+<li>&quot;description&quot;：　ファイルの基本的な設定が入ります。</li>
+<li>&quot;component_groups&quot;：　componentsで、条件によってON/OFFしたいものはここに入ります。条件はeventsで設定します。<br />
+例）旗を持つピリジャーを倒したら、「不吉な予感」状態の設定を追加する、など</li>
+<li>&quot;components&quot;：　プレイヤーのふるまいの設定ができます。<br />
+例）ハートの数、日光で燃える、マグマに入るとダメージを受ける、などの設定</li>
+<li>&quot;events&quot;：　条件を設定してcomponent_groupsの追加・削除を行うことができます。</li>
 </ul>
-<h3 id="section-4">作ったアドオン置き場</h3>
-<p>作ったアドオンはweb上にアップロードしておくと、携帯でダウンロードして使用したり、他の人に使ってもらったりできます。<br />
-ここでは以下の2つのサイトを紹介します。</p>
-<ul>
-<li>クラフターズコロニー：<br />
-　マイクラ配布データ用のサイトです。<br />
-　色々な方がアドオンを上げていて参考になります。</li>
-</ul>
-<p><a href="https://minecraft-mcworld.com/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://minecraft-mcworld.com/wp-content/uploads/169クラフターズコロニー.png');"></div></div><div class="text-box"><p class="title">クラフターズコロニー　-マイクラの配布サイト-</p><p class="description">「クラフターズコロニー」はMinecraft統合版(be)/Java版の投稿型ワールド配布サイトです。景観マップや脱出マップなどの配布ワールドをはじめテクスチャやアドオン、MODなどの様々な投稿が行えます。</p></div></div></a></p>
-<ul>
-<li>github：<br />
-　主にプログラミングのソースコードを管理するサイトなのですが、何でもアップロードできるので便利です。<br />
-　操作方法はちょっと複雑ですが、無料で使えます。</li>
-</ul>
-<p><a href="https://github.co.jp/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://github.githubassets.com/images/modules/open_graph/github-logo.png');"></div></div><div class="text-box"><p class="title">GitHub Japan</p><p class="description">GitHubはソフトウェア開発のプラットフォームです。GitHubには8000万件以上ものプロジェクトがホスティングされており、2700万人以上のユーザーがプロジェクトを探したり、フォークしたり、コントリビュートしたりしています。</p></div></div></a></p>
+<h3 id="section-3">攻撃力を上げる</h3>
+<p>&quot;compornents&quot;の下にある、「minecraft:attack 」という項目を変更します。<br />
+&quot;damage&quot;が1となっていますが、これは、素手で殴った時にハート半分のダメージを与えられる、という設定です。</p>
+<pre><code class="language-json">&quot;minecraft:attack&quot;: {
+    &quot;damage&quot;: 1
+},
+</code></pre>
+<p>これを1000に変更します。<br />
+素手で殴ってハート500個分のダメージを与えられるので、既存のmobは全て一発で倒せます。</p>
+<pre><code class="language-json">&quot;minecraft:attack&quot;: {
+    &quot;damage&quot;: 1000
+},
+</code></pre>
+<h3 id="section-4">ハートの数を増やす</h3>
+<p>&quot;compornents&quot;の下に、「minecraft:health」という項目を追加します。<br />
+例えば、以下のようにします。</p>
+<pre><code class="language-json">&quot;components&quot;: {
+    &quot;minecraft:health&quot;: {
+        &quot;value&quot;: 100,
+        &quot;max&quot;: 100
+    },
+//・・・(中略)
+}
+</code></pre>
+<p>これは、ハート50個の設定になります。</p>
+<img src="../img/20221024-minecraft-addon2-2.png" style="width:100%; max-width:350px;" alt="minecraft:healthの効果">  
 <br>
-<p>以上、その２へ続きます！</p>
+<p>これで、何でもワンパンで倒せてハートが50個になるアドオンが完成です！</p>
+<h2 id="section-5">アドオンをマイクラに適用する</h2>
+<p>ビヘイビアーパックをzipファイルに圧縮して、拡張子をzip⇒mcpackに変更します。<br />
+（windowsであれば、右クリック⇒圧縮⇒zipで圧縮できます。）<br />
+このファイルを実行すれば、マイクラが起動して自動でアドオンが取り込まれます。</p>
+<img src="../img/20221005_minecraft-3DCAD-12.png" style="width:100%; max-width:100px; margin-top:5px" alt="拡張子をmcaddonに変更した画像">  
 <br>
 <br>
-<h2 id="section-5">マインクラフトの購入先</h2>
+<br>
+<p>以上です。</p>
+<p>その３では、アニメーションコントローラという機能を使って、攻撃したときにパーティクルを発生させるコマンドを実行します。</p>
+<h2 id="section-6">マインクラフトの購入先</h2>
 <p>マインクラフトはアマゾンで購入できます。<br />
 最近、JAVA版と統合版がワンパッケージになったようで、購入すると両方プレイができます。</p>
 <!-- START MoshimoAffiliateEasyLink -->
@@ -141,6 +196,8 @@ msmaflink({"n":"Minecraft (マインクラフト): Java \u0026 Bedrock Edition |
 </script>
 <div id="msmaflink-TXkHv">リンク</div>
 <!-- MoshimoAffiliateEasyLink END -->
+<br>
+<br>
 <hr />
 
 
