@@ -1,0 +1,325 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>&#x30DE;&#x30A4;&#x30AF;&#x30E9;&#x7D71;&#x5408;&#x7248;&#xFF08;BE&#xFF09;&#x306E;&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x306E;&#x4F5C;&#x308A;&#x65B9;&#x2462; &#x30A2;&#x30CB;&#x30E1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x30B3;&#x30F3;&#x30C8;&#x30ED;&#x30FC;&#x30E9;&#x3067;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x5B9F;&#x884C; | yokuaru Tech notes</title>
+
+  <link href="/scss/tech.css" rel="stylesheet" type="text/css">
+  <link href="/scss/prism.css" rel="stylesheet" type="text/css">
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
+    data-no-mirror></script>
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+
+  <script data-ad-client="ca-pub-2127299793131419" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-197465108-1');
+  </script>
+
+  <meta property="og:title" content="&#x30DE;&#x30A4;&#x30AF;&#x30E9;&#x7D71;&#x5408;&#x7248;&#xFF08;BE&#xFF09;&#x306E;&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x306E;&#x4F5C;&#x308A;&#x65B9;&#x2462; &#x30A2;&#x30CB;&#x30E1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x30B3;&#x30F3;&#x30C8;&#x30ED;&#x30FC;&#x30E9;&#x3067;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x5B9F;&#x884C;" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yamaccu.github.io/minecraft/20221027_minecraft-addon3" />
+  <meta property="og:site_name" content="yokuaru Tech notes" />
+  <meta property="og:locale" content="ja_JP" />
+
+</head>
+
+<header style="background-image:url('/img/main3.png')">
+  <div class="flex-wrap">
+    <div>
+      <a href="/minecraft" class="title">
+        MineCraft Note
+      </a>
+    </div>
+    <div class="ext-link">
+      <a href="/"><img src="/img/home.png" class="ext-link-icon"
+          alt="homeへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"
+          alt="twitterへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"
+          alt="githubへのリンク"></a>
+    </div>
+  </div>
+  <br>
+</header>
+
+<body class="body-font">
+  <div class="post-wrap">
+    <div class="body-post">
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle adslot_2" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+      <br>
+      <p>2022/10/27</p>
+<h1 id="section">マイクラ統合版のアドオンを作る③ アニメーションコントローラでコマンドを実行する</h1>
+<hr />
+<p>マイクラ統合版のアドオン作成方法の3回目です。</p>
+<ol>
+<li><a href="https://yamaccu.github.io/minecraft/20221021_minecraft-addon1">アドオンを作るための準備</a> <span class="link"></span></li>
+<li><a href="https://yamaccu.github.io/minecraft/20221024_minecraft-addon2">アドオンでプレイヤーを強化</a> <span class="link"></span></li>
+<li>アドオンでアニコンを使ってコマンドを実行　←今ここ</li>
+<li>作成中・・・</li>
+</ol>
+<h2 id="section-1">概要</h2>
+<p>今回は、アニメーションコントローラ（以下アニコンと呼びます）という機能を使って、プレイヤーが攻撃したときにパーティクルを出現させるコマンドを実行します。<br />
+以下の手順で説明しています。</p>
+<ul>
+<li>ビヘイビアパックにアニコンのファイルを追加</li>
+<li>player.jsonファイルを修正してアニコンを紐づけする</li>
+</ul>
+<br>
+<p>↓攻撃したときに周りにパーティクルが出現します。</p>
+<p><video src="../video/20221027-minecraft-addon3-1.mp4" style="width:100%; max-width:600px;" controls></video></p>
+<h2 id="section-2">ビヘイビアパックにアニコンのファイルを追加する</h2>
+<p>ビヘイビアパックの中に、「animation_controllers」という名前のフォルダを作成します。<br />
+そのフォルダの中に、jsonファイルを作成します。<br />
+ファイル名は何でも良いのですが、とりあえずフォルダ名と同じ「animation_controllers.json」としておきます。</p>
+<img src="../img/20221027-minecraft-addon3-2.png" style="width:100%; max-width:400px;" alt="animation_controllersのファイル作成">  
+<br>
+<p>作成した「animation_controllers.json」を開いて、下記のテキストをコピペします。</p>
+<pre><code class="language-json">{
+    &quot;format_version&quot; : &quot;1.10.0&quot;,
+    &quot;animation_controllers&quot; : {
+        &quot;controller.animation.attack&quot; : {
+            &quot;initial_state&quot; : &quot;default&quot;,
+            &quot;states&quot; : {
+                &quot;default&quot; : {
+                    &quot;transitions&quot; : [
+                        {
+                            &quot;attack&quot; : &quot;variable.attack_time&quot;
+                        }
+                    ]
+                },
+                &quot;attack&quot; : {
+                    &quot;on_entry&quot;: [
+                        &quot;/execute &#64;s ~2 ~1 ~ /particle minecraft:sonic_explosion&quot;,
+                        &quot;/execute &#64;s ~-2 ~1 ~ /particle minecraft:sonic_explosion&quot;,
+                        &quot;/execute &#64;s ~ ~1 ~2 /particle minecraft:sonic_explosion&quot;,
+                        &quot;/execute &#64;s ~ ~1 ~-2 /particle minecraft:sonic_explosion&quot;
+                    ],
+                    &quot;transitions&quot; : [
+                        {
+                            &quot;default&quot; : &quot;(1.0)&quot; 
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<ul>
+<li><p>&quot;controller.animation.attack&quot;：<br />
+　今回作るアニコンです。<br />
+　&quot;attack&quot;の箇所は、好きな名前にして大丈夫です。<br />
+　プレイヤーやモブにアニコンを紐づけるときに、ここの名前を使います。</p>
+</li>
+<li><p>&quot;default&quot;、&quot;attack&quot;：<br />
+　この二つはstateと呼ばれるものです。<br />
+　stateを作って処理を登録し、stateを変更していくことで各処理を実施する仕組みとなっています。<br />
+　一度に複数のstateをとることはできません。</p>
+</li>
+</ul>
+<br>
+<img src="../img/20221027-minecraft-addon3-4.png" style="width:100%; max-width:400px; margin-left:20px;" alt="アニコンののStateの説明の図">  
+<br>
+<p>それぞれについて、以降で説明していきます。</p>
+<h3 id="state">state（状態）について</h3>
+<p>stateとは、自分がいまとっている状態のことです。<br />
+最初は「default」状態にいます。<br />
+（&quot;initial_state&quot; : &quot;default&quot;　で最初の状態を決めています。）</p>
+<p>例えば、攻撃動作をしたらパーティクルを発生させるアニコンを作成するとします。<br />
+この場合、まず初めに「攻撃した」というstateを作ります。<br />
+そして、「パーティクル発生」という処理を追加します。</p>
+<pre><code class="language-json">&quot;attack&quot; : {
+    &quot;on_entry&quot;: [
+        &quot;/execute &#64;s ~2 ~1 ~ /particle minecraft:sonic_explosion&quot;,
+        &quot;/execute &#64;s ~-2 ~1 ~ /particle minecraft:sonic_explosion&quot;,
+        &quot;/execute &#64;s ~ ~1 ~2 /particle minecraft:sonic_explosion&quot;,
+        &quot;/execute &#64;s ~ ~1 ~-2 /particle minecraft:sonic_explosion&quot;
+    ],
+</code></pre>
+<p>これがstateとなります。<br />
+他にも「ジャンプした」「動いている」「アイテムを使った」など、大体の動作はstateとして作ることができます。</p>
+<p>各stateでの処理の追加方法は下記の3通りあります。</p>
+<ul>
+<li>on_entry：　stateに入ったら最初に一度だけ実施する</li>
+<li>animations：　stateにいる間はずっと実施する</li>
+<li>on_exit：　stateから抜けるときに一度だけ実施する</li>
+</ul>
+<p>上記の例ではon_entryを使っているので「attack stateに入ったら、4つのexecuteコマンドを一回実行する」という内容になっています。</p>
+<p>/execute コマンドの詳細については、ここでは省略します。</p>
+<h3 id="transitions">transitions</h3>
+<p>stateを作ったら、stateを移動する条件を追加します。<br />
+この、移動する条件が「transitions」です。</p>
+<p>default stateからattack stateへ遷移するには、default stateに以下のtransitionsを追加します。</p>
+<pre><code class="language-json">&quot;transitions&quot; : [
+    {
+        &quot;attack&quot; : &quot;variable.attack_time&quot;
+    }
+]
+</code></pre>
+<p>&quot;variable.attack_time&quot;は、攻撃動作を判定するものです。<br />
+「攻撃動作」を行ったら、attack stateへ遷移する、という意味になります。<br />
+この、動作を判定する記述は「Molang Queries」と呼ばれていて、下記に一覧があります。</p>
+<p><a href="https://wiki.bedrock.dev/documentation/queries.html#variable-attack-time" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://wiki.bedrock.dev/assets/images/homepage/wikilogo.png');"></div></div><div class="text-box"><p class="title">Molang Queries | Bedrock Wiki</p><p class="description">Technical bedrock knowledge-sharing wiki.</p></div></div></a></p>
+<p>また、attack stateで処理を行ったらすぐdefault stateへ戻りたいので、以下のように記述します。</p>
+<pre><code class="language-json">&quot;transitions&quot; : [
+    {
+        &quot;default&quot; : &quot;(1.0)&quot; 
+    }
+]
+</code></pre>
+<p>これは、無条件にdefault stateに遷移するという意味になります。<br />
+attack stateに入ってon_entryの処理を実施したら、すぐdefault stateに戻ります。</p>
+<p>これで、攻撃したらattack stateに入ってon_entryの処理を実施し、すぐdefalut stateに入る、という動作を繰り返すことになります。</p>
+<p>このようにして、stateと実行処理を作って、transitionsの条件で遷移させていくことでアニコンは動作します。</p>
+<img src="../img/20221027-minecraft-addon3-3.png" style="width:100%; max-width:400px; margin-left:20px;" alt="アニコンのtransitionsの説明の図">  
+<br>
+<p>ちなみに、このようなstateを作って色々な処理を実施する手法はState Machineと呼ばれていて、規模の大きいプログラムではよく見かける方法です。</p>
+<h2 id="player.json">player.jsonファイルにアニコンを紐づけする</h2>
+<p>上記では、「攻撃アクションをしたときにパーティクルを発生させるコマンドを実行する」アニコンを作成しました。<br />
+これをentitiesのplayer.jsonに紐づけることで、プレイヤーが攻撃したときにパーティクルを発生させることができます。</p>
+<p>player.jsonを以下のように変更します。</p>
+<pre><code class="language-json">{
+  &quot;format_version&quot;: &quot;1.18.20&quot;,
+  &quot;minecraft:entity&quot;: {
+    &quot;description&quot;: {
+      &quot;identifier&quot;: &quot;minecraft:player&quot;,
+      &quot;is_spawnable&quot;: false,
+      &quot;is_summonable&quot;: false,
+      &quot;is_experimental&quot;: false
+      &quot;animations&quot;: {
+        &quot;attack&quot;: &quot;controller.animation.attack&quot;
+      },
+      &quot;scripts&quot;: {
+        &quot;animate&quot;: [
+          &quot;attack&quot;
+        ]
+      }
+    },
+    ・・・
+</code></pre>
+<ul>
+<li><p>&quot;animations&quot;で、先ほど作成したアニコンを宣言します。<br />
+呼び出すための名づけ（attack）と、今回作成したアニコンの名前（controller.animation.attack）を記載します。</p>
+</li>
+<li><p>&quot;scripts&quot;で、使用するアニコンを紐づけます。<br />
+先ほどの「呼び出すための名づけ（attack）」をここで使用します。</p>
+</li>
+</ul>
+<br>
+<p>これで、プレイヤーとアニコンの紐づけができました。<br />
+冒頭の動画のように、攻撃アクションをするとパーティクルが表示されるようになりました。</p>
+<h2 id="section-3">まとめ</h2>
+<p>今回はプレイヤーにアニコンを紐づけましたが、もちろんentities内のjsonファイルを修正すれば、全てのmobで同様のことができます。<br />
+また、アニコンでの処理はコマンド実行でしたが、他にもentityのイベント発生や、compornents_groupのadd/removeなどにも使えるようです。<br />
+この辺りもいずれ記事にできたらと思います。</p>
+<p>第2回と第3回で作成したaddonは下記にアップしてあります。<br />
+<a href="https://github.com/yamaccu/minecraft-addon/tree/main/OnePunchBP" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/b524917d4be99e68b3325bf5d7ebbd5b1bbce33ca25b6546e9007373417c07b0/yamaccu/minecraft-addon');"></div></div><div class="text-box"><p class="title">minecraft-addon/OnePunchBP</p><p class="description">マインクラフト統合版のaddon置き場. Contribute to yamaccu/minecraft-addon development by creating an account on GitHub.</p></div></div></a>
+<br></p>
+<p>その４では、ゲーム内で使える新しいアイテムを作りたいと思います。</p>
+<h2 id="section-4">マインクラフトの購入先</h2>
+<p>マインクラフトはアマゾンで購入できます。<br />
+最近、JAVA版と統合版がワンパッケージになったようで、購入すると両方プレイができます。</p>
+<!-- START MoshimoAffiliateEasyLink -->
+<script type="text/javascript">
+(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+c.getElementById(a)||(d=c.createElement(f),d.src=g,
+d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
+msmaflink({"n":"Minecraft (マインクラフト): Java \u0026 Bedrock Edition | オンラインコード版","b":"マイクロソフト","t":"","d":"https:\/\/m.media-amazon.com","c_p":"\/images\/I","p":["\/51BKnFRzWYL._SL500_.jpg","\/51i8VAIlmJL._SL500_.jpg","\/41aEk6RsfjL._SL500_.jpg","\/51kL8WFwl2L._SL500_.jpg","\/41DJcerCroL._SL500_.jpg","\/51JGdCj3tTL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B0B3R5PL2Y","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":2,"u_tx":"Amazonで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B0B3R5PL2Y","a_id":2991341,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":1}],"eid":"TXkHv","s":"s"});
+</script>
+<div id="msmaflink-TXkHv">リンク</div>
+<!-- MoshimoAffiliateEasyLink END -->
+<br>
+<br>
+<hr />
+
+
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+      <script src="https://utteranc.es/client.js" repo="yamaccu/yamaccu.github.io" issue-term="pathname"
+        theme="github-light" crossorigin="anonymous" async>
+        </script>
+        <hr>
+
+    </div>
+    <div style="flex-basis:350px;">
+      <div style="margin-left:20px;">
+
+        <p>MineCraft Note Index</p>
+
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/27</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/20221027_minecraft-addon3">&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x4F5C;&#x6210;&#x2462; &#x30A2;&#x30CB;&#x30B3;&#x30F3;&#x3067;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x5B9F;&#x884C;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/24</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/20221024_minecraft-addon2">&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x4F5C;&#x6210;&#x2461; &#x30D7;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x5F37;&#x5316;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/21</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/20221021_minecraft-addon1">&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x4F5C;&#x6210;&#x2460; &#x6E96;&#x5099;&#x7DE8;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/5</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/20221005_minecraft-3DCAD">3D CAD&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;</a></p>
+
+        <br>
+
+        <div class="adslot_1">
+          <p>Sponsor</p>
+          <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+            crossorigin="anonymous"></script>
+          <!-- head -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+            data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+
+          <br>
+          <br>
+
+          <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+            crossorigin="anonymous"></script>
+          <!-- head -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+            data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
