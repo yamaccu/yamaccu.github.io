@@ -1,0 +1,206 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>&#x30DE;&#x30A4;&#x30AF;&#x30E9;&#x7D71;&#x5408;&#x7248;&#x306E;&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x4F5C;&#x6210;&#x306B;&#x4FBF;&#x5229;&#x306A;VSCode&#x62E1;&#x5F35;&#x6A5F;&#x80FD; | yokuaru Tech notes</title>
+
+  <link href="/scss/tech.css" rel="stylesheet" type="text/css">
+  <link href="/scss/prism.css" rel="stylesheet" type="text/css">
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
+    data-no-mirror></script>
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+
+  <script data-ad-client="ca-pub-2127299793131419" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-197465108-1');
+  </script>
+
+  <meta property="og:title" content="&#x30DE;&#x30A4;&#x30AF;&#x30E9;&#x7D71;&#x5408;&#x7248;&#x306E;&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x4F5C;&#x6210;&#x306B;&#x4FBF;&#x5229;&#x306A;VSCode&#x62E1;&#x5F35;&#x6A5F;&#x80FD;" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yamaccu.github.io/minecraft/20221030_minecraft-vscode" />
+  <meta property="og:site_name" content="yokuaru Tech notes" />
+  <meta property="og:locale" content="ja_JP" />
+
+</head>
+
+<header style="background-image:url('/img/main3.png')">
+  <div class="flex-wrap">
+    <div>
+      <a href="/minecraft" class="title">
+        MineCraft Note
+      </a>
+    </div>
+    <div class="ext-link">
+      <a href="/"><img src="/img/home.png" class="ext-link-icon"
+          alt="homeへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"
+          alt="twitterへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"
+          alt="githubへのリンク"></a>
+    </div>
+  </div>
+  <br>
+</header>
+
+<body class="body-font">
+  <div class="post-wrap">
+    <div class="body-post">
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle adslot_2" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+      <br>
+      <p>2022/10/30</p>
+<h1 id="vs-code">マインクラフトのアドオンを作るのに便利なVS Code拡張機能</h1>
+<hr />
+<p>マインクラフトのアドオンを作成するのに、VSCodeというテキストエディタを使うと便利です。<br />
+VSCodeには後から拡張機能を追加することができます。<br />
+以下の3つのVSCode拡張機能がおすすめなので紹介します。</p>
+<ul>
+<li>Blockception's Minecraft Bedrock Development</li>
+<li>Bedrock Definitions</li>
+<li>UUID Generator</li>
+</ul>
+<h2 id="blockceptions-minecraft-bedrock-development">Blockception's Minecraft Bedrock Development</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=BlockceptionLtd.blockceptionvscodeminecraftbedrockdevelopmentextension" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://blockceptionltd.gallerycdn.vsassets.io/extensions/blockceptionltd/blockceptionvscodeminecraftbedrockdevelopmentextension/4.1.26/1665833693306/Microsoft.VisualStudio.Services.Icons.Default');"></div></div><div class="text-box"><p class="title">Blockception's Minecraft Bedrock Development - Visual Studio Marketplace</p><p class="description">Extension for Visual Studio Code - An extension that provides code completion, validations, formatters, diagnostics, cheat-sheets, code-actions, creation of files, and development tools to help develop Minecraft Bedrock content</p></div></div></a></p>
+<p>※注意点</p>
+<p>この拡張機能を使用するためには、ビヘイビアパックの場合はフォルダ名に&quot;BP&quot;または&quot;bp&quot;、リソースパックの場合はフォルダ名に&quot;RP&quot;または&quot;rp&quot;が入っている必要があります。</p>
+<h3 id="section">自動補完</h3>
+<p>マイクラ関連のコードを認識して、途中まで書くとその先の候補を表示してくれます。<br />
+以下はminecraft:healthと書こうとしたときに、hまで書いたときに次の候補と、その説明を表示してくれています。</p>
+<img src="../img/20221030-minecraft-vscode-2.png" style="width:100%; max-width:500px;" alt="Blockception's Minecraft Bedrock Developmentの使い方 自動補完">  
+<h3 id="section-1">コードの説明の表示</h3>
+<p>詳細を知りたいコードにカーソルをのっけると、説明を表示してくれます。</p>
+<img src="../img/20221030-minecraft-vscode-3.png" style="width:100%; max-width:500px;" alt="Blockception's Minecraft Bedrock Developmentの使い方 コード説明の表示">  
+<h3 id="section-2">ハイライト</h3>
+<p>Molangのコードを色付けして表示してくれます。</p>
+<img src="../img/20221030-minecraft-vscode-4.png" style="width:100%; max-width:400px;" alt="Blockception's Minecraft Bedrock Developmentの使い方 Molangのハイライト">  
+<h3 id="section-3">表示のジャンプ</h3>
+<p>他の場所で定義しているコード上にカーソルをのっけてF12を押すと、定義している箇所へジャンプします。<br />
+例えば、entitiesのjsonでアニコンを紐づけているときに、F12を押すとアニコン側のファイルへ飛んでくれます。</p>
+<img src="../img/20221030-minecraft-vscode-5.png" style="width:100%; max-width:500px;" alt="Blockception's Minecraft Bedrock Developmentの使い方 表示のジャンプ">  
+<p>ただし、events内でadd/removeしているcompornent_groupを指定してF12を押してもジャンプできなかったので、飛べないものもあるようです。<br />
+ジャンプ機能を多用する方は次の「Bedrock Definitions」を入れると良いです。</p>
+<h2 id="bedrock-definitions">Bedrock Definitions</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=destruc7i0n.vscode-bedrock-definitions" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://destruc7i0n.gallerycdn.vsassets.io/extensions/destruc7i0n/vscode-bedrock-definitions/2.0.8/1658546233077/Microsoft.VisualStudio.Services.Icons.Default');"></div></div><div class="text-box"><p class="title">Bedrock Definitions - Visual Studio Marketplace</p><p class="description">Extension for Visual Studio Code - Go-to definitions and auto-complete for Minecraft Bedrock Edition</p></div></div></a></p>
+<h3 id="section-4">表示のジャンプ</h3>
+<p>他の場所で定義しているコード上にカーソルをのっけてF12を押すと、定義している箇所へジャンプします。<br />
+上記で紹介した「Blockception's Minecraft Bedrock Development」よりも強力で、試した限りでは何でもジャンプできました。</p>
+<img src="../img/20221030-minecraft-vscode-6.png" style="width:100%; max-width:500px;" alt="Bedrock Definitionsの使い方 表示のジャンプ">  
+<h3 id="section-5">定義先の表示</h3>
+<p>Ctrlを押しながらカーソルをコード上にのっけると、定義先が表示されます。<br />
+ちょっと確認したい時に便利です。</p>
+<img src="../img/20221030-minecraft-vscode-7.png" style="width:100%; max-width:500px;" alt="Bedrock Definitionsの使い方 定義先の表示">  
+<h2 id="uuid-generator">UUID Generator</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=netcorext.uuid-generator" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://netcorext.gallerycdn.vsassets.io/extensions/netcorext/uuid-generator/0.0.5/1642837213567/Microsoft.VisualStudio.Services.Icons.Default');"></div></div><div class="text-box"><p class="title">UUID Generator - Visual Studio Marketplace</p><p class="description">Extension for Visual Studio Code - Generate a UUID</p></div></div></a></p>
+<p>UUIDをVS Code上で発行できます。<br />
+manifest.jsonファイルを作成するときに便利です。</p>
+<img src="../img/20221030-minecraft-vscode-1.png" style="width:100%; max-width:300px;" alt="UUID Generatorの使い方">  
+<p><br><br></p>
+<p>以上です。</p>
+<h2 id="section-6">マインクラフトの購入先</h2>
+<p>マインクラフトはアマゾンで購入できます。<br />
+最近、JAVA版と統合版がワンパッケージになったようで、購入すると両方プレイができます。</p>
+<!-- START MoshimoAffiliateEasyLink -->
+<script type="text/javascript">
+(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+c.getElementById(a)||(d=c.createElement(f),d.src=g,
+d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
+msmaflink({"n":"Minecraft (マインクラフト): Java \u0026 Bedrock Edition | オンラインコード版","b":"マイクロソフト","t":"","d":"https:\/\/m.media-amazon.com","c_p":"\/images\/I","p":["\/51BKnFRzWYL._SL500_.jpg","\/51i8VAIlmJL._SL500_.jpg","\/41aEk6RsfjL._SL500_.jpg","\/51kL8WFwl2L._SL500_.jpg","\/41DJcerCroL._SL500_.jpg","\/51JGdCj3tTL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B0B3R5PL2Y","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":2,"u_tx":"Amazonで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B0B3R5PL2Y","a_id":2991341,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":1}],"eid":"TXkHv","s":"s"});
+</script>
+<div id="msmaflink-TXkHv">リンク</div>
+<!-- MoshimoAffiliateEasyLink END -->
+<br>
+<br>
+<hr />
+
+
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+      <script src="https://utteranc.es/client.js" repo="yamaccu/yamaccu.github.io" issue-term="pathname"
+        theme="github-light" crossorigin="anonymous" async>
+        </script>
+        <hr>
+
+    </div>
+    <div style="flex-basis:350px;">
+      <div style="margin-left:20px;">
+
+        <p>MineCraft Note Index</p>
+
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/30</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/20221030_minecraft-vscode">&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x4F5C;&#x6210;&#x306B;&#x4FBF;&#x5229;&#x306A;VSCode&#x62E1;&#x5F35;&#x6A5F;&#x80FD;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/27</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/20221027_minecraft-addon3">&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x4F5C;&#x6210;&#x2462; &#x30A2;&#x30CB;&#x30B3;&#x30F3;&#x3067;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x5B9F;&#x884C;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/24</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/20221024_minecraft-addon2">&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x4F5C;&#x6210;&#x2461; &#x30D7;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x5F37;&#x5316;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/21</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/20221021_minecraft-addon1">&#x30A2;&#x30C9;&#x30AA;&#x30F3;&#x4F5C;&#x6210;&#x2460; &#x6E96;&#x5099;&#x7DE8;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2022/10/5</span><br>
+              &nbsp;&nbsp; <a href="/minecraft/20221005_minecraft-3DCAD">3D CAD&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;</a></p>
+
+        <br>
+
+        <div class="adslot_1">
+          <p>Sponsor</p>
+          <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+            crossorigin="anonymous"></script>
+          <!-- head -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+            data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+
+          <br>
+          <br>
+
+          <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+            crossorigin="anonymous"></script>
+          <!-- head -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+            data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
