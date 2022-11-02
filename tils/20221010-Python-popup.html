@@ -209,6 +209,10 @@
           <summary class="side-summary">python</summary>
             <div class="side-content">
               -
+              <a href="/tils/20221102-Python-timelapse">&#x300C;python&#x300D;OpenCV&#x3067;&#x30BF;&#x30A4;&#x30E0;&#x30E9;&#x30D7;&#x30B9;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
               <a href="/tils/20221010-Python-popup">&#x300C;python&#x300D;CUI&#x3067;&#x30DD;&#x30C3;&#x30D7;&#x30A2;&#x30C3;&#x30D7;&#x3001;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x3092;&#x51FA;&#x3059;</a><br>
             </div>
             <div class="side-content">
@@ -278,7 +282,7 @@
       <p>2022/10/10</p>
 <h1 id="pythoncui">pythonで作成したCUIでポップアップやファイルダイアログを使う</h1>
 <hr />
-<p>pythonでCUIアプリ（Character User Interface）を作成したときに、処理の途中でエラーなどのポップアップ（メッセージボックス）や、ファイル選択のダイアログを出す方法をまとめました。</p>
+<p>pythonでCUIアプリ（Character User Interface）を作成したときに、エラーなどのポップアップ（メッセージボックス）や、ファイル選択のダイアログを出す方法をまとめました。</p>
 <h2 id="section">使用するライブラリ</h2>
 <p>pythonでポップアップを出すライブラリはいくつかありますが、本ページでは、デフォルトでpythonに含まれている&quot;tkinter&quot;を使用します。</p>
 <p><a href="https://docs.python.org/ja/3/library/tkinter.html" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://docs.python.org/ja/3/_static/py.svg');"></div></div><div class="text-box"><p class="title">tkinter</p><p class="description">Tcl/Tk の Python インターフェース</p></div></div></a></p>
@@ -314,7 +318,7 @@ CUIアプリではウインドウを使わないので、この関数でウイ�
 <h3 id="showinfo">1. showinfo</h3>
 <div style="display:flex; flex-wrap:wrap">
 <img src="../img/20221010-Python-popup-1.png" style="width:100%; max-width:150px;" alt="Tkinter MessageBox.showinfoの画像">
-<div style="margin-left:5px; width:100%;">
+<div style="margin-left:5px; width:100%; max-width:610px;">
 <pre><code class="language-python">messagebox.showinfo('showinfo', 'information')
 </code></pre>
 <p>    戻り値：&quot;ok&quot;</p>
@@ -323,7 +327,7 @@ CUIアプリではウインドウを使わないので、この関数でウイ�
 <h3 id="showwarning">2. showwarning</h3>
 <div style="display:flex; flex-wrap:wrap">
 <img src="../img/20221010-Python-popup-2.png" style="width:100%; max-width:132px;" alt="Tkinter MessageBox.showwarningの画像">
-<div style="margin-left:5px; width:100%;">
+<div style="margin-left:5px; width:100%; max-width:610px;">
 <pre><code class="language-python">messagebox.showwarning('showwarning', 'warning')
 </code></pre>
 <p>    戻り値：&quot;ok&quot;</p>
@@ -332,7 +336,7 @@ CUIアプリではウインドウを使わないので、この関数でウイ�
 <h3 id="showerror">3. showerror</h3>
 <div style="display:flex; flex-wrap:wrap">
 <img src="../img/20221010-Python-popup-3.png" style="width:100%; max-width:118px;" alt="Tkinter MessageBox.showerrorの画像">
-<div style="margin-left:5px; width:100%;">
+<div style="margin-left:5px; width:100%; max-width:610px;">
 <pre><code class="language-python">messagebox.showerror('showerror', 'error')
 </code></pre>
 <p>    戻り値：&quot;ok&quot;</p>
@@ -341,7 +345,7 @@ CUIアプリではウインドウを使わないので、この関数でウイ�
 <h3 id="askquestion">4. askquestion</h3>
 <div style="display:flex; flex-wrap:wrap">
 <img src="../img/20221010-Python-popup-4.png" style="width:100%; max-width:210px;" alt="Tkinter MessageBox.askquestionの画像">
-<div style="margin-left:5px; width:100%;">
+<div style="margin-left:5px; width:100%; max-width:610px;">
 <pre><code class="language-python">messagebox.askquestion('askquestion', 'yes or no ?')
 </code></pre>
 <p>    戻り値：<br />
@@ -352,7 +356,7 @@ CUIアプリではウインドウを使わないので、この関数でウイ�
 <h3 id="askokcancel">5. askokcancel</h3>
 <div style="display:flex; flex-wrap:wrap">
 <img src="../img/20221010-Python-popup-5.png" style="width:100%; max-width:210px;" alt="Tkinter MessageBox.askokcancelの画像">
-<div style="margin-left:5px; width:100%;">
+<div style="margin-left:5px; width:100%; max-width:610px;">
 <pre><code class="language-python">messagebox.askokcancel('askokcancel', 'OK or cancel ?')
 </code></pre>
 <p>    戻り値：<br />
@@ -363,7 +367,7 @@ CUIアプリではウインドウを使わないので、この関数でウイ�
 <h3 id="askretrycancel">6. askretrycancel</h3>
 <div style="display:flex; flex-wrap:wrap">
 <img src="../img/20221010-Python-popup-6.png" style="width:100%; max-width:210px;" alt="Tkinter MessageBox.askretrycancelの画像">
-<div style="margin-left:5px; width:100%;">
+<div style="margin-left:5px; width:100%; max-width:610px;">
 <pre><code class="language-python">messagebox.askretrycancel('askretrycancel', 'Retry or Cancel ?')
 </code></pre>
 <p>    戻り値：<br />
@@ -374,7 +378,7 @@ CUIアプリではウインドウを使わないので、この関数でウイ�
 <h3 id="askyesno">7. askyesno</h3>
 <div style="display:flex; flex-wrap:wrap">
 <img src="../img/20221010-Python-popup-7.png" style="width:100%; max-width:210px;" alt="Tkinter MessageBox.askyesnoの画像">
-<div style="margin-left:5px; width:100%;">
+<div style="margin-left:5px; width:100%; max-width:610px;">
 <pre><code class="language-python">messagebox.askyesno('askyesno', 'Yes or No ?')
 </code></pre>
 <p>    戻り値：<br />
@@ -385,7 +389,7 @@ CUIアプリではウインドウを使わないので、この関数でウイ�
 <h3 id="askyesnocancel">8. askyesnocancel</h3>
 <div style="display:flex; flex-wrap:wrap">
 <img src="../img/20221010-Python-popup-8.png" style="width:100%; max-width:290px;" alt="Tkinter MessageBox.askyesnocancelの画像">
-<div style="margin-left:5px; width:100%;">
+<div style="margin-left:5px; width:100%; max-width:640px;">
 <pre><code class="language-python">messagebox.askyesnocancel('askyesnocancel', 'Yes or No or Cancel ?')
 </code></pre>
 <p>    戻り値：<br />
@@ -399,8 +403,13 @@ CUIアプリではウインドウを使わないので、この関数でウイ�
 <pre><code class="language-python">import tkinter
 from tkinter import filedialog
 
+tk = tkinter
+tk.Tk().withdraw()
+
 type = [('テキストファイル','*.txt')] 
 path = tk.filedialog.askopenfilename(filetypes = type)
+
+pathdirectory = tk.filedialog.askdirectory()
 </code></pre>
 <p>filedialog.askopenfilename</p>
 <ul>
@@ -408,6 +417,12 @@ path = tk.filedialog.askopenfilename(filetypes = type)
 <li>filetypes：選択するファイル形式を指定できます。</li>
 </ul>
 <img src="../img/20221010-Python-popup-9.png" style="width:100%; max-width:330px;" alt="Tkinter filedialog.askopenfilenameの画像">
+<br>
+<p>filedialog.askdirectory</p>
+<ul>
+<li>ファイル選択ダイアログを開き、選択したフォルダの絶対パスを戻します。</li>
+</ul>
+<br>
 <br>
 <p>以上です。</p>
 <br>

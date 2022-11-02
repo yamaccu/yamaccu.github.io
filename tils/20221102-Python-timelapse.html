@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>python&#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x65E5;&#x4ED8;&#x306B;&#x3088;&#x3063;&#x3066;&#x64CD;&#x4F5C;&#x3059;&#x308B;&#x3002; | yokuaru Tech notes</title>
+  <title>&#x300C;python&#x300D;OpenCV&#x3067;&#x30BF;&#x30A4;&#x30E0;&#x30E9;&#x30D7;&#x30B9;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="python&#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x65E5;&#x4ED8;&#x306B;&#x3088;&#x3063;&#x3066;&#x64CD;&#x4F5C;&#x3059;&#x308B;&#x3002;" />
+  <meta property="og:title" content="&#x300C;python&#x300D;OpenCV&#x3067;&#x30BF;&#x30A4;&#x30E0;&#x30E9;&#x30D7;&#x30B9;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20220322-Python-Fileope" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20221102-Python-timelapse" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -279,86 +279,113 @@
         </script>
         <br>
 
-      <p>2022/3/22</p>
-<h1 id="python">pythonでファイルを日付によって操作する</h1>
+      <p>2022/11/02</p>
+<h1 id="pythonopencv">pythonでOpenCVを使ってタイムラプスを作成する</h1>
 <hr />
-<p>pythonで、フォルダ内にあるファイルを日付によってコピーしたり削除したりする方法をまとめました。</p>
-<h2 id="section">プログラムの基本形</h2>
-<p>pythonプログラムファイルと同じフォルダにあるファイルで、更新日が20日以上前のもののファイル名をコンソール上に表示するプログラムです。<br />
-これを基本形として、&quot;print(file)&quot;の部分を、コピーにしたり削除にしたりすれば様々な処理が可能です。</p>
-<pre><code class="language-python">import os
-from datetime import datetime
-
-files = os.listdir()
-now = datetime.now()
-
-for file in files: 
-    mtime = datetime.fromtimestamp(os.path.getmtime(file))
-
-    if((now - mtime).days &gt; 20):
-        print(file)
+<p>pythonには、OpenCVという強力な画像処理ライブラリがあります。<br />
+本記事では、これを使って画像からタイムラプスを作成する方法をまとめています。</p>
+<h2 id="opencv">OpenCVについて</h2>
+<p>OpenCV（Open Source Computer Vision Library）は4万7千人以上のユーザーコミュニティを持ち、ダウンロード数は1800万を超える超有名オープンソースライブラリです。<br />
+画像や動画の処理や物体検出などが可能です。</p>
+<p>公式HPは下記です。</p>
+<p><a href="https://opencv.org/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://opencv.org/wp-content/uploads/2020/11/OpenCV_logo_black_.jpg');"></div></div><div class="text-box"><p class="title">Home - OpenCV</p><p class="description">OpenCV provides a real-time optimized Computer Vision library, tools, and hardware. It also supports model execution for Machine Learning (ML) and Artificial Intelligence (AI).</p></div></div></a></p>
+<p>ドキュメントは下記です。</p>
+<p><a href="https://docs.opencv.org/4.x/" style="text-decoration: none;"><div class="link-box"><div class="img-box"><div style="background-image: url('https://docs.opencv.org/4.x/opencv-logo-small.png');"></div></div><div class="text-box"><p class="title">OpenCV: OpenCV modules</p><p class="description">OpenCV modules</p></div></div></a></p>
+<h2 id="opencv-1">OpenCVのインストール</h2>
+<p>以下のコマンドを実行します。</p>
+<pre><code class="language-python">pip install opencv-python
 </code></pre>
-<p>os.listdir() ： ディレクトリ内のファイル一覧を取得します<br />
-datetime.now() ： 現在時刻を取得します<br />
-os.path.getmtime() ： ファイルの最後に更新した時刻をUNIX時間で取得します<br />
-datetime.fromtimestamp() ： UNIX時間を現在時間に変換します</p>
-<p>※UNIX時間とは、1970年1月1日午前0時0分0秒からの経過秒数です。<br />
-　詳細は下記を参照ください。<br />
-<span class="link"></span><a href="https://ja.wikipedia.org/wiki/UNIX%E6%99%82%E9%96%93">wikipedia UNIX時間</a></p>
-<h2 id="section-1">ファイル削除</h2>
-<p>更新日時が20日以上前のファイルを削除します。<br />
-削除したファイルは復活できませんので（危険・・！）、上記の基本形で対象ファイルを確認してから実行すると良いです。</p>
-<pre><code class="language-python">import os
-from datetime import datetime
+<p>pythonでライブラリをインストールする場合、仮想環境を準備することをお勧めします。</p>
+<p>（参考）<span class="link"></span><a href="https://yamaccu.github.io/tils/20210820-Python-pipenv">pipenvを使用した仮想環境の準備方法</a></p>
+<h2 id="section">タイムラプス作成</h2>
+<p>OpenCVライブラリを利用することで、複数画像を結合してタイムラプスを作成することができます。<br />
+下記は、このプログラムが保存されている場所に、タイムラプスをmp4形式で出力するプログラムです。</p>
+<pre><code class="language-python">import cv2
+import glob
+import tkinter
+from tkinter import filedialog
 
-files = os.listdir()
-now = datetime.now()
+tk = tkinter
+tk.Tk().withdraw()
 
-for file in files: 
-    mtime = datetime.fromtimestamp(os.path.getmtime(file))
+path = tk.filedialog.askdirectory()
 
-    if((now - mtime).days &gt; 20):
-        os.remove(file)
+images = glob.glob(path + '/*.png')
+images.sort()
+
+frame_rate = 10
+width = 1920
+height = 1080
+
+fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
+video = cv2.VideoWriter('timelapse.mp4', fourcc, frame_rate, (width, height))
+print(&quot;build movie...&quot;)
+
+for i in range(len(images)):
+    img = cv2.imread(images[i])
+    img = cv2.resize(img,(width,height))
+    video.write(img)
+
+video.release()
+print('{} images converted to movie completed'.format(i))
 </code></pre>
-<p>os.remove() ： ファイルを削除します。</p>
-<h2 id="section-2">ファイルをゴミ箱に移動</h2>
-<p>更新日時が20日以上前のファイルをゴミ箱に移動します。<br />
-send2trashをインストールする必要があります。</p>
-<pre><code class="language-python">pip install send2trash
-</code></pre>
-<pre><code class="language-python">import os
-from datetime import datetime
-from send2trash import send2trash
-
-files = os.listdir()
-now = datetime.now()
-
-for file in files: 
-    mtime = datetime.fromtimestamp(os.path.getmtime(file))
-
-    if((now - mtime).days &gt; 20):
-        send2trash(file)
-</code></pre>
-<h2 id="section-3">ファイルコピー</h2>
-<p>更新日時が20日以上前のファイルをoldフォルダへ移動します。<br />
-コピー先のフォルダが存在しないとエラーになります。<br />
-import shutil が増えています。</p>
-<pre><code class="language-python">import os
-from datetime import datetime, date
-import shutil
-
-files = os.listdir()
-now = datetime.now()
-
-for file in files: 
-    mtime = datetime.fromtimestamp(os.path.getmtime(file))
-
-    if((now - mtime).days &gt; 20):
-        shutil.copyfile(file , &quot;./old/&quot; + file)
-</code></pre>
-<p>shutil.copyfile(src, dist) ： srcをdistへコピーします。</p>
+<p>tkinter</p>
+<ul>
+<li><p>フォルダ選択ダイアログを開くのに使用しているライブラリです。<br />
+画像ファイルが保存してあるフォルダを選択することでパスを取り込みます。<br />
+詳しくは下記でまとめています。</p>
+<p><span class="link"></span><a href="https://yamaccu.github.io/tils/20221010-Python-popup">「python」CUIでポップアップ、ファイルダイアログを出す</a></p>
+</li>
+</ul>
+<p>glob.glob(path)</p>
+<ul>
+<li>指定した条件に該当するファイルをリスト形式で返します。<br />
+任意の文字の箇所には&quot;*&quot;を使います。<br />
+上記のプログラムでは、pathで指定したフォルダ内のpngファイルを取り込んでいます。</li>
+</ul>
+<p>VideoWriter_fourcc(c1, c2, c3, c4)</p>
+<ul>
+<li>タイムラプスを作る際の動画の種類を指定します。<br />
+mp4は'm','p','4','v'になります。</li>
+</ul>
+<p>VideoWriter(filename, fourcc, framerate, framesize)</p>
+<ul>
+<li>VideoWriter機能を初期化します。</li>
+<li>filename：出力するタイムラプスのファイル名を指定します。</li>
+<li>fourcc：タイムラプスを作る際の動画の種類を指定します。</li>
+<li>framerate：タイムラプスのフレームレートを指定します。<br />
+フレームレートとは、一秒間に表示する画像の数です。</li>
+<li>framesize：タイムラプスの動画の縦と横のサイズです。<br />
+タプルで入力します。(width, height)</li>
+</ul>
+<p>imread(filepath)</p>
+<ul>
+<li>画像を読み込みます。</li>
+<li>filepath：読み込む画像のパスを指定します。</li>
+</ul>
+<p>resize(image, size)</p>
+<ul>
+<li>画像のサイズを変更します。</li>
+<li>image：imreadで読み込んだ画像データを指定します。</li>
+<li>size：画像の縦と横のサイズを指定します。<br />
+タプルで入力します。(width, height)</li>
+</ul>
+<p>VideoWriter.write(image)</p>
+<ul>
+<li>画像をVideoWriter機能に取り込みます。</li>
+<li>image：imreadで読み込んだ画像データを指定します。</li>
+</ul>
+<p>VideoWriter.release</p>
+<ul>
+<li>動画をリリースします。</li>
+</ul>
 <br>
-<p>以上です。</p>
+<p>以上で、画像からタイムラプス動画が作成できます。</p>
+<h2 id="for">（おまけ）forループのスコープについて</h2>
+<p>上記のプログラムの最後で、forループの変数である&quot;i&quot;を使用しています。<br />
+C言語などでは、ループの外はスコープ外となり、ループ内で定義した変数&quot;i&quot;は使用できません。<br />
+一方で、Pythonはforループではスコープが形成されないので、ループ外でも&quot;i&quot;を使用することができます。</p>
+<p>if文でも同様にスコープは形成されません。</p>
 <br>
 <br>
 <hr />
