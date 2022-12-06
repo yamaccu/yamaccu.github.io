@@ -277,6 +277,34 @@ while(true)
     sprintf(talk, &quot;&lt;NUMK VAL=%d COUNTER=funn&gt;/ke-ka.&quot;, minutes);
     playAquesTalk(talk);
   }
+
+  M5.update();
+  if (M5.BtnA.wasClicked() || M5.BtnB.wasClicked() || M5.BtnC.wasClicked())
+  {
+    int finishTimeMinute = collapseTime / 60000;
+    int finishTimeSecond = (collapseTime / 1000) % 60;
+
+    playAquesTalk(&quot;kaka'tta/jikannwa&quot;);
+    waitAquesTalk();
+    if (finishTimeMinute &gt; 0)
+    {
+      sprintf(talk, &quot;&lt;NUMK VAL=%d COUNTER=funn&gt;&quot;, finishTimeMinute);
+      playAquesTalk(talk);
+      waitAquesTalk();
+    }
+    sprintf(talk, &quot;&lt;NUMK VAL=%d COUNTER=byo-&gt;&quot;, finishTimeSecond);
+    playAquesTalk(talk);
+    waitAquesTalk();
+    playAquesTalk(&quot;dayo&quot;);
+    waitAquesTalk();
+    delay(200);
+
+    playAquesTalk(&quot;o_tsukaresamade'shi'ta-&quot;);
+    waitAquesTalk();
+
+    startTime = millis();
+    break;
+  }
 }
 </code></pre>
 <h2 id="section-14">まとめ</h2>
