@@ -415,15 +415,15 @@ Repositories配下の「hasNextPage」と「endCursor」を使用します。</p
 let hasNextPage = true;
 let endCursor;
 let resData = [];
-const token = xxxxxxxx;
-const username = xxxxxx;
+const token = &quot;xxxxxxxx&quot;;
+const username = &quot;xxxxxx&quot;;
 const headers =
 {
   Authorization: `token ${token}`,
 };
 const variables = 
 {
-  login: `${username}`
+  login: username
 };
 
 let i = 0;
