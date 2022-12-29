@@ -127,6 +127,10 @@
           <summary class="side-summary">github</summary>
             <div class="side-content">
               -
+              <a href="/tils/20221229-git-graphql">node.js&#x3067;GitHub GraphQL API&#x3092;&#x4F7F;&#x3046;</a><br>
+            </div>
+            <div class="side-content">
+              -
               <a href="/tils/20210907-GithubPages-utterances">Github Pages&#x306B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x6B04;&#x3092;&#x8FFD;&#x52A0;</a><br>
             </div>
             <div class="side-content">
@@ -289,7 +293,18 @@
 <li>パッケージが複数のプログラムへ影響を与えるなどの、各プログラム間の干渉を回避できます。</li>
 </ul>
 <p>仮想環境の作成にはいくつか方法がありますが、ここではpipenvを使用します。</p>
-<p>参考　<span class="link"></span> <a href="https://pipenv.pypa.io/en/latest/">pipenv公式</a></p>
+<a href="https://pipenv.pypa.io/en/latest/" style="text-decoration: none;">
+  <div class="link-box">
+    <div class="img-box">
+      <div style="background-image: url('https://pipenv.pypa.io/en/latest/_static/pipenv.png');">
+      </div>
+    </div>
+    <div class="text-box">
+      <p class="title">Pipenv: Python Dev Workflow for Humans</p>
+      <p class="description">Pipenv is a tool that aims to bring the best of all packaging worlds (bundler, composer, npm, cargo, yarn, etc.) to the Python world.</p>
+    </div>
+  </div>
+</a>
 <h2 id="section">仮想環境の作成手順</h2>
 <h3 id="pipenv">1. pipenvをインストールします。</h3>
 <pre><code class="language-C#">pip install pipenv
@@ -298,6 +313,15 @@
 <h3 id="pipenv-1">3. 作業ディレクトリに移動して、必要なパッケージをpipenvコマンドでインストールします。</h3>
 <p>（pipfileという設定ファイルが作成され、ここに仮想環境の情報が入ります。）</p>
 <pre><code class="language-C#">pipenv install xxxxxx
+</code></pre>
+<p>インストールするパッケージが多い場合は、txtファイルでリストを作って、一気に読み込むこともできます。<br />
+requirementsというファイルを作り、中身を例えば以下のように作成します。</p>
+<pre><code class="language-C#">xxxx==9.0.0
+xxxx==1.5.0
+xxxx==2.7.0
+</code></pre>
+<p>そして、下記のコマンドで一括インストールします。</p>
+<pre><code class="language-C#">pipenv install -r requirements.txt
 </code></pre>
 <h3 id="section-2">4. 仮想環境を実行します。</h3>
 <pre><code class="language-C#">pipenv shell
