@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x6700;&#x521D;&#x306B;&#x3084;&#x308B;&#x3053;&#x3068; | yokuaru Tech notes</title>
+  <title>&#x300C;JavaScript&#x300D;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x578B;&#x307E;&#x3068;&#x3081; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x6700;&#x521D;&#x306B;&#x3084;&#x308B;&#x3053;&#x3068;" />
+  <meta property="og:title" content="&#x300C;JavaScript&#x300D;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x578B;&#x307E;&#x3068;&#x3081;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210815-Blog-setting" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20230103-javascript-object" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -284,35 +284,72 @@
         </script>
         <br>
 
-      <p>2021/08/15</p>
-<h1 id="section">ブログを作ったら最初にやること</h1>
+      <p>2023/1/3</p>
+<h1 id="javascript">JavaScriptのデータ型「オブジェクト」まとめ</h1>
+<p>JavaScriptのデータ型には、プリミティブ型とオブジェクト型の二つがあります。</p>
+<ul>
+<li>プリミティブ型： 数値・文字列・真偽値などの基本的な型</li>
+<li>オブジェクト型： プリミティブ以外の型</li>
+</ul>
+<p>本ページでは、オブジェクト型のうち、下記の二つについてまとめています。</p>
+<ul>
+<li>オブジェクト： 「プロパティ＋値」のデータの集合</li>
+<li>配列： インデックス付きデータの集合</li>
+</ul>
 <hr />
-<p>ブログを作ったら最初にやっておいた方が良いことをまとめています。</p>
-<h2 id="google-analytics">Google Analyticsの登録</h2>
-<p>HPへのアクセス状況が確認できるようになります。<br />
-登録が完了したら、トラッキングIDをHTMLの&lt;HEAD&gt;内に追記する必要があります。</p>
-<p>参考<span class="link"></span> <a href="https://blog.siteanatomy.com/register-google-analytics/">Google Analytics登録方法</a></p>
-<h2 id="sitemap">sitemapの作成</h2>
-<p>Google検索にページをヒットさせ易くするためのファイルです。<br />
-作成後、Google Search Consoleに登録します。</p>
-<p>小規模HPには不要のようですが、一応作成しておくとよいです。<br />
-静的サイトジェネレータを使用している場合は、自動で出力してくれるものが多いようです。</p>
-<p>参考<span class="link"></span> <a href="https://ferret-plus.com/curriculums/3580">サイトマップ作成方法</a></p>
-<h2 id="robots.txt">robots.txtの作成</h2>
-<p>sitemapへのリンクファイルです。<br />
-rootディレクトリに、「robots.txt」という名前のファイルを作成して、中身を以下のように記述します。</p>
-<pre><code class="language-C#">User-agent: *
-    Disallow:
-    
-    Sitemap: https://xxxxxxxxx/sitemap.xml
+<h2 id="section">オブジェクト</h2>
+<p>宣言</p>
+<pre><code class="language-javascript">const obj = {
+    red : &quot;赤&quot;,
+    blue : &quot;青&quot;,
+    green : &quot;緑&quot;
+};
 </code></pre>
-<h2 id="google-search-console-sitemap">Google Search Consoleの登録 / sitemapの登録</h2>
-<p>HPへの流入ルート、検索順位などSEO関連情報が確認できます。</p>
-<p>登録完了したら、サイトマップも登録します。<br />
-登録したては「サイトマップを読み込めませんでした」とエラーが出ますが、しばらく放置しておくと読み込んでくれるようです。</p>
-<p>⇒　3週間後に確認したら、読み込んでいました。</p>
-<p>参考<span class="link"></span> <a href="http://faster-than-the-sol.blogspot.com/2020/10/github-listing.html">Google Serach Console登録方法</a></p>
-<br>
+<p>出力</p>
+<pre><code class="language-javascript">console.log(obj);
+// { red: '赤', blue: '青', green: '緑' }
+
+console.log(obj.red);
+// &quot;赤&quot;
+
+console.log(obj[`red`]);
+// &quot;赤&quot;
+</code></pre>
+<h2 id="section-1">配列</h2>
+<p>宣言</p>
+<pre><code class="language-javascript">const array = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];
+</code></pre>
+<p>出力</p>
+<pre><code class="language-javascript">console.log(array);
+// [ 'red', 'blue', 'green' ]
+
+console.log(array[0]);
+// &quot;red&quot;
+</code></pre>
+<h3 id="section-2">スプレッド構文</h3>
+<p>[...array]で配列の操作が可能</p>
+<p>例文</p>
+<pre><code class="language-javascript">const array = [1, 2];
+
+// 要素を追加
+const add = [...array, 3, 4];  // [1, 2, 3, 4]
+
+// 合体（各要素を分解して、再度配列に結合）
+const array2 = [3, 4];
+const merge = [...array, ...array2];  // [1, 2, 3, 4]
+</code></pre>
+<h3 id="section-3">オブジェクトの配列</h3>
+<p>宣言</p>
+<pre><code class="language-javascript">const array = [{red:&quot;赤&quot;, blue:&quot;青&quot;},{apple:&quot;リンゴ&quot;,orange:&quot;ミカン&quot;}];
+</code></pre>
+<p>出力</p>
+<pre><code class="language-javascript">console.log(array);
+// [ { red: '赤', blue: '青' }, { apple: 'リンゴ', orange: 'ミカン' } ]
+
+console.log(array[0]);
+// { red: '赤', blue: '青' }
+</code></pre>
+<p><br><br></p>
 <p>以上です。</p>
 <br>
 <br>
