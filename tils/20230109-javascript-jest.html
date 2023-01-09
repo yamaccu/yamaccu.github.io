@@ -155,7 +155,7 @@
             </div>
             <div class="side-content">
               -
-              <a href="/tils/20221229-git-graphql">&#x300C;node.js&#x300D;GitHub GraphQL API&#x3092;&#x4F7F;&#x3046;</a><br>
+              <a href="/tils/20221229-git-graphql">&#x300C;Node.js&#x300D;GitHub GraphQL API&#x3092;&#x4F7F;&#x3046;</a><br>
             </div>
             <div class="side-content">
               -
@@ -296,7 +296,7 @@
 <h1 id="jest-babeljavascriptnode.js">JEST + BabelでJavaScript（Node.js）のテストを実施する</h1>
 <hr />
 <p>JESTとは、JavaScript向けのテストフレームワークです。<br />
-JEST用のテストコードを書くことで、コマンド一つで自動テストが実施できます。</p>
+JEST用のテストコードを書くことで、コマンド一つでソースコードの自動テストが実施できます。</p>
 <p>本ページでは、Node.js向けのJESTの書き方を説明しています。<br />
 また、JESTはESモジュールに対応していないという問題があるのですが、Babelを使って実行する方法もまとめています。</p>
 <p><a href="https://jestjs.io/ja/" style="text-decoration: none;"><div class="link-box"><div class="img-box"></p>
@@ -322,7 +322,7 @@ JEST用のテストコードを書くことで、コマンド一つで自動テ�
 <h2 id="section-1">手順</h2>
 <ol>
 <li>テスト対象の準備</li>
-<li>テストコート作成</li>
+<li>テストコード作成</li>
 <li>package.jsonを修正</li>
 <li>babel.config.jsを作成</li>
 <li>実行する</li>
@@ -355,7 +355,7 @@ test('adds 1 + 2 to equal 3', () =&gt; {
 　fn: テストの内容です。<br />
 　timeout: タイムアウト時間(ms)です。省略可。</li>
 <li>expect(xxx).toBe(value)： テスト用の処理で、マッチャーと呼ばれています。<br />
-　tobe(value)は、プリミティブ値の比較に使用します。</li>
+　toBe(value)は、プリミティブ値の比較に使用します。</li>
 </ul>
 <p>　マッチャーの他の種類については以下を参照ください。<br />
 <a href="https://jestjs.io/ja/docs/expect" style="text-decoration: none;"></p>
