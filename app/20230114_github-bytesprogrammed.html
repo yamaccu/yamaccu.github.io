@@ -63,19 +63,19 @@
     <div class="body-post">
       <h1> GitHubレポジトリのByte数を集計して表示 </h1>
 
-      <p>GitHubのレポジトリのプログラミング言語とそのByte数を集計して、グラフをSVGとして表示するwebサービスです。<br>
-      GitHubのプロフィールなどに使用できます。</p>
+      <p>GitHubレポジトリのプログラミング言語とそのByte数を集計して、グラフ表示するwebサービスです。<br>
+      GitHubプロフィールなどに使用できます。</p>
       <br>
 
       <p>アカウント名を入力してください</p>
-      <p><input type="text" id="userInput" value="yamaccu"></p>
+      <p style="margin-top:-10px"><input type="text" id="userInput" value="yamaccu"></p>
       <p>集計から除きたいレポジトリがあればレポジトリ名を入力してください<br>
       例）repo1,repo2,repo3</p>
-      <p><input type="text" id="repoInput" ></p>
+      <p style="margin-top:-10px"><input type="text" id="repoInput" ></p>
       <input type="button" value="GET" onclick="AddStringToTextarea();"></p>
       <br>
       <p>MarkDownなどにコピペしてご使用ください<input type="button" value="Copy text" style="margin-left:20px" onclick="copyToClipboard();"></p>
-      <p><textarea id="inputedList" wrap="off" style="max-width:1100px;width:100%;height:110px;overflow-x:auto;overflow-y: hidden; " readonly></textarea></p>
+      <p style="margin-top:-10px"><textarea id="inputedList" wrap="off" style="max-width:1100px;width:100%;height:110px;overflow-x:auto;overflow-y: hidden; " readonly></textarea></p>
 
       <p>Sample</p>
 
@@ -127,7 +127,7 @@ MarkDown
 [![GitHub repoBytes](https://github-repo-bytecounter.vercel.app/api?username=${username}${excluderepo == "" ? `` : `&exclude=${excluderepo}`})](https://github.com/${username})
 
 HTML
-<a href="https://github.com/${username}"><img alt="github bytes" src="https://github-repo-bytecounter.vercel.app/api?username=${username}${excluderepo == "" ? `` : `&exclude=${excluderepo}`}"></a>
+<a href="https://github.com/${username}"><img alt="GitHub repoBytes" src="https://github-repo-bytecounter.vercel.app/api?username=${username}${excluderepo == "" ? `` : `&exclude=${excluderepo}`}"></a>
 `;
 
           const img_element_post = document.createElement('img');
