@@ -84,7 +84,10 @@ HDMI端子の中にCECという通信線があり、これを使うことでテ�
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ずんだもんで喋らせてみました、m5unifiedのmp3再生サンプル＋m5stack-avatar使いました。感謝ですm(_ _)m<br>あとは、これで子供がテレビの時間を守れるかどうか・・。<a href="https://twitter.com/hashtag/m5stickc?src=hash&amp;ref_src=twsrc%5Etfw">#m5stickc</a> <a href="https://t.co/ewoHBOwX7x">pic.twitter.com/ewoHBOwX7x</a></p>&mdash; やまっく (&#64;YY87750722) <a href="https://twitter.com/YY87750722/status/1625433899592724482?ref_src=twsrc%5Etfw">February 14, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
 </div>
 <p>親の言うことは全然聞かないのに、M5StickCに言われると何故かいうことを聞きます。</p>
-<h2 id="section-1">材料</h2>
+<h2 id="section-1">注意事項</h2>
+<p>テレビとの通信は自己責任の上でお願いいたします。<br />
+何かしら問題が発生した場合、当方で補償はできません。</p>
+<h2 id="section-2">材料</h2>
 <table>
 <thead>
 <tr>
@@ -133,10 +136,10 @@ HDMI端子の中にCECという通信線があり、これを使うことでテ�
 <div><img src="../img/20230227_TVONCounter-2.png" Style="width:100%;max-width:350px;" alt="ダイソーのスピーカーの写真"></div>  
 <p>HDMIケーブルとGroveコネクタを合体したものです。HDMIの中のCECラインでテレビと通信してON/OFFを判別します。</p>
 <div><img src="../img/20230227_TVONCounter-3.png" Style="width:100%;max-width:350px;" alt="HDMIケーブルとGroveコネクタをはんだ付けした写真"></div>  
-<h2 id="section-2">ハード構成と作成手順</h2>
+<h2 id="section-3">ハード構成と作成手順</h2>
 <img src="../img/20230227_TVONCounter-4.png" Style="width:100%;max-width:700px;" alt="テレビのON時間カウンターの回路図">  
 <p>無音時にもスピーカーにノイズが乗るので、5V電源にローサイドスイッチを入れて、音声出力時だけONしています。</p>
-<h3 id="section-3">1. スピーカーを分解</h3>
+<h3 id="section-4">1. スピーカーを分解</h3>
 <p>スピーカーは片方だけ使います。<br />
 ドライバーで分解すると、ケース＋スピーカーのシンプル構造になっています。</p>
 <div><img src="../img/20230227_TVONCounter-5.png" Style="width:100%;max-width:350px;" alt="ダイソーのスピーカーを分解した時の写真"></div>  
@@ -146,7 +149,7 @@ HDMI端子の中にCECという通信線があり、これを使うことでテ�
 <h3 id="d">2. D級アンプをはんだ付け</h3>
 <p>スピーカーにつながっている線を切断して、上記の回路図通りにD級アンプをはんだ付けします。</p>
 <div><img src="../img/20230227_TVONCounter-7.png" Style="width:100%;max-width:350px;" alt="ダイソーのスピーカーにD級アンプをはんだ付けした写真"></div>  
-<h3 id="section-4">3. ローサイドスイッチをはんだ付け</h3>
+<h3 id="section-5">3. ローサイドスイッチをはんだ付け</h3>
 <p>D級アンプのGNDと、M5StickCのGNDの間にNch MOSFETを入れて、ゲートにGPIO25を接続します。<br />
 これで、GPIO25がHIGHでアンプの電源がON、LOWでOFFになります。</p>
 <p>HAT側のコネクタをピンヘッダとユニバーサル基板で自作して、ローサイドスイッチ用のスペースを作ります。</p>
@@ -164,7 +167,7 @@ M5StickC側はGPIO32を入力端子（PullUp）、GPIO33を出力端子（OpenDr
 CECにGPIO32/33を両方はんだ付けします。</p>
 <div><img src="../img/20230227_TVONCounter-11.png" Style="width:100%;max-width:350px;" alt="自作のGrove-HDMIケーブルの写真"></div>  
 <p>これでハードは完成です。</p>
-<h2 id="section-5">ソフトウェアの作成</h2>
+<h2 id="section-6">ソフトウェアの作成</h2>
 <p>以下のオープンソースを使用しています。</p>
 <ol>
 <li>CEC通信
@@ -262,19 +265,19 @@ if (_tri_buffer_index)
 　・
 　・
 </code></pre>
-<h3 id="section-6">3. 顔の表示について</h3>
+<h3 id="section-7">3. 顔の表示について</h3>
 <p>issueにM5StickCでの使用例があがっていますので、これを使用します。</p>
 <a href="https://github.com/meganetaaan/m5stack-avatar/issues/59" style="text-decoration: none;">
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/348bd0cdd472ce24ec2793be66e69d1d7ed3265324fc906fe665225ec9c611dd/meganetaaan/m5stack-avatar/issues/59');"></div></div><div class="text-box"><p class="title">Work with M5StickC · Issue #59 · meganetaaan/m5stack-avatar</p><p class="description"></p></div></div>
 </a>
 <p>セリフを出すのは「avatar.setSpeechText」、表情を変えるのは「avatar.setExpression」を使用します。<br />
 また、口の大きさを変える（LipSync）には「avatar.setMouthOpenRatio」を使用します。</p>
-<h3 id="section-7">ソフトウェア全体</h3>
+<h3 id="section-8">ソフトウェア全体</h3>
 <p>以下のGithubにソースコード上げていますので、よかったら参照ください。</p>
 <a href="https://github.com/yamaccu/M5StickC-TVOnCounter" style="text-decoration: none;">
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/45517690eac239e87ff418c858914f0e25f30040e91833eac1459438a196da5a/yamaccu/M5StickC-TVOnCounter');"></div></div><div class="text-box"><p class="title">GitHub - yamaccu/M5StickC-TVOnCounter: テレビのON時間をM5StickCを使ってカウントします。</p><p class="description">テレビのON時間をM5StickCを使ってカウントします。</p></div></div>
 </a>
-<h2 id="section-8">まとめ</h2>
+<h2 id="section-9">まとめ</h2>
 <p>HDMIの中のCECラインを使ってテレビのON時間をカウントしてみました。<br />
 CECはあまり馴染みがないかもしれませんが、ブラビアリンクとか、ファミリンクとか、テレビの遠隔操作系に使われているものです。<br />
 その気になれば、1時間でテレビ強制OFFとかもできるのですが、子供の自主性を尊重して声掛けだけにしておきました。</p>
