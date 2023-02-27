@@ -135,9 +135,7 @@ HDMI端子の中にCECという通信線があり、これを使うことでテ�
 <div><img src="../img/20230227_TVONCounter-3.png" Style="width:100%;max-width:350px;" alt="HDMIケーブルとGroveコネクタをはんだ付けした写真"></div>  
 <h2 id="section-2">ハード構成と作成手順</h2>
 <img src="../img/20230227_TVONCounter-4.png" Style="width:100%;max-width:700px;" alt="テレビのON時間カウンターの回路図">  
-<ul>
-<li>無音時にもスピーカーにノイズが乗るので、5V電源にローサイドスイッチを入れて、音声出力時だけONしています。</li>
-</ul>
+<p>無音時にもスピーカーにノイズが乗るので、5V電源にローサイドスイッチを入れて、音声出力時だけONしています。</p>
 <h3 id="section-3">1. スピーカーを分解</h3>
 <p>スピーカーは片方だけ使います。<br />
 ドライバーで分解すると、ケース＋スピーカーのシンプル構造になっています。</p>
@@ -152,19 +150,19 @@ HDMI端子の中にCECという通信線があり、これを使うことでテ�
 <p>D級アンプのGNDと、M5StickCのGNDの間にNch MOSFETを入れて、ゲートにGPIO25を接続します。<br />
 これで、GPIO25がHIGHでアンプの電源がON、LOWでOFFになります。</p>
 <p>HAT側のコネクタをピンヘッダとユニバーサル基板で自作して、ローサイドスイッチ用のスペースを作ります。</p>
-<div><img src="../img/20230227_TVONCounter-9.png" Style="width:100%;max-width:350px;" alt="ダイソーのスピーカーにD級アンプをはんだ付けした写真"></div>  
+<div><img src="../img/20230227_TVONCounter-9.png" Style="width:100%;max-width:350px;" alt="M5StickCの自作HATの写真"></div>  
 <p>はんだ付けしました。<br />
 もう少し広く作ってもよかったかも。</p>
-<div><img src="../img/20230227_TVONCounter-8.png" Style="width:100%;max-width:350px;" alt="ダイソーのスピーカーにD級アンプをはんだ付けした写真"></div>  
+<div><img src="../img/20230227_TVONCounter-8.png" Style="width:100%;max-width:350px;" alt="M5StickCにローサイドスイッチ用NchMOSFETをはんだ付けした写真"></div>  
 <h3 id="grovehdmicec">4. GroveケーブルとHDMIケーブルのCECをはんだ付け</h3>
 <p>M5StickCのGroveコネクタ用ケーブルと、HDMIケーブルのCECをはんだ付けします。</p>
 <p>HDMIケーブルを剥くとこんな感じ、ここからテスタを使ってCEC/VCC/GNDの線を探していきます。<br />
 HDMIのピン配置は <span class="link"></span><a href="http://www.hdmi-navi.com/pin_assignment_of_hdmi_connectors/">こちらが詳しい</a>です。</p>
-<div><img src="../img/20230227_TVONCounter-10.png" Style="width:100%;max-width:350px;" alt="ダイソーのスピーカーにD級アンプをはんだ付けした写真"></div>  
+<div><img src="../img/20230227_TVONCounter-10.png" Style="width:100%;max-width:350px;" alt="HDMIケーブルを剥いた写真"></div>  
 <p>CECはオープンドレインの1線双方向バスです。<br />
 M5StickC側はGPIO32を入力端子（PullUp）、GPIO33を出力端子（OpenDrain）として使います。<br />
 CECにGPIO32/33を両方はんだ付けします。</p>
-<div><img src="../img/20230227_TVONCounter-11.png" Style="width:100%;max-width:350px;" alt="ダイソーのスピーカーにD級アンプをはんだ付けした写真"></div>  
+<div><img src="../img/20230227_TVONCounter-11.png" Style="width:100%;max-width:350px;" alt="自作のGrove-HDMIケーブルの写真"></div>  
 <p>これでハードは完成です。</p>
 <h2 id="section-5">ソフトウェアの作成</h2>
 <p>以下のオープンソースを使用しています。</p>
@@ -172,13 +170,13 @@ CECにGPIO32/33を両方はんだ付けします。</p>
 <li>CEC通信
 <a href="https://github.com/floe/CEC" style="text-decoration: none;"></li>
 </ol>
-<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/8f0e172f1f88822948e687c86f1b40deb8601a0771cb61f3a3a8c13d19feaf06/floe/CEC');"></div></div><div class="text-box"><p class="title">GitHub - floe/CEC: Arduino library for HDMI CEC communication</p><p class="description">Arduino library for HDMI CEC communication. Contribute to floe/CEC development by creating an account on GitHub.</p></div></div>
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/8f0e172f1f88822948e687c86f1b40deb8601a0771cb61f3a3a8c13d19feaf06/floe/CEC');"></div></div><div class="text-box"><p class="title">GitHub - floe/CEC: Arduino library for HDMI CEC communication</p><p class="description">Arduino library for HDMI CEC communication.</p></div></div>
 </a>  
 <ol start="2">
 <li>MP3再生
 <a href="https://github.com/m5stack/M5Unified" style="text-decoration: none;"></li>
 </ol>
-<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/1c43dd78ac745c1f72fe89bfc40456efddc13446d038dd3fedeb629a630e3fa4/m5stack/M5Unified');"></div></div><div class="text-box"><p class="title">GitHub - m5stack/M5Unified: Unified library for M5Stack series</p><p class="description">Unified library for M5Stack series. Contribute to m5stack/M5Unified development by creating an account on GitHub.</p></div></div>
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/1c43dd78ac745c1f72fe89bfc40456efddc13446d038dd3fedeb629a630e3fa4/m5stack/M5Unified');"></div></div><div class="text-box"><p class="title">GitHub - m5stack/M5Unified: Unified library for M5Stack series</p><p class="description">Unified library for M5Stack series.</p></div></div>
 </a>
 <a href="https://github.com/earlephilhower/ESP8266Audio/" style="text-decoration: none;">
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/8ca4648a045832913e0ec701620821e258e17d4f1974ce78b739e85d48d8f1ae/earlephilhower/ESP8266Audio');"></div></div><div class="text-box"><p class="title">GitHub - earlephilhower/ESP8266Audio: Arduino library to play MOD, WAV, FLAC, MIDI, RTTTL, MP3, and AAC files on I2S DACs or with a software emulated delta-sigma DAC on the ESP8266 and ESP32</p><p class="description">Arduino library to play MOD, WAV, FLAC, MIDI, RTTTL, MP3, and AAC files on I2S DACs or with a software emulated delta-sigma DAC on the ESP8266 and ESP32</p></div></div>
@@ -187,7 +185,7 @@ CECにGPIO32/33を両方はんだ付けします。</p>
 <li>顔の表示
 <a href="https://github.com/meganetaaan/m5stack-avatar" style="text-decoration: none;"></li>
 </ol>
-<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/7c98186332f729a913ef171ff6f6fb8c69d85a43cd1d12440a2ac87a1511c72b/meganetaaan/m5stack-avatar');"></div></div><div class="text-box"><p class="title">GitHub - meganetaaan/m5stack-avatar: An M5Stack library for rendering avatar faces</p><p class="description">An M5Stack library for rendering avatar faces. Contribute to meganetaaan/m5stack-avatar development by creating an account on GitHub.</p></div></div>
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/7c98186332f729a913ef171ff6f6fb8c69d85a43cd1d12440a2ac87a1511c72b/meganetaaan/m5stack-avatar');"></div></div><div class="text-box"><p class="title">GitHub - meganetaaan/m5stack-avatar: An M5Stack library for rendering avatar faces</p><p class="description">An M5Stack library for rendering avatar faces.</p></div></div>
 </a>
 <h3 id="cec">1-1. CEC通信について</h3>
 <p>テレビのON/OFFを判定するのに、HDMIの中にあるCECという通信ラインを使用します。<br />
@@ -196,13 +194,12 @@ CECは一線双方向の通信バスになっていて、コマンドをテレ�
 <a href="https://github.com/floe/CEC/blob/master/extras/CEC_Specs.pdf" style="text-decoration: none;"></p>
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/8f0e172f1f88822948e687c86f1b40deb8601a0771cb61f3a3a8c13d19feaf06/floe/CEC');"></div></div><div class="text-box"><p class="title">CEC/CEC_Specs.pdf at master · floe/CEC</p><p class="description">Arduino library for HDMI CEC communication. Contribute to floe/CEC development by creating an account on GitHub.</p></div></div>
 </a>
-<p>今回は、テレビのON/OFFを判別するコマンドを定期的に送って、ONのときの時間をカウントしています。<br />
-Give Device Power Status というコマンドを送ると、Report Power Statusが返って来るのでそれを判別します。</p>
+<p>今回は、テレビのON/OFFを判別するコマンドを定期的に送って、ONのときの時間をカウントしています。</p>
 <p>以下は仕様書抜粋です。<br />
 Give Device Power Status コマンドを送ると、Power Status が返ってきます。</p>
-<div><img src="../img/20230227_TVONCounter-12.png" Style="width:100%;max-width:750px;margin-left:5px;" alt="ダイソーのスピーカーにD級アンプをはんだ付けした写真"></div>  
+<div><img src="../img/20230227_TVONCounter-12.png" Style="width:100%;max-width:750px;margin-left:5px;" alt="CEC仕様書抜粋 power statusコマンド"></div>  
 <p>Power Statusが&quot;0&quot;でTV ON、&quot;1&quot;でTV OFFです。</p>
-<div><img src="../img/20230227_TVONCounter-13.png" Style="width:100%;max-width:750px;margin-left:5px;" alt="ダイソーのスピーカーにD級アンプをはんだ付けした写真"></div>  
+<div><img src="../img/20230227_TVONCounter-13.png" Style="width:100%;max-width:750px;margin-left:5px;" alt="CEC仕様書抜粋 power statusの値説明"></div>  
 <h3 id="cec-1">1-2. CECライブラリの修正</h3>
 <p>上記で紹介したCECライブラリはそのままでは使えず、以下の修正が必要です。</p>
 <ul>
@@ -249,10 +246,10 @@ void CEC_Device::SetLineState(bool state)
 <h3 id="mp3">2. MP3再生について</h3>
 <p>Mp3再生はM5Unifiedのサンプルを使用します。</p>
 <a href="https://github.com/m5stack/M5Unified/blob/master/examples/Advanced/MP3_with_ESP8266Audio/MP3_with_ESP8266Audio.ino" style="text-decoration: none;">
-<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/77e63b157ef42188870100932c81678c55a13cde6aa5213234e3c2fa094a95b5/m5stack/M5Unified');"></div></div><div class="text-box"><p class="title">M5Unified/MP3_with_ESP8266Audio.ino at master · m5stack/M5Unified</p><p class="description">Unified library for M5Stack series. Contribute to m5stack/M5Unified development by creating an account on GitHub.</p></div></div>
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/77e63b157ef42188870100932c81678c55a13cde6aa5213234e3c2fa094a95b5/m5stack/M5Unified');"></div></div><div class="text-box"><p class="title">M5Unified/MP3_with_ESP8266Audio.ino at master · m5stack/M5Unified</p><p class="description">Unified library for M5Stack series.</p></div></div>
 </a>
 <p>このうち、画面表示系の処理は今回使わないので削除します。<br />
-また、M5Stack-AvatarのLipsync用に、&quot;_m5sound-&gt;playRaw&quot;の処理のところに、以下の変数を追加しておきます。</p>
+また、M5Stack-AvatarのLipsync用に、&quot;_m5sound-&gt;playRaw&quot;の処理の手前に、以下の変数(outLevel)を追加しておきます。</p>
 <pre><code class="language-cpp">int16_t outLevel;
 　・
 　・
@@ -275,12 +272,12 @@ if (_tri_buffer_index)
 <h3 id="section-7">ソフトウェア全体</h3>
 <p>以下のGithubにソースコード上げていますので、よかったら参照ください。</p>
 <a href="https://github.com/yamaccu/M5StickC-TVOnCounter" style="text-decoration: none;">
-<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/45517690eac239e87ff418c858914f0e25f30040e91833eac1459438a196da5a/yamaccu/M5StickC-TVOnCounter');"></div></div><div class="text-box"><p class="title">GitHub - yamaccu/M5StickC-TVOnCounter: テレビのON時間をM5StickCを使ってカウントします。</p><p class="description">テレビのON時間をM5StickCを使ってカウントします。. Contribute to yamaccu/M5StickC-TVOnCounter development by creating an account on GitHub.</p></div></div>
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/45517690eac239e87ff418c858914f0e25f30040e91833eac1459438a196da5a/yamaccu/M5StickC-TVOnCounter');"></div></div><div class="text-box"><p class="title">GitHub - yamaccu/M5StickC-TVOnCounter: テレビのON時間をM5StickCを使ってカウントします。</p><p class="description">テレビのON時間をM5StickCを使ってカウントします。</p></div></div>
 </a>
 <h2 id="section-8">まとめ</h2>
-<p>HDMIの中のCECラインを使ってTV ON時間をカウントしてみました。<br />
+<p>HDMIの中のCECラインを使ってテレビのON時間をカウントしてみました。<br />
 CECはあまり馴染みがないかもしれませんが、ブラビアリンクとか、ファミリンクとか、テレビの遠隔操作系に使われているものです。<br />
-その気になれば、1時間でテレビ強制OFFとかもできるのですが、子供の自主性を尊重して声掛けだけにしてみました。</p>
+その気になれば、1時間でテレビ強制OFFとかもできるのですが、子供の自主性を尊重して声掛けだけにしておきました。</p>
 <p>実際、導入してみると効果がありまして、親に言われるより素直に聞いてくれています。<br />
 近い未来、家庭用ロボットがこんな風に子供の生活を管理してくれるようになるかもしれませんね。</p>
 <br>
