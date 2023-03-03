@@ -109,18 +109,21 @@ twitterで <span class="link"></span><a href="https://twitter.com/search?q=%23%E
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">おはよー <a href="https://t.co/gWNURFBlal">pic.twitter.com/gWNURFBlal</a></p>&mdash; やまっく (&#64;YY87750722) <a href="https://twitter.com/YY87750722/status/1563998002075025408?ref_src=twsrc%5Etfw">August 28, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 <h2 id="section-6">ハードウェア部分の作り方</h2>
-<p>本ページでは以下の方法で作っています。<br />
-（ちょっと特殊で、参考にならない気もします。）</p>
+<p>ハードの主な作り方は2通りあるかと思います。</p>
+<ol>
+<li>ｽﾀｯｸﾁｬﾝの<a href="https://github.com/meganetaaan/stack-chan">github</a>から設計情報を入手して、基板発注、部材集め、3Dプリントなど自分で作る</li>
+<li>有志の方のキット販売を利用する</li>
+</ol>
+<a href="https://mongonta.booth.pm/" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://booth.pximg.net/c/620x620/8d274102-a3dc-4d1c-ae0d-f2872c2a826d/i/3840834/585b8780-46eb-411f-87bb-37b16d306044_base_resized.jpg');"></div></div><div class="text-box"><p class="title">Arpeggio Factory - BOOTH</p><p class="description">ｽﾀｯｸﾁｬﾝの組み立てキットや電子部品を展開しています。 ご不明な点がございましたらお気軽にお問い合わせください。 </p></div></div>
+</a>
+<p>本ページでは1でも2でもなくて、以下の方法で作っています。<br />
+※ちょっと特殊で、参考にならない気もします。</p>
 <ul>
 <li>ケース：近所のワーキングスペースの3Dプリンタでプリント</li>
 <li>基板：ユニバーサル基板を良いサイズに切り出して、部品をはんだ付け</li>
 </ul>
 <br>
-<p>ちなみに、有志の方のキット販売もありますので、そちらの方が簡単かもしれません。<br />
-以下にリンクを貼っておきます。</p>
-<a href="https://mongonta.booth.pm/" style="text-decoration: none;">
-<div class="link-box"><div class="img-box"><div style="background-image: url('https://booth.pximg.net/c/620x620/8d274102-a3dc-4d1c-ae0d-f2872c2a826d/i/3840834/585b8780-46eb-411f-87bb-37b16d306044_base_resized.jpg');"></div></div><div class="text-box"><p class="title">Arpeggio Factory - BOOTH</p><p class="description">ｽﾀｯｸﾁｬﾝの組み立てキットや電子部品を展開しています。 ご不明な点がございましたらお気軽にお問い合わせください。 </p></div></div>
-</a>
 <h3 id="section-7">材料</h3>
 <p>本ページで使った材料一式は下記になります。<br />
 （このピンヘッダはデフォルトのスタックチャン基板には使えません）</p>
@@ -214,33 +217,9 @@ twitterで <span class="link"></span><a href="https://twitter.com/search?q=%23%E
 <h3 id="section-9">基板</h3>
 <p>ユニバーサル基板をケースに入るサイズで切り出して、部品を回路通りにはんだ付けします。<br />
 結構大変です。<br />
+（プリント基板発注した方がよかったと今では思っています。）<br />
 回路図は <span class="link"></span><a href="https://github.com/meganetaaan/stack-chan/tree/main/schematics">こちら。</a></p>
-<p>下記の画像では、回路図に追加で、ノイズ対策のためGPIO26にD級アンプとスピーカーを接続しております。</p>
-<table>
-<thead>
-<tr>
-<th>材料</th>
-<th>購入先</th>
-<th>リンク</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>スピーカー</td>
-<td>秋月電子など</td>
-<td>　<a href="https://akizukidenshi.com/catalog/g/gP-12494/" target="_blank" class="link"></a></td>
-</tr>
-<tr>
-<td>D級アンプ</td>
-<td>秋月電子など</td>
-<td>　<a href="https://akizukidenshi.com/catalog/g/gK-08217/" target="_blank" class="link"></a></td>
-</tr>
-</tbody>
-</table>
-<div style="display:flex; flex-wrap:wrap">
-<img src="../img/20220910-stackchan-3.png" Style="max-width:250px;margin-left:10px;margin-top:10px;" alt="スタックチャン基板の画像2">
 <img src="../img/20220910-stackchan-4.png" Style="max-width:250px;margin-left:10px;margin-top:10px;" alt="スタックチャン基板の画像3">
-</div>
 <br>
 <p>メカスイッチの部分は、ケースに穴をあけて外からON/OFFできるようにしています。</p>
 <h2 id="section-10">ソフトウェア部分について</h2>
@@ -249,7 +228,8 @@ twitterで <span class="link"></span><a href="https://twitter.com/search?q=%23%E
 <a href="https://github.com/yamaccu/myStackchan" style="text-decoration: none;">
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/2debe9a1db81e5e3fbe3245eb854c35174aa161642eb75bcede473280111bd90/yamaccu/myStackchan');"></div></div><div class="text-box"><p class="title">GitHub - yamaccu/myStackchan</p><p class="description">スタックチャン（自分用）. Contribute to yamaccu/myStackchan development by creating an account on GitHub.</p></div></div>
 </a>
-<p>ちなみに、オリジナルのｽﾀｯｸﾁｬﾝはModdableというJavaScriptで組み込みプログラミングができるツールで作成されています。</p>
+<p>ちなみに、オリジナルのｽﾀｯｸﾁｬﾝはModdableというJavaScriptで組み込みプログラミングができるツールで作成されています。<br />
+こちらも<a href="https://github.com/meganetaaan/stack-chan">github</a>にあがっています。</p>
 <h3 id="section-11">しゃべる</h3>
 <p>AquesTalkという音声合成ライブラリを使用してしゃべっています。<br />
 AquesTalkによる音声出力、およびM5Stack-Avatarによる顔の表示は、こちらでまとめています。</p>
