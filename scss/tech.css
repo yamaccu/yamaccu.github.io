@@ -158,6 +158,13 @@ background: snow;
   color:#333;
   padding:0
 }
+
+.stickyads{
+  position:sticky;
+  top:10px;
+}
+
+
 @media only screen and (max-width:479px) {
   .img-box div {
     min-height:80px
