@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>&#x300C;C#&#x300D;CRC&#x3092;&#x8A08;&#x7B97;&#x3059;&#x308B; | yokuaru Tech notes</title>
+  <title>&#x300C;CSS&#x300D;sticky&#x3067;&#x5E83;&#x544A;&#x3092;&#x30B9;&#x30AF;&#x30ED;&#x30FC;&#x30EB;&#x306B;&#x8FFD;&#x5F93;&#x3055;&#x305B;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="&#x300C;C#&#x300D;CRC&#x3092;&#x8A08;&#x7B97;&#x3059;&#x308B;" />
+  <meta property="og:title" content="&#x300C;CSS&#x300D;sticky&#x3067;&#x5E83;&#x544A;&#x3092;&#x30B9;&#x30AF;&#x30ED;&#x30FC;&#x30EB;&#x306B;&#x8FFD;&#x5F93;&#x3055;&#x305B;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20211214-Csharp-CRC" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20230502-css-following" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -285,89 +285,32 @@
         </script>
         <br>
 
-      <br>
-<p>2021/12/14</p>
-<h1 id="ccrc">C#でCRCを計算する</h1>
+      <p>2023/5/2</p>
+<h1 id="positionsticky">position:sticky を使って広告をスクロールに追従させる</h1>
 <hr />
-<p>CRCとはCyclic Redundancy Checkの略で、通信データの破損検出の仕組みの一つです。</p>
-<p>通信データをある値（生成多項式）で割り算して、余りをデータに付与して送信します。<br />
-受信側で再度計算して付与された余りが合っているかどうか確認し、合致しない場合は通信データ破損とみなします。</p>
-<p>同じような誤り検出にチェックサムがありますが、チェックサムはデータを足し算した結果を付与します。<br />
-足し算よりは割り算の方が複雑なアルゴリズムとなり、その分信頼度は向上します。</p>
-<p>Modbus通信やイーサネット通信などで使われているようです。</p>
-<h2 id="crc">CRCの種類</h2>
-<p>CRCには以下のパラメータがあり、これらの値により計算値が異なってきます。<br />
-そのため、CRCと一言で言ってもたくさんの種類が存在しています。</p>
-<ul>
-<li>計算bit数</li>
-<li>生成多項式</li>
-<li>初期値</li>
-<li>ビットシフト方向</li>
-</ul>
-<br>
-<p>例）
-CRC-16-IBM</p>
-<ul>
-<li>計算bit数 : 16</li>
-<li>生成多項式 : x<sup>16</sup>+x<sup>15</sup>+x<sup>2</sup>+1</li>
-<li>初期値 : 0xFFFF</li>
-<li>ビットシフト方向 : 右</li>
-</ul>
-<p>その他の種類については <span Class="link"></span> <a href="https://ja.wikipedia.org/wiki/%E5%B7%A1%E5%9B%9E%E5%86%97%E9%95%B7%E6%A4%9C%E6%9F%BB">wikipedia</a>に記述がありますので参照ください。</p>
-<h2 id="crc-1">CRCの計算方法</h2>
-<p>CRCの計算方法は、「ビット演算方式」と「テーブル演算方式」があります。</p>
-<ul>
-<li><p>ビット演算方法：
-通信データをその都度割り算して余りを求める方法</p>
-</li>
-<li><p>テーブル演算方法：
-あらかじめ計算結果のテーブルを準備して、計算負荷を軽くする方法</p>
-</li>
-</ul>
-<br>
-<p>以降は、CRC-16-IBMのビット演算方式の計算をC#で実施してみます。<br />
-（Modbus-RTUで使われているものです）</p>
-<h2 id="section">計算コード</h2>
-<pre><code class="language-C#">//CRC計算（CRC16-IBM / 生成多項式:x16+x15+x2+1, initial value is 0xFFFF, 右回り）
-int[] DATA;
-int CRC = 0xffff;
-int CRC16POLY = 0xa001;
-
-foreach (byte i in Data)
-{
-  CRC ^= i;
-  for (var j = 0; j &lt; 8; j++)
-  {
-    if ((CRC &amp; 1) == 1)
-    {
-      CRC &gt;&gt;= 1;
-      CRC ^= CRC16POLY;
-    }
-    else
-    {
-      CRC &gt;&gt;= 1;
-    }
-  }
-}
-
-//最終的に、CRCに計算結果が代入されています。
+<p>サイドに表示するタイプの広告を、スクロールに追従させる方法です。
+javascrpitでも可能ですが、CSSのみで簡単に実現可能です。</p>
+<p>「position:sticky」を使用します。</p>
+<h2 id="section">実装方法</h2>
+<p>使い方は簡単で、追従させたい要素に以下を追加します。</p>
+<pre><code class="language-javascript">position: sticky;
+top: 0;
 </code></pre>
+<p>Code Penにコードを登録してみました。<br />
+flex gridでメインパートとサイドパートに分けて、サイドにある広告をstickyとしています。</p>
+<p class="codepen" data-height="350" data-default-tab="html,result" data-slug-hash="xxyXLXX" data-user="yamaccu" style="height: 350px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/yamaccu/pen/xxyXLXX">
+  Untitled</a> by yamaccu (<a href="https://codepen.io/yamaccu">&#64;yamaccu</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+<p>■注意事項</p>
+<ul>
+<li>&quot;top&quot;の指定を忘れると反映されません。</li>
+<li>stickyを指定した要素の親要素内でしか機能しないので、親要素ごとスクロールしてしまうと追従できません。</li>
+</ul>
 <br>
-<p>githubにサンプルコードを上げていますので、よろしければ参照ください。<br />
-<span class="link"></span> <a href="https://github.com/yamaccu/Csharp-CRC16-IBM">github</a></p>
-<h2 id="section-1">計算コードの解説</h2>
-<p>コードで実施している内容は下記になります。<br />
-データを生成多項式で割り算しています。</p>
-<ol>
-<li>初期値”0xFFFF”と、送信データ値の最初の1byte目をXORする。　</li>
-<li>右へ1ビットシフトする。</li>
-<li>CF(キャリーフラグ)=1の場合、”0xA001”とXORする。CF=0の場合、何もしない。</li>
-<li>上記2と3を8回繰り返す。</li>
-<li>送信データの次の1byteとXORする。</li>
-<li>上記2から5を、送信データの最後のbyteまで繰り返す。</li>
-</ol>
-<br>
-以上です。  
+<p>以上です。</p>
 <br>
 <br>
 <hr />
