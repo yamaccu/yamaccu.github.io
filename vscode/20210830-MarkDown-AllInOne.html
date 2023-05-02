@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Live Server&#x300D;&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
+  <title>VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Markdown All in One&#x300D;&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Live Server&#x300D;&#x3092;&#x4F7F;&#x3046;" />
+  <meta property="og:title" content="VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Markdown All in One&#x300D;&#x3092;&#x4F7F;&#x3046;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/vscode/20230502-vscode-liveserver" />
+  <meta property="og:url" content="https://yamaccu.github.io/vscode/20210830-MarkDown-AllInOne" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -94,41 +94,105 @@
         </script>
         <br>
 
-      <p>2023/05/02</p>
-<h1 id="vscodelive-server">VSCodeの拡張機能「Live Server」を使う</h1>
+      <p>2021/08/30</p>
+<h1 id="vscodemarkdown-all-in-one">VSCodeの拡張機能「Markdown All in One」を使う</h1>
 <hr />
-<p>VSCodeでHTML/CSS/JavaScriptのプログラミングをする際には、拡張機能「Live Server」を導入すると便利です。</p>
-<p>ワンクリックでローカルサーバの立ち上げ、ページの表示ができます。<br />
-相対パスで指定したimage、CSSなどもちゃんと反映してくれます。<br />
-また、ホットリロードにも対応しており、元ファイルを変更して保存すると、表示中のページもすぐに変更が反映されます。</p>
-<h2 id="section">使い方</h2>
-<p>まず、VSCodeで表示したいファイルのあるフォルダを開きます。<br />
-注）フォルダで開かないとLive Serverは動作しません。</p>
-<p>ページの表示方法は何通りかあります。</p>
+<p>VSCodeでMarkDownを書くのに、拡張機能「Markdown All in One」を導入すると便利です。</p>
+<p>Markdownの記法メモもまとめてみました。<br />
+<span class="link"></span>
+<a href="/tils/20210816-MarkDown-tips">MarkDown記法のメモ</a></p>
+<h2 id="section">ショートカット機能</h2>
+<br>
+<table>
+<thead>
+<tr>
+<th>キーボード操作</th>
+<th>機能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctr+B</td>
+<td>太字 (**)</td>
+</tr>
+<tr>
+<td>Ctr+I</td>
+<td>イタリック(*)</td>
+</tr>
+<tr>
+<td>Ctr+Shift+]</td>
+<td>見出し(#)、実行ごとに#が増える</td>
+</tr>
+<tr>
+<td>Ctr+Shift+[</td>
+<td>見出し(#)、実行ごと#が減る</td>
+</tr>
+<tr>
+<td>Ctr+M</td>
+<td>数式挿入($)</td>
+</tr>
+<tr>
+<td>Alt+C</td>
+<td>チェックボックスのON（[x]）、もう一度押すと解除</td>
+</tr>
+<tr>
+<td>Alt+S</td>
+<td>取り消し(~~)</td>
+</tr>
+<tr>
+<td>Alt+Shift+F</td>
+<td>表の表記のフォーマット整形</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>以下はもともとVSCodeに入っており便利なショートカット</p>
+<table>
+<thead>
+<tr>
+<th>キーボード操作</th>
+<th>機能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctr+K → v</td>
+<td>サイドにプレビュー表示</td>
+</tr>
+<tr>
+<td>Ctr+shift+v</td>
+<td>タブにプレビュー表示</td>
+</tr>
+</tbody>
+</table>
+<h2 id="section-1">目次の自動作成</h2>
+<p>見出し(#)の目次を自動で作成してくれます。</p>
 <ul>
-<li><p>ファイルをVSCodeで開いて、ALT+L ⇒ ALT+O</p>
-</li>
-<li><p>ファイルをVScodeで開いて、どこでもいいので画面で右クリックし、「Open with Live Server」を選択</p>
-</li>
+<li>自動作成：Ctr+Shift+p → Markdown All in One: Create Table of Contents</li>
+<li>更新　　：Ctr+Shift+p → Markdown All in One: Update Table of Contents</li>
 </ul>
-<img src="../img/20230502-vscode-liveserver-2.png" style="width:100%; max-width:350px; margin-left:30px;" alt="Live Serverを右クリックで起動する方法2">
+<p>↓こんな感じです。<br />
+<img src="../img/20210830-MarkDown-AllInOne-2.png" Style="width:100%;max-width:450px;" alt="MarkDownAllInOne目次の自動作成"></p>
+<br>
+<p>また、見出しに自動で番号を振ってくれます。</p>
 <ul>
-<li>ファイルをVSCodeで開いて、右下のステータスバー上の「Go Live」をクリック</li>
+<li>番号追加：Ctr+Shift+p → MarkDown All in One: Add/Update section numbers</li>
+<li>番号削除：Ctr+Shift+p → MarkDown All in One: Remove section numbers</li>
 </ul>
-<img src="../img/20230502-vscode-liveserver-3.png" style="width:100%; max-width:200px; margin-left:30px;" alt="Live Serverをステータスバーで起動する方法">
-<ul>
-<li>左のファイルリストから表示したいファイルを右クリックし、「Open with Live Server」を選択</li>
-</ul>
-<img src="../img/20230502-vscode-liveserver-1.png" style="width:100%; max-width:350px; margin-left:30px;" alt="Live Serverを右クリックで起動する方法">
-<h2 id="section-1">設定</h2>
-<p>VSCode上の、拡張機能の画面で各種設定が可能です。</p>
-<img src="../img/20230502-vscode-liveserver-4.png" style="width:100%; max-width:350px;" alt="Live Serverの設定方法">
-<p>各設定の詳細は、github上に説明があります。</p>
-<a href="https://github.com/ritwickdey/vscode-live-server/blob/428e01caf02bfa7ee75741df0f02fc9d2b5b0999/docs/settings.md" style="text-decoration: none;">
-<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/c2466fd049c018ffa305c88208f7b9c4a41d96201f788237163a37f9da3191db/ritwickdey/vscode-live-server');"></div></div><div class="text-box"><p class="title">vscode-live-server/settings.md · ritwickdey/vscode-live-server</p><p class="description">Launch a development local Server with live reload feature for static & dynamic pages.</p></div></div>
-</a>
-<p>全部で20項目あります。<br />
-ホストのアドレスやポート番号、デフォルトブラウザ等の設定ができます。</p>
+<p>↓こんな感じです。<br />
+<img src="../img/20210830-MarkDown-AllInOne-3.png" Style="width:100%;max-width:450px;" alt="MarkDownAllInOne目次に自動で番号を振る"></p>
+<br>
+<p>目次に入れたくない見出しがある場合は、見出しの前の行に「&lt;!-- omit in toc --&gt;」を追加します。</p>
+<h2 id="section-2">リストの入力補佐</h2>
+<p>- や1. などのリストを作成しているときに、行追加時に自動でリストが追加されます。<br />
+また、tabでインデントされます。<br />
+地味に便利なやつ。</p>
+<h2 id="html">HTML出力</h2>
+<p>現在開いているMarkDownファイルをHTMLへ変換できます。<br />
+Ctr+Shift+p → Markdown All in One: Print current document to HTML</p>
+<h2 id="section-3">リンクの作成</h2>
+<p>HPなどのアドレスをコピーした状態で、テキストを選択してCtr+Vすると、リンクを自動作成してくれます。</p>
+<img src="../img/20210830-MarkDown-AllInOne-4.png" Style="width:100%;max-width:350px;" alt="MarkDownAllInOneリンク作成">  
 <br>
 <p>以上です。</p>
 <br>
