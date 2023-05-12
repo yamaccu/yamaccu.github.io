@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Live Server&#x300D;&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
+  <title>VSCode&#x306E;&#x304A;&#x3059;&#x3059;&#x3081;&#x8A2D;&#x5B9A; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -31,9 +31,9 @@
     gtag('config', 'UA-197465108-1');
   </script>
 
-  <meta property="og:title" content="VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Live Server&#x300D;&#x3092;&#x4F7F;&#x3046;" />
+  <meta property="og:title" content="VSCode&#x306E;&#x304A;&#x3059;&#x3059;&#x3081;&#x8A2D;&#x5B9A;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/vscode/20230502-vscode-liveserver" />
+  <meta property="og:url" content="https://yamaccu.github.io/vscode/20230508-vscode-setting" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -103,44 +103,18 @@
         </script>
         <br>
 
-      <p>2023/05/02</p>
-<h1 id="vscodelive-server">VSCodeの拡張機能「Live Server」を使う</h1>
+      <p>2023/05/08</p>
+<h1 id="vscode">VSCodeのおすすめ設定</h1>
 <hr />
-<p>VSCodeでHTML/CSS/JavaScriptのプログラミングをする際には、拡張機能「Live Server」を導入すると便利です。</p>
-<p>ワンクリックでローカルサーバの立ち上げ、ページの表示ができます。<br />
-相対パスで指定したimage、CSSなどもちゃんと反映してくれます。<br />
-また、ホットリロードにも対応しており、元ファイルを変更して保存すると、表示中のページもすぐに変更が反映されます。</p>
-<a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" style="text-decoration: none;">
-<div class="link-box"><div class="img-box"><div style="background-image: url('https://ritwickdey.gallerycdn.vsassets.io/extensions/ritwickdey/liveserver/5.7.9/1661914858952/Microsoft.VisualStudio.Services.Icons.Default');"></div></div><div class="text-box"><p class="title">Live Server - Visual Studio Marketplace</p><p class="description">Extension for Visual Studio Code - Launch a development local Server with live reload feature for static & dynamic pages</p></div></div>
-</a>
-<h2 id="section">使い方</h2>
-<p>まず、VSCodeで表示したいファイルのあるフォルダを開きます。<br />
-注）フォルダで開かないとLive Serverは動作しません。</p>
-<p>ページの表示方法は何通りかあります。</p>
-<ul>
-<li><p>ファイルをVSCodeで開いて、ALT+L ⇒ ALT+O</p>
-</li>
-<li><p>ファイルをVScodeで開いて、どこでもいいので画面で右クリックし、「Open with Live Server」を選択</p>
-</li>
-</ul>
-<img src="../img/20230502-vscode-liveserver-2.png" style="width:100%; max-width:350px; margin-left:30px;" alt="Live Serverを右クリックで起動する方法2">
-<ul>
-<li>ファイルをVSCodeで開いて、右下のステータスバー上の「Go Live」をクリック</li>
-</ul>
-<img src="../img/20230502-vscode-liveserver-3.png" style="width:100%; max-width:200px; margin-left:30px;" alt="Live Serverをステータスバーで起動する方法">
-<ul>
-<li>左のファイルリストから表示したいファイルを右クリックし、「Open with Live Server」を選択</li>
-</ul>
-<img src="../img/20230502-vscode-liveserver-1.png" style="width:100%; max-width:350px; margin-left:30px;" alt="Live Serverを右クリックで起動する方法">
-<h2 id="section-1">設定</h2>
-<p>VSCode上の、拡張機能の画面で各種設定が可能です。</p>
-<img src="../img/20230502-vscode-liveserver-4.png" style="width:100%; max-width:350px;" alt="Live Serverの設定方法">
-<p>各設定の詳細は、github上に説明があります。</p>
-<a href="https://github.com/ritwickdey/vscode-live-server/blob/428e01caf02bfa7ee75741df0f02fc9d2b5b0999/docs/settings.md" style="text-decoration: none;">
-<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/c2466fd049c018ffa305c88208f7b9c4a41d96201f788237163a37f9da3191db/ritwickdey/vscode-live-server');"></div></div><div class="text-box"><p class="title">vscode-live-server/settings.md · ritwickdey/vscode-live-server</p><p class="description">Launch a development local Server with live reload feature for static & dynamic pages.</p></div></div>
-</a>
-<p>全部で20項目あります。<br />
-ホストのアドレスやポート番号、デフォルトブラウザ等の設定ができます。</p>
+<p>VSCodeには様々な設定があります。<br />
+便利な機能にも関わらずデフォルトでOFFになっているものもあるので、ONにしたほうが良いものを紹介していきます。<br />
+（まだ数が少ないですが、随時追加していきます。）</p>
+<h2 id="linked-editing">Linked Editing</h2>
+<p>HTMLのタグの、開始タグと終了タグをリンクさせます。<br />
+片方を変更するともう片方も自動で変更されるようになります。</p>
+<img src="../img/20230508-vscode-setting-2.png" style="width:100%; max-width:220px; margin-left:30px; margin-bottom:15px; " alt="VSCodeのLinked Editingの解説">  
+<p>設定方法は、VSCodeの設定画面を開き&quot;Linked Editing&quot;にチェックを入れます。<br />
+<img src="../img/20230508-vscode-setting-1.png" style="width:100%; max-width:680px; margin-left:30px; margin-top:10px; " alt="VSCodeのLinked Editingの設定"></p>
 <br>
 <p>以上です。</p>
 <br>

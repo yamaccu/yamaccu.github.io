@@ -1,0 +1,295 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Code Spell Checker&#x300D;&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
+
+  <link href="/scss/tils.css" rel="stylesheet" type="text/css">
+  <link href="/scss/prism.css" rel="stylesheet" type="text/css">
+  <script defer src="/js/tils.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
+    data-no-mirror></script>
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+
+  <script data-ad-client="ca-pub-2127299793131419" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-197465108-1');
+  </script>
+
+  <meta property="og:title" content="VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Code Spell Checker&#x300D;&#x3092;&#x4F7F;&#x3046;" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yamaccu.github.io/vscode/20230512-vscode-spellcheck" />
+  <meta property="og:site_name" content="yokuaru Tech notes" />
+  <meta property="og:locale" content="ja_JP" />
+
+</head>
+
+<body>
+  <header
+    style="background-image:url('/img/main2.png'); position:fixed; top:0; left:0; right:0; z-index: 50;">
+    <div class="flex-wrap">
+      <div class="menu" id="humbergericon"></div>
+      <div>
+        <a href="/vscode" class="title" style="font-size:36px;">VSCode Ext</a>
+      </div>
+      <div class="ext-link">
+        <a href="/"><img src="/img/home.png" class="ext-link-icon"
+            alt="homeへのリンク"></a>&nbsp;&nbsp;
+        <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"
+            alt="twitterへのリンク"></a>&nbsp;&nbsp;
+        <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"
+            alt="githubへのリンク"></a>
+      </div>
+    </div>
+    <br>
+  </header>
+  <br>
+  <div class="flex-nowrap, body-font">
+    <div class="side-layout load" id="sidemenu">
+          <div class="side-content">
+            ・
+            <a href="/vscode/20230512-vscode-spellcheck">Code Spell Checker</a><br>
+          </div>
+          <div class="side-content">
+            ・
+            <a href="/vscode/20230502-vscode-liveserver">Live Server</a><br>
+          </div>
+          <div class="side-content">
+            ・
+            <a href="/tils/20210830-MarkDown-AllInOne">MarkDown All in One</a><br>
+          </div>
+          <div class="side-content">
+            ・
+            <a href="/vscode/20230508-vscode-setting">&#x304A;&#x3059;&#x3059;&#x3081; VSCode &#x8A2D;&#x5B9A;</a><br>
+          </div>
+      <br>
+      <div style="margin-right:60px;">
+        <script async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block; margin-left:0px;" data-ad-client="ca-pub-2127299793131419"
+          data-ad-slot="2560895837" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+
+    <div class="main-content">
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+          data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <br>
+
+      <p>2023/05/12</p>
+<h1 id="vscodecode-spell-checker">VSCodeの拡張機能「Code Spell Checker」を使う</h1>
+<hr />
+<p>Code Spell Checkerを導入すると、英単語を随時チェックしてタイプミスを波線で表示してくれます。<br />
+また、キャメルケース(testWord)、スネークケース(test_word)にも対応しています。<br />
+ハンガリアン記法(testword)も設定すれば対応可能です。</p>
+<a href="https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://streetsidesoftware.gallerycdn.vsassets.io/extensions/streetsidesoftware/code-spell-checker/2.20.4/1680519931370/Microsoft.VisualStudio.Services.Icons.Default');"></div></div><div class="text-box"><p class="title">Code Spell Checker - Visual Studio Marketplace</p><p class="description">Extension for Visual Studio Code - Spelling checker for source code</p></div></div>
+</a>
+<h2 id="section">使い方</h2>
+<p>インストールするだけでOKです。<br />
+スペルミスを以下のように波線で知らせてくれます。</p>
+<img src="../img/20230512-vscode-spellcheck-1.png" style="width:100%; max-width:350px; margin-left:30px; margin-bottom:10px;" alt="code spell checkのタイプミスの表示">  
+<p>問題タブにもスペルミスが表示されます。</p>
+<img src="../img/20230512-vscode-spellcheck-3.png" style="width:100%; max-width:400px; margin-left:30px; margin-bottom:10px;" alt="code spell checkのタイプミスの表示2">  
+<p>また、正解候補の表示もしてくれます。<br />
+スペルミスの箇所にカーソルを置いてQuick Fixをクリック、もしくは電球マークをクリックします。</p>
+<img src="../img/20230512-vscode-spellcheck-2.png" style="width:100%; max-width:400px; margin-left:30px;" alt="code spell checkのタイプミス正解候補の表示方法">
+<h2 id="section-1">スペルチェックのルール設定</h2>
+<p>チェックルールの設定方法を紹介します。<br />
+自分用の設定をして使いやすくしたり、ルールをチームで共有したりすることができます。</p>
+<h3 id="section-2">設定ファイルでの設定</h3>
+<p>code spell checkerの設定ファイルは3つあります。<br />
+以下の数字は優先順位になっています。</p>
+<ol>
+<li>　Workspace Folderに「cspell.json」を作成して設定</li>
+<li>　VSCodeのWorkspace Settingsで設定</li>
+<li>　VSCodeのUser Settingsで設定</li>
+</ol>
+<p>1は自分でファイルを作成します。<br />
+2と3は自分でファイルを編集するほかに、VSCodeの設定画面もしくは右クリックメニューからも編集できます。</p>
+<br>
+<h4 id="cspell.json">■cspell.jsonの作成</h4>
+<p>jsonファイル形式で、以下を記述していきます。<br />
+よく使いそうなものをリストアップしてみました。</p>
+<table>
+<thead>
+<tr>
+<th>設定</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>words zzzzz</td>
+<td>&quot;zzzzz&quot;を辞書登録します、正解候補にも表示されます</td>
+</tr>
+<tr>
+<td>ignoreWords zzzzz</td>
+<td>&quot;zzzzz&quot;をスペルチェックからはずします</td>
+</tr>
+<tr>
+<td>flagWords zzzzz</td>
+<td>&quot;zzzzz&quot;を強制的にエラーにします</td>
+</tr>
+<tr>
+<td>allowCompoundWords</td>
+<td>ハンガリアン記法に対応します（&quot;spellcheck&quot;などのハンガリアン記法で記述した単語は通常エラーとなるが、エラーにならなくなる）</td>
+</tr>
+<tr>
+<td>ignorePaths</td>
+<td>チェック対象外にするファイルのパスを指定します</td>
+</tr>
+<tr>
+<td>maxNumberOfProblems</td>
+<td>スペルミスを表示する数のMAX値を指定します</td>
+</tr>
+<tr>
+<td>minWordLength</td>
+<td>スペルチェックする英単語の最低アルファベット数を指定します、デフォルトは4です</td>
+</tr>
+</tbody>
+</table>
+<p>例えば、以下のように使用します。</p>
+<pre><code class="language-json">{
+    &quot;words&quot;: [
+        &quot;aiueo&quot;
+    ],
+    &quot;ignoreWords&quot;: [
+        &quot;testword&quot;
+    ],
+    &quot;flagWords&quot;: [
+        &quot;spellCheck&quot;
+    ],
+    &quot;allowCompoundWords&quot;: true,
+    &quot;ignorePaths&quot;: [
+        &quot;xxxxxx/**&quot;
+    ],
+    &quot;maxNumberOfProblems&quot;: 4,
+    &quot;minWordLength&quot;: 7
+}
+</code></pre>
+<p>その他の項目は下記を参照ください。</p>
+<a href="https://cspell.org/configuration/" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('');"></div></div><div class="text-box"><p class="title">CSpell Configuration</p><p class="description">Customizing CSpell - CSpell’s behavior can be controlled through a config file.</p></div></div>
+</a>  
+<h4 id="vscode">■VSCodeの設定画面から設定する</h4>
+<p>VSCode上の拡張機能の設定画面で、Workspace SettingsおよびUser Settingsの各設定が可能です。</p>
+<img src="../img/20230512-vscode-spellcheck-4.png" style="width:100%; max-width:400px; margin-left:30px;" alt="code spell checkerの設定方法">
+<p>上記のcspell.jsonで設定できる項目は、こちらでも設定可能です。<br />
+全部で59項目ありますが、通常使うのは上記で紹介した数項目くらいな気もします。</p>
+<h4 id="section-3">■右クリックのメニューから設定</h4>
+<p>エラーになった単語にカーソルを合わせて右クリックでメニューを開いて、単語の辞書登録をすることができます。</p>
+<img src="../img/20230512-vscode-spellcheck-5.png" style="width:100%; max-width:550px; margin-left:30px;" alt="code spell checkerの設定方法2">
+<ul>
+<li>Add Words to WorkSpace Settings / User Settings：<br />
+　選択した単語をWorkSpaceまたはUserのSettings.jsonファイルに登録します。</li>
+<li>Add All Spelling Issues to Dictionary：<br />
+　エラーになっている全単語をWorkSpaceのSettings.jsonファイルに登録します。</li>
+<li>Ignore Words：<br />
+　選択した単語の無視設定をWorkSpaceまたはUserのSettings.jsonファイルに登録します。</li>
+</ul>
+<p>また、ショートカットでも登録可能です。</p>
+<ul>
+<li>Mac:　⌘+. or Cmd+.</li>
+<li>Windows:　Ctrl+.</li>
+</ul>
+<h3 id="section-4">（一応紹介）コード内での設定</h3>
+<p>「cSpell:xxxxx」をコメントアウトでコード内に記述することでルール設定ができます。<br />
+xxxxxのところに以下の設定欄の単語を入れます。<br />
+コード内に埋め込むのはイマイチかと思いますが。。</p>
+<table>
+<thead>
+<tr>
+<th>設定</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>disable</td>
+<td>この記述以降のスペルチェック機能をOFFにします</td>
+</tr>
+<tr>
+<td>enable</td>
+<td>この記述以降のスペルチェック機能をONにします、disableとセットで使用します</td>
+</tr>
+<tr>
+<td>disable-next-line</td>
+<td>この記述の次のラインのスペルチェック機能をOFFにします</td>
+</tr>
+<tr>
+<td>ignore zzzzz</td>
+<td>&quot;zzzzz&quot;をスペルチェックからはずします</td>
+</tr>
+<tr>
+<td>flag zzzzz</td>
+<td>&quot;zzzzz&quot;を強制的にエラーにします</td>
+</tr>
+<tr>
+<td>words zzzzz</td>
+<td>&quot;zzzzz&quot;を辞書登録します、正解候補にも表示されます</td>
+</tr>
+<tr>
+<td>enableCompoundWords</td>
+<td>ハンガリアン記法に対応します</td>
+</tr>
+</tbody>
+</table>
+<p>例えば、以下のように使用します。</p>
+<pre><code class="language-c">/* cSpell:disable */
+spell chek    ←これはチェックされない
+/* cSpell:enable */
+</code></pre>
+<br>
+<p>以上です。</p>
+<br>
+<br>
+<hr />
+
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+          data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+        <script src="https://utteranc.es/client.js" repo="yamaccu/yamaccu.github.io" issue-term="pathname"
+          theme="github-light" crossorigin="anonymous" async>
+          </script>
+        <br>
+        <br>
+    </div>
+  </div>
+</body>
+
+</html>
