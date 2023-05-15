@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>VSCODE Extensions | yokuaru Tech notes</title>
+  <title>VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;vscode-input-sequence&#x300D;&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -40,9 +40,9 @@
     gtag('config', 'G-Q63MXL5083');
   </script>
 
-  <meta property="og:title" content="VSCODE Extensions" />
+  <meta property="og:title" content="VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;vscode-input-sequence&#x300D;&#x3092;&#x4F7F;&#x3046;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/vscode" />
+  <meta property="og:url" content="https://yamaccu.github.io/vscode/20230515-vscode-input-sequence" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -111,50 +111,77 @@
 
     <div class="main-content">
 
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+          data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <br>
 
-      
+      <p>2023/05/15</p>
+<h1 id="vscodevscode-input-sequence">VSCodeの拡張機能「vscode-input-sequence」を使う</h1>
+<hr />
+<p>「vscode-input-sequence」は、文章やソースコードに連番を追加できる拡張機能です。<br />
+例えば変数名を連番にしたいときなどに便利です。</p>
+<a href="https://marketplace.visualstudio.com/items?itemName=tomoki1207.vscode-input-sequence" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://cdn.vsassets.io/v/M220_20230426.6/_content/Header/default_icon_128.png');"></div></div><div class="text-box"><p class="title">vscode-input-sequence - Visual Studio Marketplace</p><p class="description">Extension for Visual Studio Code - sequential-number in vscode</p></div></div>
+</a>
+<h2 id="section">設定</h2>
+<p>長らくメンテナンスされておらず、バグがあるようです。<br />
+回避するために、以下の設定が必須になっています。</p>
+<p><img src="../img/20230515-vscode-input-sequence-1.png" style="width:100%; max-width:450px;" alt="code spell checkerの設定方法"><br><br></p>
+<img src="../img/20230515-vscode-input-sequence-2.png" style="width:100%; max-width:450px;" alt="code spell checkerの設定方法2">
+<p>参考</p>
+<a href="https://github.com/tomoki1207/vscode-input-sequence/issues/15" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/95424adb546f8f059432ef2566257c15977e622bd7a6e21d2ae01b5825799bd8/tomoki1207/vscode-input-sequence/issues/15');"></div></div><div class="text-box"><p class="title">recently,it is repeated for each character entered · Issue #15 · tomoki1207/vscode-input-sequence</p><p class="description"></p></div></div>
+</a>
+<h2 id="section-1">使い方</h2>
+<p>以下の手順で、連番を追加できます。</p>
+<ol>
+<li>複数選択をする（Alt押しながら選択で複数選択、もしくはShift + Alt同時押しで矩形選択）</li>
+<li>Ctrl + Alt + 0 を押す</li>
+<li>連番設定を入力する</li>
+</ol>
+<p>連番設定は以下のフォーマットになっています。</p>
+<p><span style="margin-left:25px; ">&lt;start&gt; &lt;operator&gt; &lt;step&gt; : &lt;digit&gt; : &lt;radix&gt; </span></p>
+<ul>
+<li>start：開始する数です。</li>
+<li>operator：演算子です。+もしくは-を指定します。</li>
+<li>step：増減させる数値です。</li>
+<li>digit：数字の桁数です。</li>
+<li>radix：基数です。2とすると、2進数で数を表示させます。<br />
+※start以外の値は省略可</li>
+</ul>
+<p>例）
+1+1:2　　1から1ずつカウントアップ、桁数2</p>
+<img src="../img/20230515-vscode-input-sequence-3.png" style="width:100%; max-width:450px;" alt="code spell checkerの使い方1">
+<p>1+2:4:2　　1から2ずつカウントアップ、桁数4、2進数</p>
+<img src="../img/20230515-vscode-input-sequence-4.png" style="width:100%; max-width:450px;" alt="code spell checkerの使い方2">
 <br>
 <br>
+<p>以上です。</p>
+<br>
+<br>
+<hr />
 
-使ってみて良かったVSCODEの拡張機能を紹介しています。
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-
-
-        <div style="width:100%;max-width:500px;">
-          <script async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
-            crossorigin="anonymous"></script>
-          <!-- head -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
-            data-ad-slot="2560895837" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+          data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+        <script src="https://utteranc.es/client.js" repo="yamaccu/yamaccu.github.io" issue-term="pathname"
+          theme="github-light" crossorigin="anonymous" async>
           </script>
-
-          <br>
-
-          <script async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
-            crossorigin="anonymous"></script>
-          <!-- head -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
-            data-ad-slot="2560895837" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-
-        </div>
+        <br>
+        <br>
     </div>
   </div>
 </body>
