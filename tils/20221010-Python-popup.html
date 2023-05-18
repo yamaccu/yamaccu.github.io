@@ -239,6 +239,10 @@
             </div>
             <div class="side-content">
               -
+              <a href="/tils/20230519-Python-pngcompress">Pillow&#x3067;PNG&#x3092;&#x6E1B;&#x8272;&#x3057;&#x3066;&#x5727;&#x7E2E;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
               <a href="/tils/20220322-Python-Fileope">&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x65E5;&#x4ED8;&#x306B;&#x3088;&#x3063;&#x3066;&#x64CD;&#x4F5C;&#x3059;&#x308B;&#x3002;</a><br>
             </div>
             <div class="side-content">
@@ -429,7 +433,8 @@ tk = tkinter
 tk.Tk().withdraw()
 
 type = [('テキストファイル','*.txt')] 
-path = tk.filedialog.askopenfilename(filetypes = type)
+path = tk.filedialog.askopenfilename(filetypes = type)  #単一選択のみ
+path = tk.filedialog.askopenfilenames(filetypes = type)  #複数選択可
 
 pathdirectory = tk.filedialog.askdirectory()
 </code></pre>
