@@ -82,7 +82,7 @@
           </div>
           <div class="side-content">
             ・
-            <a href="/vscode/20230502-vscode-liveserver">Live Server</a><br>
+            <a href="/vscode/20230609-vscode-liveserver">Live Server</a><br>
             <span style="display:block; margin-left:20px; margin-top:-7px;">- <span style="font-size:13px;">local server&#x7C21;&#x5358;&#x7ACB;&#x3061;&#x4E0A;&#x3052;</span></span>
           </div>
           <div class="side-content">
@@ -129,10 +129,12 @@
       <p>2023/05/26</p>
 <h1 id="vscodecode-runner">VSCodeの拡張機能「Code Runner」を使う</h1>
 <hr />
-<p>「Code Runner」は、プログラムをお手軽に実行できる拡張機能です。<br />
-プログラム全体の実行がワンクリックで実行でき、また、選択箇所だけの部分実行も可能です。<br />
-ちょっと動きを確認したいときなどに便利です。</p>
-<p>対応しているプログラム言語が豊富で、ほぼ全部で実行できます。</p>
+<p>「Code Runner」は、プログラムをお手軽に実行できる拡張機能です。</p>
+<ul>
+<li>ワンクリックでプログラムを実行できます。</li>
+<li>選択箇所だけの部分実行が可能です。</li>
+<li>対応しているプログラム言語が豊富で、ほぼ全ての言語で実行できます。</li>
+</ul>
 <a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner" style="text-decoration: none;">
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://formulahendry.gallerycdn.vsassets.io/extensions/formulahendry/code-runner/0.12.0/1674458451597/Microsoft.VisualStudio.Services.Icons.Default');"></div></div><div class="text-box"><p class="title">Code Runner - Visual Studio Marketplace</p><p class="description">Extension for Visual Studio Code - Run C, C++, Java, JS, PHP, Python, Perl, Ruby, Go, Lua, Groovy, PowerShell, CMD, BASH, F#, C#, VBScript, TypeScript, CoffeeScript, Scala, Swift, Julia, Crystal, OCaml, R, AppleScript, Elixir, VB.NET, Clojure, Haxe, Obj-C, Rust, Racket, Scheme, AutoHotkey, AutoIt, Kotlin, Dart, Pascal, Haskell, Nim,</p></div></div>
 </a>
@@ -145,7 +147,8 @@
 </ul>
 <p><img src="../img/20230526-vscode-coderunner-1.png" style="width:100%; max-width:250px;" alt="code runnerの実行方法1"><br><br></p>
 <p><img src="../img/20230526-vscode-coderunner-2.png" style="width:100%; max-width:450px;" alt="code runnerの実行方法2"><br><br></p>
-<p>何も選択していなければ全体を実行、選択していれば選択箇所のみ実行されます。</p>
+<p>何も選択していなければ全体を実行、選択していれば選択箇所のみ実行されます。<br />
+下の画像は選択箇所のみ実行したときのものです。</p>
 <p><img src="../img/20230526-vscode-coderunner-3.png" style="width:100%; max-width:450px;" alt="code runnerの選択箇所の実行方法"><br><br></p>
 <h2 id="section-1">設定</h2>
 <p>設定しておいた方が良い項目をまとめておきます。<br />
@@ -153,7 +156,7 @@
 <p><img src="../img/20230526-vscode-coderunner-4.png" style="width:100%; max-width:400px;" alt="code runnerの選択箇所の実行方法"><br><br></p>
 <h3 id="code-runner.executormap">code-runner.executorMap</h3>
 <p>各言語の実行コマンドを設定できます。<br />
-pythonは、デフォルトでは仮想環境での実行に対応していないので、pythonの項目を下記のようにします。</p>
+pythonを使用する場合、デフォルトでは仮想環境での実行に対応していないので、pythonの項目を下記のようにします。</p>
 <pre><code class="language-json">&quot;code-runner.executorMap&quot;: 
 {
     &quot;python&quot; : &quot;$pythonPath -u $fullFileName&quot;
@@ -169,9 +172,7 @@ pythonのパスです。</li>
 <p>プログラムをターミナルで実行するかどうかを設定します。<br />
 デフォルトではfalse（ターミナル未使用）になっています。<br />
 標準入力など使用する場合はターミナルの方が都合がよいので、trueにしておきます。</p>
-<pre><code class="language-json">{
-     &quot;code-runner.runInTerminal&quot;: true
-}
+<pre><code class="language-json">&quot;code-runner.runInTerminal&quot;: true
 </code></pre>
 <br>
 <p>以上です。</p>

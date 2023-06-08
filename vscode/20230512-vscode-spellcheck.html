@@ -82,7 +82,7 @@
           </div>
           <div class="side-content">
             ・
-            <a href="/vscode/20230502-vscode-liveserver">Live Server</a><br>
+            <a href="/vscode/20230609-vscode-liveserver">Live Server</a><br>
             <span style="display:block; margin-left:20px; margin-top:-7px;">- <span style="font-size:13px;">local server&#x7C21;&#x5358;&#x7ACB;&#x3061;&#x4E0A;&#x3052;</span></span>
           </div>
           <div class="side-content">
@@ -129,9 +129,14 @@
       <p>2023/05/12</p>
 <h1 id="vscodecode-spell-checker">VSCodeの拡張機能「Code Spell Checker」を使う</h1>
 <hr />
-<p>Code Spell Checkerを導入すると、英単語を随時チェックしてタイプミスを波線で表示してくれます。<br />
-また、キャメルケース(testWord)、スネークケース(test_word)にも対応しています。<br />
-ハンガリアン記法(testword)も設定すれば対応可能です。</p>
+<p>VSCodeに「Code Spell Checker」を導入すると、英単語のスペルミスを防ぐことができます。</p>
+<ul>
+<li>スペルミスを波線で指摘し、正解候補を表示してくれます。</li>
+<li>スペルチェックのルールはカスタマイズ可能です。</li>
+<li>キャメルケース(testWord)、スネークケース(test_word)にも対応しています。</li>
+<li>ハンガリアン記法(testword)も設定すれば対応可能です。</li>
+<li>英語以外の言語に対応するための拡張パックも準備されています。</li>
+</ul>
 <a href="https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker" style="text-decoration: none;">
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://streetsidesoftware.gallerycdn.vsassets.io/extensions/streetsidesoftware/code-spell-checker/2.20.4/1680519931370/Microsoft.VisualStudio.Services.Icons.Default');"></div></div><div class="text-box"><p class="title">Code Spell Checker - Visual Studio Marketplace</p><p class="description">Extension for Visual Studio Code - Spelling checker for source code</p></div></div>
 </a>
@@ -144,23 +149,23 @@
 <p>また、正解候補の表示もしてくれます。<br />
 スペルミスの箇所にカーソルを置いてQuick Fixをクリック、もしくは電球マークをクリックします。</p>
 <img src="../img/20230512-vscode-spellcheck-2.png" style="width:100%; max-width:400px;" alt="code spell checkのタイプミス正解候補の表示方法">
-<h2 id="section-1">スペルチェックのルール設定</h2>
+<h2 id="section-1">設定</h2>
 <p>チェックルールの設定方法を紹介します。<br />
 自分用の設定をして使いやすくしたり、ルールをチームで共有したりすることができます。</p>
 <h3 id="section-2">設定ファイルでの設定</h3>
 <p>code spell checkerの設定ファイルは3つあります。<br />
 以下の数字は優先順位になっています。</p>
 <ol>
-<li>　Workspace Folderに「cspell.json」を作成して設定</li>
+<li>　作業フォルダに「cspell.json」を作成して設定</li>
 <li>　VSCodeのWorkspace Settingsで設定</li>
 <li>　VSCodeのUser Settingsで設定</li>
 </ol>
 <p>1は自分でファイルを作成します。<br />
 2と3は自分でファイルを編集するほかに、VSCodeの設定画面もしくは右クリックメニューからも編集できます。</p>
 <br>
-<h4 id="cspell.json">■cspell.jsonの作成</h4>
-<p>jsonファイル形式で、以下を記述していきます。<br />
-よく使いそうなものをリストアップしてみました。</p>
+<h4 id="cspell.json">■cspell.jsonを作成して設定</h4>
+<p>jsonファイル形式で記述します。<br />
+よく使いそうな設定を下記にリストアップしました。</p>
 <table>
 <thead>
 <tr>
@@ -170,16 +175,16 @@
 </thead>
 <tbody>
 <tr>
-<td>words zzzzz</td>
-<td>&quot;zzzzz&quot;を辞書登録します、正解候補にも表示されます</td>
+<td>words</td>
+<td>単語を辞書登録します、正解候補にも表示されます</td>
 </tr>
 <tr>
-<td>ignoreWords zzzzz</td>
-<td>&quot;zzzzz&quot;をスペルチェックからはずします</td>
+<td>ignoreWords</td>
+<td>単語をスペルチェック対象からはずします</td>
 </tr>
 <tr>
-<td>flagWords zzzzz</td>
-<td>&quot;zzzzz&quot;を強制的にエラーにします</td>
+<td>flagWords</td>
+<td>指定単語を強制的にエラーにします</td>
 </tr>
 <tr>
 <td>allowCompoundWords</td>
@@ -219,15 +224,14 @@
 }
 </code></pre>
 <p>その他の項目は下記を参照ください。</p>
-<a href="https://cspell.org/configuration/" style="text-decoration: none;">
-<div class="link-box"><div class="img-box"><div style="background-image: url('');"></div></div><div class="text-box"><p class="title">CSpell Configuration</p><p class="description">Customizing CSpell - CSpell’s behavior can be controlled through a config file.</p></div></div>
-</a>  
-<h4 id="vscode">■VSCodeの設定画面から設定する</h4>
+<a href="https://github.com/streetsidesoftware/vscode-spell-checker/blob/main/docs/_includes/generated-docs/configuration.md" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/14ee129f5621dfd4be0874b726e8076c6b010b8475cf6b500676812bb59d15b3/streetsidesoftware/vscode-spell-checker');"></div></div><div class="text-box"><p class="title">vscode-spell-checker/configuration.md at main · streetsidesoftware/vscode-spell-checker</p><p class="description">A simple source code spell checker for code. Contribute to streetsidesoftware/vscode-spell-checker development by creating an account on GitHub.</p></div></div>
+</a>
+<h4 id="vscode">■VSCodeの設定画面から設定</h4>
 <p>VSCode上の拡張機能の設定画面で、Workspace SettingsおよびUser Settingsの各設定が可能です。</p>
 <img src="../img/20230512-vscode-spellcheck-4.png" style="width:100%; max-width:400px;" alt="code spell checkerの設定方法">
-<p>上記のcspell.jsonで設定できる項目は、こちらでも設定可能です。<br />
-全部で59項目ありますが、通常使うのは上記で紹介した数項目くらいな気もします。</p>
-<h4 id="section-3">■右クリックのメニューから設定</h4>
+<p>設定可能な項目は上記のcspell.jsonと同じです。</p>
+<h4 id="section-3">■右クリックで設定</h4>
 <p>エラーになった単語にカーソルを合わせて右クリックでメニューを開いて、単語の辞書登録をすることができます。</p>
 <img src="../img/20230512-vscode-spellcheck-5.png" style="width:100%; max-width:550px;" alt="code spell checkerの設定方法2">
 <ul>
@@ -238,12 +242,12 @@
 <li>Ignore Words：<br />
 　選択した単語の無視設定をWorkSpaceまたはUserのSettings.jsonファイルに登録します。</li>
 </ul>
-<p>また、ショートカットでも登録可能です。</p>
+<p>また、ショートカットでも辞書登録可能です。</p>
 <ul>
-<li>Mac:　⌘+. or Cmd+.</li>
-<li>Windows:　Ctrl+.</li>
+<li>Mac:　⌘+. or Cmd+&quot;.&quot;</li>
+<li>Windows:　Ctrl+&quot;.&quot;</li>
 </ul>
-<h3 id="section-4">（一応紹介）コード内での設定</h3>
+<h3 id="section-4">コード内で設定</h3>
 <p>「cSpell:xxxxx」をコメントアウトでコード内に記述することでルール設定ができます。<br />
 xxxxxのところに以下の設定欄の単語を入れます。<br />
 コード内に埋め込むのはイマイチかと思いますが。。</p>

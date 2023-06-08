@@ -42,7 +42,7 @@
 
   <meta property="og:title" content="VSCode&#x306E;&#x62E1;&#x5F35;&#x6A5F;&#x80FD;&#x300C;Live Server&#x300D;&#x3092;&#x4F7F;&#x3046;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/vscode/20230502-vscode-liveserver" />
+  <meta property="og:url" content="https://yamaccu.github.io/vscode/20230609-vscode-liveserver" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -82,7 +82,7 @@
           </div>
           <div class="side-content">
             ・
-            <a href="/vscode/20230502-vscode-liveserver">Live Server</a><br>
+            <a href="/vscode/20230609-vscode-liveserver">Live Server</a><br>
             <span style="display:block; margin-left:20px; margin-top:-7px;">- <span style="font-size:13px;">local server&#x7C21;&#x5358;&#x7ACB;&#x3061;&#x4E0A;&#x3052;</span></span>
           </div>
           <div class="side-content">
@@ -126,35 +126,30 @@
         </script>
         <br>
 
-      <p>2023/05/02</p>
+      <p>2023/06/09</p>
 <h1 id="vscodelive-server">VSCodeの拡張機能「Live Server」を使う</h1>
 <hr />
 <p>VSCodeでHTML/CSS/JavaScriptのプログラミングをする際には、拡張機能「Live Server」を導入すると便利です。</p>
-<p>ワンクリックでローカルサーバの立ち上げ、ページの表示ができます。<br />
-相対パスで指定したimage、CSSなどもちゃんと反映してくれます。<br />
-また、ホットリロードにも対応しており、元ファイルを変更して保存すると、表示中のページもすぐに変更が反映されます。</p>
+<ul>
+<li>ワンクリックでローカルサーバを立ち上げ、ページの表示ができます。</li>
+<li>相対パスで指定したimage、CSSなどの反映ができます。</li>
+<li>ホットリロードに対応しており、元ファイルを変更して保存すると、表示中のページもすぐに変更が反映されます。</li>
+<li>ホストのアドレスやポート番号、デフォルトブラウザ等の設定ができます。</li>
+<li>同一ネットワーク内の他のデバイス（携帯など）からもページへアクセスできます。</li>
+</ul>
 <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" style="text-decoration: none;">
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://ritwickdey.gallerycdn.vsassets.io/extensions/ritwickdey/liveserver/5.7.9/1661914858952/Microsoft.VisualStudio.Services.Icons.Default');"></div></div><div class="text-box"><p class="title">Live Server - Visual Studio Marketplace</p><p class="description">Extension for Visual Studio Code - Launch a development local Server with live reload feature for static & dynamic pages</p></div></div>
 </a>
 <h2 id="section">使い方</h2>
-<p>まず、VSCodeで表示したいファイルのあるフォルダを開きます。<br />
-注）フォルダで開かないとLive Serverは動作しません。</p>
-<p>ページの表示方法は何通りかあります。</p>
+<p>まず、VSCodeで表示したいファイル群のあるフォルダを開きます。<br />
+Live Serverの実行方法は何通りかあります。</p>
 <ul>
-<li><p>ファイルをVSCodeで開いて、ALT+L ⇒ ALT+O</p>
-</li>
-<li><p>ファイルをVScodeで開いて、どこでもいいので画面で右クリックし、「Open with Live Server」を選択</p>
-</li>
+<li>ALT+L ⇒ ALT+O</li>
+<li>右クリックし、「Open with Live Server」を選択</li>
+<li>右下のステータスバー上の「Go Live」をクリック</li>
 </ul>
-<img src="../img/20230502-vscode-liveserver-2.png" style="width:100%; max-width:450px; margin-left:30px;" alt="Live Serverを右クリックで起動する方法2">
-<ul>
-<li>ファイルをVSCodeで開いて、右下のステータスバー上の「Go Live」をクリック</li>
-</ul>
-<img src="../img/20230502-vscode-liveserver-3.png" style="width:100%; max-width:250px; margin-left:30px;" alt="Live Serverをステータスバーで起動する方法">
-<ul>
-<li>左のファイルリストから表示したいファイルを右クリックし、「Open with Live Server」を選択</li>
-</ul>
-<img src="../img/20230502-vscode-liveserver-1.png" style="width:100%; max-width:450px; margin-left:30px;" alt="Live Serverを右クリックで起動する方法">
+<p><img src="../img/20230502-vscode-liveserver-2.png" style="width:100%; max-width:400px; margin-left:30px;" alt="Live Serverを右クリックで起動する方法"><br></p>
+<p><img src="../img/20230502-vscode-liveserver-3.png" style="width:100%; max-width:250px; margin-left:30px;" alt="Live Serverをステータスバーで起動する方法"><br></p>
 <h2 id="section-1">設定</h2>
 <p>VSCode上の、拡張機能の画面で各種設定が可能です。</p>
 <img src="../img/20230502-vscode-liveserver-4.png" style="width:100%; max-width:400px;" alt="Live Serverの設定方法">
@@ -162,8 +157,41 @@
 <a href="https://github.com/ritwickdey/vscode-live-server/blob/428e01caf02bfa7ee75741df0f02fc9d2b5b0999/docs/settings.md" style="text-decoration: none;">
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/c2466fd049c018ffa305c88208f7b9c4a41d96201f788237163a37f9da3191db/ritwickdey/vscode-live-server');"></div></div><div class="text-box"><p class="title">vscode-live-server/settings.md · ritwickdey/vscode-live-server</p><p class="description">Launch a development local Server with live reload feature for static & dynamic pages.</p></div></div>
 </a>
-<p>全部で20項目あります。<br />
-ホストのアドレスやポート番号、デフォルトブラウザ等の設定ができます。</p>
+<p>使いそうなものを以下にリストアップしました。</p>
+<table>
+<thead>
+<tr>
+<th>設定</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>port</td>
+<td>使用するポート設定ができます。デフォルトは5500です。0にするとランダムになります。</td>
+</tr>
+<tr>
+<td>root</td>
+<td>表示ページのrootパスを設定できます。デフォルトはworkspace直下になっています(&quot;/&quot;)。</td>
+</tr>
+<tr>
+<td>CustomBrowser</td>
+<td>実行時に使用するブラウザを指定できます。</td>
+</tr>
+<tr>
+<td>proxy</td>
+<td>プロキシの設定ができます。</td>
+</tr>
+<tr>
+<td>fullReload</td>
+<td>CSS変更時にページ全体を再読み込みするかどうかを設定できます。デフォルトはOFFです。</td>
+</tr>
+<tr>
+<td>useLocalIp</td>
+<td>アドレス表示をlocal IPにします。</td>
+</tr>
+</tbody>
+</table>
 <br>
 <p>以上です。</p>
 <br>

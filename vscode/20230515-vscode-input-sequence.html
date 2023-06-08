@@ -82,7 +82,7 @@
           </div>
           <div class="side-content">
             ・
-            <a href="/vscode/20230502-vscode-liveserver">Live Server</a><br>
+            <a href="/vscode/20230609-vscode-liveserver">Live Server</a><br>
             <span style="display:block; margin-left:20px; margin-top:-7px;">- <span style="font-size:13px;">local server&#x7C21;&#x5358;&#x7ACB;&#x3061;&#x4E0A;&#x3052;</span></span>
           </div>
           <div class="side-content">
@@ -129,21 +129,17 @@
       <p>2023/05/15</p>
 <h1 id="vscodevscode-input-sequence">VSCodeの拡張機能「vscode-input-sequence」を使う</h1>
 <hr />
-<p>「vscode-input-sequence」は、文章やソースコードに連番を追加できる拡張機能です。<br />
-例えば変数名を連番にしたいときなどに便利です。</p>
+<p>「vscode-input-sequence」は、文章やソースコードに連番を追加できる拡張機能です。</p>
+<ul>
+<li>連番入力のスタートと、増減させるステップの数値を指定できます。</li>
+<li>連番の演算（＋かー）を指定できます。</li>
+<li>桁数を指定できます。</li>
+<li>基数（10進数、2進数など）を指定できます。</li>
+</ul>
 <a href="https://marketplace.visualstudio.com/items?itemName=tomoki1207.vscode-input-sequence" style="text-decoration: none;">
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://cdn.vsassets.io/v/M220_20230426.6/_content/Header/default_icon_128.png');"></div></div><div class="text-box"><p class="title">vscode-input-sequence - Visual Studio Marketplace</p><p class="description">Extension for Visual Studio Code - sequential-number in vscode</p></div></div>
 </a>
-<h2 id="section">設定</h2>
-<p>長らくメンテナンスされておらず、バグがあるようです。<br />
-回避するために、以下の設定が必須になっています。</p>
-<p><img src="../img/20230515-vscode-input-sequence-1.png" style="width:100%; max-width:450px;" alt="code spell checkerの設定方法"><br><br></p>
-<img src="../img/20230515-vscode-input-sequence-2.png" style="width:100%; max-width:450px;" alt="code spell checkerの設定方法2">
-<p>参考</p>
-<a href="https://github.com/tomoki1207/vscode-input-sequence/issues/15" style="text-decoration: none;">
-<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/95424adb546f8f059432ef2566257c15977e622bd7a6e21d2ae01b5825799bd8/tomoki1207/vscode-input-sequence/issues/15');"></div></div><div class="text-box"><p class="title">recently,it is repeated for each character entered · Issue #15 · tomoki1207/vscode-input-sequence</p><p class="description"></p></div></div>
-</a>
-<h2 id="section-1">使い方</h2>
+<h2 id="section">使い方</h2>
 <p>以下の手順で、連番を追加できます。</p>
 <ol>
 <li>複数選択をする（Alt押しながら選択で複数選択、もしくはShift + Alt同時押しで矩形選択）</li>
@@ -152,19 +148,51 @@
 </ol>
 <p>連番設定は以下のフォーマットになっています。</p>
 <p><span style="margin-left:25px; ">&lt;start&gt; &lt;operator&gt; &lt;step&gt; : &lt;digit&gt; : &lt;radix&gt; </span></p>
-<ul>
-<li>start：開始する数です。</li>
-<li>operator：演算子です。+もしくは-を指定します。</li>
-<li>step：増減させる数値です。</li>
-<li>digit：数字の桁数です。</li>
-<li>radix：基数です。2とすると、2進数で数を表示させます。<br />
-※start以外の値は省略可</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>設定</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start</td>
+<td>開始する数です。</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>演算子です。+もしくは-を指定します。</td>
+</tr>
+<tr>
+<td>step</td>
+<td>増減させる数値です。</td>
+</tr>
+<tr>
+<td>digit</td>
+<td>数字の桁数です。</td>
+</tr>
+<tr>
+<td>radix</td>
+<td>基数です。2とすると、2進数で数を表示させます。</td>
+</tr>
+</tbody>
+</table>
+<p>※start以外の値は省略可</p>
 <p>例）
 1+1:2　　1から1ずつカウントアップ、桁数2</p>
 <img src="../img/20230515-vscode-input-sequence-3.png" style="width:100%; max-width:450px;" alt="code spell checkerの使い方1">
 <p>1+2:4:2　　1から2ずつカウントアップ、桁数4、2進数</p>
 <img src="../img/20230515-vscode-input-sequence-4.png" style="width:100%; max-width:450px;" alt="code spell checkerの使い方2">
+<h2 id="section-1">設定</h2>
+<p>長らくメンテナンスされておらず、バグがあるようです。<br />
+回避するために、Replace Selectionの設定をONにする必要があります。</p>
+<p><img src="../img/20230515-vscode-input-sequence-1.png" style="width:100%; max-width:450px;" alt="code spell checkerの設定方法"><br><br></p>
+<img src="../img/20230515-vscode-input-sequence-2.png" style="width:100%; max-width:450px;" alt="code spell checkerの設定方法2">
+<p>参考</p>
+<a href="https://github.com/tomoki1207/vscode-input-sequence/issues/15" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://opengraph.githubassets.com/95424adb546f8f059432ef2566257c15977e622bd7a6e21d2ae01b5825799bd8/tomoki1207/vscode-input-sequence/issues/15');"></div></div><div class="text-box"><p class="title">recently,it is repeated for each character entered · Issue #15 · tomoki1207/vscode-input-sequence</p><p class="description"></p></div></div>
+</a>
 <br>
 <br>
 <p>以上です。</p>
