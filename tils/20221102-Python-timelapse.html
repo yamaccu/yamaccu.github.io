@@ -349,7 +349,6 @@ for i in range(len(images)):
     video.write(img)
 
 video.release()
-print('{} images converted to movie completed'.format(i))
 </code></pre>
 <p>tkinter</p>
 <ul>
@@ -403,11 +402,6 @@ mp4は'm','p','4','v'になります。</li>
 </ul>
 <br>
 <p>以上で、画像からタイムラプス動画が作成できます。</p>
-<h2 id="for">（おまけ）forループのスコープについて</h2>
-<p>上記のプログラムの最後で、forループの変数である&quot;i&quot;を使用しています。<br />
-C言語などでは、ループの外はスコープ外となり、ループ内で定義した変数&quot;i&quot;は使用できません。<br />
-一方で、Pythonはforループではスコープが形成されないので、ループ外でも&quot;i&quot;を使用することができます。</p>
-<p>if文でも同様にスコープは形成されません。</p>
 <br>
 <br>
 <hr />
