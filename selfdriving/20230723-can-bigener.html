@@ -1,0 +1,283 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>&#x521D;&#x5FC3;&#x8005;&#x5411;&#x3051; &#x8ECA;&#x8F09;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;CAN(ControlAreaNetwork)&#x306E;&#x57FA;&#x672C; | yokuaru Tech notes</title>
+
+  <link href="/scss/tech.css" rel="stylesheet" type="text/css">
+  <link href="/scss/prism.css" rel="stylesheet" type="text/css">
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
+    data-no-mirror></script>
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- google fonts
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+  -->
+
+  <script data-ad-client="ca-pub-2127299793131419" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-197465108-1');
+  </script>
+  -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q63MXL5083"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q63MXL5083');
+  </script>
+
+  <meta property="og:title" content="&#x521D;&#x5FC3;&#x8005;&#x5411;&#x3051; &#x8ECA;&#x8F09;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;CAN(ControlAreaNetwork)&#x306E;&#x57FA;&#x672C;" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yamaccu.github.io/selfdriving/20230723-can-bigener" />
+  <meta property="og:site_name" content="yokuaru Tech notes" />
+  <meta property="og:locale" content="ja_JP" />
+
+</head>
+
+<header style="background-image:url('/img/main2.png')">
+  <div class="flex-wrap">
+    <div>
+      <a href="/selfdriving" class="title">
+        SelfDriving
+      </a>
+    </div>
+    <div class="ext-link">
+      <a href="/"><img src="/img/home.png" class="ext-link-icon"
+          alt="homeへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"
+          alt="twitterへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"
+          alt="githubへのリンク"></a>
+    </div>
+  </div>
+  <br>
+</header>
+
+<body class="body-font">
+  <div class="post-wrap">
+    <div class="body-post">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+          style="display:block;min-width:400px;max-width:970px;width:100%;height:90px"
+          data-ad-client="ca-pub-2127299793131419" 
+          data-ad-slot="2560895837">
+        </ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+      <br>
+      <p>2023/07/23</p>
+<h1 id="cancontrolareanetwork">車載ネットワーク CAN(ControlAreaNetwork)の基本</h1>
+<hr />
+<h2 id="section">はじめに</h2>
+<p>CANとは、「Controller Area Network」の略で、主に自動車の電子部品の制御に使われています。<br />
+本ページでは、自分が調べたCANの基本仕様についてまとめています。</p>
+<h2 id="section-1">概要</h2>
+<p>CANはBosch社によって仕様が公開され、主に自動車業界での車両制御に使用されています。<br />
+現在はISOにて国際的に標準化された規格（ISO 11898）になっています。</p>
+<p>自動車の部品が電子化すると同時に、それらの通信に使用されているCANも急速に広がっていきました。<br />
+また、自動車業界以外では、FA機器などでも使用されています。</p>
+<h2 id="can">CANの種類</h2>
+<h3 id="can-2.0a">CAN 2.0a</h3>
+<p>CANの基本形で、後述する11bit IDの「標準フォーマット」を使用します。</p>
+<h3 id="can-2.0b">CAN 2.0b</h3>
+<p>CAN 2.0aに対して、29bit IDの「拡張フォーマット」を使用します。<br />
+標準フォーマットでも通信可能となっています。</p>
+<h3 id="j1939">J1939</h3>
+<p>バスやトラックなどの重車両や商用車両で広く使用される通信プロトコルです。<br />
+SAE（Society of Automotive Engineers）が定めており、CAN 2.0bをベースにしています。<br />
+車両のエンジン、トランスミッション、ブレーキ、サスペンションなどの様々な制御システム間での通信を規定しています。</p>
+<h3 id="can-fd">CAN FD</h3>
+<p>CAN FDは、&quot;Flexible Data-Rate&quot;の略であり、データレートが可変で最大5Mbpsまでサポートします。<br />
+また、1フレームのデータ長を8バイトから64バイトに拡張しており、従来のCANよりも高速、大容量通信を可能にしています。</p>
+<h2 id="can-1">CANの特徴</h2>
+<h3 id="section-2">マルチマスター</h3>
+<p>CANでは、どのデバイスもマスターとしてデータを送信するとともに、スレイブとしてデータを受信することが可能です。<br />
+マルチマスターによって以下を実現できます。</p>
+<ul>
+<li>各ノードを同一仕様で設計できる</li>
+<li>各ノードが自由なタイミングで通信の送受信が可能（ただし調停が必要）</li>
+<li>ノードの追加削除が容易</li>
+</ul>
+<p>複数のデバイスが同時にバスアクセス可能なので、同時にデータが送信された場合は、適切な調停による優先順位付けが重要です。</p>
+<h3 id="section-3">通信の優先順位付け</h3>
+<p>マルチマスターにおけるバスの調停方法がCSMA/CA（Carrier Sense Multiple Access with Cpllision Avoidance）です。<br />
+ノードに優先順位をつけ、衝突が起きた場合は優先順位の高い通信を優先して送信する仕組みになっています。</p>
+<p>優先順位はIDによって判別します。<br />
+具体的には、「ドミナントとレセシブ」の関係を使用します。</p>
+<ul>
+<li>ドミナント：データ&quot;0&quot;、バスのLレベル</li>
+<li>レセシブ：データ&quot;1&quot; 、バスのHレベル</li>
+</ul>
+<p>ドミナントは&quot;優性&quot;、レセシブは&quot;劣性&quot;の意味で、ドミナントとレセシブが別のノードから同時に送信された場合は、ドミナントが優先されます。<br />
+例えば、IDが0のノードと1のノードが同時にデータを送信した場合、IDの0と1が比較され、IDが0のノードが優先されます。</p>
+<h3 id="section-4">データの一貫性</h3>
+<p>通信時、もし1台のノードが受信に失敗した場合は、データを受信した全ノードがデータを破棄し、全ノードが受信に成功するまで送受信を繰り返します。<br />
+これにより、ある制御を行う場合、全ノードにおいて使用するデータは同一ということになるので、データの一貫性を保つことができます。</p>
+<p>エラー検出は、CRCの整合、ACK、送信ビットのモニタリング、プロトコルのフォームチェック、ビットスタッフィングチェックなどで行います。</p>
+<h3 id="section-5">同期</h3>
+<p>CANはクロック信号線がないため、各デバイスで通信速度を正確に合わせる必要があります。<br />
+通信速度の「同期」は、信号がレセシブからドミナントへ変化する時（&quot;1&quot;-&gt;&quot;0&quot;変化時）に同期をとっています。</p>
+<h3 id="section-6">ビットスタッフィング</h3>
+<p>CANでは、データが&quot;1&quot;-&gt;&quot;0&quot;に変化するときに同期が行われるので、もし&quot;0&quot;もしくは&quot;1&quot;が長時間連続した場合は同期ができない状態になり、ビットずれが発生する可能性があります。<br />
+そこで、CANでは「ビットスタッフィング」を採用しています。<br />
+ビットスタッフィングとは、バス上で同じ状態が5回連続した場合、それまで送信されていた状態と反対の状態のビットを1つ挿入する仕組みのことです。</p>
+<p>たとえば、&quot;000000111111&quot;と連続する場合、実際には&quot;00000101111101&quot;と送信されることになります。<br />
+これにより、確実に同期をとることができます。</p>
+<h2 id="can-2">CANのプロトコル</h2>
+<p>CANには、以下4つの通信タイプがあります。</p>
+<ul>
+<li>データフレーム</li>
+<li>リモートフレーム</li>
+<li>オーバーロードフレーム</li>
+<li>エラーフレーム</li>
+</ul>
+<h3 id="section-7">データフレーム</h3>
+<p>データを送信するフレームです。<br />
+データフレームには「標準フォーマット（11ビットID）」と「拡張フォーマット（29ビットID）」の2つがあります。</p>
+<h4 id="section-8">■標準フォーマット</h4>
+<p>IDが11ビットです。</p>
+<img src="../img/20230723-can-bigener-1.png" style="width:100%; max-width:700px; margin-top:5px" alt="CANの標準データフレーム">  
+<ul>
+<li>SOF<br />
+Start Of Frame、ドミナントを送信することで通信開始を他のデバイスに伝えます。</li>
+<li>ID<br />
+送信ノードの識別、調停の優先順位に使用します。</li>
+<li>RTR<br />
+Remote Transmission Request、データフレームの場合にはドミナント、リモートフレームはレセシブになります。</li>
+<li>コントロールフィールド<br />
+1ビットのIDE（Identifier Extension）、1ビットの予約ビットr、4ビットのデータレングスコード（DLC：Data Length Code）から構成されます。標準フォーマットの場合、IDEはドミナントです。</li>
+<li>データフィールド<br />
+送信データです。DLC によって設定されたデータ長となります。</li>
+<li>CRC<br />
+誤り検出の仕組みです。送信ノードがSOF、ID、コントロールフィールド、データフィールドの送信値より演算してCRCシーケン
+スで演算結果を送信します。受信ノードはデータを受診したら同様に演算して、その結果を比較することで正常に受信できたかの判断を行うことができます。</li>
+<li>ACK<br />
+受信ノードがCRCフィールド部分まで正常に受信できた場合は、ACKをドミナントとすることで確認応答となります。</li>
+<li>EOF<br />
+End Of Frame、7ビットのレセシブとなっています。</li>
+<li>ITM<br />
+3ビットのレセシブ、このITM終了後にバスアイドルとなります。「オーバーロードフレーム」のみITMにおいて唯一送信可能となっています。</li>
+</ul>
+<h4 id="section-9">■拡張フォーマット</h4>
+<p>標準フォーマットは11bit IDで2048種類となりますが、拡張フォーマットは29bit IDで約5億4千万種類となります。</p>
+<img src="../img/20230723-can-bigener-2.png" style="width:100%; max-width:750px; margin-top:5px" alt="CANの拡張データフレーム">  
+<ul>
+<li>SRR<br />
+Substitute Remote Request、1bitのレセシブとなります。</li>
+<li>IDE<br />
+Identifier Extension、1bitのレセシブとなります。</li>
+<li>拡張ID<br />
+標準フォーマットでの11bitに、拡張IDの18bitを加えて、IDは合計で29bitとなります。</li>
+</ul>
+<p>その他は標準フォーマットとおなじです。</p>
+<h3 id="section-10">リモートフレーム</h3>
+<p>リモートフレームはデータフレームの要求に使用されます。<br />
+基本構造はデータフレームからデータフィールドを除いたもので、IDは要求先のデバイスのIDを指定します。<br />
+RTRはレセシブになります。</p>
+<img src="../img/20230723-can-bigener-3.png" style="width:100%; max-width:550px; margin-top:5px" alt="CANのリモートフレーム">  
+<p>近年ではリモートフレームはとほんど使わず、各デバイスが定期的にデータフレームを送信する方式の方が一般的のようです。</p>
+<h3 id="section-11">オーバーロードフレーム</h3>
+<p>オーバーロードフレームは、CANコントローラが前回のフレームの処理をまだ完了していない時に、次のフレームの開始を遅延させるために用いられます。<br />
+近年のCANコントローラは処理速度が向上しており、オーバーロードフレームはあまり使用されていないようです。</p>
+<img src="../img/20230723-can-bigener-4.png" style="width:100%; max-width:350px; margin-top:5px" alt="CANのオーバーロードフレーム">  
+<ul>
+<li>オーバーロードフラグ<br />
+6ビットのドミナントから構成され、ITMの3bit以内に開始されます。</li>
+<li>オーバーロードデリミタ<br />
+8ビットのレセシブから構成され、オーバーロードフレームの区切りを示します。</li>
+</ul>
+<h3 id="section-12">エラーフレーム</h3>
+<p>エラーフレームは、通信中に各種エラーが発生した時に送信されるフレームで、ビットスタッフィングルールに違反、または固定フォーム部分を破壊する形で、直近の送信を中断させます。<br />
+これにより、ネットワークに接続されているノードに異常を知らせます。</p>
+<img src="../img/20230723-can-bigener-5.png" style="width:100%; max-width:350px; margin-top:5px" alt="CANのエラーフレーム">  
+<ul>
+<li>エラーフラグ
+6ビットのドミナントを送信することでビットスタッフィングルールに違反し、他のノードにエラー発生を通知します。<br />
+他のノードもこれをみてエラーフラグを送信するので、結果として、最大12ビットのドミナントとなります。</li>
+<li>エラーデリミタ
+8ビットのレセシブで、エラーフレームの終了を示します。</li>
+</ul>
+<h2 id="can-3">CANのエラー処理</h2>
+<p>CANではエラー状態というものが定義されており、接続しているデバイスは以下の3つのいずれかになっています。</p>
+<ul>
+<li>エラーアクティブ： 正常</li>
+<li>エラーパッシブ： エラーを起こしやすい状態、通信優先度が下げられている状態</li>
+<li>バスオフ： 通信に参加できない状態</li>
+</ul>
+<p>エラー状態は、エラー発生数によって決定されます。<br />
+個々のデバイスでエラーカウントのパラメータを有しており、エラー発生時にカウントアップ、通信成功時にはカウントダウンしています。<br />
+（詳細なカウントアップ・ダウンの仕様についてはここでは省きます）</p>
+<h2 id="section-13">参考文献</h2>
+<ul>
+<li><a href="https://cdn.vector.com/cms/content/know-how/VJ/PDF/For_Beginners_CAN_CANFD.pdf">はじめてのCAN / CAN FD</a></li>
+</ul>
+<br>
+以上です。  
+<br>
+<br>
+<hr />
+
+
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+      <script src="https://utteranc.es/client.js" repo="yamaccu/yamaccu.github.io" issue-term="pathname"
+        theme="github-light" crossorigin="anonymous" async>
+        </script>
+        <hr>
+
+    </div>
+    <div style="flex-basis:350px; margin-left:20px;">
+
+        <p>SelfDriving Index</p>
+
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2023/7/23</span><br>
+              &nbsp;&nbsp; <a href="/selfdriving/20230723-can-bigener">CAN&#x306E;&#x57FA;&#x672C;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2023/7/6</span><br>
+              &nbsp;&nbsp; <a href="/selfdriving/20230706-jidounten-nohon">&#x300C;&#x30C8;&#x30B3;&#x30C8;&#x30F3;&#x3084;&#x3055;&#x3057;&#x3044;&#x81EA;&#x52D5;&#x904B;&#x8EE2;&#x306E;&#x672C;&#x300D;&#x307E;&#x3068;&#x3081;</a></p>
+
+        <br>
+
+        <div class="stickyads">
+        <div class="adslot_1">
+          <p>Sponsor</p>
+          <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+            crossorigin="anonymous"></script>
+          <!-- head -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+            data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
