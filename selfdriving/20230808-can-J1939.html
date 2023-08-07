@@ -1,0 +1,224 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>J1939&#x306E;&#x57FA;&#x672C; | yokuaru Tech notes</title>
+
+  <link href="/scss/tech.css" rel="stylesheet" type="text/css">
+  <link href="/scss/prism.css" rel="stylesheet" type="text/css">
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
+    data-no-mirror></script>
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- google fonts
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+  -->
+
+  <script data-ad-client="ca-pub-2127299793131419" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-197465108-1');
+  </script>
+  -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q63MXL5083"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q63MXL5083');
+  </script>
+
+  <meta property="og:title" content="J1939&#x306E;&#x57FA;&#x672C;" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yamaccu.github.io/selfdriving/20230808-can-J1939" />
+  <meta property="og:site_name" content="yokuaru Tech notes" />
+  <meta property="og:locale" content="ja_JP" />
+
+</head>
+
+<header style="background-image:url('/img/main2.png')">
+  <div class="flex-wrap">
+    <div>
+      <a href="/selfdriving" class="title">
+        SelfDriving
+      </a>
+    </div>
+    <div class="ext-link">
+      <a href="/"><img src="/img/home.png" class="ext-link-icon"
+          alt="homeへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"
+          alt="twitterへのリンク"></a>&nbsp;&nbsp;
+      <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"
+          alt="githubへのリンク"></a>
+    </div>
+  </div>
+  <br>
+</header>
+
+<body class="body-font">
+  <div class="post-wrap">
+    <div class="body-post">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+          style="display:block;min-width:400px;max-width:970px;width:100%;height:90px"
+          data-ad-client="ca-pub-2127299793131419" 
+          data-ad-slot="2560895837">
+        </ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+      <br>
+      <p>2023/08/08</p>
+<h1 id="can-j1939">大型車向けCAN J1939の基本</h1>
+<hr />
+<h2 id="section">はじめに</h2>
+<p>J1939は、バスやトラックなどの重車両や商用車両で広く使用される通信プロトコルです。<br />
+SAE（Society of Automotive Engineers）が定めており、CAN 2.0bをベースにしています。<br />
+車両のエンジン、トランスミッション、ブレーキ、サスペンションなどの様々な制御システム間での通信を規定しています。</p>
+<p>本ページでは、自分が調べたJ1939の仕様についてまとめています。</p>
+<p>CANについては、以下にまとめております。</p>
+<a href="https://yamaccu.github.io/selfdriving/20230723-can-bigener" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://yamaccu.github.io/img/20230723-can-bigener.png');"></div></div><div class="text-box"><p class="title">初心者向け 車載ネットワークCAN(ControlAreaNetwork)の基本</p><p class="description">CANの基本についてまとめました</p></div></div>
+</a>
+<h2 id="j1939">J1939の特徴</h2>
+<ul>
+<li>ベースはCAN 2.0b</li>
+<li>PGNによるグルーピング</li>
+<li>アドレスやデバイスネームによるネットワークマネジメント</li>
+</ul>
+<h2 id="pgn-parameter-group-number">PGN (Parameter Group Number)</h2>
+<p>Parameter Groupは、通信メッセージを機能でグルーピングしているものです。（エンジンデータ、ブレーキデータなど）<br />
+18ビットのPGN（Parameter Group Number）によって識別され、通信時のCAN ID内で指定されています。<br />
+仕様書のJ1939-71で、Parameter Groupおよびその内容が定義されています。</p>
+<p>PGNは、「Extended Data Page」、「Data Page」、「PDU Format」、「PDU Specific」の4つを合わせた18bitの値として表記されます。</p>
+<img src="../img/20230808-can-J1939-1.png" style="width:100%; max-width:450px; margin-top:5px" alt="J1939のPGN">  
+<ul>
+<li>priority: 通信の優先順位付けに使用します。0が最も優先順位が高くなっています。</li>
+<li>Extended Data Page: 基本&quot;0&quot;です。</li>
+<li>Data page: PGNのページングを行います。
+<ul>
+<li>0: SAE J1939 Page0 のPGN</li>
+<li>1: SAE J1939 Page1 のPGN</li>
+</ul>
+</li>
+<li>PDU Format: メッセージの中身を特定するための8ビットの識別子です。<br />
+例えば、エンジンに関するデータなのか、ブレーキシステムに関するデータなのか、などがわかります。<br />
+値が240～255の間の場合は、ブロードキャスト通信となります。</li>
+<li>PDU Specific: PDU Formatによって値の扱いが変わります。
+<ul>
+<li>PFが0～239の間 ⇒ PDU1、宛先アドレスが入ります。 (DE:Destination Address)</li>
+<li>PFが240～255の間 ⇒ PDU2、使用できるブロードキャストメッセージの数を増やすために使用されます。(GE:Group Extension)</li>
+</ul>
+</li>
+<li>Source Address: 送信元のデバイスのアドレスです。</li>
+</ul>
+<br>
+<p>以下に、PGNの例を挙げてみます。</p>
+<p>■ XBR（External Brake Request）</p>
+<ul>
+<li>PGN: 1024 (0x000400)</li>
+<li>Default Priority: 3</li>
+<li>Extended Data Page: 0</li>
+<li>Data Page: 0</li>
+<li>PDU Format: 4</li>
+<li>PDU Specific: Destination Address</li>
+</ul>
+<p>■ EBC1（Electronic Brake Controller 1）</p>
+<ul>
+<li>PGN: 61441 (0x00F001)</li>
+<li>Default Priority: 6</li>
+<li>Extended Data Page: 0</li>
+<li>Data Page: 0</li>
+<li>PDU Format: 250</li>
+<li>PDU Specific: 1  (Group Extention)</li>
+</ul>
+<h2 id="address-claim">Address Claim</h2>
+<p>各デバイスは通信を開始する際に、自身のSource Addressを使用することをネットワーク上で宣言する必要があります。<br />
+この宣言をAddress Claimと言います。<br />
+以下のようなデータをネットワークに送信します。</p>
+<img src="../img/20230808-can-J1939-2.png" style="width:100%; max-width:550px; margin-top:5px" alt="J1939のアドレスクレーム">  
+<ul>
+<li>priority: 優先順位、通常「0x6」となります。</li>
+<li>Extended Data Page: 0</li>
+<li>Data Page: 0</li>
+<li>PDU Format: アドレスクレーム時は「0xEE」となります。</li>
+<li>PDU Specific: アドレスクレーム時は「0xFF」となります。</li>
+<li>Source Address: 取得したいアドレスです。</li>
+<li>Device Name: 64bitのデバイス固有の値です。通信のメッセージ部がDevice Nameとなります。</li>
+</ul>
+<p>※&quot;0x&quot;は16進数の意味です。</p>
+<p>Source Addressが重複した場合は、Device Nameによって優先順位がきまります。</p>
+<h2 id="section-1">参考文献</h2>
+<ul>
+<li><a href="https://www.softech.co.jp/mm_181003_tr.htm">ソフテックだより技術レポート「SAE J1939プロトコルについて」</a></li>
+<li><a href="https://www.ixxat.com/ja/technologies/fieldbuses/sae-j1939">ixxact.com SAE J1939</a></li>
+</ul>
+<br>
+以上です。  
+<br>
+<br>
+<hr />
+
+
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+      <!-- head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+      <script src="https://utteranc.es/client.js" repo="yamaccu/yamaccu.github.io" issue-term="pathname"
+        theme="github-light" crossorigin="anonymous" async>
+        </script>
+        <hr>
+
+    </div>
+    <div style="flex-basis:350px; margin-left:20px;">
+
+        <p>SelfDriving Index</p>
+
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2023/8/8</span><br>
+              &nbsp;&nbsp; <a href="/selfdriving/20230808-can-J1939">J1939&#x306E;&#x57FA;&#x672C;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2023/7/23</span><br>
+              &nbsp;&nbsp; <a href="/selfdriving/20230723-can-bigener">CAN&#x306E;&#x57FA;&#x672C;</a></p>
+              <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2023/7/6</span><br>
+              &nbsp;&nbsp; <a href="/selfdriving/20230706-jidounten-nohon">&#x300C;&#x30C8;&#x30B3;&#x30C8;&#x30F3;&#x3084;&#x3055;&#x3057;&#x3044;&#x81EA;&#x52D5;&#x904B;&#x8EE2;&#x306E;&#x672C;&#x300D;&#x307E;&#x3068;&#x3081;</a></p>
+
+        <br>
+
+        <div class="stickyads">
+        <div class="adslot_1">
+          <p>Sponsor</p>
+          <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+            crossorigin="anonymous"></script>
+          <!-- head -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419"
+            data-ad-slot="2560895837" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
