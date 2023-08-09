@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>J1939&#x306E;&#x57FA;&#x672C; | yokuaru Tech notes</title>
+  <title>J1939&#x306E;&#x4ED5;&#x69D8; | yokuaru Tech notes</title>
 
   <link href="/scss/tech.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -42,7 +42,7 @@
     gtag('config', 'G-Q63MXL5083');
   </script>
 
-  <meta property="og:title" content="J1939&#x306E;&#x57FA;&#x672C;" />
+  <meta property="og:title" content="J1939&#x306E;&#x4ED5;&#x69D8;" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://yamaccu.github.io/selfdriving/20230808-can-J1939" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
@@ -83,12 +83,11 @@
 
       <br>
       <p>2023/08/08</p>
-<h1 id="can-j1939">大型車向けCAN J1939の基本</h1>
+<h1 id="can-j1939">大型車向けCAN J1939の仕様</h1>
 <hr />
 <h2 id="section">はじめに</h2>
 <p>J1939は、バスやトラックなどの重車両や商用車両で広く使用される通信プロトコルです。<br />
-SAE（Society of Automotive Engineers）が定めており、CAN 2.0bをベースにしています。<br />
-車両のエンジン、トランスミッション、ブレーキ、サスペンションなどの様々な制御システム間での通信を規定しています。</p>
+SAE（Society of Automotive Engineers）が定めており、CAN 2.0bをベースにしています。</p>
 <p>本ページでは、自分が調べたJ1939の仕様についてまとめています。</p>
 <p>CANについては、以下にまとめております。</p>
 <a href="https://yamaccu.github.io/selfdriving/20230723-can-bigener" style="text-decoration: none;">
@@ -98,12 +97,12 @@ SAE（Society of Automotive Engineers）が定めており、CAN 2.0bをベー�
 <ul>
 <li>ベースはCAN 2.0b</li>
 <li>PGNによるグルーピング</li>
-<li>アドレスやデバイスネームによるネットワークマネジメント</li>
+<li>AddressやDeviceNameによるネットワークマネジメント</li>
 </ul>
 <h2 id="pgn-parameter-group-number">PGN (Parameter Group Number)</h2>
 <p>Parameter Groupは、通信メッセージを機能でグルーピングしているものです。（エンジンデータ、ブレーキデータなど）<br />
 18ビットのPGN（Parameter Group Number）によって識別され、通信時のCAN ID内で指定されています。<br />
-仕様書のJ1939-71で、Parameter Groupおよびその内容が定義されています。</p>
+内容は仕様書のJ1939-71で定義されています。</p>
 <p>PGNは、「Extended Data Page」、「Data Page」、「PDU Format」、「PDU Specific」の4つを合わせた18bitの値として表記されます。</p>
 <img src="../img/20230808-can-J1939-1.png" style="width:100%; max-width:450px; margin-top:5px" alt="J1939のPGN">  
 <ul>
@@ -195,7 +194,7 @@ SAE（Society of Automotive Engineers）が定めており、CAN 2.0bをベー�
         <p>SelfDriving Index</p>
 
               <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2023/8/8</span><br>
-              &nbsp;&nbsp; <a href="/selfdriving/20230808-can-J1939">J1939&#x306E;&#x57FA;&#x672C;</a></p>
+              &nbsp;&nbsp; <a href="/selfdriving/20230808-can-J1939">J1939&#x306E;&#x4ED5;&#x69D8;</a></p>
               <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2023/7/23</span><br>
               &nbsp;&nbsp; <a href="/selfdriving/20230723-can-bigener">CAN&#x306E;&#x57FA;&#x672C;</a></p>
               <p style="margin-top:-10px; margin-left:10px;"><span style="font-size:12px;">2023/7/6</span><br>
