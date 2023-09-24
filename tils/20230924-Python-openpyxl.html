@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>&#x300C;python&#x300D;&#x4EEE;&#x60F3;&#x74B0;&#x5883;&#x306E;&#x4F5C;&#x308A;&#x65B9; | yokuaru Tech notes</title>
+  <title>&#x300C;python&#x300D;openpyxl&#x3067;excel&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x8AAD;&#x307F;&#x8FBC;&#x307F; / &#x66F8;&#x304D;&#x8FBC;&#x307F;&#x64CD;&#x4F5C;&#x3092;&#x3059;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -43,9 +43,9 @@
     gtag('config', 'G-Q63MXL5083');
   </script>
 
-  <meta property="og:title" content="&#x300C;python&#x300D;&#x4EEE;&#x60F3;&#x74B0;&#x5883;&#x306E;&#x4F5C;&#x308A;&#x65B9;" />
+  <meta property="og:title" content="&#x300C;python&#x300D;openpyxl&#x3067;excel&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x8AAD;&#x307F;&#x8FBC;&#x307F; / &#x66F8;&#x304D;&#x8FBC;&#x307F;&#x64CD;&#x4F5C;&#x3092;&#x3059;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210820-Python-pipenv" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20230924-Python-openpyxl" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -301,71 +301,89 @@
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <br>
 
-      <p>2021/08/20     更新　2023/9/24</p>
-<h1 id="python">pythonでプログラミングする際の仮想環境の構築</h1>
+      <p>20232/9/24</p>
+<h1 id="pythonopenpyxl">pythonでopenpyxlを使ってエクセルファイルを操作する</h1>
 <hr />
-<p>Pythonでプログラミングを行う際には、作るプログラムごとに仮想環境を構築します。<br />
-理由は、</p>
+<p>エクセルファイルで大量のデータを処理したいとき、pythonのopenpyxlを使用して自動化することができます。<br />
+本記事では、openpyxlの使用例をまとめています。</p>
 <ul>
-<li>仮想環境ごとに必要なパッケージのバージョンをインストールできます。</li>
-<li>パッケージが複数のプログラムへ影響を与えるなどの、各プログラム間の干渉を回避できます。</li>
+<li>openpyxlについて</li>
+<li>openpyxlのインストール</li>
+<li>エクセルファイルを開く</li>
+<li>データの読み込み</li>
+<li>データの書き込み</li>
+<li>新規シート作成</li>
+<li>保存</li>
 </ul>
-<p>仮想環境の作成にはいくつか方法がありますが、ここではpipenvを使用します。</p>
-<a href="https://pipenv.pypa.io/en/latest/" style="text-decoration: none;">
-  <div class="link-box">
-    <div class="img-box">
-      <div style="background-image: url('https://pipenv.pypa.io/en/latest/_static/pipenv.png');">
-      </div>
-    </div>
-    <div class="text-box">
-      <p class="title">Pipenv: Python Dev Workflow for Humans</p>
-      <p class="description">Pipenv is a tool that aims to bring the best of all packaging worlds (bundler, composer, npm, cargo, yarn, etc.) to the Python world.</p>
-    </div>
-  </div>
+<h2 id="openpyxl">openpyxlについて</h2>
+<p>openpyxlは、pythonでエクセルファイルを操作するためのオープンソースライブラリです。<br />
+公式ドキュメントはこちらです。</p>
+<a href="https://openpyxl.readthedocs.io/en/stable/" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://openpyxl.readthedocs.io/en/stable/_static/logo.png');"></div></div><div class="text-box"><p class="title">openpyxl</p><p class="description">A Python library to read/write Excel 2010 xlsx/xlsm files</p></div></div>
 </a>
-<h2 id="section">仮想環境の作成手順</h2>
-<h3 id="pipenv">1. pipenvをインストールします。</h3>
-<pre><code class="language-C#">pip install pipenv
+<p>ソースコードはこちらです。</p>
+<a href="https://foss.heptapod.net/openpyxl/openpyxl" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://foss.heptapod.net/uploads/-/system/appearance/header_logo/1/logo.svg');"></div></div><div class="text-box"><p class="title">openpyxl - GitLab</p><p class="description">openpyxl</p></div></div>
+</a>
+<h2 id="openpyxl-1">openpyxlのインストール</h2>
+<p>以下のコマンドを実行します。</p>
+<pre><code class="language-python">pip install openpyxl
 </code></pre>
-<h3 id="section-1">2. 作業ディレクトリを作成します。</h3>
-<h3 id="pipenv-1">3. 作業ディレクトリに移動して、必要なパッケージをpipenvコマンドでインストールします。</h3>
-<p>（pipfileという設定ファイルが作成され、ここに仮想環境の情報が入ります。）</p>
-<pre><code class="language-shell">pipenv install xxxxxx
-</code></pre>
-<p>PCにインストールされているpythonのバージョンが最新でない場合、以下のエラーが出ることがあります。<br />
-その場合は、最初にpythonのバージョンを指定して環境構築するか、pythonを最新にバージョンアップしてください。</p>
-<pre><code class="language-C#"># エラーログ
-PS C:\yusuke\program\python\openpyxl&gt; pipenv install openpyxl
-Warning: Python 3.11 was not found on your system...
-Neither 'pyenv' nor 'asdf' could be found to install Python.
+<p>pythonでライブラリをインストールする場合、仮想環境を準備することをお勧めします。<br />
+以下で、pipenvを利用した仮想環境の構築方法を紹介しています。</p>
+<p>（参考）<span class="link"></span><a href="https://yamaccu.github.io/tils/20210820-Python-pipenv">pipenvを使用した仮想環境の準備方法</a></p>
+<h2 id="section">エクセルファイルを開く</h2>
+<p>エクセルファイルを読み込んで、処理を行うシートを指定します。</p>
+<pre><code class="language-python"># エクセルファイル読み込み
+wb = openpyxl.load_workbook(&quot;ファイル名.xlsx&quot;)
 
-# 以下でpythonのバージョンを指定してあげる
-pipenv install python 3.9.5
+# シートの指定方法は2つある
+sheet = wb.worksheets[0]   ## indexで指定
+sheet = workbook['Sheet1']   ## シート名で指定
 </code></pre>
-<p>インストールするパッケージが多い場合は、txtファイルでリストを作って、一気に読み込むこともできます。<br />
-requirementsというファイルを作り、中身を例えば以下のように作成します。</p>
-<pre><code class="language-php">packageA==9.0.0
-packageB==1.5.0
-packageC==2.7.0
+<h2 id="section-1">データの読み込み</h2>
+<p>シート指定後、以下で読み込みます。</p>
+<pre><code class="language-python"># セルを指定
+value = sheet[A1].value   ## セルを指定
+value = sheet.cell(row=2, column=2).value   ## 行と列を指定
+
+# 1行をリストとして取得
+data_column = []
+for row in sheet.iter_rows(min_row=1, max_row=sheet.max_row, min_col=1, max_col=1):
+    for cell in row:
+        data_column.append(cell.value)
 </code></pre>
-<p>そして、下記のコマンドで一括インストールします。</p>
-<pre><code class="language-C#">pipenv install -r requirements.txt
+<h2 id="section-2">データの書き込み</h2>
+<p>シート指定後、以下で書き込みます。</p>
+<pre><code class="language-python"># セルへの書き込み、3パターンあります
+sheet[&quot;A1&quot;].value = 1234
+sheet.cell(row=1, column=1).value = 1234
+sheet.cell(row=1, column=1, value=1234)
 </code></pre>
-<h3 id="section-2">4. 仮想環境を実行します。</h3>
-<pre><code class="language-C#">pipenv shell
+<h2 id="section-3">新規シート作成</h2>
+<p>新規シート作成は以下です。<br />
+加工したデータを別シートに保存するときなどに使用できます。</p>
+<pre><code class="language-python"># エクセルファイル読み込み
+wb = openpyxl.load_workbook(&quot;ファイル名.xlsx&quot;)
+
+# 新規シート作成
+new_sheet =  wb.create_sheet(&quot;新規シート名&quot;)
 </code></pre>
-<h3 id="section-3">5. 仮想環境を終了します。</h3>
-<pre><code class="language-C#">exit
-</code></pre>
-<p>※仮想環境に入らずにコマンド実行もできます。</p>
-<pre><code class="language-C#">pipenv run xxxxxx
-</code></pre>
-<h3 id="section-4">6. 仮想環境の削除</h3>
-<p>仮想環境を構築したフォルダで以下のコマンドを実行すると削除できます。</p>
-<pre><code class="language-C#">pipenv --rm
+<h2 id="section-4">ファイル保存</h2>
+<p>以下で処理したシートの保存ができます。<br />
+上書き保存は、既存のファイルと同じファイル名で保存することでできます。</p>
+<pre><code class="language-python"># エクセルファイル読み込み
+wb = openpyxl.load_workbook(&quot;ファイル名.xlsx&quot;)
+
+　・
+　・　（処理を実施）
+　・
+
+# 保存
+wb.save(&quot;ファイル名.xlsx&quot;)
 </code></pre>
 <br>
-<p>以上です。</p>
+<p>以上を使用して、データを読み出して加工し、書き込むことでデータ処理を自動化することができます。</p>
 <br>
 <br>
 <hr />
