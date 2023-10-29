@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>&#x300C;C#&#x300D;StyleCop Analyzers&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
+  <title>KiCAD&#x3067;&#x56DE;&#x8DEF;&#x8A2D;&#x8A08;&#x306E;&#x30B7;&#x30F3;&#x30DC;&#x30EB;&#x767B;&#x9332;&#x3092;&#x3059;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -42,9 +42,9 @@
     gtag('config', 'G-Q63MXL5083');
   </script>
 
-  <meta property="og:title" content="&#x300C;C#&#x300D;StyleCop Analyzers&#x3092;&#x4F7F;&#x3046;" />
+  <meta property="og:title" content="KiCAD&#x3067;&#x56DE;&#x8DEF;&#x8A2D;&#x8A08;&#x306E;&#x30B7;&#x30F3;&#x30DC;&#x30EB;&#x767B;&#x9332;&#x3092;&#x3059;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210925-Csharp-StyleCop" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20231029_kicad_newsymbol" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -311,42 +311,41 @@
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <br>
 
-      <p>2021/09/25</p>
-<h1 id="cstylecop-analyzers">C#のコードスタイルチェックツール「StyleCop Analyzers」を使う</h1>
+      <p>2023/10/29</p>
+<h1 id="kicad">KiCADで新規シンボルを登録する</h1>
 <hr />
-<p>StyleCop AnalyzersとはVisual Studioのツールで、C#のコードを分析し、コーディングルールから逸れた記述をリアルタイムに指摘してくれるものです。<br />
-書き方の統一ができるので、見た目が統一され読みやすいコードを書けるようになります。<br />
-また、チームでコーディングする際も導入することで、コードの書き方の個人差を減らすことができます。</p>
-<p>StyleCop Analyzersはオープンソースです。<br />
-プロジェクトのURLは下記になります。<br />
-<span Class="link"></span> <a href="https://github.com/DotNetAnalyzers/StyleCopAnalyzers">StyleCopAnalyzers</a></p>
-<p>導入も簡単で、気軽に使用できます。<br />
-以降、StyleCop Analyzersの使い方についてまとめています。</p>
-<h2 id="section">準備</h2>
-<p>Visual StudioのNuGetからインストールしたら、すぐに使うことができます。</p>
-<p>コーディングルールの編集はeditorconfigファイルで行います。<br />
-ファイルの追加方法は、ソリューションを右クリック→追加→新しい項目で、editorConfigファイル（規定）を追加します。</p>
-<img src="../img/20210925-Csharp-StyleCop-1.png" Style="width:100%;max-width:550px;" alt="editconfigファイルの追加">  
-<h2 id="section-1">警告内容の確認</h2>
-<p>エラー一覧ウィンドウに警告が表示されます。<br />
-エラーコードをクリックすると、エラーの詳細ページに飛ぶことができます。</p>
-<img src="../img/20210925-Csharp-StyleCop-2.png" Style="width:100%;max-width:550px;" alt="StyleCopのエラーウィンドウ">  
-<h2 id="section-2">警告を出ないようにする</h2>
-<p>警告の種類はかなり多く、中には不要なものも存在します。</p>
-<p>例えば、SA1200のエラーは、「Usingディレクティブは名前空間の中に書く」という指摘ですが、外に書いてあるものがほとんどで、Microsoftのデフォルトプロジェクトなどでも外に書いてあります。<br />
-（SA1200　Using directive should appear within a namespace declaration）</p>
-<p>準備の項目で作った.editorconfigファイルをVisual Studio上で開くと、このような不要な警告を出なくすることができます。</p>
-<img src="../img/20210925-Csharp-StyleCop-3.png" Style="width:100%;max-width:550px;" alt="StyleCopで警告を無効にする">  
-<h2 id="section-3">個人的に無効にした方がよさげな警告</h2>
-<p>※適宜追加していきます。</p>
-<ul>
-<li>SA1101　クラスメンバの呼び出しには必ずthisをつける</li>
-<li>SA1200　Usingディレクティブは、名前空間宣言の中に記述</li>
-<li>SA1600　クラス、メソッドなどにXMLドキュメントヘッダ（///でコメントつけるやつ）がない</li>
-<li>SA1629　コメントの末尾にピリオドがない</li>
-<li>SA1633　ファイルのトップにファイルヘッダ（作者とか会社名とか書くやつ）がない</li>
-<li>SA1642　コンストラクタにXMLドキュメントヘッダ（///でコメントつけるやつ）および要約（&lt;summary&gt;）がない</li>
-</ul>
+<p>KiCADは、回路設計、回路シミュレーション、プリント基板設計ができるフリーの回路CADです。<br />
+フリーながら様々な機能が使用できるので、ホビー用途だけでなく中小企業などでも使用されているようです。</p>
+<p>本記事では、kiCADで回路設計する際の、新規シンボルを登録する方法をまとめています。<br />
+※KiCAD 7.0を使用しています。</p>
+<h2 id="section">モデルのダウンロード</h2>
+<p>以下のページから、モデルをダウンロードできます。<br />
+（ユーザー登録が必要です。）</p>
+<a href="https://componentsearchengine.com/" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://media.componentsearchengine.com/images/favicon.ico');"></div></div><div class="text-box"><p class="title">Electronic Component Search Engine</p><p class="description">Free access to schematic symbols, PCB footprints and 3D models</p></div></div>
+</a> 
+<p>ICの名前で検索して、モデルがあればDownloadします。</p>
+<img src="../img/20231029_kicad_newsymbol-1.png" style="width:100%; max-width:400px;" alt="Component Search Engineでモデルをダウンロードする方法">
+<p>モデルがない場合はリクエストもできるようです。</p>
+<h2 id="kicad-1">KiCADにモデルをインポート</h2>
+<p>ダウンロードしたファイルを解凍すると、中に「KiCad」というフォルダがあります。<br />
+この中にKiCad用のモデルが入っていますので、フォルダ名をICの名前に変えて適当なフォルダにコピーします。</p>
+<img src="../img/20231029_kicad_newsymbol-2.png" style="width:100%; max-width:400px;" alt="Component Search Engineでダウンロードしたモデルの中身">
+<h3 id="section-1">回路シンボルのインポート</h3>
+<p>KiCADのメニュー画面を開いて、「設定」→「シンボル ライブラリを管理」をクリックします。</p>
+<img src="../img/20231029_kicad_newsymbol-3.png" style="width:100%; max-width:400px;" alt="KiCADでシンボルをインポートする方法">
+<p>開いた画面の、左下のフォルダマークを選択して、先ほどダウンロードしたモデルの中にある「.kicad_sym」ファイルを選択します。</p>
+<img src="../img/20231029_kicad_newsymbol-4.png" style="width:100%; max-width:400px;" alt="KiCADでシンボルをインポートする方法">
+<img src="../img/20231029_kicad_newsymbol-5.png" style="width:100%; max-width:400px;" alt="KiCADでシンボルをインポートする方法">
+<p>これで、回路CADでシンボルが使えるようになります。</p>
+<h3 id="pcb">PCBフットプリントのインポート</h3>
+<p>KiCADのメニュー画面を開いて、「設定」→「フットプリント ライブラリを管理」をクリックします。</p>
+<img src="../img/20231029_kicad_newsymbol-6.png" style="width:100%; max-width:400px;" alt="KiCADでフットプリントをインポートする方法">
+<p>開いた画面の、左下のフォルダマークを選択して、先ほどダウンロードしたフォルダを選択します。<br />
+（フォルダ内にある「kicad_mod」ファイルがフットプリントです。）</p>
+<img src="../img/20231029_kicad_newsymbol-7.png" style="width:100%; max-width:400px;" alt="KiCADでフットプリントをインポートする方法">
+<img src="../img/20231029_kicad_newsymbol-8.png" style="width:100%; max-width:400px;" alt="KiCADでフットプリントをインポートする方法">
+<p>これで、PCB CADでシンボルが使えるようになります。</p>
 <br>
 <p>以上です。</p>
 <br>
