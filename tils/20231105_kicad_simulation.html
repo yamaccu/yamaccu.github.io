@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>MarkDown&#x8A18;&#x6CD5;&#x306E;&#x30E1;&#x30E2; | yokuaru Tech notes</title>
+  <title>KiCAD&#x3067;&#x56DE;&#x8DEF;&#x30B7;&#x30DF;&#x30E5;&#x30EC;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3059;&#x308B; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -42,9 +42,9 @@
     gtag('config', 'G-Q63MXL5083');
   </script>
 
-  <meta property="og:title" content="MarkDown&#x8A18;&#x6CD5;&#x306E;&#x30E1;&#x30E2;" />
+  <meta property="og:title" content="KiCAD&#x3067;&#x56DE;&#x8DEF;&#x30B7;&#x30DF;&#x30E5;&#x30EC;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3059;&#x308B;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20210816-MarkDown-tips" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20231105_kicad_simulation" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -315,58 +315,92 @@
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <br>
 
-      <p>2021/08/16</p>
-<h1 id="markdown">MarkDown記法のメモ</h1>
+      <p>2023/11/05</p>
+<h1 id="kicadspice">KiCADでspiceモデルを使用して回路シミュレーションする</h1>
 <hr />
-<p>MarkDown記法のメモです。<br />
-随時追加していきます。</p>
-<h2 id="section">エディタ</h2>
-<p>VSCodeがお勧めです。
-以下の拡張機能をインストールすると、使い勝手が良くなります。</p>
+<p>KiCADは、回路設計、回路シミュレーション、プリント基板設計ができるフリーの回路CADです。<br />
+フリーながら様々な機能が使用できるので、ホビー用途だけでなく中小企業などでも使用されているようです。</p>
+<p>本記事では、kiCADで回路シミュレーションを行う方法をまとめています。<br />
+以下の手順でまとめています。</p>
 <ul>
-<li>Markdown All in One</li>
+<li>回路を書く</li>
+<li>Spiceモデルをダウンロード</li>
+<li>回路シンボルにSpiceモデルを登録</li>
+<li>入力信号の設定</li>
+<li>シミュレーションの実行</li>
 </ul>
-<p>機能は、下記の記事にまとめています。</p>
-<p><span class="link"></span>
-<a href="/tils/20210830-MarkDown-AllInOne">VSCodeの拡張機能「Markdown All in One」を使う</a></p>
-<h2 id="section-1">見出し</h2>
-<pre><code class="language-C#"># h1
-## h2
-### h3
-</code></pre>
-<h2 id="section-2">箇条書き</h2>
-<pre><code class="language-C#">- 箇条書き1
-  - 箇条書き2
-    - 箇条書き3
-- 箇条書き1-2
-- 箇条書き1-3
-</code></pre>
-<h2 id="section-3">コードブロック</h2>
-<pre><code class="language-C#">```C#
-codeblock
-```
-</code></pre>
-<h2 id="section-4">改行</h2>
-<pre><code class="language-C#">&lt;br&gt;
-</code></pre>
-<h2 id="section-5">リンク</h2>
-<pre><code class="language-C#">[リンクテキスト](URL)
-</code></pre>
-<h2 id="section-6">表</h2>
-<pre><code class="language-C#">|  TH  |  TH  |
-| ---- | ---- |
-|  TD  |  TD  |
-|  TD  |  TD  |
-</code></pre>
-<h2 id="section-7">画像貼り付け</h2>
-<pre><code class="language-C#">&lt;img src=&quot;xxxx/xxxx.png&quot; Style=&quot;width:100%;max-width:500px;&quot; alt=&quot;imgの説明&quot;&gt;
-</code></pre>
-<h2 id="section-8">半角スペース</h2>
-<pre><code class="language-C#">&amp;nbsp;
-</code></pre>
-<h2 id="section-9">水平線</h2>
-<pre><code class="language-C#">---
-</code></pre>
+<p>※KiCAD 7.0を使用しています。</p>
+<h2 id="section">回路を書く</h2>
+<p>本ページでは例として、TI社のコンパレータIC「LM339B」を使用した回路を使います。<br />
+こんな感じで回路を作成しました。</p>
+<img src="../img/20231105_kicad_simulation-1.png" style="width:100%; max-width:600px;" alt="KiCADでシミュレーションを行う方法">
+<h2 id="spice">Spiceモデルをダウンロード</h2>
+<p>ICメーカーのページを確認し、Spiceモデルをダウンロードします。<br />
+例えば今回使用したコンパレータICは以下です。</p>
+<p><span class="link"></span><a href="https://www.ti.com/product/ja-jp/LM339B">LM339B 36V、-40℃ ～ 85℃、クワッド、標準コンパレータ</a></p>
+<img src="../img/20231105_kicad_simulation-2.png" style="width:100%; max-width:400px;" alt="KiCADでシミュレーションを行う方法">
+<h2 id="spice-1">回路シンボルにSpiceモデルを登録</h2>
+<p>まず、先ほどダウンロードしたモデルを、プロジェクトのフォルダにコピーします。</p>
+<img src="../img/20231105_kicad_simulation-5.png" style="width:100%; max-width:400px;" alt="KiCADでシミュレーションを行う方法">
+<br><br>
+<p>回路図上でICのシンボルのプロパティを開き、「シミュレーションモデル」をクリックします。</p>
+<div style="display:flex;flex-wrap:wrap">
+<div>
+<img src="../img/20231105_kicad_simulation-7.png" style="width:100%; max-width:250px;" alt="KiCADでシミュレーションを行う方法">
+</div>
+<div>
+<img src="../img/20231105_kicad_simulation-3.png" style="width:100%; max-width:400px;" alt="KiCADでシミュレーションを行う方法">
+</div>
+</div>
+<br><br>
+<p>「ファイルからSPICEモデルを読み込む」をチェックし、Spiceモデルのフォルダの中にある「.lib」ファイルを選択します。<br />
+その後、使用するモデルを選択します。</p>
+<img src="../img/20231105_kicad_simulation-4.png" style="width:100%; max-width:480px;" alt="KiCADでシミュレーションを行う方法">
+<br><br>
+<p>同じウィンドウで、「ピンの割り当て」タブを選択して、モデルのピンを設定します。</p>
+<img src="../img/20231105_kicad_simulation-6.png" style="width:100%; max-width:280px;" alt="KiCADでシミュレーションを行う方法">
+<br><br>
+<p>これで、シンボルとSpiceモデルの紐づけが完了です。</p>
+<h2 id="section-1">入力信号の設定</h2>
+<p>回路図上で、VPULSEのプロパティを開き、「シミュレーションモデル」をクリックします。<br />
+（VPULSEは出力電圧を経過時間によって変化させられる、シミュレーション用の電圧ソースです。）</p>
+<div style="display:flex;flex-wrap:wrap">
+<div>
+<img src="../img/20231105_kicad_simulation-8.png" style="width:100%; max-width:200px;" alt="KiCADでシミュレーションを行う方法">
+</div><div>
+<img src="../img/20231105_kicad_simulation-9.png" style="width:100%; max-width:400px;" alt="KiCADでシミュレーションを行う方法">
+</div></div>
+<br><br>
+<p>VPULSEの設定をします。<br />
+ここでは、400us周期、0-20Vの矩形波としています。<br />
+<img src="../img/20231105_kicad_simulation-10.png" style="width:100%; max-width:300px;" alt="KiCADでシミュレーションを行う方法"></p>
+<h2 id="section-2">シミュレーションの実行</h2>
+<p>回路図で上のタブの「検査」→「シミュレータ」をクリックします。</p>
+<img src="../img/20231105_kicad_simulation-11.png" style="width:100%; max-width:300px;" alt="KiCADでシミュレーションを行う方法">
+<br><br>
+<p>「コマンド」をクリックして、シミュレーションコマンドを設定します。<br />
+ここでは、過渡応答（時間経過による変化）のシミュレーションを実施します。</p>
+<p>時間ステップは、シミュレーション時間全体に対して細かすぎると実行に時間がかかるので、注意が必要です。<br />
+互換モードは「PSpiceとLTSpice」を設定しておけば、大抵のケースに対応可能です。</p>
+<img src="../img/20231105_kicad_simulation-12.png" style="width:100%; max-width:400px;" alt="KiCADでシミュレーションを行う方法">
+<br><br>
+<p>「実行/停止」をクリックします。</p>
+<img src="../img/20231105_kicad_simulation-13.png" style="width:100%; max-width:300px;" alt="KiCADでシミュレーションを行う方法">
+<br><br>
+<p>シミュレーションの実行が終わったら、「プローブ」をクリックし、電圧波形が見たいラインをクリックします。<br />
+今回は、コンパレータICの入力、出力、基準電圧を見ています。</p>
+<div style="display:flex;flex-wrap:wrap">
+<div>
+<img src="../img/20231105_kicad_simulation-14.png" style="width:100%; max-width:280px;" alt="KiCADでシミュレーションを行う方法">
+</div><div>
+<img src="../img/20231105_kicad_simulation-15.png" style="width:100%; max-width:300px;" alt="KiCADでシミュレーションを行う方法">
+</div></div>
+<br><br>
+<p>そうすると、各ラインのシミュレーション結果をみることができます。<br />
+コンパレータICが正常に動作していることが確認できました。</p>
+<img src="../img/20231105_kicad_simulation-16.png" style="width:100%; max-width:400px;" alt="KiCADでシミュレーションを行う方法">
+<p><br><br></p>
+<p>以上です。</p>
 <br>
 <br>
 <hr />
