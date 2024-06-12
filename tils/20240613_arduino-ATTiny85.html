@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>&#x30D6;&#x30ED;&#x30B0;&#x306E;html head&#x306E;&#x66F8;&#x304D;&#x65B9; | yokuaru Tech notes</title>
+  <title>ATtiny85&#x3092;Arduino&#x5316;&#x3057;&#x3066;&#x30BD;&#x30D5;&#x30C8;&#x30A6;&#x30A7;&#x30A2;&#x3092;&#x66F8;&#x304D;&#x8FBC;&#x3080; | yokuaru Tech notes</title>
 
   <link href="/scss/tils.css" rel="stylesheet" type="text/css">
   <link href="/scss/prism.css" rel="stylesheet" type="text/css">
@@ -42,9 +42,9 @@
     gtag('config', 'G-Q63MXL5083');
   </script>
 
-  <meta property="og:title" content="&#x30D6;&#x30ED;&#x30B0;&#x306E;html head&#x306E;&#x66F8;&#x304D;&#x65B9;" />
+  <meta property="og:title" content="ATtiny85&#x3092;Arduino&#x5316;&#x3057;&#x3066;&#x30BD;&#x30D5;&#x30C8;&#x30A6;&#x30A7;&#x30A2;&#x3092;&#x66F8;&#x304D;&#x8FBC;&#x3080;" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yamaccu.github.io/tils/20231009-Blog-head" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20240613_arduino-ATTiny85" />
   <meta property="og:site_name" content="yokuaru Tech notes" />
   <meta property="og:locale" content="ja_JP" />
 
@@ -319,52 +319,140 @@
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <br>
 
-      <p>2023/10/9</p>
-<h1 id="html-head">ブログのhtml headに書く内容</h1>
+      <br>
+<p>2024/6/13</p>
+<h1 id="attiny85arduino">小型マイコンATtiny85をArduino化して使ってみた</h1>
 <hr />
-<p>ブログを作った時、htmlのheadに書く内容をまとめました。</p>
-<pre><code class="language-html">&lt;head&gt; 
-
-  &lt;meta charset=&quot;utf-8&quot;&gt;        ★文字コード指定 
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;       ★viewpoint設定
-  &lt;meta property=&quot;og:title&quot; content=&quot;ページタイトル&quot;&gt;     ★OGPタグ
-  &lt;meta property=&quot;og:type&quot; content=&quot;ページの種類&quot;&gt;
-  &lt;meta property=&quot;og:description&quot; content=&quot;ページの説明&quot;&gt;
-  &lt;meta property=&quot;og:url&quot; content=&quot;ページのURL&quot;&gt;
-  &lt;meta property=&quot;og:image&quot; content=&quot;サムネイル画像のURL&quot;&gt;
-  &lt;meta property=&quot;og:site_name&quot; content=&quot;サイトの名前&quot;&gt;
-  &lt;meta property=&quot;og:locale&quot; content=&quot;ja_JP&quot;&gt;
-
-  &lt;link href=&quot;CSSファイルのパス&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;     ★CSS読み込み
-  &lt;link rel=&quot;icon&quot; href=&quot;アイコンのパス&quot; type=&quot;image/x-icon&quot;&gt;     ★アイコン指定
-
-  &lt;title&gt;ページタイトル&lt;/title&gt;      ★ページタイトル
-  &lt;script defer src=&quot;JSのパス&quot;&gt;&lt;/script&gt;     ★JS読み込み
-
-&lt;/head&gt;
+<h2 id="section">はじめに</h2>
+<p>秋月電子などでお安く手に入る小型マイコン、ATtiny85にArduinoを書き込みしてみました。<br />
+回路接続、プログラム書き込みまで紹介しています。<br />
+プログラム書き込みはArduino Unoを使用します。</p>
+<p>メモリ少ないのが難点ですが、ちょっとした機能のものを作りたいときなどは選択肢に入れてみてください。</p>
+<a href="https://akizukidenshi.com/catalog/g/g109573/" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://akizukidenshi.com/img/goods/L/109573.jpg');"></div></div><div class="text-box"><p class="title">AVRマイコン ATTINY85-20PU: 半導体 秋月電子通商-電子部品・ネット通販</p><p class="description">AVRマイコン ATTINY85-20PU</p></div></div>
+</a>
+<p>送料気になる方はamazonでも売っています。</p>
+<!-- START MoshimoAffiliateEasyLink -->
+<div style="margin-left:25px">
+<script type="text/javascript">
+(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+c.getElementById(a)||(d=c.createElement(f),d.src=g,
+d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
+msmaflink({"n":"Microchip Technology マイコン 8ビット RISC AVR 20MHz 8 kB フラッシュ 8-Pin PDIP ATTINY85-20PU 5個","b":"Microchip Technology","d":"https:\/\/m.media-amazon.com","c_p":"","p":["\/images\/I\/31fHjPnjicL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B08XK7HV24","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":3,"u_tx":"Amazonで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B08XK7HV24","a_id":2991341,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":1}],"eid":"zTuZK","s":"s"});
+</script>
+<div id="msmaflink-zTuZK">リンク</div>
+</div>
+<!-- MoshimoAffiliateEasyLink END -->
+<h2 id="arduino-unoisp">準備　Arduino UnoにISPプログラムを書き込む</h2>
+<p>Arduino Unoをライター化していきます。</p>
+<img src="../img/20240613-attiny85-7.png" style="width:100%; max-width:250px;" alt="ATtiny85の端子情報">
+<p>まず、Arduino IDE以下からダウンロードしてインストールします。<br />
+<a href="https://www.arduino.cc/en/software" style="text-decoration: none;"></p>
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://www.arduino.cc/wiki/370832ed4114dd35d498f2f449b4781e/arduino.svg');"></div></div><div class="text-box"><p class="title">Software | Arduino</p><p class="description">Open-source electronic prototyping platform enabling users to create interactive electronic objects.</p></div></div>
+</a>  
+<p>PCとArduino Unoを接続してIDEを開きます。<br />
+IDEを起動して、左上メニューの「file」→「Examples」→「11.ArduinoISP」→「ArduinoISP」を選択します。<br />
+プログラムが開いたら、Select Boardで「Arduino Uno」を選択し、書き込みボタンを押します。</p>
+<img src="../img/20240613-attiny85-8.png" style="width:100%; max-width:400px;" alt="ATtiny85の端子情報">
+<br><br>
+<img src="../img/20240613-attiny85-9.png" style="width:100%; max-width:350px;" alt="ATtiny85の端子情報">
+<br><br>
+<h2 id="attiny85">Attiny85端子情報</h2>
+<p>リセット(1pin)、GND(4pin)、電源(8pin)を除くと、IOとして使えるのは残りの5ピンです。</p>
+<img src="../img/20240613-attiny85-1.png" style="width:100%; max-width:600px;" alt="ATtiny85の端子情報">
+<br><br>
+<p><a href="https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf">データシートはこちら</a></p>
+<h2 id="section-1">ソフトウェア作成</h2>
+<p>ソフトウェアはArduinoで作成します。<br />
+環境は、VSCode＋PlatformIOがおすすめです。<br />
+インストール方法は以下です。</p>
+<a href="https://platformio.org/platformio-ide" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://cdn.platformio.org/images/platformio-logo.17fdc3bc.png');"></div></div><div class="text-box"><p class="title">PlatformIO IDE</p><p class="description">A new generation toolset for embedded C/C++ development</p></div></div>
+</a>  
+<p>インストールしたら、New ProjectでATtiny85のプロジェクトを作成します。</p>
+<p><img src="../img/20240613-attiny85-2.png" style="width:100%; max-width:600px;" alt="ATtiny85の端子情報"><br><br>
+<img src="../img/20240613-attiny85-3.png" style="width:100%; max-width:450px;" alt="ATtiny85の端子情報"></p>
+<p>プロジェクト内の「src」フォルダ直下に「main.cpp」ファイルがあるので、ここにプログラムを書きます。<br />
+外部のライブラリを使用するときは、「lib」フォルダに入れれば使用できます。</p>
+<img src="../img/20240613-attiny85-4.png" style="width:100%; max-width:600px;" alt="ATtiny85の端子情報">
+<h2 id="section-2">ソフト書き込み</h2>
+<h3 id="platformioini">platformioのiniファイルを修正する</h3>
+<p>プロジェクト内にあるplatformio.iniファイルの中身を、以下のように書き換えます。<br />
+Arduino Uno経由でソフトを書き換えるための設定です。<br />
+（<a href="https://docs.platformio.org/en/latest/platforms/atmelavr.html#upload-using-programmer">こちらの公式ページより抜粋</a>）</p>
+<pre><code class="language-ini">[env:program_via_ArduinoISP]
+platform = atmelavr
+framework = arduino
+upload_protocol = custom
+upload_port = SERIAL_PORT_HERE  ;使うシリアルポートを入れる ex)COM3
+upload_speed = 19200
+upload_flags =
+    -C
+    ${platformio.packages_dir}/tool-avrdude/avrdude.conf
+    -p
+    $BOARD_MCU
+    -P
+    $UPLOAD_PORT
+    -b
+    $UPLOAD_SPEED
+    -c
+    stk500v1
+upload_command = avrdude $UPLOAD_FLAGS -U flash:w:$SOURCE:i
 </code></pre>
-<h2 id="meta">metaタグ</h2>
-<h3 id="section">文字コード指定</h3>
-<p>ページの文字コードを指定します。<br />
-「utf-8」を指定すれば大体のケースで問題ありません。</p>
-<h3 id="viewpoint">viewpoint設定</h3>
-<p>ページの幅の初期設定です。<br />
-レスポンシブデザインにするには、&quot;width=device-width&quot; として表示端末の幅に合わせる設定にします。</p>
-<h3 id="ogp">OGPタグ</h3>
-<p>他のサイトからリンクを貼られた時の表示内容を指定できます。<br />
-例えば、X(twitter)カードなどの表示を綺麗にカスタマイズできます。</p>
-<h2 id="link">linkタグ</h2>
-<h3 id="css">CSS読み込み</h3>
-<p>ページで使用するCSSを読み込みます。</p>
-<h3 id="section-1">アイコン指定</h3>
-<p>ブラウザのURLバー、ブックマーク時などにアイコンとして使用されます。</p>
-<h2 id="section-2">その他</h2>
-<h3 id="section-3">ページタイトル</h3>
-<p>ページのタイトルです。<br />
-ブラウザのURLバー、検索時の表示、ブックマーク時などにタイトルが適用されます。</p>
-<h3 id="js">JS読み込み</h3>
-<p>ページで使用するJavaScriptを読み込みます。<br />
-deferを設定すると、ページ読み込みと並行してJavaScriptを読み込み、ページの表示スピードをあげてくれます。</p>
+<h3 id="arduino-unoattiny85">Arduino UnoとAttiny85を接続する</h3>
+<p>Arduino UnoとAttiny85を以下のように接続します。<br />
+（<a href="https://docs.arduino.cc/built-in-examples/arduino-isp/ArduinoISP/">こちらの公式ページより抜粋</a>）</p>
+<table>
+<thead>
+<tr>
+<th>　Arduino　</th>
+<th>　attiny85　</th>
+<th>　機能　</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>　10 or ICSP-5　</td>
+<td>　1(PB5)　</td>
+<td>　Reset　</td>
+</tr>
+<tr>
+<td>　GND or ICSP-6　</td>
+<td>　4(GND)　</td>
+<td>　GND　</td>
+</tr>
+<tr>
+<td>　11 or ICSP-4　</td>
+<td>　5(PB0)　</td>
+<td>　MOSI　</td>
+</tr>
+<tr>
+<td>　12 or ICSP-1　</td>
+<td>　6(PB1)　</td>
+<td>　MISO　</td>
+</tr>
+<tr>
+<td>　13 or ICSP-3　</td>
+<td>　7(PB2)　</td>
+<td>　SCK　</td>
+</tr>
+<tr>
+<td>　5V or ICSP-2　</td>
+<td>　8(Vcc)　</td>
+<td>　Vcc　</td>
+</tr>
+</tbody>
+</table>
+<p>Arduino Unoの各ピンの場所は以下です。</p>
+<p><img src="../img/20240613-attiny85-6.png" style="width:100%; max-width:400px;" alt="ATtiny85の端子情報"><br></p>
+<p>接続したら、左下の右矢印マークで書き込みをします。</p>
+<img src="../img/20240613-attiny85-5.png" style="width:100%; max-width:400px;" alt="ATtiny85の端子情報">
+<p>DONEのメッセージがでたら、書き込み完了です。</p>
+<img src="../img/20240613-attiny85-10.png" style="width:100%; max-width:400px;" alt="ATtiny85の端子情報">
+<br>
 <br>
 <p>以上です。</p>
 <br>
