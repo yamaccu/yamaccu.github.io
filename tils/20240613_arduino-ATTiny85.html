@@ -346,20 +346,21 @@ msmaflink({"n":"Microchip Technology マイコン 8ビット RISC AVR 20MHz 8 kB
 <div id="msmaflink-zTuZK">リンク</div>
 </div>
 <!-- MoshimoAffiliateEasyLink END -->
-<h2 id="arduino-unoisp">準備　Arduino UnoにISPプログラムを書き込む</h2>
-<p>Arduino Unoをライター化していきます。</p>
+<h2 id="arduino-uno">準備　Arduino Unoをライター化する</h2>
+<p>Arduino UnoにISPプログラムを書き込んで、ATtiny85にプログラムを書き込めるようにします。</p>
 <img src="../img/20240613-attiny85-7.png" style="width:100%; max-width:250px;" alt="ATtiny85の端子情報">
-<p>まず、Arduino IDE以下からダウンロードしてインストールします。<br />
+<p>まず、以下からArduino IDEをダウンロード、インストールします。<br />
 <a href="https://www.arduino.cc/en/software" style="text-decoration: none;"></p>
 <div class="link-box"><div class="img-box"><div style="background-image: url('https://www.arduino.cc/wiki/370832ed4114dd35d498f2f449b4781e/arduino.svg');"></div></div><div class="text-box"><p class="title">Software | Arduino</p><p class="description">Open-source electronic prototyping platform enabling users to create interactive electronic objects.</p></div></div>
 </a>  
-<p>PCとArduino Unoを接続してIDEを開きます。<br />
-IDEを起動して、左上メニューの「file」→「Examples」→「11.ArduinoISP」→「ArduinoISP」を選択します。<br />
+<p>PCとArduino Unoを接続してIDEを起動します。<br />
+左上メニューの「file」→「Examples」→「11.ArduinoISP」→「ArduinoISP」を選択します。<br />
 プログラムが開いたら、Select Boardで「Arduino Uno」を選択し、書き込みボタンを押します。</p>
 <img src="../img/20240613-attiny85-8.png" style="width:100%; max-width:400px;" alt="ATtiny85の端子情報">
 <br><br>
 <img src="../img/20240613-attiny85-9.png" style="width:100%; max-width:350px;" alt="ATtiny85の端子情報">
 <br><br>
+<p>これで、Arduino Unoをライターとして使用することができます。</p>
 <h2 id="attiny85">Attiny85端子情報</h2>
 <p>リセット(1pin)、GND(4pin)、電源(8pin)を除くと、IOとして使えるのは残りの5ピンです。</p>
 <img src="../img/20240613-attiny85-1.png" style="width:100%; max-width:600px;" alt="ATtiny85の端子情報">
