@@ -1,0 +1,430 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>ATtiny85&#x3092;Arduino&#x5316;&#x3057;&#x3066;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x5272;&#x8FBC;&#x307F;&#x3092;&#x4F7F;&#x3046; | yokuaru Tech notes</title>
+
+  <link href="/scss/tils.css" rel="stylesheet" type="text/css">
+  <link href="/scss/prism.css" rel="stylesheet" type="text/css">
+  <script defer src="/js/tils.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js"
+    data-no-mirror></script>
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- google fonts
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+  -->
+
+  <script data-ad-client="ca-pub-2127299793131419" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197465108-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-197465108-1');
+  </script>
+  -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q63MXL5083"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q63MXL5083');
+  </script>
+
+  <meta property="og:title" content="ATtiny85&#x3092;Arduino&#x5316;&#x3057;&#x3066;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x5272;&#x8FBC;&#x307F;&#x3092;&#x4F7F;&#x3046;" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yamaccu.github.io/tils/20241030_arduino-ATTiny85timer" />
+  <meta property="og:site_name" content="yokuaru Tech notes" />
+  <meta property="og:locale" content="ja_JP" />
+
+</head>
+
+<body>
+  <header
+    style="background-image:url('/img/main2.png'); position:fixed; top:0; left:0; right:0; z-index: 50;">
+    <div class="flex-wrap">
+      <div class="menu" id="humbergericon"></div>
+      <div>
+        <a href="/tils" class="title">TIL</a>
+      </div>
+      <div class="ext-link">
+        <a href="/"><img src="/img/home.png" class="ext-link-icon"
+            alt="homeへのリンク"></a>&nbsp;&nbsp;
+        <a href="https://twitter.com/YY87750722"><img src="/img/twitter.png" class="ext-link-icon"
+            alt="twitterへのリンク"></a>&nbsp;&nbsp;
+        <a href="https://github.com/yamaccu"><img src="/img/github.png" class="ext-link-icon"
+            alt="githubへのリンク"></a>
+      </div>
+    </div>
+    <br>
+  </header>
+  <br>
+  <div class="flex-nowrap, body-font">
+    <div class="side-layout load" id="sidemenu">
+        <details>
+          <summary class="side-summary">Arduino</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20220502-Arduino-Timer">Arduino&#x3067;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3046;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20240613_arduino-ATTiny85">ATtiny85&#x3092;Arduino&#x5316;&#x3057;&#x3066;&#x30BD;&#x30D5;&#x30C8;&#x30A6;&#x30A7;&#x30A2;&#x3092;&#x66F8;&#x304D;&#x8FBC;&#x3080;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20241030_arduino-ATTiny85timer">ATtiny85&#x3092;Arduino&#x5316;&#x3057;&#x3066;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x5272;&#x8FBC;&#x307F;&#x3092;&#x4F7F;&#x3046;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">Blazor</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20220316-Blazor-Chartjs">Chart.js&#x3067;&#x30B0;&#x30E9;&#x30D5;&#x3092;&#x63CF;&#x304F;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">blog</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20231009-Blog-head">&#x30D6;&#x30ED;&#x30B0;&#x306E;html head&#x306E;&#x66F8;&#x304D;&#x65B9;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20210815-Blog-setting">&#x30D6;&#x30ED;&#x30B0;&#x3092;&#x4F5C;&#x3063;&#x305F;&#x3089;&#x6700;&#x521D;&#x306B;&#x3084;&#x308B;&#x3053;&#x3068;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">C#</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20211214-Csharp-CRC">CRC&#x3092;&#x8A08;&#x7B97;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220426-Csharp-Linq">Linq&#x307E;&#x3068;&#x3081;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20210903-Csharp-ResharperCommand">Resharper&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20210925-Csharp-StyleCop">StyleCop Analyzers&#x3092;&#x4F7F;&#x3046;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220530-Csharp-ToString">ToString&#x307E;&#x3068;&#x3081;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220228-Csharp-Array">&#x914D;&#x5217;&#x307E;&#x3068;&#x3081;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">C#/WPF</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20210916-Csharp-WPFBinding">Data Binding&#x3092;&#x4F7F;&#x3046;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20210825-Csharp-SerialPort">&#x30B7;&#x30EA;&#x30A2;&#x30EB;&#x901A;&#x4FE1;&#x3092;&#x884C;&#x3046;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">github</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20210907-GithubPages-utterances">Github Pages&#x306B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x6B04;&#x3092;&#x8FFD;&#x52A0;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20210819-Git-push">Github&#x3067;&#x521D;push&#x307E;&#x3067;&#x306E;&#x8A2D;&#x5B9A;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">HTML/CSS/JS</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20220216-Display-flex">&#x300C;CSS&#x300D;display:flex&#x307E;&#x3068;&#x3081;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20230502-css-following">&#x300C;CSS&#x300D;sticky&#x3067;&#x5E83;&#x544A;&#x3092;&#x30B9;&#x30AF;&#x30ED;&#x30FC;&#x30EB;&#x306B;&#x8FFD;&#x5F93;&#x3055;&#x305B;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20210821-HTML-figure">&#x300C;HTML&#x300D;div&#x8981;&#x7D20;&#x3067;&#x56F3;&#x5F62;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20230105-javascript-reduce">&#x300C;JavaScript&#x300D;reduce&#x3067;&#x914D;&#x5217;&#x306E;&#x4E2D;&#x8EAB;&#x3092;&#x51E6;&#x7406;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20230103-javascript-object">&#x300C;JavaScript&#x300D;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x578B;&#x307E;&#x3068;&#x3081;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220328-JS-Sidemenu">&#x300C;JavaScript&#x300D;&#x30B5;&#x30A4;&#x30C9;&#x30E1;&#x30CB;&#x30E5;&#x30FC;&#x306E;&#x8868;&#x793A;/&#x975E;&#x8868;&#x793A;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20221229-git-graphql">&#x300C;Node.js&#x300D;GitHub GraphQL API&#x3092;&#x4F7F;&#x3046;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20230109-javascript-jest">&#x300C;Node.js&#x300D;JEST &#x2B; Babel&#x3067;&#x81EA;&#x52D5;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x5B9F;&#x65BD;&#x3059;&#x308B;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">M5Stack</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20220829-M5Stack-AquesTalk">AquesTalk&#x3092;&#x4F7F;&#x3046;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220908-M5Stack-image">LCD&#x753B;&#x9762;&#x306B;&#x753B;&#x50CF;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20210823-UIFLOW-CustomBlock">UIFLOW&#x306E;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x4F5C;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220808-M5Stack-JSON">wifi&#x63A5;&#x7D9A;&#x3057;&#x3066;&#x5929;&#x6C17;&#x4E88;&#x5831;JSON&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220801-M5Stack-servo">&#x30B5;&#x30FC;&#x30DC;&#x30E2;&#x30FC;&#x30BF;&#x3092;&#x4F7F;&#x3046;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220722-M5Stack-Battery">&#x30D0;&#x30C3;&#x30C6;&#x30EA;&#x30FC;&#x306E;&#x6B8B;&#x308A;&#x3092;&#x8ABF;&#x3079;&#x308B;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">M5StickC</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20220307-M5stickc-6jiku">6&#x8EF8;&#x30BB;&#x30F3;&#x30B5;&#x3092;&#x3064;&#x304B;&#x3046;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220310-M5stickc-playwav">SpeakerHat&#x3067;wav&#x3092;&#x518D;&#x751F;&#x3059;&#x308B;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">MarkDown</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20210816-MarkDown-tips">MarkDown&#x8A18;&#x6CD5;&#x306E;&#x30E1;&#x30E2;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">micropython</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20210818-Micropython-repl">repl&#x3092;&#x4F7F;&#x3046;&#x65B9;&#x6CD5;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">python</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20221010-Python-popup">CUI&#x3067;&#x30DD;&#x30C3;&#x30D7;&#x30A2;&#x30C3;&#x30D7;&#x3001;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30C0;&#x30A4;&#x30A2;&#x30ED;&#x30B0;&#x3092;&#x51FA;&#x3059;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20221102-Python-timelapse">OpenCV&#x3067;&#x30BF;&#x30A4;&#x30E0;&#x30E9;&#x30D7;&#x30B9;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20230924-Python-openpyxl">openpyxl&#x3067;excel&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x8AAD;&#x307F;&#x8FBC;&#x307F; / &#x66F8;&#x304D;&#x8FBC;&#x307F;&#x64CD;&#x4F5C;&#x3092;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20230519-Python-pngcompress">Pillow&#x3067;PNG&#x3092;&#x6E1B;&#x8272;&#x3057;&#x3066;&#x5727;&#x7E2E;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220322-Python-Fileope">&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x65E5;&#x4ED8;&#x306B;&#x3088;&#x3063;&#x3066;&#x64CD;&#x4F5C;&#x3059;&#x308B;&#x3002;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20210820-Python-pipenv">&#x4EEE;&#x60F3;&#x74B0;&#x5883;&#x306E;&#x4F5C;&#x308A;&#x65B9;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">RaspberryPi</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20220916-Raspberry-I2S-sht31">I2C&#x3067;&#x6E29;&#x6E7F;&#x5EA6;&#x30BB;&#x30F3;&#x30B5;SHT31&#x3068;&#x901A;&#x4FE1;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20211018-Raspberry-Samba">WindowsPC&#x3068;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x5171;&#x6709;(samba)</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20211019-Raspberry-mjpgstreamer">&#x52D5;&#x753B;&#x3092;&#x30B9;&#x30C8;&#x30EA;&#x30FC;&#x30DF;&#x30F3;&#x30B0;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20220329-Raspberry-camera">&#x6BCE;&#x65E5;&#x6C7A;&#x307E;&#x3063;&#x305F;&#x6642;&#x9593;&#x306B;&#x5199;&#x771F;&#x3092;&#x64AE;&#x308B;</a><br>
+            </div>
+        </details>
+        <details>
+          <summary class="side-summary">&#x56DE;&#x8DEF;&#x8A2D;&#x8A08;</summary>
+            <div class="side-content">
+              -
+              <a href="/tils/20231105_kicad_simulation">KiCAD&#x3067;&#x56DE;&#x8DEF;&#x30B7;&#x30DF;&#x30E5;&#x30EC;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3059;&#x308B;</a><br>
+            </div>
+            <div class="side-content">
+              -
+              <a href="/tils/20231029_kicad_newsymbol">KiCAD&#x3067;&#x56DE;&#x8DEF;&#x8A2D;&#x8A08;&#x306E;&#x30B7;&#x30F3;&#x30DC;&#x30EB;&#x3092;&#x8FFD;&#x52A0;&#x3092;&#x3059;&#x308B;</a><br>
+            </div>
+        </details>
+      <br>
+      <div style="margin-right:60px;">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block; margin-left:0px;" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </div>
+    </div>
+
+    <div class="main-content">
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+          crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+          style="display:block;min-width:400px;max-width:970px;width:100%;height:90px"
+          data-ad-client="ca-pub-2127299793131419" 
+          data-ad-slot="2560895837">
+        </ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <br>
+
+      <br>
+<p>2024/10/30</p>
+<h1 id="attiny85">小型マイコンATtiny85のタイマー割込みを使ってみた</h1>
+<hr />
+<h2 id="section">はじめに</h2>
+<p>本記事では、ATtiny85のタイマー割込みを使用する方法をまとめています。<br />
+プログラムはArduinoを使用しています。</p>
+<p>タイマー割込みを使用することで、一定間隔で処理を実行することができるようになります。</p>
+<p>ATtiny85は秋月電子で手に入ります。</p>
+<a href="https://akizukidenshi.com/catalog/g/g109573/" style="text-decoration: none;">
+<div class="link-box"><div class="img-box"><div style="background-image: url('https://akizukidenshi.com/img/goods/L/109573.jpg');"></div></div><div class="text-box"><p class="title">AVRマイコン ATTINY85-20PU: 半導体 秋月電子通商-電子部品・ネット通販</p><p class="description">AVRマイコン ATTINY85-20PU</p></div></div>
+</a>
+<p>送料気になる方はamazonでも売っています。</p>
+<!-- START MoshimoAffiliateEasyLink -->
+<div style="margin-left:25px">
+<script type="text/javascript">
+(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+c.getElementById(a)||(d=c.createElement(f),d.src=g,
+d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
+msmaflink({"n":"Microchip Technology マイコン 8ビット RISC AVR 20MHz 8 kB フラッシュ 8-Pin PDIP ATTINY85-20PU 5個","b":"Microchip Technology","d":"https:\/\/m.media-amazon.com","c_p":"","p":["\/images\/I\/31fHjPnjicL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B08XK7HV24","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":3,"u_tx":"Amazonで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B08XK7HV24","a_id":2991341,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":1}],"eid":"zTuZK","s":"s"});
+</script>
+<div id="msmaflink-zTuZK">リンク</div>
+</div>
+<!-- MoshimoAffiliateEasyLink END -->
+<h2 id="attiny85-1">ATtiny85のタイマー</h2>
+<p><a href="https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf">データシートはこちら</a></p>
+<p>ATtiny85には、タイマーが2つあります。<br />
+Timer/Counter0とTimer/Counter1です。<br />
+両方とも8bitになります。</p>
+<img src="../img/20241030-attiny85Timer-1.png" style="width:100%; max-width:400px;" alt="ATtiny85の端子情報">
+<br><br>
+<p>ただし、Timer/Counter0は、Arduinoの関数「millis」や「Delay」に使用されているため、設定を変えるとこれらの関数が使用できなくなってしまいます。<br />
+ですので、Arduinoの場合はTimer/Counter1の方を使用する方が良いです。</p>
+<h2 id="attiny85arduino">ATTiny85＋Arduinoでのタイマー割込み処理</h2>
+<p>タイマーを使った割込み処理は、以下のように使用します。</p>
+<pre><code class="language-Cpp">ISR(xxxx)
+{
+    doSomething();
+}
+</code></pre>
+<p>xxxxには以下のどれかを入れます。</p>
+<ul>
+<li>TIMER1_OVF_vect：タイマーのオーバーフローを使用</li>
+<li>TIMER1_COMPA_vect：コンペアマッチAを使用</li>
+</ul>
+<p>これで、Timer1の該当イベントが発生したタイミングで、何か処理を実行することができます。</p>
+<h2 id="section-1">オーバーフロー</h2>
+<p>単純にカウンタがインクリメントされていき、オーバーフローしたら処理を実施する機能です。<br />
+Timer1のオーバーフローの時間は、以下のように計算できます。</p>
+<ul>
+<li>タイマーのビット幅：8bit</li>
+<li>タイマークロック：1MHz(デフォルト値、Fuseやレジスタ設定で変更可能)</li>
+<li>オーバーフローする時間：2^8 × 1[us] = 256[us]</li>
+</ul>
+<p>よって、オーバーフローイベントで処理を実施すると。256usごとに処理を実施できることになります。</p>
+<pre><code class="language-Cpp">TCCR1 = 0b00000001; // クロック分周なし
+
+ISR(TIMER1_OVF_vect)
+{
+    doSomething();
+}
+</code></pre>
+<h2 id="section-2">コンペアマッチ</h2>
+<p>タイマーカウンタが指定した値に達したときに、イベント処理を実施する機能です。<br />
+比較値はレジスタで設定します。</p>
+<p>比較値の設定は「OCR1A」と「OCR1C」に値を入れます。</p>
+<pre><code class="language-Cpp">TIMSK = 0b01100000; // コンペアマッチを有効
+TCCR1 = 0b10000001; // CTCモード、クロック分周なし
+OCR1A = 100; // カウンタが100になったらコンペアマッチイベントが発生
+OCR1C = 100; // カウンタが100になったらカウンタを0クリアする（要CTCモード設定）
+
+// カウンタが100になったら実施
+ISR(TIMER1_COMPA_vect)
+{
+    doSomething();
+}
+</code></pre>
+<p>以上です。</p>
+<br>
+<br>
+<hr />
+
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2127299793131419"
+        crossorigin="anonymous"></script>
+        <!-- head -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2127299793131419" data-ad-slot="2560895837"
+        data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <h3>コメント<span class="comment">（githubのアカウントが必要です）</span></h3>
+        <script src="https://utteranc.es/client.js" repo="yamaccu/yamaccu.github.io" issue-term="pathname"
+        theme="github-light" crossorigin="anonymous" async>
+          </script>
+          <br>
+          <br>
+    </div>
+  </div>
+</body>
+
+</html>
